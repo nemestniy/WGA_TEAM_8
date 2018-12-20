@@ -19,10 +19,8 @@ public class Player: MonoBehaviour {
         _rigidbody.velocity = direction * _speed;
 	}
 
-    public void SetAngle(Vector2 direction)
+    public void SetAngle(float angle)
     {
-        Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(direction.x, direction.y, transform.position.z)).normalized;
-        float angle = (360 * Mathf.Atan2(position.x, position.y)) / (Mathf.PI * 2);
-        transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, -angle);
+        transform.eulerAngles = new Vector3(0, 0, angle);
     }
 }

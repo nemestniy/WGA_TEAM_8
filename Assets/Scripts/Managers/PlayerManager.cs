@@ -27,6 +27,6 @@ public class PlayerManager : MonoBehaviour
         Vector2 velocity = _moveController.GetVelocity();
         _player.SetVelocity(velocity);
 
-        _player.SetAngle(Input.mousePosition);
+        _player.SetAngle(_moveController.GetAngle());
     }
 }

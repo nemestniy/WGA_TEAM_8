@@ -11,4 +11,12 @@ public class KeyController : MoveController
 
         return new Vector2(horizontal, vertical);
     }
+
+    public override float GetAngle()
+    {
+        float angle = Vector2.Angle(Vector2.up, Camera.main.ScreenToWorldPoint(Input.mousePosition).normalized);
+        if (Input.mousePosition.x > Screen.width / 2)
+            angle *= -1;
+        return angle;
+    }
 }
