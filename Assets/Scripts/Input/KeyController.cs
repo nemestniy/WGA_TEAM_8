@@ -23,10 +23,4 @@ public class KeyController : MoveController
             angle *= -1;
         return angle;
     }
-
-    private void Update()
-    {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.transform.position;
-        Debug.Log(mousePosition.normalized * _accuracy);
-    }
 }
