@@ -14,9 +14,9 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
-  - 
+  - Obstacles
+  - Enemies
+  - Unselectable
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Floor
     uniqueID: 3457072215
+    locked: 0
+  - name: Obstacle
+    uniqueID: 1952922569
     locked: 0
   - name: Player
     uniqueID: 3764043967
