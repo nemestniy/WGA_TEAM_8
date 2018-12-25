@@ -103,7 +103,6 @@ GameObject:
   - component: {fileID: 50576999680717308}
   - component: {fileID: 5151122670572407851}
   - component: {fileID: 58824981454247692}
-  - component: {fileID: 114531234005672518}
   - component: {fileID: 114451331865143092}
   m_Layer: 0
   m_Name: Player_cultist
@@ -226,20 +225,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.245
---- !u!114 &114531234005672518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759250699673190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f58aa6cb0945446b92ea55ef230728, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speedCoeficent: 4
-  _speed: 4
 --- !u!114 &114451331865143092
 MonoBehaviour:
   m_ObjectHideFlags: 0

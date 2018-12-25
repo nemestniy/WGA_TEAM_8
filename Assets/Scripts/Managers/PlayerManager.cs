@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         _moveController = GetComponent<MoveController>();
-        _player = GameObject.Find("Player").GetComponent<Player>();
+        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
