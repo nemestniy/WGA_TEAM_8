@@ -16,6 +16,8 @@ public class Player: MonoBehaviour {
 
     public void SetVelocity(Vector2 direction)
 	{
+        if (direction.x != 0 || direction.y != 0)
+            direction *= Mathf.Sqrt(2) / 2;
         _rigidbody.velocity = direction * _speed;
 	}
 
