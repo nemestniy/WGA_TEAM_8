@@ -13,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - Obstacles
-  - Enemies
-  - Unselectable
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -41,12 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Floor
-    uniqueID: 3457072215
-    locked: 0
-  - name: Obstacle
-    uniqueID: 1952922569
-    locked: 0
   - name: Player
-    uniqueID: 3764043967
+    uniqueID: 1587652703
+    locked: 0
+  - name: Background
+    uniqueID: 3225778655
+    locked: 0
+  - name: Wall
+    uniqueID: 539187829
     locked: 0
