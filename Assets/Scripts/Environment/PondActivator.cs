@@ -14,7 +14,6 @@ public class PondActivator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Бумс");
         if (!isActivated)
         {
             _ponds[0].SetActive(false);

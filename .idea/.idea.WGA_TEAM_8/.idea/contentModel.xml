@@ -18,6 +18,7 @@
           <e p="Environment" t="Include">
             <e p="HexagonMap.cs" t="Include" />
             <e p="MapChanger.cs" t="Include" />
+            <e p="Obstacle.cs" t="Include" />
             <e p="PondActivator.cs" t="Include" />
           </e>
           <e p="Input" t="Include">
