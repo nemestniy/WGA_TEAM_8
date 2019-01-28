@@ -7,7 +7,7 @@ public class FieldOfView : MonoBehaviour
 	private const int DEG_IN_CIRCLE = 360;
 
 	[SerializeField] 
-	private bool _staticCloseVision;
+	private bool _closeVewIsStatic;
 	[SerializeField]
 	public float _closeViewRadius;
 	[SerializeField]
@@ -19,17 +19,16 @@ public class FieldOfView : MonoBehaviour
 	private LayerMask _enemyMask;
 	[SerializeField]
 	private LayerMask _obstacleMask;
-	private int _obstacleMaskNum;
 
 	[HideInInspector]
 	public List<Transform> _visibleEnemies;
 
 	[SerializeField]
-	[Range(0,1)]
-	private float _findingVisibleResolution;
-	[SerializeField]
 	private float _meshResolution; //how many rays will be casted per 1 degree
 
+	[SerializeField] 
+	[Range(0, 1)]
+	private float _findingObstacleResolution;
 	[SerializeField]
 	private int _edgeResolveIterations; //how many steps we spend to find an edge of an obstacle
 	[SerializeField]
@@ -40,34 +39,20 @@ public class FieldOfView : MonoBehaviour
 	private Mesh _viewMesh; //Vision mesh
 
 	[SerializeField] 
-	private LayerMask _currentCheckedObstacleMask;
+	private bool _shadowsCornersIsVisible;
+	[SerializeField]
+	private float _edgeOffset;
 
-	private int _visibleLayerNum;
-	private ContactFilter2D _contactFilter2D;
-	
-//	[SerializeField]
-//	private MeshFilter _obstacleMaskMeshFilter;
-//	private Mesh _obstacleMaskMesh; //Obstacles vision mesh
-
-	private HashSet<GameObject> _visibleObstacles; //contains all obstacles which are visible in this frame
 
 	private void Start()
 	{
 		_viewMesh = new Mesh {name = "View Mesh"};
 		_viewMeshFilter.mesh = _viewMesh;
-		_visibleLayerNum = FromLayerToNum(_currentCheckedObstacleMask);
-		_obstacleMaskNum = FromLayerToNum(_obstacleMask);
-		_contactFilter2D.SetLayerMask(_obstacleMask);
-//		_obstacleMaskMesh = new Mesh{name = "Obstacles Mask Mesh"};
-//		_obstacleMaskMeshFilter.mesh = _obstacleMaskMesh;
-
-		_visibleObstacles = new HashSet<GameObject>();
 	}
 
 	private void LateUpdate()
 	{
 		DrawFieldOfView();
-//		DrawObstaclesViewMask();
 	}
 
 	public void FindVisibleEnemies()
@@ -116,8 +101,7 @@ public class FieldOfView : MonoBehaviour
 		
 		vertices[0] = Vector2.zero; //since the mash is players child
 		for (int i = 0; i < vertexCount - 1; i++)
-		{
-			//by adding forward * _maskCutawayDst we making the vision longer, which creates visible edges on obstacles 
+		{ 
 			vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
 
 			if (i < vertexCount - 2)
@@ -132,23 +116,10 @@ public class FieldOfView : MonoBehaviour
 		_viewMesh.vertices = vertices;
 		_viewMesh.triangles = triangles;
 		_viewMesh.RecalculateNormals();
-
-//		foreach (var visibleObstacle in _visibleObstacles) //make all seen obstacles visible
-//		{
-//			visibleObstacle.BecomeVisible();
-//		}
-//		_visibleObstacles.Clear();
 	}
-
+	
 	private void GetFarViewPoints(List<Vector3> viewPoints) //add in list all view point from vision cone
 	{
-		FindVisibleObstacles();
-
-		foreach (var visibleObstacle in _visibleObstacles)
-		{
-			visibleObstacle.layer = _visibleLayerNum;
-		}
-		
 		ViewCastInfo oldViewCast = new ViewCastInfo();
 		int stepCount = Mathf.RoundToInt(_viewAngle * _meshResolution);
 		float stepAngleSize = _viewAngle / stepCount; //how many degrees will by in each step
@@ -175,16 +146,11 @@ public class FieldOfView : MonoBehaviour
 			viewPoints.Add(newViewCast.point); //defining list of all points of vision edge
 			oldViewCast = newViewCast; //saving previous ViewCastIfo
 		}
-		foreach (var visibleObstacle in _visibleObstacles)
-		{
-			visibleObstacle.layer = _obstacleMaskNum;
-		}
-		_visibleObstacles.Clear();
 	}
 	
 	private void GetCloseViewPoints(List<Vector3> viewPoints) //add in list all view point from close vision
 	{
-		if (!_staticCloseVision) //if close vision is interactive
+		if (!_closeVewIsStatic) //if close vision is interactive
 		{
 			ViewCastInfo oldViewCast = new ViewCastInfo();
 		
@@ -228,61 +194,6 @@ public class FieldOfView : MonoBehaviour
 		
 	}
 	
-//	private void DrawObstaclesViewMask() //drawing the mesh representing obstacles view mask
-//	{
-//		List<Vector3> obstaclesMaskPoints = new List<Vector3>();
-//		GetFarMaskPoints(obstaclesMaskPoints);
-//		GetCloseMaskPoints(obstaclesMaskPoints);
-//		
-//		int vertexCount = obstaclesMaskPoints.Count + 1; //number of vertices for drawing mesh
-//		Vector3[] vertices = new Vector3[vertexCount]; //all vertex 
-//		int[] triangles = new int[(vertexCount-2)*3]; //numbers of vertex for each triangle in the mash in one row
-//		
-//		vertices[0] = Vector2.zero; //since the mash is players child
-//		for (int i = 0; i < vertexCount - 1; i++)
-//		{
-//			//by adding forward * _maskCutawayDst we making the vision longer, which creates visible edges on obstacles 
-//			vertices[i + 1] = transform.InverseTransformPoint(obstaclesMaskPoints[i]);
-//
-//			if (i < vertexCount - 2)
-//			{
-//				triangles [i * 3] = 0; 
-//				triangles [i * 3 + 1] = i + 1;
-//				triangles [i * 3 + 2] = i + 2;
-//			}
-//		}
-//		
-//		_obstacleMaskMesh.Clear();
-//		_obstacleMaskMesh.vertices = vertices;
-//		_obstacleMaskMesh.triangles = triangles;
-//		_obstacleMaskMesh.RecalculateNormals();
-//	}
-
-//	private void GetFarMaskPoints(List<Vector3> maskPoints)
-//	{
-//		int stepCount = Mathf.RoundToInt(_viewAngle * _meshResolution);
-//		float stepAngleSize = _viewAngle / stepCount; //how many degrees will by in each step
-//		for (int i = 0; i <= stepCount; i++)
-//		{
-//			float angle = -transform.eulerAngles.z - _viewAngle / 2 + stepAngleSize * i; //defining current angle
-//			Vector2 dir = DirFromAngle(angle, true);
-//			maskPoints.Add((Vector2)transform.position + dir * _farViewRadius);
-//		}
-//	}
-//	
-//	private void GetCloseMaskPoints(List<Vector3> maskPoints)
-//	{
-//		int stepCount = Mathf.RoundToInt((DEG_IN_CIRCLE -_viewAngle) * _meshResolution);
-//		float stepAngleSize = (DEG_IN_CIRCLE -_viewAngle) / stepCount; //how many degrees will by in each step
-//		for (int i = 0; i <= stepCount; i++)
-//		{
-//			float angle = -transform.eulerAngles.z + _viewAngle / 2 + stepAngleSize * i; //defining current angle
-//			Vector2 dir = DirFromAngle(angle, true);
-//			maskPoints.Add((Vector2)transform.position + dir * _closeViewRadius);
-//		}
-//	}
-	
-
 	private EdgeInfo FindEdge(ViewCastInfo minViewCast, ViewCastInfo maxViewCast)
 	{
 		float minAngle = minViewCast.angle;
@@ -310,77 +221,48 @@ public class FieldOfView : MonoBehaviour
 		
 		return new EdgeInfo(minPoint, maxPoint);
 	}
-
-//	private ViewCastInfo ViewCast(float globalAngle, float viewRadius) //cast ray and collect info about hit
-//	{
-//		Vector2 dir = DirFromAngle(globalAngle, true);
-//		RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, _obstacleMask); //cast ray
-//		
-//		if (hit) //if ray hit an obstacle
-//		{
-////			_visibleObstacles.Add(hit.collider.GetComponent<Obstacle>()); //adding all seen obstacles
-//			return new ViewCastInfo (true, hit.point, hit.distance, globalAngle);
-//		} 
-//		else //if ray did not hit an obstacle
-//		{
-//			return new ViewCastInfo (false, transform.position + (Vector3)dir * viewRadius, viewRadius, globalAngle);
-//		}
-//	}
-
-
-//	private ViewCastInfo ViewCast(float globalAngle, float viewRadius) //cast ray and collect info about hit
-//	{
-//		Vector2 dir = DirFromAngle(globalAngle, true);
-//		RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, _obstacleMask); //cast ray from player position to vision border
-//		
-//		if (hit) //if ray hit an obstacle find the point on the opposite side of the obstacle
-//		{
-//			hit.collider.gameObject.layer = _visibleLayerNum;
-//			RaycastHit2D reverseHit = Physics2D.Raycast(transform.position + (Vector3)dir * viewRadius, -dir, viewRadius, 1<<_visibleLayerNum); //cast ray from vision border to player position
-////			if (reverseHit.collider != hit.collider && !reverseHit.collider.IsTouching(hit.collider))
-////			{
-////			}
-//			hit.collider.gameObject.layer = _obstacleMaskNum;
-//			
-//			return new ViewCastInfo (true, reverseHit.point, viewRadius-reverseHit.distance, globalAngle);
-//		} 
-//		else //if ray did not hit an obstacle
-//		{
-//			return new ViewCastInfo (false, transform.position + (Vector3)dir * viewRadius, viewRadius, globalAngle);
-//		}
-//	}
 	
+
 	private ViewCastInfo ViewCast(float globalAngle, float viewRadius) //cast ray and collect info about hit
 	{
 		Vector2 dir = DirFromAngle(globalAngle, true);
-		RaycastHit2D reverseHit = Physics2D.Raycast(transform.position + (Vector3)dir * viewRadius, -dir, viewRadius, 1<<_visibleLayerNum); //cast ray from player position to vision border
+		if (_shadowsCornersIsVisible)
+		{
+			RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, _obstacleMask); //cast ray
+
+			if (hit /*&& Physics2D.OverlapCircle(hit.point + dir * _edgeOffset, 0, _obstacleMask)*/) //if ray hit an obstacle
+			{
+				return new ViewCastInfo (true, hit.point + dir * _edgeOffset, hit.distance, globalAngle); //TODO comment
+			} 
+			else //if ray did not hit an obstacle
+			{
+				return new ViewCastInfo (false, transform.position + (Vector3)dir * (viewRadius + _edgeOffset), viewRadius, globalAngle);
+			}
+		}
+		else
+		{
+			RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, transform.position + (Vector3)dir * viewRadius, _obstacleMask); //cast ray
 		
-		if (reverseHit) //if ray hit an obstacle find the point on the opposite side of the obstacle
-		{
-			return new ViewCastInfo (true, reverseHit.point, reverseHit.distance, globalAngle);
-		} 
-		else //if ray did not hit an obstacle
-		{
-			return new ViewCastInfo (false, transform.position + (Vector3)dir * viewRadius, viewRadius, globalAngle);
+			foreach (var hit in hits)
+			{
+				Debug.DrawLine(hit.point, hit.point + Vector2.up * 0.017f);
+			}
+
+			if (hits.Length != 0) //if ray hit an obstacle
+			{
+				if (Physics2D.OverlapCircle(hits[0].point + dir * _edgeOffset, 0, _obstacleMask))
+				{
+					return new ViewCastInfo (true, hits[0].point + dir * _edgeOffset, hits[0].distance, globalAngle);
+				}
+				else if(hits.Length > 1)
+				{
+					return new ViewCastInfo (true, hits[1].point + dir * _edgeOffset, hits[0].distance, globalAngle);
+				}
+			}
+			return new ViewCastInfo (false, transform.position + (Vector3)dir * (viewRadius + _edgeOffset), viewRadius, globalAngle);
 		}
 	}
 	
-	private void FindVisibleObstacles()
-	{
-		int stepCount = Mathf.RoundToInt(_viewAngle * _findingVisibleResolution);
-		float stepAngleSize = _viewAngle / stepCount; //how many degrees will by in each step
-		for (int i = 0; i <= stepCount; i++)
-		{
-			float angle = -transform.eulerAngles.z - _viewAngle / 2 + stepAngleSize * i; //defining current angle
-			Vector2 dir = DirFromAngle(angle, true);
-			RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, _farViewRadius, _obstacleMask);
-			if (hit)
-			{
-				_visibleObstacles.Add(hit.collider.gameObject);
-			}
-		}
-	}
-
 	public Vector2 DirFromAngle(float angleInDegrees, bool angleIsGlobal) //to get looking directory from angle
 	{
 		if (!angleIsGlobal)
