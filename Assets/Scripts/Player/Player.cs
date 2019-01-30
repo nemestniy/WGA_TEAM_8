@@ -9,10 +9,12 @@ public class Player: MonoBehaviour {
 
 	private Rigidbody2D _rigidbody;
     private GameObject _currentHexagon;
+    private Animator _animator;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     public void SetVelocity(Vector2 direction)
@@ -42,5 +44,15 @@ public class Player: MonoBehaviour {
     public GameObject GetCurrentHexagon()
     {
         return _currentHexagon;
+    }
+
+    public void StartAnimation()
+    {
+        _animator.SetBool("PlayerGo", true);
+    }
+
+    public void StopAnimation()
+    {
+        _animator.SetBool("PlayerGo", false);
     }
 }

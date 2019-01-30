@@ -25,6 +25,12 @@ public class PlayerManager : MonoBehaviour
     private void UpdatePlayerMovement()
     {
         Vector2 velocity = _moveController.GetVelocity();
+
+        if (velocity == Vector2.zero)
+            _player.StopAnimation();
+        else
+            _player.StartAnimation();
+
         _player.SetVelocity(velocity);
 
         _player.SetAngle(_moveController.GetAngle());
