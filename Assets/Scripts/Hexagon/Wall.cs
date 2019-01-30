@@ -13,6 +13,7 @@ public class Wall : MonoBehaviour
         _isActive = true;
     }
 
+    // Getting current direction forward of wall 
     public Vector2 GetDirection()
     {
         return transform.TransformDirection(Vector2.right);
@@ -20,12 +21,24 @@ public class Wall : MonoBehaviour
 
     public Transform GetNeighbor(float distance)
     {
-        Debug.DrawLine(transform.GetChild(0).position, GetDirection() * distance + (Vector2)transform.parent.position);
-        var hit = Physics2D.Linecast(transform.GetChild(0).position, GetDirection()*distance + (Vector2)transform.parent.position);
-        if(hit != null)
+        //Off colider, that ray won`t return himself
+        _collider.enabled = false;
+
+        var hit = Physics2D.Linecast(transform.position, GetDirection()*distance + (Vector2)transform.parent.position);
+        _collider.enabled = true;
+        if(hit.transform != null)
         {
             return hit.transform;
         }
+        return null;
+    }
+
+    public Transform GetWallUnderMe()
+    {
+        //Make little Ray and check, that ray won`t return himself, after that it return wall under him
+        var hit = Physics2D.Linecast(transform.position, GetDirection() + (Vector2)transform.parent.position);
+        if (hit.transform != null && hit.transform != transform)
+            return hit.transform;
         return null;
     }
 
@@ -36,16 +49,14 @@ public class Wall : MonoBehaviour
 
     public void Disable()
     {
-        GetComponent<SpriteRenderer>().enabled = false;
-        _collider.isTrigger = true;
         _isActive = false;
+        gameObject.SetActive(IsActive());
     }
 
     public void Enable()
     {
-        GetComponent<SpriteRenderer>().enabled = true;
-        _collider.isTrigger = false;
         _isActive = true;
+        gameObject.SetActive(IsActive());
     }
 
     public bool IsActive()
