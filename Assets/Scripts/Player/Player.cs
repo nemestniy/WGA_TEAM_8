@@ -8,6 +8,7 @@ public class Player: MonoBehaviour {
     private float _speed;
 
 	private Rigidbody2D _rigidbody;
+    private GameObject _currentHexagon;
 
     private void Awake()
     {
@@ -24,5 +25,22 @@ public class Player: MonoBehaviour {
     public void SetAngle(float angle)
     {
         transform.eulerAngles = new Vector3(0, 0, angle);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "Hexagon")
+        {
+            _currentHexagon = collision.gameObject;
+        }
+        else
+        {
+            _currentHexagon = null;
+        }
+    }
+
+    public GameObject GetCurrentHexagon()
+    {
+        return _currentHexagon;
     }
 }
