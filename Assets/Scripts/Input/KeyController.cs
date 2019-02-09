@@ -11,8 +11,12 @@ public class KeyController : MoveController
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        Vector2 direction = new Vector2(horizontal, vertical);
 
-        return new Vector2(horizontal, vertical);
+        if (horizontal != 0 && vertical != 0)
+            direction /= Mathf.Sqrt(2);
+
+        return direction;
     }
 
     public override float GetAngle()

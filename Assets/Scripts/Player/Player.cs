@@ -8,7 +8,8 @@ public class Player: MonoBehaviour {
     private float _speed;
 
 	private Rigidbody2D _rigidbody;
-    private GameObject _currentHexagon;
+    public Hexagon _currentHexagon;
+    public Hexagon _lastHexagon;
     private Animator _animator;
 
     private void Awake()
@@ -19,8 +20,6 @@ public class Player: MonoBehaviour {
 
     public void SetVelocity(Vector2 direction)
 	{
-        if (direction.x != 0 || direction.y != 0)
-            direction *= Mathf.Sqrt(2) / 2;
         _rigidbody.velocity = direction * _speed;
 	}
 
@@ -33,17 +32,38 @@ public class Player: MonoBehaviour {
     {
         if(collision.tag == "Hexagon")
         {
-            _currentHexagon = collision.gameObject;
+            SetCurrentHexagon(collision.gameObject.GetComponent<Hexagon>());
         }
         else
         {
             _currentHexagon = null;
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Hexagon")
+        {
+            SetLastHexagon(collision.gameObject.GetComponent<Hexagon>());
+        }
+    }
+
+    private void SetLastHexagon(Hexagon hexagon)
+    {
+        if (_lastHexagon == null || !_lastHexagon.NeighborContains(_currentHexagon.transform))
+        {
+            if(_lastHexagon != null && _lastHexagon != _currentHexagon) _lastHexagon.ChangeWall();
+            _lastHexagon = hexagon;
+        }
+    }
+
+    private void SetCurrentHexagon(Hexagon hexagon)
+    {
+        _currentHexagon = hexagon;
+    }
 
     public GameObject GetCurrentHexagon()
     {
-        return _currentHexagon;
+        return _currentHexagon.gameObject;
     }
 
     public void StartAnimation()
