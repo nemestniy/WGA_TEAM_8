@@ -25,7 +25,7 @@ public class PlayerManager : MonoBehaviour
     private void UpdatePlayerMovement()
     {
         Vector2 velocity = _moveController.GetVelocity();
-
+        
         if (velocity == Vector2.zero)
             _player.StopAnimation();
         else
