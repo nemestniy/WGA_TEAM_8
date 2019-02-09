@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5515369153644742240}
   - component: {fileID: 1958650918181991100}
+  - component: {fileID: 4958237195479054178}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -133,4 +134,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c81260ffe7a28140978b7d608ca976d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maps: []
+  _maps: []
+  _delta: 100
+  _speedOfChanging: 5
+--- !u!114 &4958237195479054178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9087613813753993577}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe3755a32ed21842898430ee54c14b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mapSize: 4
+  _distanceBetweenHexagons: 4
+  _wallsForDelete: 3
+  _startHexagon: {fileID: 0}

@@ -6,11 +6,12 @@ public class HexagonsGenerator : MonoBehaviour
 {
     [SerializeField] private int _mapSize;
 
-    [SerializeField] private float _distanceBetweenHexagons;
-
     [SerializeField] private int _wallsForDelete;
 
     [SerializeField] private GameObject _startHexagon;
+
+    public delegate void HexagonEvents();
+    public event HexagonEvents MapIsCreate;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,21 @@ public class HexagonsGenerator : MonoBehaviour
     public void GenerateMap()
     {
         GenerateHexagons(_mapSize);
+        FindNeighbors();
         ClearWalls(_wallsForDelete);
+        DestroyAllExcessWalls();
+        ActivateColliders();
+
+        MapIsCreate();
+    }
+
+    private void ActivateColliders()
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
+        {
+            hexObject.GetComponent<Hexagon>().ActivateCollider();
+        }
     }
 
     private void GenerateHexagons(int mapSize)
@@ -31,8 +46,17 @@ public class HexagonsGenerator : MonoBehaviour
             var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
             foreach (GameObject hexObject in _hexObjects)
             {
-                hexObject.GetComponent<Hexagon>().GenerateHexagonLayer(_distanceBetweenHexagons);
+                hexObject.GetComponent<Hexagon>().GenerateHexagonLayer();
             }
+        }
+    }
+
+    private void FindNeighbors()
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
+        {
+            hexObject.GetComponent<Hexagon>().GetNeighbors();
         }
     }
 
@@ -45,6 +69,15 @@ public class HexagonsGenerator : MonoBehaviour
             {
                 hexObject.GetComponent<Hexagon>().WallOff();
             }
+        }
+    }
+
+    private void DestroyAllExcessWalls()
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
+        {
+            hexObject.GetComponent<Hexagon>().DestroyExcessWalls();
         }
     }
 
