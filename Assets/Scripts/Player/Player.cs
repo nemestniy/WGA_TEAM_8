@@ -68,11 +68,13 @@ public class Player: MonoBehaviour {
 
     public void StartAnimation()
     {
-        _animator.SetBool("PlayerGo", true);
+        if(_animator != null)
+            _animator.SetBool("PlayerGo", true);
     }
 
     public void StopAnimation()
     {
-        _animator.SetBool("PlayerGo", false);
+        if(_animator != null)
+            _animator.SetBool("PlayerGo", false);
     }
 }
