@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class Hexagon : MonoBehaviour
 {
@@ -215,6 +217,7 @@ public class Hexagon : MonoBehaviour
     
     public List<GameObject> ReturnFreeNeighbours()
     {
+        Debug.Log("Enter method ReturnFreeNeighbours()");
         List<GameObject> freeNeighbours = new List<GameObject>();
         Vector2 origin = GetComponent<Transform>().position;
         
@@ -226,7 +229,7 @@ public class Hexagon : MonoBehaviour
             
             RaycastHit2D hit = Physics2D.Linecast(origin, target, 1 << LayerMask.NameToLayer("Obstacle"));
             //Debug.Log("target: " + target + ", origin: " + origin + ", hit: " + hit.collider.tag + " hit position: " + hit.transform.position + " layer: " + hit.collider.gameObject.layer);
-            if (hit.collider != null && hit.collider.gameObject.CompareTag("Hexagon"))
+            if (hit.collider == null)
             {
                 freeNeighbours.Add(neighbour.gameObject);
             }

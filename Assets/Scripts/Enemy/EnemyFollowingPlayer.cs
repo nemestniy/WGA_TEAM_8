@@ -35,8 +35,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
     {
         if (pathCalculated)
         {
-            transform.position =
-                Vector2.MoveTowards(transform.position, mainPath.Peek().transform.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, mainPath.Peek().transform.position, speed * Time.deltaTime);
             if (Vector2.Distance(transform.position, mainPath.Peek().transform.position) < 1f)
             {
                 mainPath.Pop();
@@ -75,7 +74,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
 
     public Stack<GameObject> CalculatePath()
     {
-        Debug.Log("CalclulatePath");
+        Debug.Log("Enter method CalclulatePath");
         Stack<GameObject> path = new Stack<GameObject>(); 
         if (curHex != null && targetHexagon != null)
         {
@@ -110,13 +109,12 @@ public class EnemyFollowingPlayer : MonoBehaviour
             pathCalculated = true;
         }
 
-        
-
         return path;
     }
 
     private List<GameObject> ReturnFreeUnVisitedNeighbours(List<GameObject> freeNeighbours)
     {
+        Debug.Log("Enter method ReturnFreeUnVisitedNeighbours()");
         GetComponent<CircleCollider2D>().enabled = false;
         List<GameObject> _freeUnVisitedNeighbours = new List<GameObject>();
         foreach (GameObject neighbour in freeNeighbours)
@@ -127,11 +125,15 @@ public class EnemyFollowingPlayer : MonoBehaviour
             }
         }
         GetComponent<CircleCollider2D>().enabled = true;
+        
+        
+        
         return _freeUnVisitedNeighbours;
     }
 
     private Stack<GameObject> ReverseStack(Stack<GameObject> path)
     {
+        Debug.Log("Enter method ReverseStack");
         Stack<GameObject> _path = new Stack<GameObject>();
 
         int x = path.Count;
