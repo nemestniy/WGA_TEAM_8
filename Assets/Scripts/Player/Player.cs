@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player: MonoBehaviour {
 
+    public delegate void PlayerEvents();
+    public event PlayerEvents CurrentHexagonChanged;
+
     [SerializeField]
     private float _speed;
 
@@ -59,6 +62,7 @@ public class Player: MonoBehaviour {
     private void SetCurrentHexagon(Hexagon hexagon)
     {
         _currentHexagon = hexagon;
+        CurrentHexagonChanged();
     }
 
     public GameObject GetCurrentHexagon()
