@@ -8,9 +8,21 @@ public class Hexagon : MonoBehaviour
     private List<Vector2> _directions;
     private float _radius;
     private PolygonCollider2D _collider;
+    private SpriteRenderer _spriteRenderer;
+
+    private GameObject _lastObject;
+
+    private Color _zoneColor;
+    private Zone _ownZone;
 
     [SerializeField] private List<Transform> _neighbors = null;
+    
+    
+    private bool isVisited;
 
+    private List<Transform> freeNeigbours = null;
+    
+    
     //Initialization of all components
     private void Awake()
     {
@@ -18,19 +30,47 @@ public class Hexagon : MonoBehaviour
         _walls = transform.GetComponentsInChildren<Wall>();
 
         //Getting radius of hexagon
-        var sprite = GetComponent<SpriteRenderer>().sprite;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        var sprite = _spriteRenderer.sprite;
         _radius = (sprite.rect.width * transform.localScale.x) / (2 * sprite.pixelsPerUnit);
 
         //Getting control of hexagonCollider
         _collider = GetComponent<PolygonCollider2D>();
         if (_collider)
             _collider.enabled = false;
+
+    }
+
+    public Color GetZoneColor()
+    {
+        return _zoneColor;
+    }
+
+    public Zone GetZone()
+    {
+        return _ownZone;
+    }
+
+    public void SetZone(Zone newZone)
+    {
+        _ownZone = newZone;
+        _zoneColor = newZone.GetColor();
+
+        _spriteRenderer.color = newZone.GetColor();
+        Debug.Log("Color was changed");
     }
 
     public void ActivateCollider()
     {
         if(_collider)
             _collider.enabled = true;
+    }
+    
+    public void DeActivateCollider()
+    {
+        if(_collider)
+            _collider.enabled = false;
     }
 
     public Vector2 GetPosition()
@@ -78,6 +118,40 @@ public class Hexagon : MonoBehaviour
         return _neighbors;
     }
 
+    public bool NeighborContains(Transform neighbor)
+    {
+        var neighbors = ReturnNeighbors();
+        return neighbors.Contains(neighbor);
+    }
+
+    public void ChangeWall()
+    {
+        Wall wallSwitched = new Wall();
+        for(int i = 0; i < _walls.Length; i++)
+        {
+            if(_walls[i] != null)
+            {
+                if (_walls[i].IsActive())
+                {
+                    wallSwitched = _walls[i];
+                    _walls[i].Disable();
+                    continue;
+                }
+            }
+        }
+
+        for (int i = 0; i < _walls.Length; i++)
+        {
+            if(_walls[i] != null)
+            {
+                if (!_walls[i].IsActive() && _walls[i] != wallSwitched && _walls[i].GetWallUnderMe().tag != "Wall")
+                {
+                    _walls[i].Enable();
+                    continue;
+                }
+            }
+        }
+    }
 
     //Disable randoms walls
     public void WallOff()
@@ -119,25 +193,55 @@ public class Hexagon : MonoBehaviour
         {
             check = false;
             place = new Vector2(Random.Range(-_radius, _radius) + transform.position.x, Random.Range(-_radius, _radius) + transform.position.y);
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(place, distance);
-            foreach (Collider2D collider in colliders)
-                if (collider.tag == "Furniture")
-                {
+            if (_lastObject != null && Vector2.Distance(place, _lastObject.transform.position) < distance)
+             {
                     //If there are one or more colliders with tag furniture, finding new random position for furniture
                     check = true;
                     attemptsCount++;
-                }
+             }
         }
         //doing while check = true and number of attempts haven`t big number
         while (check && attemptsCount < attempts);
 
         //if number of attempts isn`t big number, instantiate new object
         if(attemptsCount < attempts)
-            Instantiate(furnitureObject, place, Quaternion.identity);
+            _lastObject = Instantiate(furnitureObject, place, Quaternion.identity);
     }
 
     public Wall[] GetWalls()
     {
         return _walls;
+    }
+    
+    public List<GameObject> ReturnFreeNeighbours()
+    {
+        List<GameObject> freeNeighbours = new List<GameObject>();
+        Vector2 origin = GetComponent<Transform>().position;
+        
+        List<Transform> neighbours = new List<Transform>(ReturnNeighbors());
+        foreach (Transform neighbour in neighbours)
+        {
+            Vector2 target = neighbour.position;
+            DeActivateCollider();
+            
+            RaycastHit2D hit = Physics2D.Linecast(origin, target, 1 << LayerMask.NameToLayer("Obstacle"));
+            //Debug.Log("target: " + target + ", origin: " + origin + ", hit: " + hit.collider.tag + " hit position: " + hit.transform.position + " layer: " + hit.collider.gameObject.layer);
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("Hexagon"))
+            {
+                freeNeighbours.Add(neighbour.gameObject);
+            }
+        }
+
+        return freeNeighbours;
+    }
+    
+    public void SetVisited()
+    {
+        isVisited = true;
+    }
+
+    public bool IsVisited()
+    {
+        return isVisited;
     }
 }
