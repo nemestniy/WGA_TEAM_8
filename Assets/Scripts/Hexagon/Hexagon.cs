@@ -146,7 +146,7 @@ public class Hexagon : MonoBehaviour
         {
             if(_walls[i] != null)
             {
-                if (!_walls[i].IsActive() && _walls[i] != wallSwitched && _walls[i].GetWallUnderMe().tag != "Wall")
+                if (!_walls[i].IsActive() && _walls[i] != wallSwitched && !_walls[i].GetWallUnderMe().CompareTag("Wall"))
                 {
                     _walls[i].Enable();
                     continue;
@@ -180,7 +180,7 @@ public class Hexagon : MonoBehaviour
             {
                 //check wall under other wall
                 var underWall = wall.GetWallUnderMe(); 
-                if (underWall != null && wall.IsActive() && underWall.tag == "Wall")
+                if (underWall != null && wall.IsActive() && underWall.CompareTag("Wall"))
                     Destroy(underWall.gameObject);
             }
         }

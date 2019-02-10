@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFollowingPlayer : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
 
     public Player _player;
     public float speed;
     public GameObject currentHexagon, targetHexagon, curHex;
-    private Stack<GameObject> mainPath;
-    private bool pathCalculated;
+    private Stack<GameObject> _mainPath;
+    private bool _pathCalculated;
     
     // Start is called before the first frame update
     void Start()
     {
         
-        pathCalculated = false;
+        _pathCalculated = false;
         //StartHunting();
 
     }
@@ -33,12 +33,12 @@ public class EnemyFollowingPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pathCalculated)
+        if (_pathCalculated)
         {
-            transform.position = Vector2.MoveTowards(transform.position, mainPath.Peek().transform.position, speed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, mainPath.Peek().transform.position) < 1f)
+            transform.position = Vector2.MoveTowards(transform.position, _mainPath.Peek().transform.position, speed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, _mainPath.Peek().transform.position) < 1f)
             {
-                mainPath.Pop();
+                _mainPath.Pop();
             }
         }
     }
@@ -57,7 +57,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
         {
             currentHexagon = collision.gameObject;
             curHex = GetCurrentHexagon(); //1. Сделать начальный гекс текущим
-            mainPath = ReverseStack(CalculatePath());
+            _mainPath = ReverseStack(CalculatePath());
             
         }
         else
@@ -106,7 +106,7 @@ public class EnemyFollowingPlayer : MonoBehaviour
             }
             path.Push(curHex);
             
-            pathCalculated = true;
+            _pathCalculated = true;
         }
 
         return path;
