@@ -51,8 +51,8 @@ public class FieldOfView : MonoBehaviour
 	[SerializeField]
 	private MeshFilter _viewMeshFilter;
 	
-	[HideInInspector]
-	public List<Transform> _visibleEnemies;
+//	[HideInInspector]
+//	public List<Transform> _visibleEnemies;
 	private Mesh _viewMesh; //Vision mesh
 	private bool _isModeChanging;
 	private bool _directionOfChanging;
@@ -66,7 +66,7 @@ public class FieldOfView : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (Input.GetButtonDown("Fire1") && !_isModeChanging)
+		if (Input.GetButtonDown("Fire1") && !_isModeChanging) //change the light to the combat mode
 		{
 			_isModeChanging = true;
 			_directionOfChanging = !_directionOfChanging;
@@ -104,12 +104,20 @@ public class FieldOfView : MonoBehaviour
 		var currentFarViewRadius = Mathf.Lerp(_farViewRadius, _combatFarViewRadius, _currentChangingTime / _changingDuration);
 		var currentViewAngle = Mathf.Lerp(_viewAngle, _combatViewAngle, _currentChangingTime / _changingDuration);
 		DrawFieldOfView(currentCloseViewRadius, _closeVewIsStatic,currentFarViewRadius, currentViewAngle);
+		
+		if (_currentChangingTime == _changingDuration) //this means that the light in combat mode
+		{
+			List<Transform> visibleEnemies = FindVisibleEnemies(currentCloseViewRadius, currentFarViewRadius, currentViewAngle);
+			foreach (var enemy in visibleEnemies)
+			{
+//				enemy.HideFromLight();
+			}
+		}
 	}
 
-
-	public void FindVisibleEnemies(float closeViewRadius, float farViewRadius, float viewAngle)
+	private List<Transform> FindVisibleEnemies(float closeViewRadius, float farViewRadius, float viewAngle)
 	{
-		_visibleEnemies.Clear();
+		List<Transform> visibleEnemies = new List<Transform>();
 		Collider2D[] enemiesInFarViewRadius = Physics2D.OverlapCircleAll(transform.position, farViewRadius, _enemyMask); //find all enemies in our far view radius
 		foreach (var enemyInView in enemiesInFarViewRadius)
 		{
@@ -120,7 +128,7 @@ public class FieldOfView : MonoBehaviour
 				float dstToEnemy = Vector2.Distance(transform.position, enemy.position); //find distance to the enemy
 				if (!Physics2D.Raycast(transform.position, dirToEnemy, dstToEnemy, _obstacleMask)) //check is it is not covered by an obstacle
 				{
-					_visibleEnemies.Add(enemy);
+					visibleEnemies.Add(enemy);
 				}
 			}
 		}
@@ -135,10 +143,11 @@ public class FieldOfView : MonoBehaviour
 				float dstToEnemy = Vector2.Distance(transform.position, enemy.position); //find distance to the enemy
 				if (!Physics2D.Raycast(transform.position, dirToEnemy, dstToEnemy, _obstacleMask)) //check is it is not covered by an obstacle
 				{
-					_visibleEnemies.Add(enemy);
+					visibleEnemies.Add(enemy);
 				}
 			}
 		}
+		return visibleEnemies;
 	}
 
 	private void DrawFieldOfView(float closeViewRadius, bool closeVewIsStatic, float farViewRadius, float viewAngle) //drawing the mesh representing field of view

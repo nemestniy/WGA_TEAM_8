@@ -2286,7 +2286,7 @@ PrefabInstance:
     - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
         type: 3}
       propertyPath: _viewAngle
-      value: 81
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
         type: 3}
@@ -2318,6 +2318,21 @@ PrefabInstance:
       propertyPath: _shadowsCornersIsVisible
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _combatCloseViewRadius
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _combatFarViewRadius
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _combatViewAngle
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1620784085143808, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2331,6 +2346,31 @@ PrefabInstance:
         type: 3}
       propertyPath: _speed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239788415926145210, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7753440852712990744, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23518501433679038, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23518501433679038, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0a129eae0b99eb445902243064977aed, type: 2}
+    - target: {fileID: 114443298500425862, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
