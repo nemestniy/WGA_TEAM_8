@@ -33,7 +33,7 @@ public class Player: MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "Hexagon")
+        if(collision.CompareTag("Hexagon"))
         {
             SetCurrentHexagon(collision.gameObject.GetComponent<Hexagon>());
         }
@@ -44,7 +44,7 @@ public class Player: MonoBehaviour {
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Hexagon")
+        if (collision.CompareTag("Hexagon"))
         {
             SetLastHexagon(collision.gameObject.GetComponent<Hexagon>());
         }

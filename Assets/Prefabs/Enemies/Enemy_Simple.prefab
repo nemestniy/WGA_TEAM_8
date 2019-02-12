@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5340970828499714575}
   - component: {fileID: 2633302849336492991}
   - component: {fileID: 3938394494050866517}
+  - component: {fileID: 9213932780643286756}
+  - component: {fileID: 8971662747808793865}
   m_Layer: 0
   m_Name: Enemy_Simple
   m_TagString: Untagged
@@ -92,3 +94,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91cbff7ff81e6ea4595ea0cb7310a8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  speed: 0
+  currentHexagon: {fileID: 0}
+  targetHexagon: {fileID: 0}
+  curHex: {fileID: 0}
+--- !u!58 &9213932780643286756
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340970828499714572}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.395
+--- !u!50 &8971662747808793865
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5340970828499714572}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

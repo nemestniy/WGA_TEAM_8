@@ -18,12 +18,5 @@ public class FieldOfViewEditor : Editor {
         //draw view angles
         Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleA * fow._farViewRadius);
         Handles.DrawLine(fow.transform.position, fow.transform.position + viewAngleB * fow._farViewRadius);
-
-        //draw line to visible enemies
-        Handles.color = Color.red;
-        foreach (Transform visibleEnemy in fow._visibleEnemies)
-        {
-            Handles.DrawLine(fow.transform.position, visibleEnemy.position);
-        }
     }
 }

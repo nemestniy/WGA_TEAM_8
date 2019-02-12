@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class Hexagon : MonoBehaviour
 {
@@ -16,7 +18,13 @@ public class Hexagon : MonoBehaviour
     private Zone _ownZone;
 
     [SerializeField] private List<Transform> _neighbors = null;
+    
+    
+    private bool isVisited;
 
+    private List<Transform> freeNeigbours = null;
+    
+    
     //Initialization of all components
     private void Awake()
     {
@@ -59,6 +67,12 @@ public class Hexagon : MonoBehaviour
     {
         if(_collider)
             _collider.enabled = true;
+    }
+    
+    public void DeActivateCollider()
+    {
+        if(_collider)
+            _collider.enabled = false;
     }
 
     public Vector2 GetPosition()
@@ -132,7 +146,7 @@ public class Hexagon : MonoBehaviour
         {
             if(_walls[i] != null)
             {
-                if (!_walls[i].IsActive() && _walls[i] != wallSwitched && _walls[i].GetWallUnderMe().tag != "Wall")
+                if (!_walls[i].IsActive() && _walls[i] != wallSwitched && !_walls[i].GetWallUnderMe().CompareTag("Wall"))
                 {
                     _walls[i].Enable();
                     continue;
@@ -166,7 +180,7 @@ public class Hexagon : MonoBehaviour
             {
                 //check wall under other wall
                 var underWall = wall.GetWallUnderMe(); 
-                if (underWall != null && wall.IsActive() && underWall.tag == "Wall")
+                if (underWall != null && wall.IsActive() && underWall.CompareTag("Wall"))
                     Destroy(underWall.gameObject);
             }
         }
@@ -199,5 +213,38 @@ public class Hexagon : MonoBehaviour
     public Wall[] GetWalls()
     {
         return _walls;
+    }
+    
+    public List<GameObject> ReturnFreeNeighbours()
+    {
+        Debug.Log("Enter method ReturnFreeNeighbours()");
+        List<GameObject> freeNeighbours = new List<GameObject>();
+        Vector2 origin = GetComponent<Transform>().position;
+        
+        List<Transform> neighbours = new List<Transform>(ReturnNeighbors());
+        foreach (Transform neighbour in neighbours)
+        {
+            Vector2 target = neighbour.position;
+            DeActivateCollider();
+            
+            RaycastHit2D hit = Physics2D.Linecast(origin, target, 1 << LayerMask.NameToLayer("Obstacle"));
+            //Debug.Log("target: " + target + ", origin: " + origin + ", hit: " + hit.collider.tag + " hit position: " + hit.transform.position + " layer: " + hit.collider.gameObject.layer);
+            if (hit.collider == null)
+            {
+                freeNeighbours.Add(neighbour.gameObject);
+            }
+        }
+
+        return freeNeighbours;
+    }
+    
+    public void SetVisited()
+    {
+        isVisited = true;
+    }
+
+    public bool IsVisited()
+    {
+        return isVisited;
     }
 }

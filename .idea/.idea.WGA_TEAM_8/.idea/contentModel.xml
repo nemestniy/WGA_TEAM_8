@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\danil\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\danil\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_WGA_TEAM_8.352928202.00" t="ExcludeRecursive" />
-    <e p="C:\Users\danil\Desktop\WGA\WGA_TEAM_8" t="IncludeRecursive">
+    <e p="C:\Users\dante\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\dante\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_WGA_TEAM_8.-1924100339.00" t="ExcludeRecursive" />
+    <e p="G:\Пекарня Алексея\Документы\GitHub\WGA_TEAM_8" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -16,7 +16,7 @@
             <e p="CameraController.cs" t="Include" />
           </e>
           <e p="Enemy" t="Include">
-            <e p="EnemyFollowingPlayer.cs" t="Include" />
+            <e p="Enemy.cs" t="Include" />
             <e p="EnemyPathCalculating.cs" t="Include" />
           </e>
           <e p="Environment" t="Include">
@@ -26,6 +26,8 @@
             <e p="MazeGenerator.cs" t="Include" />
             <e p="ObjectsGenerator.cs" t="Include" />
             <e p="PondActivator.cs" t="Include" />
+            <e p="Zone.cs" t="Include" />
+            <e p="ZoneCreator.cs" t="Include" />
           </e>
           <e p="Hexagon" t="Include">
             <e p="Hexagon.cs" t="Include" />
@@ -62,7 +64,9 @@
       <e p="Library" t="ExcludeRecursive" />
       <e p="obj" t="ExcludeRecursive" />
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
       <e p="WGA_TEAM_8.sln" t="IncludeFlat" />
     </e>
   </component>
