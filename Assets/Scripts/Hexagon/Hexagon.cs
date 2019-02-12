@@ -18,13 +18,13 @@ public class Hexagon : MonoBehaviour
     private Zone _ownZone;
 
     [SerializeField] private List<Transform> _neighbors = null;
-    
-    
+
+
     private bool isVisited;
 
     private List<Transform> freeNeigbours = null;
-    
-    
+
+
     //Initialization of all components
     private void Awake()
     {
@@ -65,13 +65,13 @@ public class Hexagon : MonoBehaviour
 
     public void ActivateCollider()
     {
-        if(_collider)
+        if (_collider)
             _collider.enabled = true;
     }
-    
+
     public void DeActivateCollider()
     {
-        if(_collider)
+        if (_collider)
             _collider.enabled = false;
     }
 
@@ -101,18 +101,18 @@ public class Hexagon : MonoBehaviour
 
     public void GetNeighbors()
     {
-            if (_walls != null)
+        if (_walls != null)
+        {
+            foreach (Wall wall in _walls)
             {
-                foreach (Wall wall in _walls)
+                var neighbor = wall.GetNeighbor(_radius * Mathf.Sqrt(3));
+                if (neighbor != null)
                 {
-                    var neighbor = wall.GetNeighbor(_radius * Mathf.Sqrt(3));
-                    if (neighbor != null)
-                    {
-                        _neighbors.Add(neighbor.parent);
-                    }
-
+                    _neighbors.Add(neighbor.parent);
                 }
+
             }
+        }
     }
 
     public List<Transform> ReturnNeighbors()
@@ -129,9 +129,9 @@ public class Hexagon : MonoBehaviour
     public void ChangeWall()
     {
         Wall wallSwitched = new Wall();
-        for(int i = 0; i < _walls.Length; i++)
+        for (int i = 0; i < _walls.Length; i++)
         {
-            if(_walls[i] != null)
+            if (_walls[i] != null)
             {
                 if (_walls[i].IsActive())
                 {
@@ -144,7 +144,7 @@ public class Hexagon : MonoBehaviour
 
         for (int i = 0; i < _walls.Length; i++)
         {
-            if(_walls[i] != null)
+            if (_walls[i] != null)
             {
                 if (!_walls[i].IsActive() && _walls[i] != wallSwitched && !_walls[i].GetWallUnderMe().CompareTag("Wall"))
                 {
@@ -153,12 +153,14 @@ public class Hexagon : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log("Wall was changed");
     }
 
     //Disable randoms walls
     public void WallOff()
     {
-        if(_walls != null)
+        if (_walls != null)
         {
 
             var number = Random.Range(0, _walls.Length);
@@ -179,7 +181,7 @@ public class Hexagon : MonoBehaviour
             foreach (Wall wall in _walls)
             {
                 //check wall under other wall
-                var underWall = wall.GetWallUnderMe(); 
+                var underWall = wall.GetWallUnderMe();
                 if (underWall != null && wall.IsActive() && underWall.CompareTag("Wall"))
                     Destroy(underWall.gameObject);
             }
@@ -196,17 +198,17 @@ public class Hexagon : MonoBehaviour
             check = false;
             place = new Vector2(Random.Range(-_radius, _radius) + transform.position.x, Random.Range(-_radius, _radius) + transform.position.y);
             if (_lastObject != null && Vector2.Distance(place, _lastObject.transform.position) < distance)
-             {
-                    //If there are one or more colliders with tag furniture, finding new random position for furniture
-                    check = true;
-                    attemptsCount++;
-             }
+            {
+                //If there are one or more colliders with tag furniture, finding new random position for furniture
+                check = true;
+                attemptsCount++;
+            }
         }
         //doing while check = true and number of attempts haven`t big number
         while (check && attemptsCount < attempts);
 
         //if number of attempts isn`t big number, instantiate new object
-        if(attemptsCount < attempts)
+        if (attemptsCount < attempts)
             _lastObject = Instantiate(furnitureObject, place, Quaternion.identity);
     }
 
@@ -214,21 +216,21 @@ public class Hexagon : MonoBehaviour
     {
         return _walls;
     }
-    
+
     public List<GameObject> ReturnFreeNeighbours()
     {
         Debug.Log("Enter method ReturnFreeNeighbours()");
         List<GameObject> freeNeighbours = new List<GameObject>();
         Vector2 origin = GetComponent<Transform>().position;
-        
+
         List<Transform> neighbours = new List<Transform>(ReturnNeighbors());
         foreach (Transform neighbour in neighbours)
         {
             Vector2 target = neighbour.position;
             DeActivateCollider();
-            
+
             RaycastHit2D hit = Physics2D.Linecast(origin, target, 1 << LayerMask.NameToLayer("Obstacle"));
-            //Debug.Log("target: " + target + ", origin: " + origin + ", hit: " + hit.collider.tag + " hit position: " + hit.transform.position + " layer: " + hit.collider.gameObject.layer);
+            Debug.Log("target: " + target + ", origin: " + origin);
             if (hit.collider == null)
             {
                 freeNeighbours.Add(neighbour.gameObject);
@@ -237,7 +239,7 @@ public class Hexagon : MonoBehaviour
 
         return freeNeighbours;
     }
-    
+
     public void SetVisited()
     {
         isVisited = true;
@@ -246,5 +248,21 @@ public class Hexagon : MonoBehaviour
     public bool IsVisited()
     {
         return isVisited;
+    }
+
+    public void ActivateBorderWalls()
+    {
+        if (_walls != null)
+        {
+            foreach (Wall wall in _walls)
+            {
+                var neighbor = wall.GetNeighbor(_radius * Mathf.Sqrt(3));
+                if (neighbor == null)
+                {
+                    wall.SetBorder();
+                }
+
+            }
+        }
     }
 }
