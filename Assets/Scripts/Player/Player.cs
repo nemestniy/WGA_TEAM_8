@@ -62,8 +62,11 @@ public class Player: MonoBehaviour {
 
     private void SetCurrentHexagon(Hexagon hexagon)
     {
-        _currentHexagon = hexagon;
-        CurrentHexagonChanged();
+        if (_currentHexagon != hexagon)
+        {
+            _currentHexagon = hexagon;
+            CurrentHexagonChanged();
+        }
     }
 
     public GameObject GetCurrentHexagon()
