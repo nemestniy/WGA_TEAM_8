@@ -6,11 +6,13 @@ public class Wall : MonoBehaviour
 {
     private BoxCollider2D _collider;
     private bool _isActive;
+    private bool _isBorder;
 
     private void Awake()
     {
         _collider = GetComponent<BoxCollider2D>();
         _isActive = true;
+        _isBorder = false;
     }
 
     // Getting current direction forward of wall 
@@ -62,5 +64,15 @@ public class Wall : MonoBehaviour
     public bool IsActive()
     {
         return _isActive;
+    }
+
+    public void SetBorder()
+    {
+        _isBorder = true;
+    }
+
+    public bool IsBorder()
+    {
+        return _isBorder;
     }
 }

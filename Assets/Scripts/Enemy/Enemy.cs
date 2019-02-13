@@ -117,6 +117,7 @@ public class Enemy : MonoBehaviour
             path.Push(curHex);
             
             _pathCalculated = true;
+           
         }
 
         return path;

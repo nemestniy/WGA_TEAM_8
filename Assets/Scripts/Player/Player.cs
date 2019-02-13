@@ -47,6 +47,7 @@ public class Player: MonoBehaviour {
         if (collision.CompareTag("Hexagon"))
         {
             SetLastHexagon(collision.gameObject.GetComponent<Hexagon>());
+            Debug.Log("triger exit");
         }
     }
 

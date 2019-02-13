@@ -13,7 +13,6 @@ public class HexagonsGenerator : MonoBehaviour
     public delegate void HexagonEvents();
     public event HexagonEvents MapIsCreate;
 
-    // Start is called before the first frame update
     void Start()
     {
         GenerateMap();
@@ -23,11 +22,21 @@ public class HexagonsGenerator : MonoBehaviour
     {
         GenerateHexagons(_mapSize);
         FindNeighbors();
+        CloseMap();
         ClearWalls(_wallsForDelete);
         DestroyAllExcessWalls();
         ActivateColliders();
 
         MapIsCreate();
+    }
+
+    private void CloseMap()
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
+        {
+            hexObject.GetComponent<Hexagon>().ActivateBorderWalls();
+        }
     }
 
     private void ActivateColliders()
@@ -84,7 +93,7 @@ public class HexagonsGenerator : MonoBehaviour
     public void ClearMap()
     {
         var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
-        foreach(GameObject hexObject in _hexObjects)
+        foreach (GameObject hexObject in _hexObjects)
         {
             Destroy(hexObject);
         }
