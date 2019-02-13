@@ -111,7 +111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4175369692355482
 Transform:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 1759250699673190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.09}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4261111834815354}
   - {fileID: 6222861371053829206}
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cad8be9ee0dbd4498145ab11ec008f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
+  _speed: 3
   _currentHexagon: {fileID: 0}
   _lastHexagon: {fileID: 0}
 --- !u!58 &58824981454247692
@@ -241,12 +241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6894db217ab2a8f45a0c4b364bd6b126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _closeViewRadius: 0.85
-  _farViewRadius: 50
+  _closeViewRadius: 1.4
+  _farViewRadius: 11
   _viewAngle: 90
-  _combatCloseViewRadius: 0.85
-  _combatFarViewRadius: 80
-  _combatViewAngle: 15
+  _combatCloseViewRadius: 0.7
+  _combatFarViewRadius: 15
+  _combatViewAngle: 30
   _changingDuration: 1
   _enemyMask:
     serializedVersion: 2
@@ -259,7 +259,7 @@ MonoBehaviour:
   _edgeResolveIterations: 10
   _shadowsCornersIsVisible: 1
   _edgeDistanceThreshold: 0
-  _edgeOffset: 0.5
+  _edgeOffset: 0.3
   _viewMeshFilter: {fileID: 33216750422343312}
 --- !u!95 &1016308930
 Animator:
