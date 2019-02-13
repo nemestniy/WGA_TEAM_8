@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 5151122670572407851}
   - component: {fileID: 58824981454247692}
   - component: {fileID: 114451331865143092}
+  - component: {fileID: 1016308930}
   m_Layer: 8
   m_Name: Player_cultist
   m_TagString: Player
@@ -120,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 1759250699673190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.09}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4261111834815354}
   - {fileID: 6222861371053829206}
@@ -165,7 +166,7 @@ SpriteRenderer:
   m_SortingLayerID: 1587652703
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2c5cd692a54e610469c827912ddcd09a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4258b935189f13347a0410bf434cfd4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -210,6 +211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 10
+  _currentHexagon: {fileID: 0}
+  _lastHexagon: {fileID: 0}
 --- !u!58 &58824981454247692
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -225,7 +228,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.245
+  m_Radius: 1.46
 --- !u!114 &114451331865143092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,26 +242,44 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeViewRadius: 0.85
-  _farViewRadius: 8.9
+  _farViewRadius: 50
   _viewAngle: 90
-  _combatCloseViewRadius: 0
-  _combatFarViewRadius: 0
-  _combatViewAngle: 0
+  _combatCloseViewRadius: 0.85
+  _combatFarViewRadius: 80
+  _combatViewAngle: 15
   _changingDuration: 1
   _enemyMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   _closeVewIsStatic: 0
   _meshResolution: 4
   _edgeResolveIterations: 10
-  _shadowsCornersIsVisible: 0
+  _shadowsCornersIsVisible: 1
   _edgeDistanceThreshold: 0
-  _edgeOffset: 0
+  _edgeOffset: 0.5
   _viewMeshFilter: {fileID: 33216750422343312}
-  _visibleEnemies: []
+--- !u!95 &1016308930
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759250699673190}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5febbec6830dcb04ea79cdbca0f37952, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2239788415926145210
 GameObject:
   m_ObjectHideFlags: 0
