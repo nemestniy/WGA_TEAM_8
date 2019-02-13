@@ -224,7 +224,7 @@ public class Hexagon : MonoBehaviour
             Vector2 target = neighbour.position;
 
             RaycastHit2D hit = Physics2D.Linecast(origin, target, 1 << LayerMask.NameToLayer("Obstacle"));
-            Debug.Log("target: " + target + ", origin: " + origin);
+            //Debug.Log("target: " + target + ", origin: " + origin);
             //Debug.Log(hit.collider.gameObject.tag);
             if (hit.collider == null) 
             {

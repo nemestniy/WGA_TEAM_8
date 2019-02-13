@@ -31,13 +31,13 @@ public class Enemy : MonoBehaviour
 
     private void OnCurrentHexagonChanged()
     {
-        //_pathCalculated = false;
+        _pathCalculated = false;
         StartHunting();
     }
 
     private void PlayerOnCurrentHexagonChanged()
     {
-        //_pathCalculated = false;
+        _pathCalculated = false;
         StartHunting();
     }
 
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         
-        if(collision.CompareTag("Hexagon"))
+        if(collision.CompareTag("Hexagon") && !_pathCalculated)
         {
             currentHexagon = collision.gameObject;
             curHex = GetCurrentHexagon(); //1. Сделать начальный гекс текущим
@@ -102,9 +102,13 @@ public class Enemy : MonoBehaviour
                 List<GameObject> freeUnVisitedNeighbours =
                     ReturnFreeUnVisitedNeighbours(curHex.GetComponent<Hexagon>().ReturnFreeNeighbours());
                 
+                Debug.Log("freeUnVisitedNeighbours.Count - " + freeUnVisitedNeighbours.Count);
+                
+                
                 if (freeUnVisitedNeighbours.Count > 0) //Если текущий гекс имеет непосещенных «соседей»
                 {
                     path.Push(curHex); //Протолкнуть текущий гекс в стек
+                    Debug.Log(path.Count);
                     curHex = freeUnVisitedNeighbours[0]; //Выбрать случайный доступный гекс из соседних, сделать выбранный гекс текущим
                     curHex.GetComponent<Hexagon>().SetVisited(); // и отметить его как посещенный.
                 }
@@ -145,6 +149,7 @@ public class Enemy : MonoBehaviour
             if (!neighbour.GetComponent<Hexagon>().IsVisited())
             {
                 _freeUnVisitedNeighbours.Add(neighbour);
+                Debug.Log("ReturnFreeUnVisitedNeighbours: Added " + neighbour.transform.position);
             }
         }
         GetComponent<CircleCollider2D>().enabled = true;
