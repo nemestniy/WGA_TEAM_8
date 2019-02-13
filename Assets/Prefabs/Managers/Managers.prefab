@@ -101,6 +101,8 @@ GameObject:
   - component: {fileID: 5515369153644742240}
   - component: {fileID: 1958650918181991100}
   - component: {fileID: 4958237195479054178}
+  - component: {fileID: 1489312117}
+  - component: {fileID: 1489312119}
   m_Layer: 0
   m_Name: MapManager
   m_TagString: Untagged
@@ -129,7 +131,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9087613813753993577}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4c81260ffe7a28140978b7d608ca976d, type: 3}
   m_Name: 
@@ -144,12 +146,44 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9087613813753993577}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffe3755a32ed21842898430ee54c14b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _mapSize: 4
-  _distanceBetweenHexagons: 4
   _wallsForDelete: 3
   _startHexagon: {fileID: 0}
+--- !u!114 &1489312117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9087613813753993577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03b1e8ce568fdfd4da86df1779c9f227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberOfZone: 4
+  _firstLimit: 3
+--- !u!114 &1489312119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9087613813753993577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15b3e3a1da535014fa484cc0c39c97d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objects:
+  - {fileID: 2959113706967059219, guid: 4002cf36a133acf4fa6d1fecccf72704, type: 3}
+  - {fileID: 6661997802312948628, guid: de9a57cf4dcf08b4683ce5e776a6208c, type: 3}
+  - {fileID: 5533999706980436304, guid: 70258640353fe63438df32cfd6c289f0, type: 3}
+  - {fileID: 2247660165563408270, guid: 39587695ea0b6284da9a6fdf91f928c0, type: 3}
+  _distanceBetweenObjects: 2
+  _attemptsNumber: 5

@@ -166,7 +166,7 @@ public class Hexagon : MonoBehaviour
             var number = Random.Range(0, _walls.Length);
             var neighbor = _walls[number].GetNeighbor(_radius * Mathf.Sqrt(3));
 
-            if (_walls[number].IsActive())
+            if (_walls[number].IsActive() && !_walls[number].IsBorder())
                 _walls[number].Disable();
             else
                 WallOff();
