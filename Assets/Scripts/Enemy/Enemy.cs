@@ -11,6 +11,9 @@ public class Enemy : MonoBehaviour
     private Stack<GameObject> _mainPath;
     private bool _pathCalculated;
     
+    public delegate void EnemyEvents();
+    public event EnemyEvents CurrentHexagonChanged;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,12 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _player.CurrentHexagonChanged += PlayerOnCurrentHexagonChanged;
+        CurrentHexagonChanged += OnCurrentHexagonChanged;
+    }
+
+    private void OnCurrentHexagonChanged()
+    {
+        StartHunting();
     }
 
     private void PlayerOnCurrentHexagonChanged()
@@ -69,6 +78,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject GetCurrentHexagon()
     {
+        CurrentHexagonChanged();
         return currentHexagon;
     }
 
