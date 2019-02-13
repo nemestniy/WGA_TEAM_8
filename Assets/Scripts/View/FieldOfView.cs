@@ -110,7 +110,7 @@ public class FieldOfView : MonoBehaviour
 			List<Transform> visibleEnemies = FindVisibleEnemies(currentCloseViewRadius, currentFarViewRadius, currentViewAngle);
 			foreach (var enemy in visibleEnemies)
 			{
-//				enemy.HideFromLight();
+				enemy.GetComponent<Enemy>().HideFromLight();
 			}
 		}
 	}

@@ -31,11 +31,13 @@ public class Enemy : MonoBehaviour
 
     private void OnCurrentHexagonChanged()
     {
+        //_pathCalculated = false;
         StartHunting();
     }
 
     private void PlayerOnCurrentHexagonChanged()
     {
+        //_pathCalculated = false;
         StartHunting();
     }
 
@@ -73,6 +75,11 @@ public class Enemy : MonoBehaviour
         {
             currentHexagon = null;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        throw new System.NotImplementedException();
     }
 
 
@@ -115,6 +122,11 @@ public class Enemy : MonoBehaviour
                 }
             }
             path.Push(curHex);
+
+            foreach (GameObject o in path)
+            {
+                Debug.Log("!!!! - " + o.transform.position + " " + path.Count);
+            }
             
             _pathCalculated = true;
            

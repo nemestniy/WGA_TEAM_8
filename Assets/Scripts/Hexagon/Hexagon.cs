@@ -69,11 +69,6 @@ public class Hexagon : MonoBehaviour
             _collider.enabled = true;
     }
 
-    public void DeActivateCollider()
-    {
-        if (_collider)
-            _collider.enabled = false;
-    }
 
     public Vector2 GetPosition()
     {
@@ -227,12 +222,13 @@ public class Hexagon : MonoBehaviour
         foreach (Transform neighbour in neighbours)
         {
             Vector2 target = neighbour.position;
-            DeActivateCollider();
 
             RaycastHit2D hit = Physics2D.Linecast(origin, target, 1 << LayerMask.NameToLayer("Obstacle"));
             Debug.Log("target: " + target + ", origin: " + origin);
-            if (hit.collider == null)
+            //Debug.Log(hit.collider.gameObject.tag);
+            if (hit.collider == null) 
             {
+                Debug.Log("Added" + neighbour.position);
                 freeNeighbours.Add(neighbour.gameObject);
             }
         }
