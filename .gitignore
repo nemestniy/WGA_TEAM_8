@@ -35,7 +35,4 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-.idea/.idea.WGA_TEAM_8/.idea/workspace.xml
-.idea/.idea.WGA_TEAM_8/.idea/workspace.xml
-.idea/.idea.WGA_TEAM_8/.idea/workspace.xml
-'.idea' 
+.idea
