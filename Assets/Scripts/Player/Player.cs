@@ -62,7 +62,7 @@ public class Player: MonoBehaviour {
 
     private void SetCurrentHexagon(Hexagon hexagon)
     {
-        if (_currentHexagon != hexagon)
+        if (_currentHexagon != hexagon && CurrentHexagonChanged != null)
         {
             _currentHexagon = hexagon;
             CurrentHexagonChanged();

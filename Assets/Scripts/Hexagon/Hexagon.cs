@@ -211,7 +211,23 @@ public class Hexagon : MonoBehaviour
     {
         return _walls;
     }
+    public void ActivateBorderWalls()
+    {
+        if (_walls != null)
+        {
+            foreach (Wall wall in _walls)
+            {
+                var neighbor = wall.GetNeighbor(_radius * Mathf.Sqrt(3));
+                if (neighbor == null)
+                {
+                    wall.SetBorder();
+                }
 
+            }
+        }
+    }
+    
+    //---------------Часть Лехи
     public List<GameObject> ReturnFreeNeighbours()
     {
         Debug.Log("Enter method ReturnFreeNeighbours()");
@@ -241,24 +257,13 @@ public class Hexagon : MonoBehaviour
         isVisited = true;
     }
 
+    public void SetUnvisited()
+    {
+        isVisited = false;
+    }
+
     public bool IsVisited()
     {
         return isVisited;
-    }
-
-    public void ActivateBorderWalls()
-    {
-        if (_walls != null)
-        {
-            foreach (Wall wall in _walls)
-            {
-                var neighbor = wall.GetNeighbor(_radius * Mathf.Sqrt(3));
-                if (neighbor == null)
-                {
-                    wall.SetBorder();
-                }
-
-            }
-        }
     }
 }

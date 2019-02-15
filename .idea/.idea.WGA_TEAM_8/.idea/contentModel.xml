@@ -15,6 +15,9 @@
           <e p="Camera" t="Include">
             <e p="CameraController.cs" t="Include" />
           </e>
+          <e p="Cutscenes" t="Include">
+            <e p="GoToNextScene.cs" t="Include" />
+          </e>
           <e p="Enemy" t="Include">
             <e p="Enemy.cs" t="Include" />
           </e>
@@ -38,6 +41,7 @@
           </e>
           <e p="Managers" t="Include">
             <e p="CameraManager.cs" t="Include" />
+            <e p="EnemyManager.cs" t="Include" />
             <e p="PlayerManager.cs" t="Include" />
           </e>
           <e p="Obsolite" t="Include">
