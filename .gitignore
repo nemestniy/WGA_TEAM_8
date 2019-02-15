@@ -35,7 +35,11 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+<<<<<<< HEAD
 .idea/.idea.WGA_TEAM_8/.idea/workspace.xml
 .idea/.idea.WGA_TEAM_8/.idea/workspace.xml
 .idea/.idea.WGA_TEAM_8/.idea/workspace.xml
 ProjectSettings/ProjectVersion.txt
+=======
+.idea
+>>>>>>> 4ce7629360836ea3a30b381e7e40c2801be2c2f6
