@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    public Player _player;
-    public Enemy[] _enemies;
+    public List<Player> _player;
+    public List<Enemy> _enemies;
     void Start()
     {
-        _player = FindObjectOfType<Player>();
-        _enemies = FindObjectsOfType<Enemy>();
+        _player = new List<Player>(FindObjectsOfType<Player>());
+        _enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
     }
 
     // Update is called once per frame
