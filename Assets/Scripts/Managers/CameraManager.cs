@@ -1,24 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraManager : MonoBehaviour
+namespace Managers
 {
-    [SerializeField] 
-    private Camera _camera;
-    
-    [SerializeField] 
-    private Player _player;
-    
-    private Vector3 _offset;
-    
-    private void Start ()
+    public class CameraManager : MonoBehaviour
     {
-        _offset = _camera.transform.position - _player.transform.position;
-    }
+        [SerializeField] 
+        private UnityEngine.Camera _camera;
+    
+        [SerializeField] 
+        private Player.Player _player;
+    
+        private Vector3 _offset;
+    
+        private void Start ()
+        {
+            _offset = _camera.transform.position - _player.transform.position;
+        }
 	
-    private void LateUpdate ()
-    {
-        _camera.transform.position = _player.transform.position + _offset;
+        private void LateUpdate ()
+        {
+            _camera.transform.position = _player.transform.position + _offset;
+        }
     }
 }

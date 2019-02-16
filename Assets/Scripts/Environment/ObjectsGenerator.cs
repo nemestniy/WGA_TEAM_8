@@ -1,30 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ObjectsGenerator : MonoBehaviour
+namespace Environment
 {
-    [SerializeField] private GameObject[] _objects;
-
-    [SerializeField] private float _distanceBetweenObjects;
-
-    [SerializeField] private int _attemptsNumber;
-
-    private HexagonsGenerator _hexagonsGenerator;
-
-    private void Awake()
+    public class ObjectsGenerator : MonoBehaviour
     {
-        _hexagonsGenerator = GetComponent<HexagonsGenerator>();
-        _hexagonsGenerator.MapIsCreate += GenerateObjects;
-    }
+        [SerializeField] private GameObject[] _objects;
 
-    private void GenerateObjects()
-    {
-        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
-        foreach (GameObject hexObject in _hexObjects)
+        [SerializeField] private float _distanceBetweenObjects;
+
+        [SerializeField] private int _attemptsNumber;
+
+        private HexagonsGenerator _hexagonsGenerator;
+
+        private void Awake()
         {
-            for (int i = 0; i < _objects.Length; i++) {
-                hexObject.GetComponent<Hexagon>().GenerateObjects(_distanceBetweenObjects, _attemptsNumber, _objects[i]);
+            _hexagonsGenerator = GetComponent<HexagonsGenerator>();
+            _hexagonsGenerator.MapIsCreate += GenerateObjects;
+        }
+
+        private void GenerateObjects()
+        {
+            var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+            foreach (GameObject hexObject in _hexObjects)
+            {
+                for (int i = 0; i < _objects.Length; i++) {
+                    hexObject.GetComponent<Hexagon.Hexagon>().GenerateObjects(_distanceBetweenObjects, _attemptsNumber, _objects[i]);
+                }
             }
         }
     }

@@ -2,63 +2,66 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeGenerator : MonoBehaviour
+namespace Environment
 {
-    public int mazeSize;
-
-    private ElementType[][] mazeMap;
-    private int colSize;
-    private int rowSize;
-    void Start()
+    public class MazeGenerator : MonoBehaviour
     {
-        colSize = mazeSize * 2 + 1;
-        rowSize = mazeSize;
-        
-        for (int i = 0; i < colSize; i++)
+        public int mazeSize;
+
+        private ElementType[][] mazeMap;
+        private int colSize;
+        private int rowSize;
+        void Start()
         {
-            
-            
-            for (int j = 0; i < rowSize; i++)
+            colSize = mazeSize * 2 + 1;
+            rowSize = mazeSize;
+        
+            for (int i = 0; i < colSize; i++)
             {
+            
+            
+                for (int j = 0; i < rowSize; i++)
+                {
                 
-                if (i % 2 == 0)
-                {
-                    mazeMap[i][j] = ElementType.Wall;
-                }
-                else
-                {
-                    if (j % 2 == 0)
+                    if (i % 2 == 0)
                     {
                         mazeMap[i][j] = ElementType.Wall;
                     }
                     else
                     {
-                        mazeMap[i][j] = ElementType.Cell;
+                        if (j % 2 == 0)
+                        {
+                            mazeMap[i][j] = ElementType.Wall;
+                        }
+                        else
+                        {
+                            mazeMap[i][j] = ElementType.Cell;
+                        }
                     }
                 }
-            }
             
-            if (i <= colSize / 2 )
-            {
-                rowSize++;
+                if (i <= colSize / 2 )
+                {
+                    rowSize++;
+                }
+                else
+                {
+                    rowSize--;
+                }
             }
-            else
-            {
-                rowSize--;
-            }
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public enum ElementType
     {
-        
+        Cell,
+        Wall,
+        Pass
     }
-}
-
-public enum ElementType
-{
-    Cell,
-    Wall,
-    Pass
 }

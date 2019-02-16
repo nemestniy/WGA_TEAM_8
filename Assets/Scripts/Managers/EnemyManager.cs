@@ -1,23 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+namespace Managers
 {
-    public Player _player;
-    public Enemy[] _enemies;
-    void Start()
+    public class EnemyManager : MonoBehaviour
     {
-        _player = FindObjectOfType<Player>();
-        _enemies = FindObjectsOfType<Enemy>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        foreach (Enemy enemy in _enemies)
+        public Player.Player _player;
+        public List<Enemy.Enemy> _enemies;
+        void Start()
         {
-            enemy.FollowPlayer();
+            _player = FindObjectOfType<Player.Player>();
+            _enemies = FindObjectsOfType<Enemy.Enemy>().ToList();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            foreach (Enemy.Enemy enemy in _enemies)
+            {
+                enemy.FollowPlayer();
+            }
         }
     }
 }

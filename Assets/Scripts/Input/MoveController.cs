@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class MoveController : MonoBehaviour {
+namespace Input
+{
+    public abstract class MoveController : MonoBehaviour {
 
-    public abstract Vector2 GetVelocity();
+        public abstract Vector2 GetVelocity();
 
-    public abstract float GetAngle();
+        public abstract float GetAngle();
+    }
 }

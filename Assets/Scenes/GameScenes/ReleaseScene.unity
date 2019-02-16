@@ -112,6 +112,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &346249050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1845897928490754, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2005225530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &346249051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346249050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b494ce196d48f94da21bda53b2baae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerManager: {fileID: 0}
+  _enemyManager: {fileID: 0}
+  _mapManager: {fileID: 0}
 --- !u!114 &496793637 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5151122670572407851, guid: 19fbb88713593b540ab908288fd03a98,
@@ -260,6 +281,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5340970828499714575, guid: cb9832fb38634754b8f6483bda178f41,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5340970828499714575, guid: cb9832fb38634754b8f6483bda178f41,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3938394494050866517, guid: cb9832fb38634754b8f6483bda178f41,
         type: 3}
       propertyPath: speed
@@ -272,6 +303,24 @@ PrefabInstance:
       objectReference: {fileID: 496793637}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb9832fb38634754b8f6483bda178f41, type: 3}
+--- !u!1 &1532265141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9087613813753993577, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
+    type: 3}
+  m_PrefabInstance: {fileID: 2005225530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1532265142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1532265141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8914e145a095b46b01d7f9637f48b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1668850273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -286,6 +335,11 @@ PrefabInstance:
     - target: {fileID: 1759250699673190, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151122670572407851, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _speed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4175369692355482, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
       propertyPath: m_LocalPosition.x
@@ -353,11 +407,6 @@ PrefabInstance:
         type: 3}
       propertyPath: _combatViewAngle
       value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5151122670572407851, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _speed
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}

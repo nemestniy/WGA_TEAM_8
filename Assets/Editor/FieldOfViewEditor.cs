@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using View;
 
 [CustomEditor(typeof(FieldOfView))]
 public class FieldOfViewEditor : Editor {

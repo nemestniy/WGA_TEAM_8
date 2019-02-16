@@ -1,30 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class KeyController : MoveController
+namespace Input
 {
-
-    [SerializeField] private float _accuracy = 100;
-
-    public override Vector2 GetVelocity()
+    public class KeyController : MoveController
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        Vector2 direction = new Vector2(horizontal, vertical);
 
-        if (horizontal != 0 && vertical != 0)
-            direction /= Mathf.Sqrt(2);
+        [SerializeField] private float _accuracy = 100;
 
-        return direction;
-    }
+        public override Vector2 GetVelocity()
+        {
+            float horizontal = UnityEngine.Input.GetAxis("Horizontal");
+            float vertical = UnityEngine.Input.GetAxis("Vertical");
+            Vector2 direction = new Vector2(horizontal, vertical);
 
-    public override float GetAngle()
-    {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.transform.position;
-        float angle = Vector2.Angle(Vector2.up, mousePosition.normalized * _accuracy);
-        if (Input.mousePosition.x > Screen.width / 2)
-            angle *= -1;
-        return angle;
+            if (horizontal != 0 && vertical != 0)
+                direction /= Mathf.Sqrt(2);
+
+            return direction;
+        }
+
+        public override float GetAngle()
+        {
+            Vector2 mousePosition = UnityEngine.Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition) - UnityEngine.Camera.main.transform.position;
+            float angle = Vector2.Angle(Vector2.up, mousePosition.normalized * _accuracy);
+            if (UnityEngine.Input.mousePosition.x > Screen.width / 2)
+                angle *= -1;
+            return angle;
+        }
     }
 }

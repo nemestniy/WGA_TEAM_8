@@ -1,23 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PondActivator : MonoBehaviour
+namespace Environment
 {
-    
-    [SerializeField] 
-    private List<GameObject> _ponds;
-
-    private bool isActivated = false;
-
-    
-
-    private void OnTriggerEnter2D(Collider2D other)
+    public class PondActivator : MonoBehaviour
     {
-        if (!isActivated)
+    
+        [SerializeField] 
+        private List<GameObject> _ponds;
+
+        private bool isActivated = false;
+
+    
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            _ponds[0].SetActive(false);
-            _ponds[1].SetActive(true);
+            if (!isActivated)
+            {
+                _ponds[0].SetActive(false);
+                _ponds[1].SetActive(true);
+            }
         }
     }
 }

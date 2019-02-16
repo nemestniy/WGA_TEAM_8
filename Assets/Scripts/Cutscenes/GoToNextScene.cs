@@ -1,22 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GoToNextScene : MonoBehaviour
+namespace Cutscenes
 {
-    
-    private void Update()
+    public class GoToNextScene : MonoBehaviour
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+    
+        private void Update()
         {
-            ChangeScene();
+            if (UnityEngine.Input.GetKey(KeyCode.Mouse0))
+            {
+                ChangeScene();
+            }
         }
-    }
 
-    private void ChangeScene()
-    {
-        SceneManager.LoadScene("ReleaseScene");
-    }
+        private void ChangeScene()
+        {
+            SceneManager.LoadScene("ReleaseScene");
+        }
     
+    }
 }

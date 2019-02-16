@@ -1,40 +1,42 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class MapChanger : MonoBehaviour
+namespace Environment
 {
-
-    [SerializeField] 
-    private List<GameObject> _maps;
-    
-    [SerializeField]
-    private float _delta = 100;
-    
-    [SerializeField]
-    private float _speedOfChanging = 5;
-
-    private float _currentDelta;
-    private int _counter = 0;
-
-    private void Start()
+    public class MapChanger : MonoBehaviour
     {
-        _currentDelta = _delta;
-    }
 
-    private void Update()
-    {
-        _currentDelta -= Time.deltaTime * _speedOfChanging;
-        if (_currentDelta < 0)
+        [SerializeField] 
+        private List<GameObject> _maps;
+    
+        [SerializeField]
+        private float _delta = 100;
+    
+        [SerializeField]
+        private float _speedOfChanging = 5;
+
+        private float _currentDelta;
+        private int _counter = 0;
+
+        private void Start()
         {
-            _maps[_counter++].SetActive(false);
-            if (_counter == _maps.Count)
-            {
-                _counter = 0;
-            }
-            _maps[_counter].SetActive(true);
-            Debug.Log("Change");
             _currentDelta = _delta;
+        }
+
+        private void Update()
+        {
+            _currentDelta -= Time.deltaTime * _speedOfChanging;
+            if (_currentDelta < 0)
+            {
+                _maps[_counter++].SetActive(false);
+                if (_counter == _maps.Count)
+                {
+                    _counter = 0;
+                }
+                _maps[_counter].SetActive(true);
+                Debug.Log("Change");
+                _currentDelta = _delta;
+            }
         }
     }
 }

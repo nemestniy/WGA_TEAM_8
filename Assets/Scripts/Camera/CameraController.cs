@@ -1,20 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CameraController : MonoBehaviour
+namespace Camera
 {
-    [SerializeField] private Transform _player;
-    [SerializeField] private float _speed = 100;
-
-    private void Awake()
+    public class CameraController : MonoBehaviour
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-    }
+        [SerializeField] private Transform _player;
+        [SerializeField] private float _speed = 100;
 
-    private void Update()
-    {
-        var oldPosition = transform.position;
-        transform.position = new Vector3(_player.position.x, _player.position.y, oldPosition.z);
+        private void Awake()
+        {
+            _player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        private void Update()
+        {
+            var oldPosition = transform.position;
+            transform.position = new Vector3(_player.position.x, _player.position.y, oldPosition.z);
+        }
     }
 }
