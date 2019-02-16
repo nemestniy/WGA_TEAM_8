@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hexagon
   - Wall
+  - Furniture
+  - Enemy
   layers:
   - Default
   - TransparentFX

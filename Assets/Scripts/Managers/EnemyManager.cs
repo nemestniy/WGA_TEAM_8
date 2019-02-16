@@ -4,15 +4,16 @@ using UnityEngine;
 
 namespace Managers
 {
-    public class EnemyManager : MonoBehaviour
+  public class EnemyManager : MonoBehaviour
+  {
+    
+    public List<Player> _player;
+    public List<Enemy> _enemies;
+    void Start()
     {
-        public Player.Player _player;
-        public List<Enemy.Enemy> _enemies;
-        void Start()
-        {
-            _player = FindObjectOfType<Player.Player>();
-            _enemies = FindObjectsOfType<Enemy.Enemy>().ToList();
-        }
+        _player = new List<Player>(FindObjectsOfType<Player>());
+        _enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
+    }
 
         // Update is called once per frame
         void Update()
