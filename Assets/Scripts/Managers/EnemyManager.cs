@@ -7,12 +7,12 @@ namespace Managers
   public class EnemyManager : MonoBehaviour
   {
     
-    public List<Player> _player;
-    public List<Enemy> _enemies;
+    public List<Player.Player> _player;
+    public List<Enemy.Enemy> _enemies;
     void Start()
     {
-        _player = new List<Player>(FindObjectsOfType<Player>());
-        _enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
+        _player = new List<Player.Player>(FindObjectsOfType<Player.Player>());
+        _enemies = new List<Enemy.Enemy>(FindObjectsOfType<Enemy.Enemy>());
     }
 
         // Update is called once per frame
