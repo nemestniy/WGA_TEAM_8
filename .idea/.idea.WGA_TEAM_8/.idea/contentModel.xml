@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\dante\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\dante\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_WGA_TEAM_8.-1924100339.00" t="ExcludeRecursive" />
-    <e p="G:\Пекарня Алексея\Документы\GitHub\WGA_TEAM_8" t="IncludeRecursive">
+    <e p="C:\Users\danil\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\danil\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_WGA_TEAM_8.352928202.00" t="ExcludeRecursive" />
+    <e p="C:\Users\danil\Desktop\WGA\WGA_TEAM_8" t="IncludeRecursive">
       <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
@@ -16,6 +16,7 @@
             <e p="CameraController.cs" t="Include" />
           </e>
           <e p="Cutscenes" t="Include">
+            <e p="Cutscene.cs" t="Include" />
             <e p="GoToNextScene.cs" t="Include" />
           </e>
           <e p="Enemy" t="Include">
@@ -42,6 +43,8 @@
           <e p="Managers" t="Include">
             <e p="CameraManager.cs" t="Include" />
             <e p="EnemyManager.cs" t="Include" />
+            <e p="GameManager.cs" t="Include" />
+            <e p="MapManager.cs" t="Include" />
             <e p="PlayerManager.cs" t="Include" />
           </e>
           <e p="Obsolite" t="Include">

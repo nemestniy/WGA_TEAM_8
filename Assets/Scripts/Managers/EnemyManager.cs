@@ -2,11 +2,11 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Managers
+
+
+public class EnemyManager : MonoBehaviour
 {
-  public class EnemyManager : MonoBehaviour
-  {
-    
+  
     public List<Player> _player;
     public List<Enemy> _enemies;
     void Start()
@@ -15,13 +15,13 @@ namespace Managers
         _enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
     }
 
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
+    {
+        foreach (Enemy enemy in _enemies)
         {
-            foreach (Enemy.Enemy enemy in _enemies)
-            {
-                enemy.FollowPlayer();
-            }
+            enemy.FollowPlayer();
         }
     }
 }
+
