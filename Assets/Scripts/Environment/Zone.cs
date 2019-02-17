@@ -1,68 +1,66 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Environment
+
+public class Zone
 {
-    public class Zone
+    private List<Hexagon> hexagons;
+
+    private Color color;
+
+    public Zone(Color color)
     {
-        private List<Hexagon.Hexagon> hexagons;
+        this.color = color;
+        hexagons = new List<Hexagon>();
+    }
 
-        private Color color;
+    public void AddHexagon(Hexagon hexagon)
+    {
+        hexagon.SetZone(this);
+        hexagons.Add(hexagon);
+    }
 
-        public Zone(Color color)
+    public void AddHexagons(List<Hexagon> hexagons)
+    {
+        foreach (Hexagon hexagon in hexagons)
         {
-            this.color = color;
-            hexagons = new List<Hexagon.Hexagon>();
+            AddHexagon(hexagon);
         }
+    }
 
-        public void AddHexagon(Hexagon.Hexagon hexagon)
-        {
-            hexagon.SetZone(this);
-            hexagons.Add(hexagon);
-        }
+    public List<Hexagon> GetHexagons()
+    {
+        return hexagons;
+    }
 
-        public void AddHexagons(List<Hexagon.Hexagon> hexagons)
+    public Color GetColor()
+    {
+        return color;
+    }
+
+    public bool Contains(Hexagon hexagon)
+    {
+        return hexagons.Contains(hexagon);
+    }
+
+    public List<Hexagon> GetFreeNeighbors()
+    {
+        List<Hexagon> FreeNeighbors = new List<Hexagon>();
+
+        Debug.Log("Zone: Hexagons count is " + hexagons.Count);
+        foreach(Hexagon hexagon in hexagons)
         {
-            foreach (Hexagon.Hexagon hexagon in hexagons)
+            var transformsNeighbors = hexagon.ReturnNeighbors();
+            foreach(Transform transformNeighbor in transformsNeighbors)
             {
-                AddHexagon(hexagon);
-            }
-        }
-
-        public List<Hexagon.Hexagon> GetHexagons()
-        {
-            return hexagons;
-        }
-
-        public Color GetColor()
-        {
-            return color;
-        }
-
-        public bool Contains(Hexagon.Hexagon hexagon)
-        {
-            return hexagons.Contains(hexagon);
-        }
-
-        public List<Hexagon.Hexagon> GetFreeNeighbors()
-        {
-            List<Hexagon.Hexagon> FreeNeighbors = new List<Hexagon.Hexagon>();
-
-            Debug.Log("Zone: Hexagons count is " + hexagons.Count);
-            foreach(Hexagon.Hexagon hexagon in hexagons)
-            {
-                var transformsNeighbors = hexagon.ReturnNeighbors();
-                foreach(Transform transformNeighbor in transformsNeighbors)
+                var currentNeighbor = transformNeighbor.GetComponent<Hexagon>();
+                if (currentNeighbor.GetZone() == null && !FreeNeighbors.Contains(currentNeighbor))
                 {
-                    var currentNeighbor = transformNeighbor.GetComponent<Hexagon.Hexagon>();
-                    if (currentNeighbor.GetZone() == null && !FreeNeighbors.Contains(currentNeighbor))
-                    {
-                        FreeNeighbors.Add(currentNeighbor);
-                        Debug.Log("Free hexagon added");
-                    }
+                    FreeNeighbors.Add(currentNeighbor);
+                    Debug.Log("Free hexagon added");
                 }
             }
-            return FreeNeighbors;
         }
+        return FreeNeighbors;
     }
 }

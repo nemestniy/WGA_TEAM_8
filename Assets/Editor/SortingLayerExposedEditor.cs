@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using View;
 
 [CustomEditor(typeof(SortingLayerExposed))]
 public class SortingLayerExposedEditor : Editor

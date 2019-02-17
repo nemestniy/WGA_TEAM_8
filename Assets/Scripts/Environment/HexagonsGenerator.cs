@@ -1,107 +1,104 @@
 ﻿using UnityEngine;
 
-namespace Environment
+public class HexagonsGenerator : MonoBehaviour
 {
-    public class HexagonsGenerator : MonoBehaviour
+    [SerializeField] private int _mapSize;
+
+    [SerializeField] private int _wallsForDelete;
+
+    [SerializeField] private GameObject _startHexagon;
+
+    public delegate void HexagonEvents();
+    public event HexagonEvents MapIsCreate;
+
+    void Start()
     {
-        [SerializeField] private int _mapSize;
+        GenerateMap();
+    }
 
-        [SerializeField] private int _wallsForDelete;
+    public void GenerateMap()
+    {
+        GenerateHexagons(_mapSize);
+        FindNeighbors();
+        CloseMap();
+        ClearWalls(_wallsForDelete);
+        DestroyAllExcessWalls();
+        ActivateColliders();
 
-        [SerializeField] private GameObject _startHexagon;
+        MapIsCreate();
+    }
 
-        public delegate void HexagonEvents();
-        public event HexagonEvents MapIsCreate;
-
-        void Start()
+    private void CloseMap()
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
         {
-            GenerateMap();
+            hexObject.GetComponent<Hexagon>().ActivateBorderWalls();
         }
+    }
 
-        public void GenerateMap()
+    private void ActivateColliders()
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
         {
-            GenerateHexagons(_mapSize);
-            FindNeighbors();
-            CloseMap();
-            ClearWalls(_wallsForDelete);
-            DestroyAllExcessWalls();
-            ActivateColliders();
-
-            MapIsCreate();
+            hexObject.GetComponent<Hexagon>().ActivateCollider();
         }
+    }
 
-        private void CloseMap()
-        {
-            var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
-            foreach (GameObject hexObject in _hexObjects)
-            {
-                hexObject.GetComponent<Hexagon.Hexagon>().ActivateBorderWalls();
-            }
-        }
-
-        private void ActivateColliders()
-        {
-            var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
-            foreach (GameObject hexObject in _hexObjects)
-            {
-                hexObject.GetComponent<Hexagon.Hexagon>().ActivateCollider();
-            }
-        }
-
-        private void GenerateHexagons(int mapSize)
-        {
-            for (int i = 0; i < mapSize; i++)
-            {
-                var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
-                foreach (GameObject hexObject in _hexObjects)
-                {
-                    hexObject.GetComponent<Hexagon.Hexagon>().GenerateHexagonLayer();
-                }
-            }
-        }
-
-        private void FindNeighbors()
+    private void GenerateHexagons(int mapSize)
+    {
+        for (int i = 0; i < mapSize; i++)
         {
             var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
             foreach (GameObject hexObject in _hexObjects)
             {
-                hexObject.GetComponent<Hexagon.Hexagon>().GetNeighbors();
+                hexObject.GetComponent<Hexagon>().GenerateHexagonLayer();
             }
         }
+    }
 
-        private void ClearWalls(int wallsOnHexagon)
+    private void FindNeighbors()
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
         {
-            var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
-            foreach (GameObject hexObject in _hexObjects)
+            hexObject.GetComponent<Hexagon>().GetNeighbors();
+        }
+    }
+
+    private void ClearWalls(int wallsOnHexagon)
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
+        {
+            for (int i = 0; i < wallsOnHexagon; i++)
             {
-                for (int i = 0; i < wallsOnHexagon; i++)
-                {
-                    hexObject.GetComponent<Hexagon.Hexagon>().WallOff();
-                }
+                hexObject.GetComponent<Hexagon>().WallOff();
             }
         }
+    }
 
-        private void DestroyAllExcessWalls()
+    private void DestroyAllExcessWalls()
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
         {
-            var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
-            foreach (GameObject hexObject in _hexObjects)
-            {
-                hexObject.GetComponent<Hexagon.Hexagon>().DestroyExcessWalls();
-            }
+            hexObject.GetComponent<Hexagon>().DestroyExcessWalls();
         }
+    }
 
-        public void ClearMap()
+    public void ClearMap()
+    {
+        var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
+        foreach (GameObject hexObject in _hexObjects)
         {
-            var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
-            foreach (GameObject hexObject in _hexObjects)
-            {
-                Destroy(hexObject);
-            }
+            Destroy(hexObject);
         }
+    }
 
-        public void GenerateStartHexagon()
-        {
-            Instantiate(_startHexagon, Vector2.zero, Quaternion.identity);
-        }
+    public void GenerateStartHexagon()
+    {
+        Instantiate(_startHexagon, Vector2.zero, Quaternion.identity);
     }
 }
