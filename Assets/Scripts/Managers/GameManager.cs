@@ -1,7 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, Manager
 {
+    
+    
     [Header("Managers:")]
     [SerializeField]
     private PlayerManager _playerManager;
@@ -9,37 +15,48 @@ public class GameManager : MonoBehaviour
     private EnemyManager _enemyManager;
     [SerializeField]
     private MapManager _mapManager;
-
+    [SerializeField]
+    private AudioManager _audioManager;
+    
     [Header("Cutscenes:")]
     [SerializeField]
     private Cutscene _startCutscene;
+    [SerializeField]
+    private Cutscene _screemerCutscene;
+    [SerializeField]
+    private Cutscene _deathCutscene;
+    [SerializeField]
+    private Cutscene _winCutscene;
 
     private void Start()
     {
-        PauseGame();
-        _startCutscene.Show();
-        ResumeGame();
+        _audioManager.StartManager();
+        PauseManager();
+        StartCoroutine(_startCutscene.Show(new Action(ResumeManager))); //show method gets delegate what to do after showing
     }
 
-    private void PauseGame()
+
+    public void StartManager()
     {
-        _playerManager.PausePlayer();
+//      _playerManager.StartPlayer();
+//      _enemyManager.StartEnemies();
+//      _mapManager.StartMap();
+    }
+
+    public void PauseManager()
+    {
+        _audioManager.PauseManager();
+        _playerManager.PauseManager();
 //      _enemyManager.PauseEnemies();
 //      _mapManager.PauseMap();
     }
 
-    private void ResumeGame()
+    public void ResumeManager()
     {
-        _playerManager.ResumePlayer();
+        _audioManager.ResumeManager();
+        _playerManager.ResumeManager();
 //      _enemyManager.ResumeEnemies();
 //      _mapManager.ResumeMap();
-    }
-
-    private void RestartGame()
-    {
-        _playerManager.RestartPlayer();
-//      _enemyManager.RestartEnemies();
-//      _mapManager.RestartMap();
     }
 }
 

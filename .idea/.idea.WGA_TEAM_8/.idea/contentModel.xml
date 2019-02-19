@@ -17,7 +17,6 @@
           </e>
           <e p="Cutscenes" t="Include">
             <e p="Cutscene.cs" t="Include" />
-            <e p="GoToNextScene.cs" t="Include" />
           </e>
           <e p="Enemy" t="Include">
             <e p="Enemy.cs" t="Include" />
@@ -41,9 +40,11 @@
             <e p="MoveController.cs" t="Include" />
           </e>
           <e p="Managers" t="Include">
+            <e p="AudioManager.cs" t="Include" />
             <e p="CameraManager.cs" t="Include" />
             <e p="EnemyManager.cs" t="Include" />
             <e p="GameManager.cs" t="Include" />
+            <e p="ManagerInterface.cs" t="Include" />
             <e p="MapManager.cs" t="Include" />
             <e p="PlayerManager.cs" t="Include" />
           </e>

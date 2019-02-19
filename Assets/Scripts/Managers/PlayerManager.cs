@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, Manager
 {
 
     [SerializeField]
@@ -45,19 +45,19 @@ public class PlayerManager : MonoBehaviour
         _player.SetAngle(_moveController.GetAngle());
     }
 
-    public void PausePlayer()
+    public void StartManager()
+    {
+        _player.transform.position = _startTransform.position;
+        _player.transform.eulerAngles = _startTransform.eulerAngles;
+    }
+    
+    public void PauseManager()
     {
         _isPaused = true;
     }
 
-    public void ResumePlayer()
+    public void ResumeManager()
     {
         _isPaused = false;
-    }
-
-    public void RestartPlayer()
-    {
-        _player.transform.position = _startTransform.position;
-        _player.transform.eulerAngles = _startTransform.eulerAngles;
     }
 }

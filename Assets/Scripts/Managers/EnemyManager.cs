@@ -4,32 +4,39 @@ using UnityEngine;
 
 
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, Manager
 {
-<<<<<<< HEAD
-  public class EnemyManager : MonoBehaviour
-  {
-    
-    public List<Player.Player> _player;
-    public List<Enemy.Enemy> _enemies;
-=======
-  
     public List<Player> _player;
     public List<Enemy> _enemies;
->>>>>>> f524c74c6a05ca880974305279e52bf1b0dbbfe1
+
     void Start()
     {
-        _player = new List<Player.Player>(FindObjectsOfType<Player.Player>());
-        _enemies = new List<Enemy.Enemy>(FindObjectsOfType<Enemy.Enemy>());
+        _player = new List<Player>(FindObjectsOfType<Player>());
+        _enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         foreach (Enemy enemy in _enemies)
         {
             enemy.FollowPlayer();
         }
+    }
+
+    public void StartManager()
+    {
+        
+    }
+
+    public void PauseManager()
+    {
+        
+    }
+
+    public void ResumeManager()
+    {
+        
     }
 }
 
