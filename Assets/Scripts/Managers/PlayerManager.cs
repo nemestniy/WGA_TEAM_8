@@ -3,19 +3,18 @@
 
 public class PlayerManager : MonoBehaviour, Manager
 {
-
-    [SerializeField]
     private Player _player;
-
     private MoveController _moveController;
-
     private bool _isPaused;
     private Transform _startTransform;
+    private FieldOfView _fieldOfView;
 
     private void Awake()
     {
         _moveController = GetComponent<MoveController>();
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
+        _player = playerGO.GetComponent<Player>();
+        _fieldOfView = playerGO.GetComponent<FieldOfView>();
     }
 
     private void Start()
@@ -27,7 +26,11 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         if (!_isPaused)
         {
-            UpdatePlayerMovement();  
+            UpdatePlayerMovement();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                _fieldOfView.ChangeLightMode();
+            }
         }
     }
 

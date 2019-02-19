@@ -64,12 +64,6 @@ public class FieldOfView : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (UnityEngine.Input.GetButtonDown("Fire1") && !_isModeChanging) //change the light to the combat mode
-		{
-			_isModeChanging = true;
-			_directionOfChanging = !_directionOfChanging;
-		}
-
 		if (_isModeChanging)
 		{
 			if (_directionOfChanging) //changing to combat mode
@@ -110,6 +104,15 @@ public class FieldOfView : MonoBehaviour
 			{
 				enemy.GetComponent<Enemy>().HideFromLight();
 			}
+		}
+	}
+	
+	public void ChangeLightMode()
+	{
+		if (!_isModeChanging) //change the light to the combat mode
+		{
+			_isModeChanging = true;
+			_directionOfChanging = !_directionOfChanging;
 		}
 	}
 
