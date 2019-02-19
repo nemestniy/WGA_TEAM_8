@@ -64,7 +64,7 @@ public class FieldOfView : MonoBehaviour
 
 	private void LateUpdate()
 	{
-		if (UnityEngine.Input.GetButtonDown("Fire1") && !_isModeChanging) //change the light to the combat mode
+		if (Input.GetButtonDown("Fire1") && !_isModeChanging) //change the light to the combat mode
 		{
 			_isModeChanging = true;
 			_directionOfChanging = !_directionOfChanging;
