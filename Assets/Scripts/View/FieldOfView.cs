@@ -64,15 +64,6 @@ public class FieldOfView : MonoBehaviour
 
 	private void LateUpdate()
 	{
-<<<<<<< HEAD
-=======
-		if (Input.GetButtonDown("Fire1") && !_isModeChanging) //change the light to the combat mode
-		{
-			_isModeChanging = true;
-			_directionOfChanging = !_directionOfChanging;
-		}
-
->>>>>>> 748b062125d1b5450dc9868179c5d1ed7bec2764
 		if (_isModeChanging)
 		{
 			if (_directionOfChanging) //changing to combat mode
