@@ -1,128 +1,121 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour
 {
-    public Player _player;
+    public Hexagon[] hexagons; // !изменить на private
+    public Stack<Hexagon> way;
+    public Hexagon targetHex, currentHex, xHex; // !убрать и добавить объявление в тело метода
+    public Hexagon[] publicWay;
+
+    public Player player;
+
+    public States state;
     public float speed;
-    public GameObject currentHexagon, targetHexagon, curHex;
-    private Stack<GameObject> _mainPath;
-    private bool _pathCalculated;
-    public Hexagon[] hexagons;
 
-    public delegate void EnemyEvents();
-
-    public event EnemyEvents CurrentHexagonChanged;
-
-    // Start is called before the first frame update
-    void Start()
+    public enum States // Состояния моба
     {
-        _pathCalculated = false;
+        Moving, // Движение к игроку по лабиринту
+        WaySearching, // Поиск пути до игрока
+        Waiting, // Ожидание
+        Hunting, // Активное преследование
+        Escaping, // Бегство
+        Paused, // Пауза в игре
 
     }
 
-    private void Awake()
+    private void Start()
     {
-        _player.CurrentHexagonChanged += PlayerOnCurrentHexagonChanged;
-        CurrentHexagonChanged += OnCurrentHexagonChanged;
-
+        player = FindObjectOfType<Player>();
     }
 
-    private void OnCurrentHexagonChanged()
+    private void Update()
     {
-        _pathCalculated = false;
-        StartHunting();
-    }
-
-    private void PlayerOnCurrentHexagonChanged()
-    {
-        _pathCalculated = false;
-        StartHunting();
-    }
-
-    private void StartHunting()
-    {
-        targetHexagon = _player.GetCurrentHexagon();
+        switch (state) // Действия моба в зависимости от состояния
+        {
+            case States.WaySearching:
+                FindWayToPlayer();
+                break;
+            case States.Moving:
+                FollowPlayer();
+                break;
+            case States.Hunting:
+                HuntPlayer();
+                break;
+            case States.Escaping:
+                HideFromLight();
+                break;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("Hexagon") && !_pathCalculated)
+        if (collision.CompareTag("Hexagon"))
         {
-            currentHexagon = collision.gameObject;
-            _mainPath = CalculatePath();
-
+            currentHex = collision.gameObject.GetComponent<Hexagon>(); // находим гекс на котором в данный момент находится моб
         }
         else
         {
-            currentHexagon = null;
+            currentHex = null;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void HuntPlayer() // Активное преследование игрока. Состояние - Hunting
     {
-        if (collision.CompareTag("Hexagon") && !_pathCalculated)
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position,
+            speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, player.transform.position) < 1f)
         {
-            if (currentHexagon != collision.gameObject && CurrentHexagonChanged != null)
+            //Смеееееееееерть
+        }
+    }
+
+    public void HideFromLight() // Сбежать в ужасе. Состояние - Escaping (Потом переименовать метод в Escape)
+    {
+        
+    }
+
+    private void FollowPlayer() // Движение по вычисленному пути до игрока. Состояние - Moving
+    {
+        Debug.Log("Enter method FollowPlayer");
+        transform.position = Vector2.MoveTowards(transform.position, way.Peek().transform.position,
+            speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, way.Peek().transform.position) < 1f)
+        {
+            way.Pop();
+        }
+        
+    }
+
+    private void FindWayToPlayer() // Поиск пути до игрока. Состояние - WaySearching
+    {
+        if (player.GetCurrentHexagon().gameObject.GetComponent<Hexagon>() != null)
+        {
+            targetHex = player.GetCurrentHexagon().gameObject.GetComponent<Hexagon>();
+        }
+        if (currentHex != null && targetHex != null)
+        {
+            xHex = currentHex;
+            way = new Stack<Hexagon>();
+            hexagons = FindObjectsOfType<Hexagon>();
+            xHex.GetComponent<Hexagon>().SetVisited(); // и отметить его как посещенный.
+
+            while (xHex != targetHex) // Пока гекс моба не совпадает с гексом игрока
             {
-                CurrentHexagonChanged();
-            }
-
-            _mainPath = CalculatePath();
-
-        }
-        else
-        {
-            currentHexagon = null;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public GameObject GetCurrentHexagon()
-    {
-        return currentHexagon;
-    }
-
-    public Stack<GameObject> CalculatePath()
-    {
-        //Debug.Log("Enter method CalclulatePath");
-        hexagons = FindObjectsOfType<Hexagon>();
-
-        curHex = GetCurrentHexagon(); // Сделать начальный гекс текущим
-        Stack<GameObject> path = new Stack<GameObject>();
-
-        //Debug.Log("Stack created");
-
-        if (curHex != null && targetHexagon != null)
-        {
-            curHex.GetComponent<Hexagon>().SetVisited(); // и отметить его как посещенный.
-
-            while (curHex.transform.position != targetHexagon.transform.position
-            ) // Пока гекс моба не совпадает с гексом игрока
-            {
-                List<GameObject> freeUnVisitedNeighbours =
-                    ReturnFreeUnVisitedNeighbours(curHex.GetComponent<Hexagon>().ReturnFreeNeighbours());
-
-                //Debug.Log("freeUnVisitedNeighbours.Count - " + freeUnVisitedNeighbours.Count);
+                List<Hexagon> freeUnVisitedNeighbours = ReturnFreeUnVisitedNeighbours(xHex.ReturnFreeNeighbours());
 
                 if (freeUnVisitedNeighbours.Count > 0) // Если текущий гекс имеет непосещенных «соседей»
                 {
-                    path.Push(curHex); // Протолкнуть текущий гекс в стек
-                    //Debug.Log(path.Count);
-                    curHex = freeUnVisitedNeighbours[
-                        0]; // Выбрать случайный доступный гекс из соседних, сделать выбранный гекс текущим
-                    curHex.GetComponent<Hexagon>().SetVisited(); // и отметить его как посещенный.
+                    way.Push(xHex); // Протолкнуть текущий гекс в стек
+                    xHex = freeUnVisitedNeighbours[0]; // Выбрать случайный доступный гекс из соседних, сделать выбранный гекс текущим
+                    xHex.GetComponent<Hexagon>().SetVisited(); // и отметить его как посещенный.
                 }
                 else
                 {
-                    if (path.Count > 0) // Иначе если стек не пуст
+                    if (way.Count > 0) // Иначе если стек не пуст
                     {
-                        curHex = path.Pop(); // Выдернуть гекс из стека и Сделать его текущим
+                        xHex = way.Pop(); // Выдернуть гекс из стека и Сделать его текущим
                     }
                     else
                     {
@@ -130,38 +123,29 @@ public class Enemy : MonoBehaviour
                         break;
                     }
                 }
-            }
 
-            path.Push(curHex);
-            foreach (GameObject o in path)
-            {
-                //Debug.Log("!!!! - " + o.transform.position + " " + path.Count);
             }
+            way.Push(xHex);
 
-            path = ReverseStack(path);
-            foreach (Hexagon hexagon in hexagons)
+            way = ReverseStack(way);
+
+            publicWay = way.ToArray();
+            foreach (Hexagon hexagon in hexagons)  // отмечаем все гексы непосещенными для следующих проходов алгоритма поиска пути
             {
                 hexagon.SetUnvisited();
             }
-
-            _pathCalculated = true;
-
         }
-
-        return path;
     }
 
-    private List<GameObject> ReturnFreeUnVisitedNeighbours(List<GameObject> freeNeighbours)
+    private List<Hexagon> ReturnFreeUnVisitedNeighbours(List<Hexagon> freeNeighbours) // Вернуть все непосещенные соседние гексы (поиск пути)
     {
-        //Debug.Log("Enter method ReturnFreeUnVisitedNeighbours()");
         GetComponent<CircleCollider2D>().enabled = false;
-        List<GameObject> freeUnVisitedNeighbours = new List<GameObject>();
-        foreach (GameObject neighbour in freeNeighbours)
+        List<Hexagon> freeUnVisitedNeighbours = new List<Hexagon>();
+        foreach (Hexagon neighbour in freeNeighbours)
         {
             if (!neighbour.GetComponent<Hexagon>().IsVisited())
             {
                 freeUnVisitedNeighbours.Add(neighbour);
-                //Debug.Log("ReturnFreeUnVisitedNeighbours: Added " + neighbour.transform.position);
             }
         }
 
@@ -172,44 +156,15 @@ public class Enemy : MonoBehaviour
         return freeUnVisitedNeighbours;
     }
 
-    private Stack<GameObject> ReverseStack(Stack<GameObject> path)
+    private Stack<Hexagon> ReverseStack(Stack<Hexagon> stack) // Разворот стэка гексов
     {
-        //Debug.Log("Enter method ReverseStack");
-        Stack<GameObject> _path = new Stack<GameObject>();
-        int x = path.Count;
+        Stack<Hexagon> newStack = new Stack<Hexagon>();
+        int x = stack.Count;
         for (int i = 0; i < x; i++)
         {
-            _path.Push(path.Pop());
+            newStack.Push(stack.Pop());
         }
-        //Debug.Log(_path.Count);
 
-        return _path;
-    }
-
-    public void HideFromLight()
-    {
-        Debug.Log("I was found");
-    }
-
-    public void FollowPlayer()
-    {
-
-
-        if (_pathCalculated)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, _mainPath.Peek().transform.position,
-                speed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, _mainPath.Peek().transform.position) < 1f)
-            {
-                _mainPath.Pop();
-            }
-        }
-        else
-        {
-            //_mainPath = CalculatePath();
-        }
+        return newStack;
     }
 }
-
-
-    
