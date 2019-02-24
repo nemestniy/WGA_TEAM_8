@@ -92,6 +92,7 @@ public class Player: MonoBehaviour {
 
     public GameObject GetCurrentHexagon()
     {
+        Debug.Log("!!!!!");
         return _currentHexagon.gameObject;
     }
 

@@ -49,8 +49,9 @@ public class EnemyManager : MonoBehaviour, Manager
                 Debug.Log("Way is not empty");
                 enemy.state = Enemy.States.Moving;
             }
-            if (enemy.currentHex == _player._currentHexagon)
+            if (enemy.currentHex == _player.GetCurrentHexagon().GetComponent<Hexagon>())
             {
+                
                 enemy.state = Enemy.States.Hunting;
             }
         }
