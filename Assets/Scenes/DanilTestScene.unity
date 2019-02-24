@@ -301,6 +301,11 @@ PrefabInstance:
       propertyPath: _audioClips.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: 36bf1b51894682e47861811471d39a17, type: 3}
+    - target: {fileID: 114342425592362300, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 998414032}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
 --- !u!114 &998414032 stripped
@@ -893,37 +898,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeathCutsceen
       objectReference: {fileID: 0}
-    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
-        type: 3}
-      propertyPath: _frames.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
-        type: 3}
-      propertyPath: _frames.Array.data[1].canChangeWithClick
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
-        type: 3}
-      propertyPath: _frames.Array.data[1].secondsToChange
-      value: Infinity
-      objectReference: {fileID: 0}
-    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
-        type: 3}
-      propertyPath: _frames.Array.data[0].image
-      value: 
-      objectReference: {fileID: 21300000, guid: ac81c8e5931e85a478065c02a8e5ef7a,
-        type: 3}
-    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
-        type: 3}
-      propertyPath: _frames.Array.data[0].canChangeWithClick
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
-        type: 3}
-      propertyPath: _frames.Array.data[0].secondsToChange
-      value: Infinity
-      objectReference: {fileID: 0}
     - target: {fileID: 751738474785575668, guid: 799c5bea16b65f440a728d6943ef7596,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1028,6 +1002,37 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.data[1].canChangeWithClick
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.data[1].secondsToChange
+      value: Infinity
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: ac81c8e5931e85a478065c02a8e5ef7a,
+        type: 3}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.data[0].canChangeWithClick
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.data[0].secondsToChange
+      value: Infinity
       objectReference: {fileID: 0}
     - target: {fileID: 382775297439306845, guid: 799c5bea16b65f440a728d6943ef7596,
         type: 3}
@@ -1139,37 +1144,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartCutsceen
       objectReference: {fileID: 0}
-    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
-        type: 3}
-      propertyPath: _frames.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
-        type: 3}
-      propertyPath: _frames.Array.data[0].canChangeWithClick
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
-        type: 3}
-      propertyPath: _frames.Array.data[1].image
-      value: 
-      objectReference: {fileID: 21300000, guid: abe0a0577df42364b82ceec0a1787cbb,
-        type: 3}
-    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
-        type: 3}
-      propertyPath: _frames.Array.data[1].secondsToChange
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
-        type: 3}
-      propertyPath: _frames.Array.data[1].canChangeWithClick
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
-        type: 3}
-      propertyPath: _frames.Array.data[0].secondsToChange
-      value: 28
-      objectReference: {fileID: 0}
     - target: {fileID: 7452142412873396943, guid: 7031af17e10313348b824107cee5f0e8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1274,6 +1248,37 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
+        type: 3}
+      propertyPath: _frames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
+        type: 3}
+      propertyPath: _frames.Array.data[0].canChangeWithClick
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
+        type: 3}
+      propertyPath: _frames.Array.data[1].image
+      value: 
+      objectReference: {fileID: 21300000, guid: abe0a0577df42364b82ceec0a1787cbb,
+        type: 3}
+    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
+        type: 3}
+      propertyPath: _frames.Array.data[1].secondsToChange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
+        type: 3}
+      propertyPath: _frames.Array.data[1].canChangeWithClick
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
+        type: 3}
+      propertyPath: _frames.Array.data[0].secondsToChange
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 4638714954075193731, guid: 7031af17e10313348b824107cee5f0e8,
         type: 3}

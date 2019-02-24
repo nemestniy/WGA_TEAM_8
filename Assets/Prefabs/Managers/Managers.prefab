@@ -43,7 +43,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioClips:
-  - {fileID: 8300000, guid: 723c89e21ffcbba42b1116c3ad9e8680, type: 3}
-  - {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
+  - {fileID: 8300000, guid: a216fbe253a235a418eb996c036b1402, type: 3}
+  - {fileID: 8300000, guid: 36bf1b51894682e47861811471d39a17, type: 3}
 --- !u!1 &1182577274369688
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc115780cfe47348bef9da79adba5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
 --- !u!114 &114666504007120952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,6 +432,8 @@ MonoBehaviour:
   - {fileID: 2247660165563408270, guid: 39587695ea0b6284da9a6fdf91f928c0, type: 3}
   _distanceBetweenObjects: 2
   _attemptsNumber: 5
+  _countWell: 0
+  _well: {fileID: 0}
 --- !u!114 &1532265142
 MonoBehaviour:
   m_ObjectHideFlags: 0
