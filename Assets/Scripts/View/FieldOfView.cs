@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 public class FieldOfView : MonoBehaviour
@@ -9,23 +10,35 @@ public class FieldOfView : MonoBehaviour
 
 	[Header("Normal vision attributes:")]
 	[SerializeField]
-	public float _closeViewRadius;
+	public float _closeViewRadius = 0;
 	[SerializeField]
-	public float _farViewRadius;
+	public float _farViewRadius = 20;
 	[SerializeField]
 	[Range(0, DegInCircle)]
-	public float _viewAngle;
+	public float _viewAngle = 90;
+	[SerializeField]
+	public float _intensity = 70;
+	[SerializeField]
+	public float _lightHeight = -1;
+	[SerializeField]
+	public Color _lightcColor;
 
 	[Header("Combat vision attributes:")]
 	[SerializeField]
-	public float _combatCloseViewRadius;
+	public float _combatCloseViewRadius = 0;
 	[SerializeField]
-	public float _combatFarViewRadius;
+	public float _combatFarViewRadius = 30;
 	[SerializeField]
 	[Range(0, DegInCircle)]
-	public float _combatViewAngle;
+	public float _combatViewAngle = 15;
 	[SerializeField]
 	private float _changingDuration = 1;
+	[SerializeField]
+	public float _combatIntensity = 700;
+	[SerializeField]
+	public float _combatLightHeight = -0.5f;
+	[SerializeField]
+	public Color _CombatLightcColor;
 
 	[Header("Masks:")]
 	[SerializeField]
@@ -35,21 +48,23 @@ public class FieldOfView : MonoBehaviour
 
 	[Header("Optimisation:")]
 	[SerializeField] 
-	private bool _closeVewIsStatic;
+	private bool _closeVewIsStatic = true;
 	[SerializeField]
-	private float _meshResolution; //how many rays will be casted per 1 degree
+	private float _meshResolution = 4; //how many rays will be casted per 1 degree
 	[SerializeField]
-	private int _edgeResolveIterations; //how many steps we spend to find an edge of an obstacle
+	private int _edgeResolveIterations = 10; //how many steps we spend to find an edge of an obstacle
 	[SerializeField] 
-	private bool _shadowsCornersIsVisible;
+	private bool _shadowsCornersIsVisible = true;
 	[SerializeField]
-	private float _edgeDistanceThreshold; //what distance between 2 hit points will be considered as hitting 2 different objects
+	private float _edgeDistanceThreshold = 0; //what distance between 2 hit points will be considered as hitting 2 different objects
 
 	[Header("")]
 	[SerializeField]
-	private float _edgeOffset;
+	private float _edgeOffset = 0.5f;
 	[SerializeField]
 	private MeshFilter _viewMeshFilter;
+	[SerializeField]
+	private Light _spotLight;
 
 	private Mesh _viewMesh; //Vision mesh
 	private bool _isModeChanging;
@@ -95,7 +110,12 @@ public class FieldOfView : MonoBehaviour
 		var currentCloseViewRadius = Mathf.Lerp(_closeViewRadius, _combatCloseViewRadius, _currentChangingTime / _changingDuration);
 		var currentFarViewRadius = Mathf.Lerp(_farViewRadius, _combatFarViewRadius, _currentChangingTime / _changingDuration);
 		var currentViewAngle = Mathf.Lerp(_viewAngle, _combatViewAngle, _currentChangingTime / _changingDuration);
+		var currentIntensity = Mathf.Lerp(_intensity, _combatIntensity, _currentChangingTime / _changingDuration);
+		var currentLightHeight = Mathf.Lerp(_lightHeight, _combatLightHeight, _currentChangingTime / _changingDuration);
+		var currentLightColor = Color.Lerp(_lightcColor, _CombatLightcColor, _currentChangingTime / _changingDuration);
+		
 		DrawFieldOfView(currentCloseViewRadius, _closeVewIsStatic,currentFarViewRadius, currentViewAngle);
+		DrawSpotLight(currentFarViewRadius, currentViewAngle, currentIntensity, currentLightHeight, currentLightColor);
 	
 		if (_currentChangingTime == _changingDuration) //this means that the light in combat mode
 		{
@@ -116,6 +136,14 @@ public class FieldOfView : MonoBehaviour
 		}
 	}
 
+	private void DrawSpotLight(float radius, float angel, float intensity, float height, Color color)
+	{
+		_spotLight.range = radius;
+		_spotLight.spotAngle = angel;
+		_spotLight.intensity = intensity;
+		_spotLight.transform.localPosition = new Vector3(0, 0, height);
+		_spotLight.color = color;
+	}
 	private List<Transform> FindVisibleEnemies(float closeViewRadius, float farViewRadius, float viewAngle)
 	{
 		List<Transform> visibleEnemies = new List<Transform>();
