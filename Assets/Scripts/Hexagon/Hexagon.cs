@@ -226,10 +226,10 @@ public class Hexagon : MonoBehaviour
     }
 
     //---------------Часть Лехи
-    public List<GameObject> ReturnFreeNeighbours()
+    public List<Hexagon> ReturnFreeNeighbours()
     {
         //Debug.Log("Enter method ReturnFreeNeighbours()");
-        List<GameObject> freeNeighbours = new List<GameObject>();
+        List<Hexagon> freeNeighbours = new List<Hexagon>();
         Vector2 origin = GetComponent<Transform>().position;
 
         List<Transform> neighbours = new List<Transform>(ReturnNeighbors());
@@ -243,7 +243,7 @@ public class Hexagon : MonoBehaviour
             if (hit.collider == null) 
             {
                 //Debug.Log("Added" + neighbour.position);
-                freeNeighbours.Add(neighbour.gameObject);
+                freeNeighbours.Add(neighbour.gameObject.GetComponent<Hexagon>());
             }
         }
 
