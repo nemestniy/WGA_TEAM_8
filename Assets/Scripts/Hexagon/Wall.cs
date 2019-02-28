@@ -3,13 +3,13 @@
 
 public class Wall : MonoBehaviour
 {
-    private BoxCollider2D _collider;
+    private PolygonCollider2D _collider;
     private bool _isActive;
     private bool _isBorder;
 
     private void Awake()
     {
-        _collider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<PolygonCollider2D>();
         _isActive = true;
         _isBorder = false;
     }

@@ -53,8 +53,8 @@ public class FieldOfView : MonoBehaviour
 	private float _meshResolution = 4; //how many rays will be casted per 1 degree
 	[SerializeField]
 	private int _edgeResolveIterations = 10; //how many steps we spend to find an edge of an obstacle
-	[SerializeField] 
-	private bool _shadowsCornersIsVisible = true;
+	[FormerlySerializedAs("_shadowsCornersIsVisible")] [SerializeField] 
+	private bool _shadowsCornersAreVisible = true;
 	[SerializeField]
 	private float _edgeDistanceThreshold = 0; //what distance between 2 hit points will be considered as hitting 2 different objects
 
@@ -286,7 +286,7 @@ public class FieldOfView : MonoBehaviour
 	private ViewCastInfo ViewCast(float globalAngle, float viewRadius) //cast ray and collect info about hit
 	{
 		Vector2 dir = DirFromAngle(globalAngle, true);
-		if (_shadowsCornersIsVisible)
+		if (_shadowsCornersAreVisible)
 		{
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, viewRadius, _obstacleMask); //cast ray
 
