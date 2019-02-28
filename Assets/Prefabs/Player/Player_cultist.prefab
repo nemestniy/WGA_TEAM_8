@@ -163,7 +163,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1587652703
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4258b935189f13347a0410bf434cfd4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -210,8 +210,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
-  _currentHexagon: {fileID: 0}
-  _lastHexagon: {fileID: 0}
 --- !u!58 &58824981454247692
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -243,14 +241,14 @@ MonoBehaviour:
   _closeViewRadius: 0
   _farViewRadius: 20
   _viewAngle: 90
-  _intensity: 70
+  _intensity: 20
   _lightHeight: -1
   _lightcColor: {r: 1, g: 1, b: 1, a: 1}
   _combatCloseViewRadius: 0
   _combatFarViewRadius: 30
   _combatViewAngle: 15
   _changingDuration: 1
-  _combatIntensity: 700
+  _combatIntensity: 100
   _combatLightHeight: -0.4
   _CombatLightcColor: {r: 1, g: 0, b: 0.1333332, a: 1}
   _enemyMask:
@@ -262,9 +260,9 @@ MonoBehaviour:
   _closeVewIsStatic: 1
   _meshResolution: 4
   _edgeResolveIterations: 10
-  _shadowsCornersIsVisible: 1
+  _shadowsCornersAreVisible: 1
   _edgeDistanceThreshold: 0
-  _edgeOffset: 0.5
+  _edgeOffset: 1.9
   _viewMeshFilter: {fileID: 33216750422343312}
   _spotLight: {fileID: 5842483332482770170}
 --- !u!95 &1016308930

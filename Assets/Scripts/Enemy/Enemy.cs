@@ -47,6 +47,19 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
+    
+    public delegate void OnTriggerAction();
+    public static event OnTriggerAction OnTrigger;
+
+   
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            OnTrigger?.Invoke();
+            Debug.Log("am");
+        }
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {

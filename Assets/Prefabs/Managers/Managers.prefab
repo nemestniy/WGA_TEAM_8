@@ -278,8 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9f629a7bbcdf745aed26e0d6ac2b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: []
-  _enemies: []
+  _enemies_test: []
 --- !u!1 &7857383769503733680
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +429,9 @@ MonoBehaviour:
   - {fileID: 6661997802312948628, guid: de9a57cf4dcf08b4683ce5e776a6208c, type: 3}
   - {fileID: 5533999706980436304, guid: 70258640353fe63438df32cfd6c289f0, type: 3}
   - {fileID: 2247660165563408270, guid: 39587695ea0b6284da9a6fdf91f928c0, type: 3}
+  - {fileID: 8349860306310937037, guid: 1d3304e7ff71b544c91e842611e7f443, type: 3}
+  - {fileID: 8553496164081403489, guid: df46e642e8eaa3640a15fdd3a3f74965, type: 3}
+  - {fileID: 2184235799086163653, guid: 2ff64abf6b323134a9986b1a37e88b8d, type: 3}
   _distanceBetweenObjects: 2
   _attemptsNumber: 5
   _countWell: 0

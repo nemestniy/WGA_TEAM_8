@@ -48,6 +48,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Waterfall
+    uniqueID: 3898487283
+    locked: 0
   - name: Player
     uniqueID: 1587652703
     locked: 0

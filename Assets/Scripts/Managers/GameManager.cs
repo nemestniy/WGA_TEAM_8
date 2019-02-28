@@ -28,11 +28,35 @@ public class GameManager : MonoBehaviour, Manager
     [SerializeField]
     private Cutscene _winCutscene;
 
+    private void Awake()
+    {
+        Well.OnTrigger += OnWin;
+        Enemy.OnTrigger += OnDie;
+    }
+
     private void Start()
     {
         _audioManager.StartManager();
         PauseManager();
         StartCoroutine(_startCutscene.Show(new Action(ResumeManager))); //show method gets delegate what to do after showing
+    }
+
+    private void OnWin()
+    {
+        PauseManager();
+        StartCoroutine(_winCutscene.Show(new Action(StartManager)));
+    }
+
+    private void OnDie()
+    {
+        PauseManager();
+        StartCoroutine(_screemerCutscene.Show(new Action(ShowDeadCutsceen)));
+    }
+
+    private void ShowDeadCutsceen()
+    {
+        PauseManager();
+        StartCoroutine(_deathCutscene.Show(new Action(StartManager)));
     }
 
 
