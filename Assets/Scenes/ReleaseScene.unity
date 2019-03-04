@@ -455,6 +455,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6640911471332809055, guid: 20f53c90fd850fe478ced6d97c6c8370,
+        type: 3}
+      propertyPath: _frames.Array.data[0].canChangeWithClick
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f53c90fd850fe478ced6d97c6c8370, type: 3}
 --- !u!1001 &1541085980
@@ -552,6 +557,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 539308896, guid: d9aba53270fe9fc4ab4f9211ad9c72fe, type: 3}
+      propertyPath: _frames.Array.data[0].secondsToChange
+      value: 3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9aba53270fe9fc4ab4f9211ad9c72fe, type: 3}
 --- !u!1001 &1668850273
@@ -608,6 +617,36 @@ PrefabInstance:
     - target: {fileID: 4175369692355482, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212418340241005706, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _CombatLightcColor.r
+      value: 0.5176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _CombatLightcColor.g
+      value: 0.101960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _CombatLightcColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _combatLightHeight
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 114451331865143092, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _combatViewAngle
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
@@ -842,6 +881,15 @@ PrefabInstance:
       propertyPath: _winCutscene
       value: 
       objectReference: {fileID: 363236575}
+    - target: {fileID: 1489312119, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _well
+      value: 
+      objectReference: {fileID: 192543149050041623, guid: 472ce6639233e5e478ee37aa7d58bd88,
+        type: 3}
+    - target: {fileID: 1489312119, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _countWell
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
 --- !u!1001 &2088789362
@@ -961,6 +1009,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3518981241419061051, guid: 7031af17e10313348b824107cee5f0e8,
+        type: 3}
+      propertyPath: _frames.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: f34206c07fb969a4592806d965af2911,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7031af17e10313348b824107cee5f0e8, type: 3}
 --- !u!1001 &2136040874
@@ -1080,6 +1134,43 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.data[1].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ea715679046205478c6c63256168125,
+        type: 3}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.data[1].canChangeWithClick
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.data[0].image
+      value: 
+      objectReference: {fileID: 21300000, guid: 7ea715679046205478c6c63256168125,
+        type: 3}
+    - target: {fileID: 2131548068385913520, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: _frames.Array.data[0].secondsToChange
+      value: Infinity
+      objectReference: {fileID: 0}
+    - target: {fileID: 382775297439306845, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
+    - target: {fileID: 382775297439306845, guid: 799c5bea16b65f440a728d6943ef7596,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 799c5bea16b65f440a728d6943ef7596, type: 3}
 --- !u!1001 &98636746927071260
@@ -1162,6 +1253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Well
+      objectReference: {fileID: 0}
+    - target: {fileID: 192543149050041623, guid: 472ce6639233e5e478ee37aa7d58bd88,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 192543149050041621, guid: 472ce6639233e5e478ee37aa7d58bd88,
         type: 3}
