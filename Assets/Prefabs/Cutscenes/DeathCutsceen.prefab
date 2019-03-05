@@ -185,8 +185,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -284,9 +284,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _frames:
-  - image: {fileID: 21300000, guid: 1ab782273fd18c54c923550e9d2792d1, type: 3}
-    secondsToChange: 2
-    canChangeWithClick: 0
-  - image: {fileID: 21300000, guid: ac81c8e5931e85a478065c02a8e5ef7a, type: 3}
+  - image: {fileID: 21300000, guid: 7ea715679046205478c6c63256168125, type: 3}
     secondsToChange: Infinity
-    canChangeWithClick: 1
+    canChangeWithClick: 0

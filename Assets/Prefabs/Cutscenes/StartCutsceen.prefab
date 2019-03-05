@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _frames:
-  - image: {fileID: 21300000, guid: abe0a0577df42364b82ceec0a1787cbb, type: 3}
+  - image: {fileID: 21300000, guid: f34206c07fb969a4592806d965af2911, type: 3}
     secondsToChange: 28
     canChangeWithClick: 1
 --- !u!1 &5939883043205920321

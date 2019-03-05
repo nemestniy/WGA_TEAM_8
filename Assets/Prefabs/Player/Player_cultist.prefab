@@ -246,11 +246,11 @@ MonoBehaviour:
   _lightcColor: {r: 1, g: 1, b: 1, a: 1}
   _combatCloseViewRadius: 0
   _combatFarViewRadius: 30
-  _combatViewAngle: 15
+  _combatViewAngle: 25
   _changingDuration: 1
-  _combatIntensity: 100
-  _combatLightHeight: -0.4
-  _CombatLightcColor: {r: 1, g: 0, b: 0.1333332, a: 1}
+  _combatIntensity: 800
+  _combatLightHeight: -0.07
+  _CombatLightcColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 1}
   _enemyMask:
     serializedVersion: 2
     m_Bits: 512
@@ -260,7 +260,7 @@ MonoBehaviour:
   _closeVewIsStatic: 1
   _meshResolution: 4
   _edgeResolveIterations: 10
-  _shadowsCornersAreVisible: 1
+  _shadowsCornersAreVisible: 0
   _edgeDistanceThreshold: 0
   _edgeOffset: 1.9
   _viewMeshFilter: {fileID: 33216750422343312}

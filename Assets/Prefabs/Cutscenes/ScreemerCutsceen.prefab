@@ -211,7 +211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _frames:
   - image: {fileID: 21300000, guid: 1ab782273fd18c54c923550e9d2792d1, type: 3}
-    secondsToChange: 2
+    secondsToChange: 3.5
     canChangeWithClick: 0
 --- !u!1 &1956256839
 GameObject:

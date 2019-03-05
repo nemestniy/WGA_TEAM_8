@@ -8,7 +8,6 @@ public class EnvironmentLight : MonoBehaviour
 {
 	private const int DegInCircle = 360;
 
-	[FormerlySerializedAs("_farViewRadius")]
 	[SerializeField]
 	public float _viewRadius = 20;
 

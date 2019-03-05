@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-//      _playerManager.StartPlayer();
+      _playerManager.StartManager();
 //      _enemyManager.StartEnemies();
 //      _mapManager.StartMap();
     }
