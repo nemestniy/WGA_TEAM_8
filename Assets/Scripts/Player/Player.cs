@@ -76,7 +76,7 @@ public class Player: MonoBehaviour {
         if (_currentHexagon != hexagon)
         {
             _currentHexagon = hexagon;
-            CurrentHexagonChanged();
+            CurrentHexagonChanged?.Invoke();
         }
     }
 
@@ -92,7 +92,6 @@ public class Player: MonoBehaviour {
 
     public GameObject GetCurrentHexagon()
     {
-        Debug.Log("!!!!!");
         return _currentHexagon.gameObject;
     }
 

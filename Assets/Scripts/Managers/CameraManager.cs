@@ -3,7 +3,7 @@
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] 
-    private UnityEngine.Camera _camera;
+    private Camera _camera;
 
     [SerializeField] 
     private Player _player;

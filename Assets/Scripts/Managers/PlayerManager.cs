@@ -3,6 +3,8 @@
 
 public class PlayerManager : MonoBehaviour, Manager
 {
+    [SerializeField]
+    private GameObject _playerPref;
     private Player _player;
     private MoveController _moveController;
     private bool _isPaused;
@@ -12,19 +14,11 @@ public class PlayerManager : MonoBehaviour, Manager
     private void Awake()
     {
         _moveController = GetComponent<MoveController>();
-        GameObject playerGO = GameObject.FindGameObjectWithTag("Player");
-        _player = playerGO.GetComponent<Player>();
-        _fieldOfView = playerGO.GetComponent<FieldOfView>();
-    }
-
-    private void Start()
-    {
-        _startTransform = _player.transform;
     }
 
     void Update()
     {
-        if (!_isPaused)
+        if (!_isPaused && _fieldOfView != null)
         {
             UpdatePlayerMovement();
             if (Input.GetButtonDown("Fire1"))
@@ -36,22 +30,31 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void UpdatePlayerMovement()
     {
-        Vector2 velocity = _moveController.GetVelocity();
+        if (_player != null)
+        {
+            Vector2 velocity = _moveController.GetVelocity();
     
-        if (velocity == Vector2.zero)
-            _player.StopAnimation();
-        else
-            _player.StartAnimation();
+            if (velocity == Vector2.zero)
+                _player.StopAnimation();
+            else
+                _player.StartAnimation();
 
-        _player.SetVelocity(velocity);
+            _player.SetVelocity(velocity);
 
-        _player.SetAngle(_moveController.GetAngle());
+            _player.SetAngle(_moveController.GetAngle());
+        }
     }
 
     public void StartManager()
     {
-        _player.transform.position = _startTransform.position;
-        _player.transform.eulerAngles = _startTransform.eulerAngles;
+        GameObject playerGO = GameObject.FindWithTag("Player");
+        if (playerGO)
+        {
+            Destroy(playerGO);
+        }
+        playerGO = Instantiate(_playerPref) as GameObject; 
+        _player = playerGO.GetComponent<Player>();
+        _fieldOfView = playerGO.GetComponent<FieldOfView>();
     }
     
     public void PauseManager()

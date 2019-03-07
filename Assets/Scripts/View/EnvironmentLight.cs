@@ -36,11 +36,14 @@ public class EnvironmentLight : MonoBehaviour
 	{
 		_viewMesh = new Mesh {name = "View Mesh"};
 		_viewMeshFilter.mesh = _viewMesh;
+		DrawFieldOfView(_viewRadius, DegInCircle);
+		Hexagon.OnWallsChange += RedrawView;
 	}
 
-	private void LateUpdate()
+	private void RedrawView()
 	{
 		DrawFieldOfView(_viewRadius, DegInCircle);
+		Debug.Log("Redarawed");
 	}
 
 	private void DrawFieldOfView(float farViewRadius, float viewAngle) //drawing the mesh representing field of view

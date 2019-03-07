@@ -260,7 +260,7 @@ MonoBehaviour:
   _closeVewIsStatic: 1
   _meshResolution: 4
   _edgeResolveIterations: 10
-  _shadowsCornersAreVisible: 0
+  _shadowsCornersAreVisible: 1
   _edgeDistanceThreshold: 0
   _edgeOffset: 1.9
   _viewMeshFilter: {fileID: 33216750422343312}

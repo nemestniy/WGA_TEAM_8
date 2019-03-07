@@ -36,9 +36,7 @@ public class GameManager : MonoBehaviour, Manager
 
     private void Start()
     {
-        _audioManager.StartManager();
-        PauseManager();
-        StartCoroutine(_startCutscene.Show(new Action(ResumeManager))); //show method gets delegate what to do after showing
+        StartCoroutine(_startCutscene.Show(new Action(StartManager))); //show method gets delegate what to do after showing
     }
 
     private void OnWin()
@@ -62,9 +60,10 @@ public class GameManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-      _playerManager.StartManager();
-//      _enemyManager.StartEnemies();
-//      _mapManager.StartMap();
+        _audioManager.StartManager();
+        _playerManager.StartManager();
+        _enemyManager.StartManager();
+        _mapManager.StartManager();
     }
 
     public void PauseManager()

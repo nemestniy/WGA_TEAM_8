@@ -21,6 +21,9 @@ public class Hexagon : MonoBehaviour
     private bool isVisited;
 
     private List<Transform> freeNeigbours = null;
+    
+    public delegate void OnWallsChangeAction();
+    public static event OnWallsChangeAction OnWallsChange;
 
 
     //Initialization of all components
@@ -146,7 +149,8 @@ public class Hexagon : MonoBehaviour
                 }
             }
         }
-
+        
+        OnWallsChange?.Invoke();
         //Debug.Log("Wall was changed");
     }
 
