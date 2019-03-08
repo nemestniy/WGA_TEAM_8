@@ -11,10 +11,10 @@ public class HexagonsGenerator : MonoBehaviour
     public delegate void HexagonEvents();
     public event HexagonEvents MapIsCreate;
 
-    void Start()
-    {
-        GenerateMap();
-    }
+//    void Start()
+//    {
+//        GenerateMap();
+//    }
 
     public void GenerateMap()
     {
