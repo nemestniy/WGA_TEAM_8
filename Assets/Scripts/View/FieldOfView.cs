@@ -9,8 +9,8 @@ public class FieldOfView : MonoBehaviour
 	private const int DegInCircle = 360;
 
 	[Header("Normal vision attributes:")]
-	[SerializeField]
-	public float _closeViewRadius = 0;
+//	[SerializeField]
+//	public float _closeViewRadius = 0;
 	[SerializeField]
 	public float _farViewRadius = 20;
 	[SerializeField]
@@ -21,11 +21,13 @@ public class FieldOfView : MonoBehaviour
 	[SerializeField]
 	public float _lightHeight = -1;
 	[SerializeField]
-	public Color _lightcColor;
+	private Color _lightColor;
 
 	[Header("Combat vision attributes:")]
+//	[SerializeField]
+//	public float _combatCloseViewRadius = 0;
 	[SerializeField]
-	public float _combatCloseViewRadius = 0;
+	private float _costPerFrame = 0.01f;
 	[SerializeField]
 	public float _combatFarViewRadius = 30;
 	[SerializeField]
@@ -38,7 +40,7 @@ public class FieldOfView : MonoBehaviour
 	[SerializeField]
 	public float _combatLightHeight = -0.5f;
 	[SerializeField]
-	public Color _CombatLightcColor;
+	private Color _CombatLightColor;
 
 	[Header("Masks:")]
 	[SerializeField]
@@ -70,11 +72,13 @@ public class FieldOfView : MonoBehaviour
 	private bool _isModeChanging;
 	private bool _directionOfChanging;
 	private float _currentChangingTime;
+	private Energy _energy;
 
 	private void Start()
 	{
 		_viewMesh = new Mesh {name = "View Mesh"};
 		_viewMeshFilter.mesh = _viewMesh;
+		_energy = GetComponent<Energy>();
 	}
 
 	private void LateUpdate()
@@ -107,19 +111,21 @@ public class FieldOfView : MonoBehaviour
 			}
 		}
 	
-		var currentCloseViewRadius = Mathf.Lerp(_closeViewRadius, _combatCloseViewRadius, _currentChangingTime / _changingDuration);
-		var currentFarViewRadius = Mathf.Lerp(_farViewRadius, _combatFarViewRadius, _currentChangingTime / _changingDuration);
+		//computing current values of player's lamp, affecting radius by current energy level
+//		var currentCloseViewRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_closeViewRadius, _combatCloseViewRadius, _currentChangingTime / _changingDuration);
+		var currentFarViewRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_farViewRadius, _combatFarViewRadius, _currentChangingTime / _changingDuration);
 		var currentViewAngle = Mathf.Lerp(_viewAngle, _combatViewAngle, _currentChangingTime / _changingDuration);
 		var currentIntensity = Mathf.Lerp(_intensity, _combatIntensity, _currentChangingTime / _changingDuration);
 		var currentLightHeight = Mathf.Lerp(_lightHeight, _combatLightHeight, _currentChangingTime / _changingDuration);
-		var currentLightColor = Color.Lerp(_lightcColor, _CombatLightcColor, _currentChangingTime / _changingDuration);
+		var currentLightColor = Color.Lerp(_lightColor, _CombatLightColor, _currentChangingTime / _changingDuration);
 		
-		DrawFieldOfView(currentCloseViewRadius, _closeVewIsStatic,currentFarViewRadius, currentViewAngle);
+		DrawFieldOfView(/*currentCloseViewRadius, _closeVewIsStatic, */currentFarViewRadius, currentViewAngle);
 		DrawSpotLight(currentFarViewRadius, currentViewAngle, currentIntensity, currentLightHeight, currentLightColor);
 	
 		if (_currentChangingTime == _changingDuration) //this means that the light in combat mode
 		{
-			List<Transform> visibleEnemies = FindVisibleEnemies(currentCloseViewRadius, currentFarViewRadius, currentViewAngle);
+			_energy.TakeAwayEnergy(_costPerFrame);
+			List<Transform> visibleEnemies = FindVisibleEnemies(/*currentCloseViewRadius, */currentFarViewRadius, currentViewAngle);
 			foreach (var enemy in visibleEnemies)
 			{
 				enemy.GetComponent<Enemy>().HideFromLight();
@@ -144,7 +150,7 @@ public class FieldOfView : MonoBehaviour
 		_spotLight.transform.localPosition = new Vector3(0, 0, height);
 		_spotLight.color = color;
 	}
-	private List<Transform> FindVisibleEnemies(float closeViewRadius, float farViewRadius, float viewAngle)
+	private List<Transform> FindVisibleEnemies(/*float closeViewRadius, */float farViewRadius, float viewAngle)
 	{
 		List<Transform> visibleEnemies = new List<Transform>();
 		Collider2D[] enemiesInFarViewRadius = Physics2D.OverlapCircleAll(transform.position, farViewRadius, _enemyMask); //find all enemies in our far view radius
@@ -162,28 +168,28 @@ public class FieldOfView : MonoBehaviour
 			}
 		}
 	
-		Collider2D[] enemiesInCloseViewRadius = Physics2D.OverlapCircleAll(transform.position, closeViewRadius, _enemyMask); //find all enemies in our close view radius
-		foreach (var enemyInView in enemiesInCloseViewRadius)
-		{
-			Transform enemy = enemyInView.transform;
-			Vector2 dirToEnemy = (enemy.position - transform.position).normalized; //find direction to the enemy
-			if (Vector2.Angle(-transform.up, dirToEnemy) < (DegInCircle -viewAngle) / 2) //check if it is in our view angle
-			{
-				float dstToEnemy = Vector2.Distance(transform.position, enemy.position); //find distance to the enemy
-				if (!Physics2D.Raycast(transform.position, dirToEnemy, dstToEnemy, _obstacleMask)) //check is it is not covered by an obstacle
-				{
-					visibleEnemies.Add(enemy);
-				}
-			}
-		}
+//		Collider2D[] enemiesInCloseViewRadius = Physics2D.OverlapCircleAll(transform.position, closeViewRadius, _enemyMask); //find all enemies in our close view radius
+//		foreach (var enemyInView in enemiesInCloseViewRadius)
+//		{
+//			Transform enemy = enemyInView.transform;
+//			Vector2 dirToEnemy = (enemy.position - transform.position).normalized; //find direction to the enemy
+//			if (Vector2.Angle(-transform.up, dirToEnemy) < (DegInCircle -viewAngle) / 2) //check if it is in our view angle
+//			{
+//				float dstToEnemy = Vector2.Distance(transform.position, enemy.position); //find distance to the enemy
+//				if (!Physics2D.Raycast(transform.position, dirToEnemy, dstToEnemy, _obstacleMask)) //check is it is not covered by an obstacle
+//				{
+//					visibleEnemies.Add(enemy);
+//				}
+//			}
+//		}
 		return visibleEnemies;
 	}
 
-	private void DrawFieldOfView(float closeViewRadius, bool closeVewIsStatic, float farViewRadius, float viewAngle) //drawing the mesh representing field of view
+	private void DrawFieldOfView(/*float closeViewRadius, bool closeVewIsStatic, */float farViewRadius, float viewAngle) //drawing the mesh representing field of view
 	{
 		List<Vector3> viewPoints = new List<Vector3>();
 		GetViewPoints(viewPoints, -transform.eulerAngles.z, false, farViewRadius, viewAngle); //get far view points
-		GetViewPoints(viewPoints, -transform.eulerAngles.z + DegInCircle / 2,closeVewIsStatic, closeViewRadius, DegInCircle - viewAngle); //get close view points
+//		GetViewPoints(viewPoints, -transform.eulerAngles.z + DegInCircle / 2,closeVewIsStatic, closeViewRadius, DegInCircle - viewAngle); //get close view points
 
 		int vertexCount = viewPoints.Count + 1; //number of vertices for drawing mesh
 		Vector3[] vertices = new Vector3[vertexCount]; //all vertex 
