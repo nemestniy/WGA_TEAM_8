@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour, Manager
@@ -46,9 +47,11 @@ public class GameManager : MonoBehaviour, Manager
     }
 
     private void Start()
-    {
-        StartCoroutine(_startCutscene.Show(new Action(StartManager))); //show method gets delegate what to do after showing
-    
+
+    {   
+//      new Thread(StartManager).Start();
+//      StartCoroutine(_startCutscene.Show(null));
+        StartCoroutine(_startCutscene.Show( new Action(StartManager))); //show method gets delegate what to do after showing
     }
 
     private void OnWin()
@@ -72,10 +75,11 @@ public class GameManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+        _mapManager.StartManager();
         _audioManager.StartManager();
         _playerManager.StartManager();
         _enemyManager.StartManager();
-        _mapManager.StartManager();
+        
     }
 
     public void PauseManager()

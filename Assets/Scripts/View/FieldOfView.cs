@@ -6,39 +6,15 @@ using UnityEngine.Serialization;
 
 public class FieldOfView : MonoBehaviour
 {
-	private const int DegInCircle = 360;
+	[SerializeField]
+	private List<LampMode> _lightModes;
 
-	[Header("Normal vision attributes:")]
+	[SerializeField] 
+	private bool _lightIsFree = false;
 	[SerializeField]
-	public float _closeViewRadius = 0;
-	[SerializeField]
-	public float _farViewRadius = 20;
-	[SerializeField]
-	[Range(0, DegInCircle)]
-	public float _viewAngle = 90;
-	[SerializeField]
-	public float _intensity = 70;
-	[SerializeField]
-	public float _lightHeight = -1;
-	[SerializeField]
-	public Color _lightcColor;
-
-	[Header("Combat vision attributes:")]
-	[SerializeField]
-	public float _combatCloseViewRadius = 0;
-	[SerializeField]
-	public float _combatFarViewRadius = 30;
-	[SerializeField]
-	[Range(0, DegInCircle)]
-	public float _combatViewAngle = 15;
+	private float _costPerFrame = 0.01f;
 	[SerializeField]
 	private float _changingDuration = 1;
-	[SerializeField]
-	public float _combatIntensity = 700;
-	[SerializeField]
-	public float _combatLightHeight = -0.5f;
-	[SerializeField]
-	public Color _CombatLightcColor;
 
 	[Header("Masks:")]
 	[SerializeField]
@@ -65,74 +41,82 @@ public class FieldOfView : MonoBehaviour
 	private MeshFilter _viewMeshFilter;
 	[SerializeField]
 	private Light _spotLight;
-
+	
 	private Mesh _viewMesh; //Vision mesh
 	private bool _isModeChanging;
-	private bool _directionOfChanging;
 	private float _currentChangingTime;
+	private Energy _energy;
+	private const int DegInCircle = 360;
+
+	private int _currentMode;
+	private int _prevMode;
+
+	[HideInInspector] public float _currentCloseViewRadius;
+	[HideInInspector] public float _currentFarViewRadius;
+	[HideInInspector] public float _currentViewAngle;
+	[HideInInspector] public float _currentIntensity;
+	[HideInInspector] public float _currentLightHeight;
+	[HideInInspector] public Color _currentLightColor;
 
 	private void Start()
 	{
 		_viewMesh = new Mesh {name = "View Mesh"};
 		_viewMeshFilter.mesh = _viewMesh;
+		_energy = GetComponent<Energy>();
 	}
 
 	private void LateUpdate()
 	{
+		float changingState = 1; //[0,1] shows how close mode to it's final state; 0 - start to change mode, 1 - not changing
 		if (_isModeChanging)
 		{
-			if (_directionOfChanging) //changing to combat mode
+			if (_currentChangingTime < _changingDuration)
 			{
-				if (_currentChangingTime < _changingDuration)
-				{
-					_currentChangingTime += Time.deltaTime;
-				}
-				else
-				{
-					_currentChangingTime = _changingDuration;
-					_isModeChanging = false;
-				}
+				_currentChangingTime += Time.deltaTime;
+				changingState = _currentChangingTime / _changingDuration;
 			}
-			else //changing to normal mode
+			else
 			{
-				if (_currentChangingTime > 0)
-				{
-					_currentChangingTime -= Time.deltaTime;
-				}
-				else
-				{
-					_currentChangingTime = 0;
-					_isModeChanging = false;
-				}
+				_currentChangingTime = 0;
+				_isModeChanging = false;
 			}
 		}
 	
-		var currentCloseViewRadius = Mathf.Lerp(_closeViewRadius, _combatCloseViewRadius, _currentChangingTime / _changingDuration);
-		var currentFarViewRadius = Mathf.Lerp(_farViewRadius, _combatFarViewRadius, _currentChangingTime / _changingDuration);
-		var currentViewAngle = Mathf.Lerp(_viewAngle, _combatViewAngle, _currentChangingTime / _changingDuration);
-		var currentIntensity = Mathf.Lerp(_intensity, _combatIntensity, _currentChangingTime / _changingDuration);
-		var currentLightHeight = Mathf.Lerp(_lightHeight, _combatLightHeight, _currentChangingTime / _changingDuration);
-		var currentLightColor = Color.Lerp(_lightcColor, _CombatLightcColor, _currentChangingTime / _changingDuration);
+		//computing current values of player's lamp, affecting radius by current energy level
+		_currentCloseViewRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].closeViewRadius, _lightModes[_currentMode].closeViewRadius, changingState);
+		_currentFarViewRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].farViewRadius, _lightModes[_currentMode].farViewRadius, changingState);
+		_currentViewAngle = Mathf.Lerp( _lightModes[_prevMode].viewAngle, _lightModes[_currentMode].viewAngle, changingState);
+		_currentIntensity = Mathf.Lerp(_lightModes[_prevMode].intensity, _lightModes[_currentMode].intensity, changingState);
+		_currentLightHeight = Mathf.Lerp(_lightModes[_prevMode].lightHeight, _lightModes[_currentMode].lightHeight, changingState);
+		_currentLightColor = Color.Lerp(_lightModes[_prevMode].lightColor, _lightModes[_currentMode].lightColor, changingState);
 		
-		DrawFieldOfView(currentCloseViewRadius, _closeVewIsStatic,currentFarViewRadius, currentViewAngle);
-		DrawSpotLight(currentFarViewRadius, currentViewAngle, currentIntensity, currentLightHeight, currentLightColor);
+		DrawFieldOfView(_currentCloseViewRadius, _closeVewIsStatic, _currentFarViewRadius, _currentViewAngle);
+		DrawSpotLight(_currentFarViewRadius, _currentViewAngle, _currentIntensity, _currentLightHeight, _currentLightColor);
 	
-		if (_currentChangingTime == _changingDuration) //this means that the light in combat mode
+		//this means that the light in combat newMode
+		if (_currentMode == 1 && changingState == 1)
 		{
-			List<Transform> visibleEnemies = FindVisibleEnemies(currentCloseViewRadius, currentFarViewRadius, currentViewAngle);
+			List<Transform> visibleEnemies = FindVisibleEnemies(_currentCloseViewRadius, _currentFarViewRadius, _currentViewAngle);
 			foreach (var enemy in visibleEnemies)
 			{
 				enemy.GetComponent<Enemy>().HideFromLight();
 			}
 		}
+
+		//light is not in normal mode and costs some energy
+		if (_currentMode != 0 && changingState == 1 && !_lightIsFree)
+		{
+			_energy.TakeAwayEnergy(_costPerFrame);
+		}
 	}
 	
-	public void ChangeLightMode()
+	public void ChangeLightMode(int newMode)
 	{
-		if (!_isModeChanging) //change the light to the combat mode
+		if (!_isModeChanging) //change the light to the combat newMode
 		{
 			_isModeChanging = true;
-			_directionOfChanging = !_directionOfChanging;
+			_prevMode = _currentMode;
+			_currentMode = newMode;
 		}
 	}
 
@@ -183,7 +167,7 @@ public class FieldOfView : MonoBehaviour
 	{
 		List<Vector3> viewPoints = new List<Vector3>();
 		GetViewPoints(viewPoints, -transform.eulerAngles.z, false, farViewRadius, viewAngle); //get far view points
-		GetViewPoints(viewPoints, -transform.eulerAngles.z + DegInCircle / 2,closeVewIsStatic, closeViewRadius, DegInCircle - viewAngle); //get close view points
+		GetViewPoints(viewPoints, -transform.eulerAngles.z + DegInCircle / 2, closeVewIsStatic, closeViewRadius, DegInCircle - viewAngle); //get close view points
 
 		int vertexCount = viewPoints.Count + 1; //number of vertices for drawing mesh
 		Vector3[] vertices = new Vector3[vertexCount]; //all vertex 
@@ -363,5 +347,17 @@ public class FieldOfView : MonoBehaviour
 			this.pointA = pointA;
 			this.pointB = pointB;
 		}
+	}
+	
+	[Serializable]
+	public struct LampMode
+	{
+		public float closeViewRadius;
+		public float farViewRadius;
+		[Range(0, DegInCircle)]
+		public float viewAngle;
+		public float intensity;
+		public float lightHeight;
+		public Color lightColor;
 	}
 }
