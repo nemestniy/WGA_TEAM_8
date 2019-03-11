@@ -60,10 +60,11 @@ public class GameManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+        _mapManager.StartManager();
         _audioManager.StartManager();
         _playerManager.StartManager();
         _enemyManager.StartManager();
-        _mapManager.StartManager();
+        
     }
 
     public void PauseManager()
