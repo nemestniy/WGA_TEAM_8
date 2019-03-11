@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 98636746594368645}
   - component: {fileID: 98636746594368644}
+  - component: {fileID: 4246514093989026602}
   m_Layer: 11
   m_Name: Background
   m_TagString: Untagged
@@ -79,3 +80,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4246514093989026602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98636746594368651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10aa8531ae5766428acab926b1d8d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  biomeTexture: {fileID: 2800000, guid: 85499838cc11a844e8c03effeb3af5bb, type: 3}

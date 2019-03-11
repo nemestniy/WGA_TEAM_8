@@ -106,5 +106,11 @@ public class Player: MonoBehaviour {
         if(_animator != null)
             _animator.SetBool("PlayerGo", false);
     }
+
+    public void Update()
+    {
+        //TODO: Debug. Remove when tested;
+        Debug.Log(GameManager.Instance.MapManager.Background.GetBiomeByPosition(gameObject.transform.position));
+    }
 }
 

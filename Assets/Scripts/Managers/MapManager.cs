@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour, Manager
 {
+    public BackgroundController Background;
+
     private void Start()
     {
     

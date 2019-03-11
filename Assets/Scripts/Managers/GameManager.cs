@@ -28,15 +28,27 @@ public class GameManager : MonoBehaviour, Manager
     [SerializeField]
     private Cutscene _winCutscene;
 
+    public static GameManager Instance { get; private set; }
+    public PlayerManager PlayerManager => _playerManager;
+    public EnemyManager EnemyManager => _enemyManager;
+    public MapManager MapManager => _mapManager;
+    public AudioManager AudioManager => _audioManager;
+
     private void Awake()
     {
         Well.OnTrigger += OnWin;
         Enemy.OnTrigger += OnDie;
     }
 
+    public GameManager() : base()
+    {
+        Instance = this;
+    }
+
     private void Start()
     {
         StartCoroutine(_startCutscene.Show(new Action(StartManager))); //show method gets delegate what to do after showing
+    
     }
 
     private void OnWin()
@@ -81,5 +93,6 @@ public class GameManager : MonoBehaviour, Manager
 //      _enemyManager.ResumeEnemies();
 //      _mapManager.ResumeMap();
     }
+
 }
 
