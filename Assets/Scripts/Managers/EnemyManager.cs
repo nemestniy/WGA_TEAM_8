@@ -7,59 +7,52 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour, Manager
 {
-    Player _player;
+    public Player _player;
+    public AstarPath path;
 
-    public List<Enemy> _enemies_test;
+    public List<Enemy> _enemies;
 
-    void Start()
+    public HexagonsGenerator hexagonsGenerator;
+
+    private void Start()
     {
-        _player = FindObjectOfType<Player>();
-        //_enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
+        hexagonsGenerator.MapIsCreate += OnMapCreated;
 
-        _enemies_test = new List<Enemy>(FindObjectsOfType<Enemy>());
-
-        _player.CurrentHexagonChanged += OnPlayerHexagonChanged;
-
-        
-        foreach (Enemy enemy in _enemies_test)
-        {
-            enemy.state = Enemy.States.WaySearching;
-        }
     }
 
-    private void OnPlayerHexagonChanged()
+    private void OnMapCreated()
     {
-        foreach (Enemy enemy in _enemies_test)
+        foreach (Enemy enemy in _enemies)
         {
-            enemy.state = Enemy.States.WaySearching;
+            path.Scan();
+            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = FindObjectOfType<Player>().transform;
+            enemy.state = Enemy.States.Moving;
+            Debug.Log("onMapCreate");
         }
+
     }
 
     void Update()
     {
-        /*foreach (Enemy enemy in _enemies)
-        {
-            enemy.FollowPlayer();
-        }*/
-
-        foreach (Enemy enemy in _enemies_test)
-        {
-            if (enemy.way.Count != 0)
-            {
-                Debug.Log("Way is not empty");
-                enemy.state = Enemy.States.Moving;
-            }
-            if (enemy.currentHex == _player.GetCurrentHexagon().GetComponent<Hexagon>())
-            {
                 
-                enemy.state = Enemy.States.Hunting;
-            }
-        }
     }
 
     public void StartManager()
     {
+        Debug.Log("Enemy Manager Started");
+
         
+
+        _player = FindObjectOfType<Player>();
+
+        _enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
+
+        foreach (Enemy enemy in _enemies)
+        {
+            path.Scan();
+            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = FindObjectOfType<Player>().transform;
+            enemy.state = Enemy.States.Moving;
+        }
     }
 
     public void PauseManager()
@@ -71,5 +64,6 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         
     }
+
 }
 
