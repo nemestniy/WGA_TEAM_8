@@ -21,9 +21,18 @@ public class PlayerManager : MonoBehaviour, Manager
         if (!_isPaused && _fieldOfView != null)
         {
             UpdatePlayerMovement();
+            
             if (Input.GetButtonDown("Fire1"))
             {
-                _fieldOfView.ChangeLightMode();
+                _fieldOfView.ChangeLightMode(1);
+            }
+            else if (Input.GetButtonDown("Fire2"))
+            {
+                _fieldOfView.ChangeLightMode(2);
+            }
+            else if (Input.GetButtonDown("Fire3"))
+            {
+                _fieldOfView.ChangeLightMode(0);
             }
         }
     }

@@ -43,7 +43,7 @@ public class Cutscene : MonoBehaviour
         _audioSource.Stop();
         _imageGO.SetActive(false);
 
-        whatToDoNext();
+        whatToDoNext?.Invoke();
     }
 
     

@@ -239,18 +239,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6894db217ab2a8f45a0c4b364bd6b126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _farViewRadius: 20
-  _viewAngle: 90
-  _intensity: 20
-  _lightHeight: -1
-  _lightColor: {r: 1, g: 1, b: 1, a: 0}
+  _lightModes:
+  - farViewRadius: 20
+    viewAngle: 90
+    intensity: 70
+    lightHeight: -1
+    lightColor: {r: 1, g: 1, b: 1, a: 0}
+  - farViewRadius: 30
+    viewAngle: 25
+    intensity: 800
+    lightHeight: -0.07
+    lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
+  - farViewRadius: 0
+    viewAngle: 0
+    intensity: 0
+    lightHeight: 0
+    lightColor: {r: 0, g: 0, b: 0, a: 0}
   _costPerFrame: 0.1
-  _combatFarViewRadius: 30
-  _combatViewAngle: 25
   _changingDuration: 1
-  _combatIntensity: 800
-  _combatLightHeight: -0.07
-  _CombatLightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
   _enemyMask:
     serializedVersion: 2
     m_Bits: 512
