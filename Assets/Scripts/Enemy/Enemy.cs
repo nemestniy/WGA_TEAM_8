@@ -7,7 +7,12 @@ public class Enemy : MonoBehaviour
     public AstarPath path;
 
     public States state;
-    public float speed;
+
+    private float speed;
+    private Pathfinding.AIDestinationSetter destinationSetter;
+
+    public delegate void EnemyEvents();
+    public event EnemyEvents Player_death;
 
     public enum States // Состояния моба
     {
@@ -22,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        
+        destinationSetter = GetComponent<Pathfinding.AIDestinationSetter>();
     }
 
     private void Update()
@@ -64,12 +69,7 @@ public class Enemy : MonoBehaviour
 
     private void HuntPlayer() // Активное преследование игрока. Состояние - Hunting
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position,
-            speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, player.transform.position) < 1f)
-        {
-            //Смеееееееееерть
-        }
+               
     }
 
     public void HideFromLight() // Сбежать в ужасе. Состояние - Escaping (Потом переименовать метод в Escape)
@@ -83,6 +83,10 @@ public class Enemy : MonoBehaviour
         player = FindObjectOfType<Player>();
         GetComponent<Pathfinding.AIPath>().canMove = true;
 
+        if (Vector2.Distance(transform.position, player.transform.position) < 1f)
+        {
+            Player_death(); // Смерть игрока
+        }
     }
 
     private void FindWayToPlayer() // Поиск пути до игрока. Состояние - WaySearching

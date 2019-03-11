@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8914237606444993384}
   - component: {fileID: 8914237606444993385}
   - component: {fileID: 8914237606444993386}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy_new
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f7a62ac50104aa1428863c93ceb6565c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
