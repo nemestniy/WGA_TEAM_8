@@ -239,13 +239,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6894db217ab2a8f45a0c4b364bd6b126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _closeViewRadius: 0
   _farViewRadius: 20
   _viewAngle: 90
   _intensity: 20
   _lightHeight: -1
   _lightColor: {r: 1, g: 1, b: 1, a: 0}
-  _combatCloseViewRadius: 0
+  _costPerFrame: 0.1
   _combatFarViewRadius: 30
   _combatViewAngle: 25
   _changingDuration: 1
