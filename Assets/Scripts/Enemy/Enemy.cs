@@ -79,7 +79,6 @@ public class Enemy : MonoBehaviour
 
     private void FollowPlayer() // Движение по вычисленному пути до игрока. Состояние - Moving
     {
-        Debug.Log("Enter method FollowPlayer");
         player = FindObjectOfType<Player>();
         GetComponent<Pathfinding.AIPath>().canMove = true;
 

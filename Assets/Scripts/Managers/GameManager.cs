@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour, Manager
 {
-    
-    
     [Header("Managers:")]
     [SerializeField]
     private PlayerManager _playerManager;
@@ -47,10 +45,7 @@ public class GameManager : MonoBehaviour, Manager
     }
 
     private void Start()
-
     {   
-//      new Thread(StartManager).Start();
-//      StartCoroutine(_startCutscene.Show(null));
         StartCoroutine(_startCutscene.Show( new Action(StartManager))); //show method gets delegate what to do after showing
     }
 
@@ -97,6 +92,5 @@ public class GameManager : MonoBehaviour, Manager
 //      _enemyManager.ResumeEnemies();
 //      _mapManager.ResumeMap();
     }
-
 }
 
