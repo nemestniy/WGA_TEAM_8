@@ -67,12 +67,12 @@ Shader "Custom/Water"
         {
 			float4 maskColor = tex2D(_MaskTex, IN.uv_MainTex).rgba;
 			//clip(0.4f - length(maskColor - _WaterColor));
-			float d1 = sin(IN.uv_MainTex * 900 * float2(0.2352f, 0.654323f) + float2(_Time.y, _Time.y) * 5 * -0.4564f) * 0.2f;
-			float d2 = cos(IN.uv_MainTex.yx * 900 * float2(0.63243f, 0.324235f) + float2(_Time.y, _Time.y) * 5 * 0.516f) * 0.2f;
-			fixed4 c1 = tex2D(_WaterTex, IN.uv_MainTex * 50 + d1);
-			fixed4 c2 = tex2D(_WaterTex, IN.uv_MainTex * 50 + d2);
-			fixed4 c = (c1 + c2) * 0.5f;
-			o.Alpha = length(c.rgb) * (1 - saturate(length(maskColor - _WaterColor) * 2));
+			float d1 = sin(IN.uv_MainTex * 1500 * float2(0.2352f, 0.654323f) + float2(_Time.y, _Time.y) * 5 * -0.4564f) * 0.03f;
+			float d2 = cos(IN.uv_MainTex.yx * 1500 * float2(0.63243f, 0.324235f) + float2(_Time.y, _Time.y) * 5 * 0.516f) * 0.03f;
+			fixed4 c1 = tex2D(_WaterTex, IN.uv_MainTex * 20 + d1);
+			fixed4 c2 = tex2D(_WaterTex, IN.uv_MainTex * 40 + d2);
+			fixed4 c = (c1 + c2) * 0.33f;
+			o.Alpha = (1 - saturate(length(maskColor - _WaterColor) * 2)) * c.a;
 			o.Albedo = o.Alpha * c;
 			
         }
