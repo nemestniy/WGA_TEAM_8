@@ -240,21 +240,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lightModes:
-  - farViewRadius: 20
+  - closeViewRadius: 0
+    farViewRadius: 20
     viewAngle: 90
     intensity: 70
     lightHeight: -1
     lightColor: {r: 1, g: 1, b: 1, a: 0}
-  - farViewRadius: 30
+  - closeViewRadius: 0
+    farViewRadius: 30
     viewAngle: 25
     intensity: 800
     lightHeight: -0.07
     lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
-  - farViewRadius: 0
+  - closeViewRadius: 0
+    farViewRadius: 0
     viewAngle: 0
     intensity: 0
     lightHeight: 0
     lightColor: {r: 0, g: 0, b: 0, a: 0}
+  _lightIsFree: 1
   _costPerFrame: 0.1
   _changingDuration: 1
   _enemyMask:
@@ -271,6 +275,12 @@ MonoBehaviour:
   _edgeOffset: 1.9
   _viewMeshFilter: {fileID: 33216750422343312}
   _spotLight: {fileID: 5842483332482770170}
+  _currentCloseViewRadius: 0
+  _currentFarViewRadius: 0
+  _currentViewAngle: 0
+  _currentIntensity: 0
+  _currentLightHeight: 0
+  _currentLightColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5894203408845879875
 MonoBehaviour:
   m_ObjectHideFlags: 0
