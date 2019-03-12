@@ -20,7 +20,10 @@ public class Energy : MonoBehaviour
 
     public void TakeAwayEnergy(float amount)
     {
-        _currentEnergy -= amount;
+        if (_currentEnergy - amount >= 0)
+        {
+            _currentEnergy -= amount;
+        }
     }
 }
 
