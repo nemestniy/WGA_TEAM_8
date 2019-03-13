@@ -53,18 +53,13 @@ public class Enemy : MonoBehaviour
     public static event OnTriggerAction OnTrigger; // событие для вызова катсцены смерти игрока когда его съели
 
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnCollisionEnter2D(Collision2D other) 
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             OnTrigger?.Invoke();
             Debug.Log("am");
         }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-
     }
 
     private void HuntPlayer() // Активное преследование игрока. Состояние - Hunting
@@ -91,6 +86,5 @@ public class Enemy : MonoBehaviour
     private void FindWayToPlayer() // Поиск пути до игрока. Состояние - WaySearching
     {
         //path.Scan();
-        
     }
 }

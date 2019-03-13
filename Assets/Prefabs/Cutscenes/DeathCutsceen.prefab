@@ -286,4 +286,4 @@ MonoBehaviour:
   _frames:
   - image: {fileID: 21300000, guid: 7ea715679046205478c6c63256168125, type: 3}
     secondsToChange: Infinity
-    canChangeWithClick: 0
+    canChangeWithClick: 1
