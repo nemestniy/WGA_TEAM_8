@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 
 public class PlayerManager : MonoBehaviour, Manager
@@ -7,9 +8,9 @@ public class PlayerManager : MonoBehaviour, Manager
     private GameObject _playerPref;
     private Player _player;
     private MoveController _moveController;
-    private bool _isPaused;
+    private bool _isPaused = true;
     private Transform _startTransform;
-    private FieldOfView _fieldOfView;
+    private List<FieldOfView> _fieldOfViews;
 
     private void Awake()
     {
@@ -18,21 +19,33 @@ public class PlayerManager : MonoBehaviour, Manager
 
     void Update()
     {
-        if (!_isPaused && _fieldOfView != null)
+        if (!_isPaused)
         {
             UpdatePlayerMovement();
-            
+        }
+
+        if ( _fieldOfViews != null)
+        {
             if (Input.GetButtonDown("Fire1"))
             {
-                _fieldOfView.ChangeLightMode(1);
+                foreach (var fov in _fieldOfViews)
+                {
+                    fov.ChangeLightMode(1);
+                }
             }
             else if (Input.GetButtonDown("Fire2"))
             {
-                _fieldOfView.ChangeLightMode(2);
+                foreach (var fov in _fieldOfViews)
+                {
+                    fov.ChangeLightMode(2);
+                }
             }
             else if (Input.GetButtonDown("Fire3"))
             {
-                _fieldOfView.ChangeLightMode(0);
+                foreach (var fov in _fieldOfViews)
+                {
+                    fov.ChangeLightMode(0);
+                }
             }
         }
     }
@@ -56,14 +69,20 @@ public class PlayerManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+//        GameObject playerGO = GameObject.FindWithTag("Player");
+//        if (playerGO)
+//        {
+//            Destroy(playerGO);
+//        }
+//        playerGO = Instantiate(_playerPref) as GameObject; 
+//        _player = playerGO.GetComponent<Player>();
+//        _fieldOfView = playerGO.GetComponentInChildren<FieldOfView>();
+
         GameObject playerGO = GameObject.FindWithTag("Player");
-        if (playerGO)
-        {
-            Destroy(playerGO);
-        }
-        playerGO = Instantiate(_playerPref) as GameObject; 
         _player = playerGO.GetComponent<Player>();
-        _fieldOfView = playerGO.GetComponent<FieldOfView>();
+        _fieldOfViews = new List<FieldOfView>(playerGO.GetComponentsInChildren<FieldOfView>());
+        
+        _isPaused = false;
     }
     
     public void PauseManager()

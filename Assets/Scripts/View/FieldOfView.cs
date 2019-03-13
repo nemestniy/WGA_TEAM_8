@@ -9,6 +9,7 @@ public class FieldOfView : MonoBehaviour
 	[SerializeField]
 	private List<LampMode> _lightModes;
 
+	[Header("Energy options:")]
 	[SerializeField] 
 	private bool _lightIsFree = false;
 	[SerializeField]
@@ -16,13 +17,7 @@ public class FieldOfView : MonoBehaviour
 	[SerializeField]
 	private float _changingDuration = 1;
 
-	[Header("Masks:")]
-	[SerializeField]
-	private LayerMask _enemyMask;
-	[SerializeField]
-	private LayerMask _obstacleMask;
-
-	[Header("Optimisation:")]
+	[Header("")]
 	[SerializeField] 
 	private bool _closeVewIsStatic = true;
 	[SerializeField]
@@ -33,15 +28,17 @@ public class FieldOfView : MonoBehaviour
 	private bool _shadowsCornersAreVisible = true;
 	[SerializeField]
 	private float _edgeDistanceThreshold = 0; //what distance between 2 hit points will be considered as hitting 2 different objects
-
-	[Header("")]
 	[SerializeField]
 	private float _edgeOffset = 0.5f;
-	[SerializeField]
-	private MeshFilter _viewMeshFilter;
-	[SerializeField]
-	private Light _spotLight;
 	
+	[Header("Masks:")]
+	[SerializeField]
+	private LayerMask _enemyMask;
+	[SerializeField]
+	private LayerMask _obstacleMask;
+	
+	private Light _spotLight;
+	private MeshFilter _viewMeshFilter;
 	private Mesh _viewMesh; //Vision mesh
 	private bool _isModeChanging;
 	private float _currentChangingTime;
@@ -60,9 +57,11 @@ public class FieldOfView : MonoBehaviour
 
 	private void Start()
 	{
+		_spotLight = GetComponentInChildren<Light>();
+		_viewMeshFilter = GetComponent<MeshFilter>();
 		_viewMesh = new Mesh {name = "View Mesh"};
 		_viewMeshFilter.mesh = _viewMesh;
-		_energy = GetComponent<Energy>();
+		_energy =  GetComponentInParent<Energy>();
 	}
 
 	private void LateUpdate()
@@ -168,7 +167,8 @@ public class FieldOfView : MonoBehaviour
 		List<Vector3> viewPoints = new List<Vector3>();
 		GetViewPoints(viewPoints, -transform.eulerAngles.z, false, farViewRadius, viewAngle); //get far view points
 		GetViewPoints(viewPoints, -transform.eulerAngles.z + DegInCircle / 2, closeVewIsStatic, closeViewRadius, DegInCircle - viewAngle); //get close view points
-
+		
+		
 		int vertexCount = viewPoints.Count + 1; //number of vertices for drawing mesh
 		Vector3[] vertices = new Vector3[vertexCount]; //all vertex 
 		int[] triangles = new int[(vertexCount-2)*3]; //numbers of vertex for each triangle in the mash in one row
