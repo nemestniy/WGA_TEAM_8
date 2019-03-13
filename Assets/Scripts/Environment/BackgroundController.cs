@@ -43,14 +43,4 @@ public class BackgroundController : MonoBehaviour
         if (sandDist < watrDist) return Biome.Sandy;
         return Biome.Water;
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {                
-    }
 }

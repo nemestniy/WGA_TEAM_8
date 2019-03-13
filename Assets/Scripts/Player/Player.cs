@@ -5,7 +5,7 @@ public class Player: MonoBehaviour {
 
     public delegate void PlayerEvents();
     public event PlayerEvents CurrentHexagonChanged;
-    public event PlayerEvents WellWasDetected;
+//    public event PlayerEvents WellWasDetected;
 
     [SerializeField]
     private float _speed;
@@ -15,13 +15,13 @@ public class Player: MonoBehaviour {
     private Hexagon _lastHexagon;
     private Animator _animator;
 
-    private bool _wellIsView;
+//    private bool _wellIsView;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _wellIsView = false;
+//        _wellIsView = false;
     }
 
     public void SetVelocity(Vector2 direction)
@@ -34,13 +34,13 @@ public class Player: MonoBehaviour {
         transform.eulerAngles = new Vector3(0, 0, angle);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("Well") && _wellIsView)
-        {
-            WellWasDetected();
-        }
-    }
+//    private void OnCollisionEnter2D(Collision2D collision)
+//    {
+//        if (collision.transform.CompareTag("Well") && _wellIsView)
+//        {
+//            WellWasDetected();
+//        }
+//    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -80,15 +80,15 @@ public class Player: MonoBehaviour {
         }
     }
 
-    public void DetectWell()
-    {
-        _wellIsView = true;
-    }
+//    public void DetectWell()
+//    {
+//        _wellIsView = true;
+//    }
 
-    public void LoseWell()
-    {
-        _wellIsView = false;
-    }
+//    public void LoseWell()
+//    {
+//        _wellIsView = false;
+//    }
 
     public GameObject GetCurrentHexagon()
     {
