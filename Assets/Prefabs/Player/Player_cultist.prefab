@@ -258,11 +258,7 @@ MonoBehaviour:
     intensity: 0
     lightHeight: 0
     lightColor: {r: 0, g: 0, b: 0, a: 0}
-<<<<<<< HEAD
   _lightIsFree: 0
-=======
-  _lightIsFree: 1
->>>>>>> 4ef215396f5d1274438d70f9a103ade1423728f3
   _costPerFrame: 0.1
   _changingDuration: 1
   _enemyMask:

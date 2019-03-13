@@ -80,7 +80,6 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-<<<<<<< HEAD
   - serializedVersion: 2
     buildTarget: iPhone
     maxTextureSize: 2048
@@ -103,8 +102,6 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-=======
->>>>>>> 4ef215396f5d1274438d70f9a103ade1423728f3
   spriteSheet:
     serializedVersion: 2
     sprites: []
@@ -113,12 +110,12 @@ TextureImporter:
     bones: []
     spriteID: 817c783a85621f84b8530ea0916fce02
     vertices: []
-    indices: 
+    indices:
     edges: []
     weights: []
-  spritePackingTag: 
+  spritePackingTag:
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
-  userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  userData:
+  assetBundleName:
+  assetBundleVariant:
