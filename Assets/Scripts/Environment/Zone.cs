@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-
+[Serializable]
 public class Zone
 {
+    public int HexCount = 0;
+    public Guid ZoneGuid { get; private set; }
     private List<Hexagon> hexagons;
 
     private Color color;
 
     public Zone(Color color)
     {
+        ZoneGuid = Guid.NewGuid();
         this.color = color;
         hexagons = new List<Hexagon>();
     }
@@ -18,6 +22,7 @@ public class Zone
     {
         hexagon.SetZone(this);
         hexagons.Add(hexagon);
+        HexCount++;
     }
 
     public void AddHexagons(List<Hexagon> hexagons)

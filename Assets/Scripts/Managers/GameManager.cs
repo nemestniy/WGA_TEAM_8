@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour, Manager
     public MapManager MapManager => _mapManager;
     public AudioManager AudioManager => _audioManager;
 
+    public bool IsLoaded { get; private set; }
+
     private void Awake()
     {
         Well.OnTrigger += OnWin;
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour, Manager
         _audioManager.StartManager();
         _playerManager.StartManager();
         _enemyManager.StartManager();
-        
+        IsLoaded = true;
     }
 
     public void PauseManager()
