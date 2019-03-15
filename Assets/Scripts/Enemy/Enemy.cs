@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
 
     private void Pause()
     {
-        GetComponent<Pathfinding.AIPath>().canMove = false;
-        GetComponent<Animation>().Stop();
+        //GetComponent<Pathfinding.AIPath>().canMove = false;
+        //GetComponent<Animation>().Stop();
     }
 }

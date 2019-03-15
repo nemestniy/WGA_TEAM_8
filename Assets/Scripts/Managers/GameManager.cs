@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour, Manager
     {
         _audioManager.PauseManager();
         _playerManager.PauseManager();
-        _enemyManager.PauseManager();
+   //     _enemyManager.PauseManager();
 //      _mapManager.PauseManager();
     }
 

@@ -63,7 +63,7 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         foreach (Enemy enemy in _enemies)
         {
-            enemy.state = Enemy.States.Paused;
+            //enemy.state = Enemy.States.Paused;
         }
     }
 
