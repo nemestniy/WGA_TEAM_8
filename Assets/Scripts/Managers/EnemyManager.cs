@@ -53,7 +53,6 @@ public class EnemyManager : MonoBehaviour, Manager
         foreach (Enemy enemy in _enemies)
         {
             path.Scan();
-            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = FindObjectOfType<Player>().transform;
             enemy.state = Enemy.States.Moving;
         }
         
@@ -61,9 +60,10 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void PauseManager()
     {
+        Debug.Log("Pause EnemyManager");
         foreach (Enemy enemy in _enemies)
         {
-            //enemy.state = Enemy.States.Paused;
+            enemy.state = Enemy.States.Paused;
         }
     }
 

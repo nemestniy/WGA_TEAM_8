@@ -98,7 +98,7 @@ public class FieldOfView : MonoBehaviour
 			List<Transform> visibleEnemies = FindVisibleEnemies(_currentCloseViewRadius, _currentFarViewRadius, _currentViewAngle);
 			foreach (var enemy in visibleEnemies)
 			{
-				enemy.GetComponent<Enemy>().Escape();
+                enemy.GetComponent<Enemy>().state = Enemy.States.Escaping;
 			}
 		}
 
