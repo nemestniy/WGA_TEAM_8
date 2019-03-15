@@ -44,7 +44,9 @@ public class Enemy : MonoBehaviour
                 HuntPlayer();
                 break;
             case States.Escaping:
-                HideFromLight();
+                Escape();
+                break;
+            case States.Paused:
                 break;
         }
     }
@@ -67,7 +69,7 @@ public class Enemy : MonoBehaviour
                
     }
 
-    public void HideFromLight() // Сбежать в ужасе. Состояние - Escaping (Потом переименовать метод в Escape)
+    public void Escape() // Сбежать в ужасе. Состояние - Escaping (Потом переименовать метод в Escape)
     {
         
     }
@@ -75,16 +77,19 @@ public class Enemy : MonoBehaviour
     private void FollowPlayer() // Движение по вычисленному пути до игрока. Состояние - Moving
     {
         player = FindObjectOfType<Player>();
-        GetComponent<Pathfinding.AIPath>().canMove = true;
 
-        if (Vector2.Distance(transform.position, player.transform.position) < 1f)
-        {
-            Player_death(); // Смерть игрока
-        }
+        GetComponent<Animation>().Play();
+        GetComponent<Pathfinding.AIPath>().canMove = true;
     }
 
     private void FindWayToPlayer() // Поиск пути до игрока. Состояние - WaySearching
     {
         //path.Scan();
+    }
+
+    private void Pause()
+    {
+        GetComponent<Pathfinding.AIPath>().canMove = false;
+        GetComponent<Animation>().Stop();
     }
 }

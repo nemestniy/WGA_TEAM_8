@@ -61,7 +61,10 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void PauseManager()
     {
-        
+        foreach (Enemy enemy in _enemies)
+        {
+            enemy.state = Enemy.States.Paused;
+        }
     }
 
     public void ResumeManager()
