@@ -80,11 +80,22 @@ public class ZoneCreator : MonoBehaviour
 
         var lastHex = startHexagon;
 
-        for (int i = 0; i <= MaxZoneSize; i++)
+        for (int i = 0; i < MaxZoneSize;)
         {
             var neighborHexesWitoutZone = ReturnFreeHexNeighbors(lastHex).ToList();
-            newZone.AddHexagons(neighborHexesWitoutZone);
-            i += neighborHexesWitoutZone.Count;
+            if (i + neighborHexesWitoutZone.Count > MaxZoneSize)
+            {
+                for (var h = 0; h < MaxZoneSize - i; h++)
+                {
+                    newZone.AddHexagon(neighborHexesWitoutZone[h]);
+                    i++;
+                }
+            }
+            else
+            {
+                newZone.AddHexagons(neighborHexesWitoutZone);
+                i += neighborHexesWitoutZone.Count;
+            }
             lastHex = newZone.GetHexagons().FirstOrDefault(h => h.ReturnNeighbors().Any(n => n.GetComponent<Hexagon>().GetZone() == null));
         }
     }
