@@ -10,8 +10,6 @@ public class FieldOfView : MonoBehaviour
 	private List<LampMode> _lightModes;
 
 	[Header("Energy options:")]
-	[SerializeField] 
-	private bool _lightIsFree = false;
 	[SerializeField]
 	private float _costPerFrame = 0.01f;
 	[SerializeField]
@@ -103,15 +101,15 @@ public class FieldOfView : MonoBehaviour
 		}
 
 		//light is not in normal mode and costs some energy
-		if (_currentMode != 0 && changingState == 1 && !_lightIsFree)
+		if (_currentMode != 0 && changingState == 1)
 		{
 			_energy.TakeAwayEnergy(_costPerFrame);
 		}
 	}
 	
-	public void ChangeLightMode(int newMode)
+	public void SetLightMode(int newMode)
 	{
-		if (!_isModeChanging) //change the light to the combat newMode
+		if (!_isModeChanging && _currentMode != newMode) //change the light to the combat newMode
 		{
 			_isModeChanging = true;
 			_prevMode = _currentMode;

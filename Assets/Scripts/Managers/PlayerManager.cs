@@ -7,54 +7,27 @@ public class PlayerManager : MonoBehaviour, Manager
     [SerializeField]
     private GameObject _playerPref;
     private Player _player;
-    private MoveController _moveController;
+    private KeyController _keyController;
     private bool _isPaused = true;
     private Transform _startTransform;
     private List<FieldOfView> _fieldOfViews;
 
     private void Awake()
     {
-        _moveController = GetComponent<MoveController>();
+        _keyController = GetComponent<KeyController>();
     }
 
     void Update()
     {
         if (!_isPaused)
-        {
             UpdatePlayerMovement();
-        }
-
-        if ( _fieldOfViews != null)
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                foreach (var fov in _fieldOfViews)
-                {
-                    fov.ChangeLightMode(1);
-                }
-            }
-            else if (Input.GetButtonDown("Fire2"))
-            {
-                foreach (var fov in _fieldOfViews)
-                {
-                    fov.ChangeLightMode(2);
-                }
-            }
-            else if (Input.GetButtonDown("Fire3"))
-            {
-                foreach (var fov in _fieldOfViews)
-                {
-                    fov.ChangeLightMode(0);
-                }
-            }
-        }
     }
 
     private void UpdatePlayerMovement()
     {
         if (_player != null)
         {
-            Vector2 velocity = _moveController.GetVelocity();
+            Vector2 velocity = _keyController.GetVelocity();
     
             if (velocity == Vector2.zero)
                 _player.StopAnimation();
@@ -62,22 +35,22 @@ public class PlayerManager : MonoBehaviour, Manager
                 _player.StartAnimation();
 
             _player.SetVelocity(velocity);
+            _player.SetAngle(_keyController.GetAngle());
 
-            _player.SetAngle(_moveController.GetAngle());
+            
+            if (_fieldOfViews != null) //setting light mode for all players light sources
+            {
+                int lm = _keyController.GetLightMode(); //should NOT be called twice by frame
+                foreach (var fov in _fieldOfViews)
+                {
+                    fov.SetLightMode(lm);
+                }
+            }
         }
     }
 
     public void StartManager()
     {
-//        GameObject playerGO = GameObject.FindWithTag("Player");
-//        if (playerGO)
-//        {
-//            Destroy(playerGO);
-//        }
-//        playerGO = Instantiate(_playerPref) as GameObject; 
-//        _player = playerGO.GetComponent<Player>();
-//        _fieldOfView = playerGO.GetComponentInChildren<FieldOfView>();
-
         GameObject playerGO = GameObject.FindWithTag("Player");
         _player = playerGO.GetComponent<Player>();
         _fieldOfViews = new List<FieldOfView>(playerGO.GetComponentsInChildren<FieldOfView>());
