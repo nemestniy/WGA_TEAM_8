@@ -15,6 +15,8 @@ public class MapManager : MonoBehaviour, Manager
     private ZoneCreator _zoneCreator;
     private ObjectsGenerator _objectsGenerator;
 
+    public bool IsLoaded { get; private set; }
+
     private void Awake()
     {
         _hexagonsGenerator = GetComponent<HexagonsGenerator>();
@@ -26,6 +28,7 @@ public class MapManager : MonoBehaviour, Manager
     public void StartManager()
     {
         _hexagonsGenerator.GenerateMap();
+        IsLoaded = true;
 //        HexagonGenerated?.Invoke();
 //
 //        _zoneCreator.CreateZones();

@@ -10,8 +10,10 @@ public class AudioManager : MonoBehaviour, Manager
     
     private AudioSource _audioSource;
     private bool _paused;
-    
-    
+
+    public bool IsLoaded { get; private set; }
+
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -43,6 +45,7 @@ public class AudioManager : MonoBehaviour, Manager
     public void StartManager()
     {
         StartCoroutine(PlayBackgroundMusic(_audioClips));
+        IsLoaded = true;
         _paused = false;
     }
 

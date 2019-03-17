@@ -44,7 +44,10 @@ public class Enemy : MonoBehaviour
                 HuntPlayer();
                 break;
             case States.Escaping:
-                HideFromLight();
+                Escape();
+                break;
+            case States.Paused:
+                Pause();
                 break;
         }
     }
@@ -67,24 +70,43 @@ public class Enemy : MonoBehaviour
                
     }
 
-    public void HideFromLight() // Сбежать в ужасе. Состояние - Escaping (Потом переименовать метод в Escape)
+    public void Escape() // Сбежать в ужасе. Состояние - Escaping (Потом переименовать метод в Escape)
     {
-        
+        if (destinationSetter.target == player.transform)
+        {
+            float r = Random.Range(50f, 100f);
+            int alfa = Random.Range(0, 359);
+
+            float X = player.transform.position.x + (Mathf.Sin(alfa) * r);
+            float Y = player.transform.position.y + (Mathf.Cos(alfa) * r);
+
+            Vector2 escapePoint = new Vector2(X, Y);
+
+            GameObject escapeObject = new GameObject("EscapePoint");
+            escapeObject.transform.position = escapePoint;
+
+            destinationSetter.target = escapeObject.transform;
+
+            GetComponent<Pathfinding.AIPath>().maxSpeed = 20f;
+        }
     }
 
     private void FollowPlayer() // Движение по вычисленному пути до игрока. Состояние - Moving
     {
         player = FindObjectOfType<Player>();
-        GetComponent<Pathfinding.AIPath>().canMove = true;
 
-        if (Vector2.Distance(transform.position, player.transform.position) < 1f)
-        {
-            Player_death(); // Смерть игрока
-        }
+        destinationSetter.target = player.transform;
+        GetComponent<Pathfinding.AIPath>().canMove = true;
     }
 
     private void FindWayToPlayer() // Поиск пути до игрока. Состояние - WaySearching
     {
         //path.Scan();
+    }
+
+    private void Pause()
+    {
+        Debug.Log("Enemy Paused");
+        GetComponent<Pathfinding.AIPath>().canMove = false;
     }
 }

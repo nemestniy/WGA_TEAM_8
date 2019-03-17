@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ZoneCreator : MonoBehaviour
 {
-    [SerializeField] private int _numberOfZone;
-    [SerializeField] private int _firstLimit;
+    public int MaxZoneSize = 12;
+    //[SerializeField] private int _numberOfZone;
+    //[SerializeField] private int _firstLimit;
 
     private HexagonsGenerator _hexagonsGenerator;
 
     public List<Zone> _zones;
 
     private int _recursionController;
+    private IEnumerable<Hexagon> _generatedHexagons;
 
     private void Awake()
     {
@@ -21,16 +24,23 @@ public class ZoneCreator : MonoBehaviour
     private void CreateZones()
     {
         var Hexagons = GameObject.FindGameObjectsWithTag("Hexagon");
+        var hexObjects = FindObjectsOfType<Hexagon>();
+
+        _generatedHexagons = FindObjectsOfType<Hexagon>();
+
+        //Debug.Log(Hexagons.Length);
+        var zoneCount = Hexagons.Length / MaxZoneSize;
+        //Debug.Log($"Zone count {zoneCount}");
 
         _zones = new List<Zone>();
 
-        for(int i = 0; i < _numberOfZone; i++)
+        for(int i = 0; i < zoneCount; i++)
         {
             Color newColor = new Color(Random.value, Random.value, Random.value, 1);
             Zone newZone = new Zone(newColor);
 
-            GenerateZone(GetRandomHexagon(Hexagons), newZone);
-        
+                GenerateZone(GetRandomEdgeHex(hexObjects), newZone);
+
         }
 
         FillClearHexagons();
@@ -38,7 +48,6 @@ public class ZoneCreator : MonoBehaviour
 
     private Hexagon GetRandomNeighbor(List<Transform> neighborsTransforms, Color currentZone)
     {
-        //Debug.Log("Gettig random hex");
         Hexagon randomNeighbor = neighborsTransforms[Random.Range(0, neighborsTransforms.Count-1)].GetComponent<Hexagon>();
         if (randomNeighbor.GetZoneColor() != currentZone && _recursionController < neighborsTransforms.Count)
         {
@@ -63,25 +72,53 @@ public class ZoneCreator : MonoBehaviour
 
     private void GenerateZone(Hexagon startHexagon, Zone newZone) 
     {
-        if (startHexagon != null)
-        {
-            if (!newZone.Contains(startHexagon))
-                newZone.AddHexagon(startHexagon);
+        if (startHexagon == null)
+            return;
 
-            var neighborsTransforms = startHexagon.ReturnNeighbors();
-            foreach (Transform neighborTransform in neighborsTransforms)
+        if (!_zones.Contains(newZone))
+            _zones.Add(newZone);
+
+        var lastHex = startHexagon;
+
+        for (int i = 0; i < MaxZoneSize;)
+        {
+            var neighborHexesWitoutZone = ReturnFreeHexNeighbors(lastHex).ToList();
+            if (i + neighborHexesWitoutZone.Count > MaxZoneSize)
             {
-                Hexagon neighbor = neighborTransform.GetComponent<Hexagon>();
-                if (!newZone.Contains(neighbor) && neighbor.GetZone() == null)
+                for (var h = 0; h < MaxZoneSize - i; h++)
                 {
-                    newZone.AddHexagon(neighbor);
-                    if(newZone.GetHexagons().Count <= _firstLimit)
-                        GenerateZone(neighbor, newZone);
+                    newZone.AddHexagon(neighborHexesWitoutZone[h]);
+                    i++;
                 }
             }
-            if (!_zones.Contains(newZone))
-                _zones.Add(newZone);
+            else
+            {
+                newZone.AddHexagons(neighborHexesWitoutZone);
+                i += neighborHexesWitoutZone.Count;
+            }
+            lastHex = newZone.GetHexagons().FirstOrDefault(h => h.ReturnNeighbors().Any(n => n.GetComponent<Hexagon>().GetZone() == null));
         }
+    }
+
+    private IEnumerable<Hexagon> ReturnFreeHexNeighbors( Hexagon hex)
+    {
+        return _generatedHexagons.Where(h => h.ReturnNeighbors().Contains(hex.transform) && h.GetZone() == null);
+    }
+    private Hexagon GetRandomHexagonNearAnyZone(IEnumerable<Hexagon> hexagons)
+    {
+        return hexagons.FirstOrDefault(h =>h.GetZone() != null && h.ReturnNeighbors().Any(hh => hh.GetComponent<Hexagon>().GetZone() == null));
+    }
+
+    private Hexagon GetRandomEdgeHex(IEnumerable<Hexagon> hexagons)
+    {
+        var edgeHexagons = hexagons.Where(h => h.ReturnNeighbors().Count < 6 && h.GetZone() == null).ToArray();
+        return edgeHexagons[Random.Range(0, edgeHexagons.Length - 1)];
+    }
+
+    private Hexagon GetRandomEdgeHexNearAnyZone(IEnumerable<Hexagon> hexagons)
+    {
+        var edgeHexagons = hexagons.Where(h => h.ReturnNeighbors().Count < 6 && h.GetZone() == null && h.ReturnNeighbors().Any(n=>n.GetComponent<Hexagon>().GetZone() != null)).ToArray();
+        return edgeHexagons[Random.Range(0, edgeHexagons.Length - 1)];
     }
 
     private Hexagon GetRandomHexagon(GameObject[] hexagons)

@@ -12,6 +12,8 @@ public class PlayerManager : MonoBehaviour, Manager
     private Transform _startTransform;
     private List<FieldOfView> _fieldOfViews;
 
+    public bool IsLoaded { get; private set; }
+
     private void Awake()
     {
         _keyController = GetComponent<KeyController>();
@@ -53,6 +55,7 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         GameObject playerGO = GameObject.FindWithTag("Player");
         _player = playerGO.GetComponent<Player>();
+        IsLoaded = true;
         _fieldOfViews = new List<FieldOfView>(playerGO.GetComponentsInChildren<FieldOfView>());
         
         _isPaused = false;

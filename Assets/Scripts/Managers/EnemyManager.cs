@@ -13,6 +13,7 @@ public class EnemyManager : MonoBehaviour, Manager
     public List<Enemy> _enemies;
 
     public HexagonsGenerator hexagonsGenerator;
+    public bool IsLoaded { get; private set; }
 
     private void Start()
     {
@@ -29,6 +30,8 @@ public class EnemyManager : MonoBehaviour, Manager
             enemy.state = Enemy.States.Moving;
             Debug.Log("onMapCreate");
         }
+
+        IsLoaded = true;
 
     }
 
@@ -50,14 +53,18 @@ public class EnemyManager : MonoBehaviour, Manager
         foreach (Enemy enemy in _enemies)
         {
             path.Scan();
-            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = FindObjectOfType<Player>().transform;
             enemy.state = Enemy.States.Moving;
         }
+        
     }
 
     public void PauseManager()
     {
-        
+        Debug.Log("Pause EnemyManager");
+        foreach (Enemy enemy in _enemies)
+        {
+            enemy.state = Enemy.States.Paused;
+        }
     }
 
     public void ResumeManager()
