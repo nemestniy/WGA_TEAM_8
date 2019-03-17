@@ -123,7 +123,6 @@ MonoBehaviour:
     intensity: 0
     lightHeight: 0
     lightColor: {r: 0, g: 0, b: 0, a: 0}
-  _lightIsFree: 0
   _costPerFrame: 0.1
   _changingDuration: 1
   _closeVewIsStatic: 1
@@ -294,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingEnergy: 100
   _currentEnergy: 0
+  _alwaysFull: 1
 --- !u!95 &1016308930
 Animator:
   serializedVersion: 3
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lightModes:
   - closeViewRadius: 0
-    farViewRadius: 20
+    farViewRadius: 4
     viewAngle: 90
     intensity: 70
     lightHeight: -1
@@ -436,7 +436,6 @@ MonoBehaviour:
     intensity: 0
     lightHeight: 0
     lightColor: {r: 0, g: 0, b: 0, a: 0}
-  _lightIsFree: 0
   _costPerFrame: 0.1
   _changingDuration: 1
   _closeVewIsStatic: 1
@@ -452,11 +451,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _currentCloseViewRadius: 0
-  _currentFarViewRadius: 0
-  _currentViewAngle: 0
-  _currentIntensity: 0
-  _currentLightHeight: 0
-  _currentLightColor: {r: 0, g: 0, b: 0, a: 0}
+  _currentFarViewRadius: 4
+  _currentViewAngle: 90
+  _currentIntensity: 70
+  _currentLightHeight: -1
+  _currentLightColor: {r: 1, g: 1, b: 1, a: 0}
 --- !u!1 &2239788415926145210
 GameObject:
   m_ObjectHideFlags: 0

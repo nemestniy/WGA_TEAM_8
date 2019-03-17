@@ -40,6 +40,8 @@ public class KeyController : MoveController
                 return SwitchingByClick();
             case ModeControl.HoldButtons:
                 return SwitchingByHold();
+            case ModeControl.UpAndDownRoll:
+                return UpAndDownRoll();
             default: 
                 return -1;
         }
@@ -98,12 +100,39 @@ public class KeyController : MoveController
             return 2;
         return 0;
     }
+
+    private int UpAndDownRoll()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            _prevLightMode++;
+        } 
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            _prevLightMode--;
+        }
+
+        _prevLightMode = Mathf.Clamp(_prevLightMode, 0, LIGHT_MODES_COUNT - 1);
+
+        switch (_prevLightMode)
+        {
+            case 0:
+                return 2;
+            case 1:
+                return 0;
+            case 2:
+                return 1;
+            default:
+                return -1; //in case of error
+        }
+    }
     
     [Serializable]
     private enum ModeControl
     {
         SwitchByWheel,
         HoldButtons,
-        ClickButtons
+        ClickButtons,
+        UpAndDownRoll
     }
 }
