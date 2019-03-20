@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 
     public delegate void EnemyEvents();
     public event EnemyEvents Player_death;
+    public event EnemyEvents InLight; // Моб в луче фонаря
 
     public enum States // Состояния моба
     {
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
         WaySearching, // Поиск пути до игрока
         Waiting, // Ожидание
         Hunting, // Активное преследование
+        Frying, // Прожарка в луче фонаря
         Escaping, // Бегство
         Paused, // Пауза в игре
 
@@ -45,6 +47,9 @@ public class Enemy : MonoBehaviour
                 break;
             case States.Escaping:
                 Escape();
+                break;
+            case States.Frying:
+                //
                 break;
             case States.Paused:
                 Pause();
