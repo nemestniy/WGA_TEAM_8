@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -22,8 +23,14 @@ public class Hexagon : MonoBehaviour
 
     private List<Transform> freeNeigbours = null;
     
-    public delegate void OnWallsChangeAction();
-    public static event OnWallsChangeAction OnWallsChange;
+    //public delegate void OnWallsChangeAction(); - Нафиг нам этот делегат, если есть стандартный Action мы не используем аргументов;
+    
+    public static event Action OnWallsChange;
+
+    public float GetRadius()
+    {
+        return _radius;
+    }
 
 
     //Initialization of all components
@@ -89,6 +96,8 @@ public class Hexagon : MonoBehaviour
                     var hexagon = Instantiate(gameObject,
                         wall.GetDirection() * (Mathf.Sqrt(3) * _radius) + (Vector2)transform.position,
                         Quaternion.identity) as GameObject;
+                    if(transform.parent != null)
+                        hexagon.transform.parent = transform.parent;
                 }
 
             }
@@ -160,7 +169,7 @@ public class Hexagon : MonoBehaviour
         if (_walls != null)
         {
 
-            var number = Random.Range(0, _walls.Length);
+            var number = UnityEngine.Random.Range(0, _walls.Length);
             var neighbor = _walls[number].GetNeighbor(_radius * Mathf.Sqrt(3));
 
             if (_walls[number].IsActive() && !_walls[number].IsBorder())
@@ -193,7 +202,7 @@ public class Hexagon : MonoBehaviour
         do
         {
             check = false;
-            place = new Vector2(Random.Range(-_radius, _radius) + transform.position.x, Random.Range(-_radius, _radius) + transform.position.y);
+            place = new Vector2(UnityEngine.Random.Range(-_radius, _radius) + transform.position.x, UnityEngine.Random.Range(-_radius, _radius) + transform.position.y);
             if (_lastObject != null && Vector2.Distance(place, _lastObject.transform.position) < distance)
             {
                 //If there are one or more colliders with tag furniture, finding new random position for furniture

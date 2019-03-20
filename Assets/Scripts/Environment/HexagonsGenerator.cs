@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 public class HexagonsGenerator : MonoBehaviour
 {
@@ -6,7 +8,7 @@ public class HexagonsGenerator : MonoBehaviour
 
     [SerializeField] private int _wallsForDelete;
 
-    [SerializeField] private GameObject _startHexagon;
+    [SerializeField] private Hexagon _startHexagon;
 
     public delegate void HexagonEvents();
     public event HexagonEvents MapIsCreate;
@@ -56,6 +58,68 @@ public class HexagonsGenerator : MonoBehaviour
                 hexObject.GetComponent<Hexagon>().GenerateHexagonLayer();
             }
         }
+
+        //List<Hexagon> lastLayer = new List<Hexagon>();
+        //for(int i = 0; i < mapSize; i++)
+        //{
+        //    var layer = new List<Hexagon>();
+        //    if(i == 0)
+        //    {
+        //        for(var j = 0; j < 6; j++)
+        //        {
+        //            var hexagon = Instantiate(_startHexagon.gameObject,
+        //                GetDirection(j) * (Mathf.Sqrt(3) * _startHexagon.GetRadius()) + (Vector2)_startHexagon.transform.position,
+        //                Quaternion.identity) as GameObject;
+        //            if (transform.parent != null)
+        //                hexagon.transform.parent = transform.parent;
+        //            layer.Add(hexagon.GetComponent<Hexagon>());
+        //        }
+        //        lastLayer = layer;
+        //        continue;
+        //    }
+
+        //    foreach(var hex in lastLayer)
+        //    {
+        //        for(var j = 0; j < 6; j++)
+        //        {
+        //            var direction = GetDirection(j);
+        //            var hit = Physics2D.RaycastAll(hex.transform.position, direction, 20);
+        //            if(hit != null)
+        //            {
+        //                if (hit.FirstOrDefault(h => h.transform.tag == "Hexagon").transform != null)
+        //                    continue;
+
+        //                var hexagon = Instantiate(_startHexagon.gameObject,
+        //                direction * (Mathf.Sqrt(3) * hex.GetRadius()) + (Vector2)hex.transform.position,
+        //                Quaternion.identity) as GameObject;
+        //                if (transform.parent != null)
+        //                    hexagon.transform.parent = transform.parent;
+        //                layer.Add(hexagon.GetComponent<Hexagon>());
+        //            }
+        //        }
+        //    }
+        //}
+    }
+
+    private Vector2 GetDirection(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return new Vector2(0, 1);
+            case 1:
+                return new Vector2(0.87f, 0.5f).normalized;
+            case 2:
+                return new Vector2(0.87f, -0.5f).normalized;
+            case 3:
+                return Vector2.down;
+            case 4:
+                return new Vector2(-0.87f, -0.5f).normalized;
+            case 5:
+                return new Vector2(-0.87f, 0.5f).normalized;
+        }
+
+        return Vector2.zero;
     }
 
     private void FindNeighbors()
