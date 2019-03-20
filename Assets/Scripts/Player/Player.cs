@@ -110,7 +110,7 @@ public class Player: MonoBehaviour {
     public void Update()
     {
         //TODO: Debug. Remove when tested;
-        Debug.Log(GameManager.Instance.MapManager.Background.GetBiomeByPosition(gameObject.transform.position));
+//        Debug.Log(GameManager.Instance.MapManager.Background.GetBiomeByPosition(gameObject.transform.position));
     }
 }
 

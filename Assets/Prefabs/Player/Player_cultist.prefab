@@ -113,6 +113,8 @@ MonoBehaviour:
     lightHeight: -1
     coordinateY: 0
     lightColor: {r: 1, g: 1, b: 1, a: 0}
+    energyCost: 0
+    spendEnergyDelay: Infinity
   - viewRadius: 30
     spotLightRadius: 30
     viewAngle: 25
@@ -121,6 +123,8 @@ MonoBehaviour:
     lightHeight: -0.07
     coordinateY: 0
     lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
+    energyCost: 0.1
+    spendEnergyDelay: 2
   - viewRadius: 0
     spotLightRadius: 0
     viewAngle: 0
@@ -129,7 +133,8 @@ MonoBehaviour:
     lightHeight: 0
     coordinateY: 0
     lightColor: {r: 0, g: 0, b: 0, a: 0}
-  _costPerFrame: 0.1
+    energyCost: 0
+    spendEnergyDelay: 0
   _changingDuration: 1
   _meshResolution: 4
   _edgeResolveIterations: 10
@@ -299,8 +304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingEnergy: 100
+  _maxEnergy: 100
   _currentEnergy: 0
-  _alwaysFull: 1
+  _alwaysFull: 0
 --- !u!95 &1016308930
 Animator:
   serializedVersion: 3
@@ -433,6 +439,8 @@ MonoBehaviour:
     lightHeight: -1
     coordinateY: 2
     lightColor: {r: 1, g: 1, b: 1, a: 0}
+    energyCost: 0
+    spendEnergyDelay: 0
   - viewRadius: 6
     spotLightRadius: 6
     viewAngle: 25
@@ -441,6 +449,8 @@ MonoBehaviour:
     lightHeight: -0.07
     coordinateY: 4
     lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
+    energyCost: 0
+    spendEnergyDelay: 0
   - viewRadius: 0
     spotLightRadius: 0
     viewAngle: 0
@@ -449,7 +459,8 @@ MonoBehaviour:
     lightHeight: 0
     coordinateY: 2
     lightColor: {r: 0, g: 0, b: 0, a: 0}
-  _costPerFrame: 0.1
+    energyCost: 0
+    spendEnergyDelay: 0
   _changingDuration: 1
   _meshResolution: 4
   _edgeResolveIterations: 10
