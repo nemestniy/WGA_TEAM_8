@@ -13,21 +13,21 @@ public class EnemyManager : MonoBehaviour, Manager
     public List<Enemy> _enemies;
 
     public HexagonsGenerator hexagonsGenerator;
+    public FieldOfView fieldOfView;
     public bool IsLoaded { get; private set; }
 
     private void Start()
     {
         hexagonsGenerator.MapIsCreate += OnMapCreated;
-        foreach (Enemy enemy in _enemies)
-        {
-            enemy.InLight += OnEnemyInLight;
-        }
 
     }
 
-    private void OnEnemyInLight()
+    private void OnEnemyInLight(Enemy[] enemies)
     {
-        throw new NotImplementedException();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.state = Enemy.States.Frying;
+        }
     }
 
     private void OnMapCreated()

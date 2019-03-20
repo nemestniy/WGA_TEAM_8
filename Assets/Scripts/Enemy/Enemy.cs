@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -49,14 +50,16 @@ public class Enemy : MonoBehaviour
                 Escape();
                 break;
             case States.Frying:
-                //
+                Maneur();
                 break;
             case States.Paused:
                 Pause();
                 break;
         }
     }
+
     
+
     public delegate void OnTriggerAction();
     public static event OnTriggerAction OnTrigger; // событие для вызова катсцены смерти игрока когда его съели
 
@@ -79,8 +82,8 @@ public class Enemy : MonoBehaviour
     {
         if (destinationSetter.target == player.transform)
         {
-            float r = Random.Range(50f, 100f);
-            int alfa = Random.Range(0, 359);
+            float r = UnityEngine.Random.Range(50f, 100f);
+            int alfa = UnityEngine.Random.Range(0, 359);
 
             float X = player.transform.position.x + (Mathf.Sin(alfa) * r);
             float Y = player.transform.position.y + (Mathf.Cos(alfa) * r);
@@ -94,6 +97,11 @@ public class Enemy : MonoBehaviour
 
             GetComponent<Pathfinding.AIPath>().maxSpeed = 20f;
         }
+    }
+
+    private void Maneur()
+    {
+        throw new NotImplementedException();
     }
 
     private void FollowPlayer() // Движение по вычисленному пути до игрока. Состояние - Moving
