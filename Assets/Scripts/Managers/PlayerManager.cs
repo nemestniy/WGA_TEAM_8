@@ -13,6 +13,13 @@ public class PlayerManager : MonoBehaviour, Manager
     private List<FieldOfView> _fieldOfViews;
 
     public bool IsLoaded { get; private set; }
+    
+    public static PlayerManager Instance { get; private set; }
+    
+    public PlayerManager() : base()
+    {
+        Instance = this;
+    }
 
     private void Awake()
     {

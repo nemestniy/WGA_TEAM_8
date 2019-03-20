@@ -14,6 +14,14 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public HexagonsGenerator hexagonsGenerator;
     public bool IsLoaded { get; private set; }
+    
+    public static EnemyManager Instance { get; private set; }
+
+    
+    public EnemyManager() : base()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -38,6 +46,11 @@ public class EnemyManager : MonoBehaviour, Manager
     void Update()
     {
                 
+    }
+
+    public void OnEnemyOnLight(Enemy enemy)
+    {
+        Debug.Log("isOnFire: " + enemy.name);
     }
 
     public void StartManager()

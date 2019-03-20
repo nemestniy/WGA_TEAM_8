@@ -12,7 +12,12 @@ public class AudioManager : MonoBehaviour, Manager
     private bool _paused;
 
     public bool IsLoaded { get; private set; }
-
+    public static AudioManager Instance { get; private set; }
+    
+    public AudioManager() : base()
+    {
+        Instance = this;
+    }
 
     private void Awake()
     {
