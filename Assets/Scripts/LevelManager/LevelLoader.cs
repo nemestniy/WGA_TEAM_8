@@ -45,21 +45,38 @@ public class LevelLoader : MonoBehaviour
 
         _asyncResult = SceneManager.LoadSceneAsync(LevelManager.SceneNameToLoad);
         _asyncResult.allowSceneActivation = false;
-
-        while (!_asyncResult.isDone)
+        
+        //while(!scene.isLoaded)
+        while (_asyncResult.progress < 0.9f)
         {
-            Debug.Log("Loading");
+            Debug.Log(_asyncResult.progress);
             yield return null;
         }
-        Debug.Log("Loading done");
-        //var managers = _loadedScene.GetRootGameObjects().FirstOrDefault(o => o.name == "Managers");
-        //if (managers != null)
-        //{
-        //    var managerComonents = managers.GetComponentsInChildren<Manager>();
-        //    if (managerComonents.Where(c => c.IsLoaded).Count() != 0)
-        //        yield return null;
-        //}
-        //SwitchScene();
+        Debug.Log("Loading scene done");
+        var scene = SceneManager.GetSceneByName(LevelManager.SceneNameToLoad);
+        var sceneRootObjects = scene.GetRootGameObjects();
+        var managers = scene.GetRootGameObjects().FirstOrDefault(o => o.name == "Managers");
+        if (managers != null)
+        {
+            Debug.Log("managers found");
+            
+            var gameManager = managers.transform.Find("GameManager");
+            
+            if (gameManager != null)
+            {
+                Debug.Log("Game manager found");
+                var gameManagerComponent = gameManager.GetComponent<Manager>();
+                while(!gameManagerComponent.IsLoaded)
+                {
+                    yield return null;
+                }
+            }
+            Debug.Log("Loading Managers done");
+            //var managerComonents = managers.GetComponentsInChildren<Manager>();
+            //if (managerComonents.Where(c => c.IsLoaded).Count() != 0)
+            //    yield return null;
+        }
+        SwitchScene();
     }
 
     private void SwitchScene()

@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     public delegate void EnemyEvents();
     public event EnemyEvents Player_death;
     public event EnemyEvents InLight; // Моб в луче фонаря
-
+    
     public enum States // Состояния моба
     {
         Moving, // Движение к игроку по лабиринту
@@ -69,7 +69,6 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             OnTrigger?.Invoke();
-            Debug.Log("am");
         }
     }
 

@@ -4,6 +4,8 @@ public class Energy : MonoBehaviour
 {
     [SerializeField]
     private float _startingEnergy = 100;
+    [SerializeField]
+    private float _maxEnergy = 100;
     [ShowOnly, SerializeField] 
     private float _currentEnergy;
 
@@ -24,6 +26,14 @@ public class Energy : MonoBehaviour
         if (_currentEnergy - amount >= 0 && !_alwaysFull)
         {
             _currentEnergy -= amount;
+        }
+    }
+
+    public void GiveEnergy(float amount)
+    {
+        if (_currentEnergy + amount <= _maxEnergy)
+        {
+            _currentEnergy += amount;
         }
     }
 }

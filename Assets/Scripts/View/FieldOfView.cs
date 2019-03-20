@@ -9,13 +9,9 @@ public class FieldOfView : MonoBehaviour
 	[SerializeField]
 	private List<LampMode> _lightModes;
 
-	[Header("Energy options:")]
-	[SerializeField]
-	private float _costPerFrame = 0.01f;
+	[Header("")]
 	[SerializeField]
 	private float _changingDuration = 1;
-
-	[Header("")]
 	[SerializeField]
 	private float _meshResolution = 4; //how many rays will be casted per 1 degree
 	[SerializeField]
@@ -43,6 +39,7 @@ public class FieldOfView : MonoBehaviour
 
 	private int _currentMode;
 	private int _prevMode;
+	private float _changingState;
 
 	[HideInInspector] public float _currentViewRadius;
 	[HideInInspector] public float _currentSpotLightRadius;
@@ -62,15 +59,16 @@ public class FieldOfView : MonoBehaviour
 		_energy =  GetComponentInParent<Energy>();
 	}
 
+	
 	private void LateUpdate()
 	{
-		float changingState = 1; //[0,1] shows how close mode to it's final state; 0 - start to change mode, 1 - not changing
+		_changingState = 1; //[0,1] shows how close mode to it's final state; 0 - start to change mode, 1 - not changing
 		if (_isModeChanging)
 		{
 			if (_currentChangingTime < _changingDuration)
 			{
 				_currentChangingTime += Time.deltaTime;
-				changingState = _currentChangingTime / _changingDuration;
+				_changingState = _currentChangingTime / _changingDuration;
 			}
 			else
 			{
@@ -80,16 +78,15 @@ public class FieldOfView : MonoBehaviour
 		}
 	
 		//computing current values of player's lamp, affecting radius by current energy level
-		_currentViewRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].viewRadius, _lightModes[_currentMode].viewRadius, changingState);
-		_currentSpotLightRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].spotLightRadius, _lightModes[_currentMode].spotLightRadius, changingState);
-		_currentViewAngle = Mathf.Lerp( _lightModes[_prevMode].viewAngle, _lightModes[_currentMode].viewAngle, changingState);
-		_currentSpotLightAngle = Mathf.Lerp( _lightModes[_prevMode].spotLightAngle, _lightModes[_currentMode].spotLightAngle, changingState);
-		_currentIntensity = Mathf.Lerp(_lightModes[_prevMode].intensity, _lightModes[_currentMode].intensity, changingState);
-		_currentLightHeight = Mathf.Lerp(_lightModes[_prevMode].lightHeight, _lightModes[_currentMode].lightHeight, changingState);
-		_currentLightColor = Color.Lerp(_lightModes[_prevMode].lightColor, _lightModes[_currentMode].lightColor, changingState);
+		_currentViewRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].viewRadius, _lightModes[_currentMode].viewRadius, _changingState);
+		_currentSpotLightRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].spotLightRadius, _lightModes[_currentMode].spotLightRadius, _changingState);
+		_currentViewAngle = Mathf.Lerp( _lightModes[_prevMode].viewAngle, _lightModes[_currentMode].viewAngle, _changingState);
+		_currentSpotLightAngle = Mathf.Lerp( _lightModes[_prevMode].spotLightAngle, _lightModes[_currentMode].spotLightAngle, _changingState);
+		_currentIntensity = Mathf.Lerp(_lightModes[_prevMode].intensity, _lightModes[_currentMode].intensity, _changingState);
+		_currentLightHeight = Mathf.Lerp(_lightModes[_prevMode].lightHeight, _lightModes[_currentMode].lightHeight, _changingState);
+		_currentLightColor = Color.Lerp(_lightModes[_prevMode].lightColor, _lightModes[_currentMode].lightColor, _changingState);
 
-		_currentCoordinateY = Mathf.Lerp(_lightModes[_prevMode].coordinateY, _lightModes[_currentMode].coordinateY,
-			changingState);
+		_currentCoordinateY = Mathf.Lerp(_lightModes[_prevMode].coordinateY, _lightModes[_currentMode].coordinateY, _changingState);
 		
 		var position = transform.localPosition;
 		transform.localPosition = new Vector3(position.x,_currentCoordinateY ,position.z);
@@ -98,22 +95,38 @@ public class FieldOfView : MonoBehaviour
 		DrawSpotLight(_currentSpotLightRadius, _currentSpotLightAngle, _currentIntensity, _currentLightHeight, _currentLightColor);
 	
 		//this means that the light in combat newMode
-		if (_currentMode == 1 && changingState == 1)
+		if (_currentMode == 1 && _changingState == 1)
 		{
 			List<Transform> visibleEnemies = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
 			foreach (var enemy in visibleEnemies)
 			{
-                enemy.GetComponent<Enemy>().state = Enemy.States.Escaping;
+//                enemy.GetComponent<Enemy>().state = Enemy.States.Escaping;
+				EnemyManager.Instance.OnEnemyOnLight(enemy.GetComponent<Enemy>());
 			}
 		}
+	}
 
-		//light is not in normal mode and costs some energy
-		if (_currentMode != 0 && changingState == 1)
+	private float timePast = 0;
+	private void FixedUpdate()
+	{
+		//light is not changing now
+		if (_changingState == 1)
 		{
-			_energy.TakeAwayEnergy(_costPerFrame);
+			if (timePast > _lightModes[_currentMode].spendEnergyDelay)
+			{
+				_energy.TakeAwayEnergy(_lightModes[_currentMode].energyCost);
+			}
+			else
+			{
+				timePast += Time.deltaTime;
+			}
+		}
+		else
+		{
+			timePast = 0;
 		}
 	}
-	
+
 	public void SetLightMode(int newMode)
 	{
 		if (!_isModeChanging && _currentMode != newMode) //change the light to the combat newMode
@@ -336,5 +349,7 @@ public class FieldOfView : MonoBehaviour
 		public float lightHeight;
 		public float coordinateY;
 		public Color lightColor;
+		public float energyCost;
+		public float spendEnergyDelay;
 	}
 }
