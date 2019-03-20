@@ -486,16 +486,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2775123204934403414, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _lightModes.Array.data[0].farViewRadius
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2775123204934403414, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _lightModes.Array.data[1].farViewRadius
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
 --- !u!1001 &833633927

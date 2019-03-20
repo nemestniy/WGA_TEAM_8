@@ -16,8 +16,6 @@ public class FieldOfView : MonoBehaviour
 	private float _changingDuration = 1;
 
 	[Header("")]
-	[SerializeField] 
-	private bool _closeVewIsStatic = true;
 	[SerializeField]
 	private float _meshResolution = 4; //how many rays will be casted per 1 degree
 	[SerializeField]
@@ -46,11 +44,13 @@ public class FieldOfView : MonoBehaviour
 	private int _currentMode;
 	private int _prevMode;
 
-	[HideInInspector] public float _currentCloseViewRadius;
-	[HideInInspector] public float _currentFarViewRadius;
+	[HideInInspector] public float _currentViewRadius;
+	[HideInInspector] public float _currentSpotLightRadius;
 	[HideInInspector] public float _currentViewAngle;
+	[HideInInspector] public float _currentSpotLightAngle;
 	[HideInInspector] public float _currentIntensity;
 	[HideInInspector] public float _currentLightHeight;
+	[HideInInspector] public float _currentCoordinateY;
 	[HideInInspector] public Color _currentLightColor;
 
 	private void Start()
@@ -80,20 +80,27 @@ public class FieldOfView : MonoBehaviour
 		}
 	
 		//computing current values of player's lamp, affecting radius by current energy level
-		_currentCloseViewRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].closeViewRadius, _lightModes[_currentMode].closeViewRadius, changingState);
-		_currentFarViewRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].farViewRadius, _lightModes[_currentMode].farViewRadius, changingState);
+		_currentViewRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].viewRadius, _lightModes[_currentMode].viewRadius, changingState);
+		_currentSpotLightRadius = _energy.CurrentEnergy * 0.01f * Mathf.Lerp(_lightModes[_prevMode].spotLightRadius, _lightModes[_currentMode].spotLightRadius, changingState);
 		_currentViewAngle = Mathf.Lerp( _lightModes[_prevMode].viewAngle, _lightModes[_currentMode].viewAngle, changingState);
+		_currentSpotLightAngle = Mathf.Lerp( _lightModes[_prevMode].spotLightAngle, _lightModes[_currentMode].spotLightAngle, changingState);
 		_currentIntensity = Mathf.Lerp(_lightModes[_prevMode].intensity, _lightModes[_currentMode].intensity, changingState);
 		_currentLightHeight = Mathf.Lerp(_lightModes[_prevMode].lightHeight, _lightModes[_currentMode].lightHeight, changingState);
 		_currentLightColor = Color.Lerp(_lightModes[_prevMode].lightColor, _lightModes[_currentMode].lightColor, changingState);
+
+		_currentCoordinateY = Mathf.Lerp(_lightModes[_prevMode].coordinateY, _lightModes[_currentMode].coordinateY,
+			changingState);
 		
-		DrawFieldOfView(_currentCloseViewRadius, _closeVewIsStatic, _currentFarViewRadius, _currentViewAngle);
-		DrawSpotLight(_currentFarViewRadius, _currentViewAngle, _currentIntensity, _currentLightHeight, _currentLightColor);
+		var position = transform.localPosition;
+		transform.localPosition = new Vector3(position.x,_currentCoordinateY ,position.z);
+		
+		DrawFieldOfView(_currentViewRadius, _currentViewAngle);
+		DrawSpotLight(_currentSpotLightRadius, _currentSpotLightAngle, _currentIntensity, _currentLightHeight, _currentLightColor);
 	
 		//this means that the light in combat newMode
 		if (_currentMode == 1 && changingState == 1)
 		{
-			List<Transform> visibleEnemies = FindVisibleEnemies(_currentCloseViewRadius, _currentFarViewRadius, _currentViewAngle);
+			List<Transform> visibleEnemies = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
 			foreach (var enemy in visibleEnemies)
 			{
                 enemy.GetComponent<Enemy>().state = Enemy.States.Escaping;
@@ -125,11 +132,11 @@ public class FieldOfView : MonoBehaviour
 		_spotLight.transform.localPosition = new Vector3(0, 0, height);
 		_spotLight.color = color;
 	}
-	private List<Transform> FindVisibleEnemies(float closeViewRadius, float farViewRadius, float viewAngle)
+	private List<Transform> FindVisibleEnemies(float viewRadius, float viewAngle)
 	{
 		List<Transform> visibleEnemies = new List<Transform>();
-		Collider2D[] enemiesInFarViewRadius = Physics2D.OverlapCircleAll(transform.position, farViewRadius, _enemyMask); //find all enemies in our far view radius
-		foreach (var enemyInView in enemiesInFarViewRadius)
+		Collider2D[] enemiesInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, _enemyMask); //find all enemies in our view radius
+		foreach (var enemyInView in enemiesInViewRadius)
 		{
 			Transform enemy = enemyInView.transform;
 			Vector2 dirToEnemy = (enemy.position - transform.position).normalized; //find direction to the enemy
@@ -142,29 +149,13 @@ public class FieldOfView : MonoBehaviour
 				}
 			}
 		}
-	
-		Collider2D[] enemiesInCloseViewRadius = Physics2D.OverlapCircleAll(transform.position, closeViewRadius, _enemyMask); //find all enemies in our close view radius
-		foreach (var enemyInView in enemiesInCloseViewRadius)
-		{
-			Transform enemy = enemyInView.transform;
-			Vector2 dirToEnemy = (enemy.position - transform.position).normalized; //find direction to the enemy
-			if (Vector2.Angle(-transform.up, dirToEnemy) < (DegInCircle -viewAngle) / 2) //check if it is in our view angle
-			{
-				float dstToEnemy = Vector2.Distance(transform.position, enemy.position); //find distance to the enemy
-				if (!Physics2D.Raycast(transform.position, dirToEnemy, dstToEnemy, _obstacleMask)) //check is it is not covered by an obstacle
-				{
-					visibleEnemies.Add(enemy);
-				}
-			}
-		}
 		return visibleEnemies;
 	}
 
-	private void DrawFieldOfView(float closeViewRadius, bool closeVewIsStatic, float farViewRadius, float viewAngle) //drawing the mesh representing field of view
+	private void DrawFieldOfView(float viewRadius, float viewAngle) //drawing the mesh representing field of view
 	{
 		List<Vector3> viewPoints = new List<Vector3>();
-		GetViewPoints(viewPoints, -transform.eulerAngles.z, false, farViewRadius, viewAngle); //get far view points
-		GetViewPoints(viewPoints, -transform.eulerAngles.z + DegInCircle / 2, closeVewIsStatic, closeViewRadius, DegInCircle - viewAngle); //get close view points
+		GetViewPoints(viewPoints, -transform.eulerAngles.z, viewRadius, viewAngle); //get view points
 		
 		
 		int vertexCount = viewPoints.Count + 1; //number of vertices for drawing mesh
@@ -190,50 +181,35 @@ public class FieldOfView : MonoBehaviour
 		_viewMesh.RecalculateNormals();
 	}
 
-	private void GetViewPoints(List<Vector3> viewPoints, float directionAngle, bool isStatic, float viewRadius, float viewAngle) //add in list all view point from close vision
+	private void GetViewPoints(List<Vector3> viewPoints, float directionAngle, float viewRadius, float viewAngle) //add in list all view point
 	{
-		if (!isStatic) //if vision is interactive
-		{
-			ViewCastInfo oldViewCast = new ViewCastInfo();
-	
-			int stepCount = Mathf.RoundToInt(viewAngle * _meshResolution);
-			float stepAngleSize = viewAngle / stepCount; //how many degrees will by in each step
-			for (int i = 0; i <= stepCount; i++)
-			{
-				float angle = directionAngle - viewAngle / 2 + stepAngleSize * i; //defining current angle
-				ViewCastInfo newViewCast = ViewCast(angle, viewRadius);
-
-				if (i > 0
-				    && (oldViewCast.hit != newViewCast.hit //if previous ray hits an obstacle and this ray doesn't (or vice versa)...
-				        || Mathf.Abs(oldViewCast.dst - newViewCast.dst) > _edgeDistanceThreshold)) //...or _edgeDistanceThreshold is exceeded find edge point
-				{
-					EdgeInfo edge = FindEdge(oldViewCast, newViewCast, viewRadius);
-					if (edge.pointA != Vector3.zero) //add both points if their values is not default
-					{
-						viewPoints.Add(edge.pointA);
-					}
-					if (edge.pointA != Vector3.zero)
-					{
-						viewPoints.Add(edge.pointA);
-					}
-				}
 		
-				viewPoints.Add(newViewCast.point); //defining list of all points of vision edge
-				oldViewCast = newViewCast; //saving previous ViewCastIfo
-			}
-		}
-		else //if vision is static
+		ViewCastInfo oldViewCast = new ViewCastInfo();
+
+		int stepCount = Mathf.RoundToInt(viewAngle * _meshResolution);
+		float stepAngleSize = viewAngle / stepCount; //how many degrees will by in each step
+		for (int i = 0; i <= stepCount; i++)
 		{
-			int stepCount = Mathf.RoundToInt(viewAngle * _meshResolution);
-			float stepAngleSize = viewAngle / stepCount; //how many degrees will by in each step
-			for (int i = 0; i <= stepCount; i++)
+			float angle = directionAngle - viewAngle / 2 + stepAngleSize * i; //defining current angle
+			ViewCastInfo newViewCast = ViewCast(angle, viewRadius);
+			if (i > 0
+			    && (oldViewCast.hit != newViewCast.hit //if previous ray hits an obstacle and this ray doesn't (or vice versa)...
+			        || Mathf.Abs(oldViewCast.dst - newViewCast.dst) > _edgeDistanceThreshold)) //...or _edgeDistanceThreshold is exceeded find edge point
 			{
-				float angle = directionAngle - viewAngle / 2 + stepAngleSize * i; //defining current angle
-				Vector2 dir = DirFromAngle(angle, true);
-				viewPoints.Add((Vector2)transform.position + dir * viewRadius);
+				EdgeInfo edge = FindEdge(oldViewCast, newViewCast, viewRadius);
+				if (edge.pointA != Vector3.zero) //add both points if their values is not default
+				{
+					viewPoints.Add(edge.pointA);
+				}
+				if (edge.pointA != Vector3.zero)
+				{
+					viewPoints.Add(edge.pointA);
+				}
 			}
-		}
 	
+			viewPoints.Add(newViewCast.point); //defining list of all points of vision edge
+			oldViewCast = newViewCast; //saving previous ViewCastIfo
+		}
 	}
 
 	private EdgeInfo FindEdge(ViewCastInfo minViewCast, ViewCastInfo maxViewCast, float viewRadius)
@@ -350,12 +326,15 @@ public class FieldOfView : MonoBehaviour
 	[Serializable]
 	public struct LampMode
 	{
-		public float closeViewRadius;
-		public float farViewRadius;
+		public float viewRadius;
+		public float spotLightRadius;
 		[Range(0, DegInCircle)]
 		public float viewAngle;
+		[Range(0, DegInCircle)]
+		public float spotLightAngle;
 		public float intensity;
 		public float lightHeight;
+		public float coordinateY;
 		public Color lightColor;
 	}
 }
