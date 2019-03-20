@@ -26,7 +26,16 @@ public class EnemyManager : MonoBehaviour, Manager
     private void Start()
     {
         hexagonsGenerator.MapIsCreate += OnMapCreated;
+        foreach (Enemy enemy in _enemies)
+        {
+            enemy.InLight += OnEnemyInLight;
+        }
 
+    }
+
+    private void OnEnemyInLight()
+    {
+        throw new NotImplementedException();
     }
 
     private void OnMapCreated()
