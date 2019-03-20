@@ -5,8 +5,8 @@ using System.Linq;
 public class ZoneCreator : MonoBehaviour
 {
     public int MaxZoneSize = 12;
-    //[SerializeField] private int _numberOfZone;
-    //[SerializeField] private int _firstLimit;
+    [Range(0, 10000)]
+    public int RandomSeed = 1000;
 
     private HexagonsGenerator _hexagonsGenerator;
 
@@ -19,6 +19,7 @@ public class ZoneCreator : MonoBehaviour
     {
         _hexagonsGenerator = GetComponent<HexagonsGenerator>();
         _hexagonsGenerator.MapIsCreate += CreateZones;
+        Random.InitState(RandomSeed);
     }
 
     private void CreateZones()
@@ -39,8 +40,7 @@ public class ZoneCreator : MonoBehaviour
             Color newColor = new Color(Random.value, Random.value, Random.value, 1);
             Zone newZone = new Zone(newColor);
 
-                GenerateZone(GetRandomEdgeHex(hexObjects), newZone);
-
+            GenerateZone(GetRandomEdgeHex(hexObjects), newZone);
         }
 
         FillClearHexagons();
@@ -150,4 +150,3 @@ public class ZoneCreator : MonoBehaviour
         }
     }
 }
-

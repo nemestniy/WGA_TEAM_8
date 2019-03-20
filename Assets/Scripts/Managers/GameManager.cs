@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour, Manager
         
         Well.OnTrigger += OnWin;
         Enemy.OnTrigger += OnDie;
+        
     }
 
     public GameManager() : base()
@@ -47,8 +48,9 @@ public class GameManager : MonoBehaviour, Manager
     }
 
     private void Start()
-    {   
-        StartCoroutine(_startCutscene.Show( new Action(StartManager))); //show method gets delegate what to do after showing
+    {
+        StartManager();
+        //StartCoroutine(_startCutscene.Show( new Action(StartManager))); //show method gets delegate what to do after showing
     }
 
     private void OnWin()
