@@ -41,7 +41,9 @@ public class FieldOfView : MonoBehaviour
 	private int _prevMode;
 	private float _changingState;
 
-	[HideInInspector] public float _currentViewRadius;
+    private EnemyManager enemyManager;
+
+    [HideInInspector] public float _currentViewRadius;
 	[HideInInspector] public float _currentSpotLightRadius;
 	[HideInInspector] public float _currentViewAngle;
 	[HideInInspector] public float _currentSpotLightAngle;
@@ -57,6 +59,8 @@ public class FieldOfView : MonoBehaviour
 		_viewMesh = new Mesh {name = "View Mesh"};
 		_viewMeshFilter.mesh = _viewMesh;
 		_energy =  GetComponentInParent<Energy>();
+
+        enemyManager = FindObjectOfType<EnemyManager>();
 	}
 
 	
@@ -100,10 +104,22 @@ public class FieldOfView : MonoBehaviour
 			List<Transform> visibleEnemies = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
 			foreach (var enemy in visibleEnemies)
 			{
-//                enemy.GetComponent<Enemy>().state = Enemy.States.Escaping;
-				EnemyManager.Instance.OnEnemyOnLight(enemy.GetComponent<Enemy>());
+                //                enemy.GetComponent<Enemy>().state = Enemy.States.Escaping;
+                //EnemyManager.Instance.OnEnemyOnLight(enemy.GetComponent<Enemy>());
+                enemy.GetComponent<Enemy>().inLight = true;
 			}
+
+            foreach (var enemy in enemyManager._enemies)
+            {
+                if (!visibleEnemies.Contains(enemy.transform))
+                {
+                    //EnemyManager.Instance.OnEnemyOutOfLight(enemy.GetComponent<Enemy>());
+                    enemy.GetComponent<Enemy>().inLight = false;
+                }
+            }
 		}
+
+
 	}
 
 	private float timePast = 0;

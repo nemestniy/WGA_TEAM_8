@@ -18,7 +18,6 @@ public class EnemyManager : MonoBehaviour, Manager
     
     public static EnemyManager Instance { get; private set; }
 
-    
     public EnemyManager() : base()
     {
         Instance = this;
@@ -30,13 +29,7 @@ public class EnemyManager : MonoBehaviour, Manager
 
     }
 
-    private void OnEnemyInLight(Enemy[] enemies)
-    {
-        foreach (Enemy enemy in enemies)
-        {
-            enemy.state = Enemy.States.Frying;
-        }
-    }
+    
 
     private void OnMapCreated()
     {
@@ -54,12 +47,29 @@ public class EnemyManager : MonoBehaviour, Manager
 
     void Update()
     {
-                
-    }
+        foreach (var enemy in _enemies)
+        {
+            if (Vector2.Distance(enemy.transform.position, enemy.destinationSetter.target.position) <0.5f)
+            {
+                enemy.state = Enemy.States.Moving;
+            }
 
-    public void OnEnemyOnLight(Enemy enemy)
-    {
-        Debug.Log("isOnFire: " + enemy.name);
+            if (!enemy.inLight)
+            {
+                enemy.time = Time.time;
+            }
+            else
+            {
+                if(Time.time - enemy.time > 3.0f)
+                {
+                    enemy.state = Enemy.States.Escaping;
+                }
+                else
+                {
+                    enemy.state = Enemy.States.Maneuring;
+                }
+            }
+        }
     }
 
     public void StartManager()
