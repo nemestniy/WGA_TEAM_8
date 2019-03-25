@@ -23,9 +23,9 @@ public class KeyController : MoveController
 
     public override float GetAngle()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - UnityEngine.Camera.main.transform.position;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.transform.position;
         float angle = Vector2.Angle(Vector2.up, mousePosition.normalized * _accuracy);
-        if (UnityEngine.Input.mousePosition.x > Screen.width / 2)
+        if (Input.mousePosition.x > Screen.width / 2)
             angle *= -1;
         return angle;
     }

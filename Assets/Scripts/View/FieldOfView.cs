@@ -114,7 +114,7 @@ public class FieldOfView : MonoBehaviour
 		{
 			if (timePast > _lightModes[_currentMode].spendEnergyDelay)
 			{
-				_energy.TakeAwayEnergy(_lightModes[_currentMode].energyCost);
+				_energy.ChangeEnergyLvl(-_lightModes[_currentMode].energyCost); //affect by negative value of energy cost
 			}
 			else
 			{
