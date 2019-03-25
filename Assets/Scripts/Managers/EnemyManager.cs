@@ -13,11 +13,11 @@ public class EnemyManager : MonoBehaviour, Manager
     public List<Enemy> _enemies;
 
     public HexagonsGenerator hexagonsGenerator;
+    public FieldOfView fieldOfView;
     public bool IsLoaded { get; private set; }
     
     public static EnemyManager Instance { get; private set; }
 
-    
     public EnemyManager() : base()
     {
         Instance = this;
@@ -26,17 +26,10 @@ public class EnemyManager : MonoBehaviour, Manager
     private void Start()
     {
         hexagonsGenerator.MapIsCreate += OnMapCreated;
-        foreach (Enemy enemy in _enemies)
-        {
-            enemy.InLight += OnEnemyInLight;
-        }
 
     }
 
-    private void OnEnemyInLight()
-    {
-        throw new NotImplementedException();
-    }
+    
 
     private void OnMapCreated()
     {
@@ -54,12 +47,29 @@ public class EnemyManager : MonoBehaviour, Manager
 
     void Update()
     {
-                
-    }
+        foreach (var enemy in _enemies)
+        {
+            if (Vector2.Distance(enemy.transform.position, enemy.destinationSetter.target.position) <0.5f)
+            {
+                enemy.state = Enemy.States.Moving;
+            }
 
-    public void OnEnemyOnLight(Enemy enemy)
-    {
-        Debug.Log("isOnFire: " + enemy.name);
+            if (!enemy.inLight)
+            {
+                enemy.time = Time.time;
+            }
+            else
+            {
+                if(Time.time - enemy.time > 3.0f)
+                {
+                    enemy.state = Enemy.States.Escaping;
+                }
+                else
+                {
+                    enemy.state = Enemy.States.Maneuring;
+                }
+            }
+        }
     }
 
     public void StartManager()
