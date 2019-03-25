@@ -378,17 +378,6 @@ PrefabInstance:
       propertyPath: _winCutscene
       value: 
       objectReference: {fileID: 6640911471332809055}
-    - target: {fileID: 114342425592362300, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
-        type: 3}
-      propertyPath: _player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114342425592362300, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
-        type: 3}
-      propertyPath: _playerPref
-      value: 
-      objectReference: {fileID: 1759250699673190, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
     - target: {fileID: 527803725381732703, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
         type: 3}
       propertyPath: path
@@ -399,11 +388,6 @@ PrefabInstance:
       propertyPath: hexagonsGenerator
       value: 
       objectReference: {fileID: 1395219719}
-    - target: {fileID: 114666504007120952, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
-        type: 3}
-      propertyPath: _modeControl
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1837030590, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -416,6 +400,22 @@ PrefabInstance:
       propertyPath: _audioClips.Array.data[1]
       value: 
       objectReference: {fileID: 8300000, guid: 36bf1b51894682e47861811471d39a17, type: 3}
+    - target: {fileID: 114342425592362300, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
+        type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114342425592362300, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
+        type: 3}
+      propertyPath: _playerPref
+      value: 
+      objectReference: {fileID: 1759250699673190, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+    - target: {fileID: 114666504007120952, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
+        type: 3}
+      propertyPath: _modeControl
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1532265142, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: Background
       value: 
@@ -551,26 +551,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _alwaysFull
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4491154825047750830, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _lightModes.Array.data[1].energyCost
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4491154825047750830, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _lightModes.Array.data[0].spendEnergyDelay
-      value: Infinity
-      objectReference: {fileID: 0}
-    - target: {fileID: 4491154825047750830, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _lightModes.Array.data[1].spendEnergyDelay
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
 --- !u!1001 &833633927
@@ -661,6 +641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _changeVlue: 50
+  _blockEnergyChsnges: 1
 --- !u!58 &1083449577
 CircleCollider2D:
   m_ObjectHideFlags: 0

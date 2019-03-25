@@ -105,7 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lightModes:
-  - viewRadius: 20
+  - name: Base
+    viewRadius: 20
     spotLightRadius: 20
     viewAngle: 90
     spotLightAngle: 90
@@ -114,8 +115,9 @@ MonoBehaviour:
     coordinateY: 0
     lightColor: {r: 1, g: 1, b: 1, a: 0}
     energyCost: 0
-    spendEnergyDelay: Infinity
-  - viewRadius: 30
+    costDelay: 0
+  - name: Combat
+    viewRadius: 30
     spotLightRadius: 30
     viewAngle: 25
     spotLightAngle: 25
@@ -124,8 +126,9 @@ MonoBehaviour:
     coordinateY: 0
     lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
     energyCost: 0.1
-    spendEnergyDelay: 2
-  - viewRadius: 0
+    costDelay: 0
+  - name: Detective
+    viewRadius: 0
     spotLightRadius: 0
     viewAngle: 0
     spotLightAngle: 0
@@ -134,7 +137,18 @@ MonoBehaviour:
     coordinateY: 0
     lightColor: {r: 0, g: 0, b: 0, a: 0}
     energyCost: 0
-    spendEnergyDelay: 0
+    costDelay: 0
+  - name: PreDeath
+    viewRadius: 20
+    spotLightRadius: 20
+    viewAngle: 90
+    spotLightAngle: 90
+    intensity: 70
+    lightHeight: -1
+    coordinateY: 0
+    lightColor: {r: 1, g: 1, b: 1, a: 0}
+    energyCost: 0.06
+    costDelay: 0
   _changingDuration: 1
   _meshResolution: 4
   _edgeResolveIterations: 10
@@ -304,9 +318,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingEnergy: 100
+  _preDeathEnergyLvl: 0.1
   _maxEnergy: 100
+  _minEnergy: 0
   _currentEnergy: 0
-  _alwaysFull: 0
+  _constantEnergy: 0
 --- !u!95 &1016308930
 Animator:
   serializedVersion: 3
@@ -431,7 +447,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lightModes:
-  - viewRadius: 4
+  - name: BaseBack
+    viewRadius: 4
     spotLightRadius: 4
     viewAngle: 90
     spotLightAngle: 90
@@ -440,8 +457,9 @@ MonoBehaviour:
     coordinateY: 2
     lightColor: {r: 1, g: 1, b: 1, a: 0}
     energyCost: 0
-    spendEnergyDelay: 0
-  - viewRadius: 6
+    costDelay: 0
+  - name: CombatBack
+    viewRadius: 6
     spotLightRadius: 6
     viewAngle: 25
     spotLightAngle: 25
@@ -450,8 +468,9 @@ MonoBehaviour:
     coordinateY: 4
     lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
     energyCost: 0
-    spendEnergyDelay: 0
-  - viewRadius: 0
+    costDelay: 0
+  - name: DetectiveBack
+    viewRadius: 0
     spotLightRadius: 0
     viewAngle: 0
     spotLightAngle: 0
@@ -460,7 +479,18 @@ MonoBehaviour:
     coordinateY: 2
     lightColor: {r: 0, g: 0, b: 0, a: 0}
     energyCost: 0
-    spendEnergyDelay: 0
+    costDelay: 0
+  - name: PreDeathBack
+    viewRadius: 4
+    spotLightRadius: 4
+    viewAngle: 90
+    spotLightAngle: 90
+    intensity: 70
+    lightHeight: -1
+    coordinateY: 2
+    lightColor: {r: 1, g: 1, b: 1, a: 0}
+    energyCost: 0
+    costDelay: 0
   _changingDuration: 1
   _meshResolution: 4
   _edgeResolveIterations: 10

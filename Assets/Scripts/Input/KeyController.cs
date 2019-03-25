@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KeyController : MoveController
 {
-    private const int LIGHT_MODES_COUNT = 3;
+    private const int LIGHT_MODES_COUNT = 3; //because the last mode in the list is PreDeathMode
     
     [SerializeField] private float _accuracy = 100;
     [SerializeField] private ModeControl _modeControl;
@@ -30,8 +30,13 @@ public class KeyController : MoveController
         return angle;
     }
     
-    public int GetLightMode()
+    public int GetLightMode(bool isPreDeath)
     {
+        if (isPreDeath)
+        {
+            _prevLightMode = 3;
+            return 3;
+        }
         switch (_modeControl)
         {
             case ModeControl.SwitchByWheel:

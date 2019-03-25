@@ -4,58 +4,57 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, Manager
 {
-    [SerializeField]
-    private GameObject _playerPref;
     private Player _player;
     private KeyController _keyController;
     private bool _isPaused = true;
     private Transform _startTransform;
     private List<FieldOfView> _fieldOfViews;
+    private Energy _playerEnergy;
 
     public bool IsLoaded { get; private set; }
     
 
-    private void Awake()
-    {
-        _keyController = GetComponent<KeyController>();
-    }
-
     void Update()
     {
-        if (!_isPaused)
+        if (!_isPaused && _player != null)
+        {
             UpdatePlayerMovement();
+        }
+
+        if (_fieldOfViews != null)
+        {
+            UpdateLightMode();
+        } 
     }
 
     private void UpdatePlayerMovement()
     {
-        if (_player != null)
-        {
-            Vector2 velocity = _keyController.GetVelocity();
+        Vector2 velocity = _keyController.GetVelocity();
     
-            if (velocity == Vector2.zero)
-                _player.StopAnimation();
-            else
-                _player.StartAnimation();
+        if (velocity == Vector2.zero)
+            _player.StopAnimation();
+        else
+            _player.StartAnimation();
 
-            _player.SetVelocity(velocity);
-            _player.SetAngle(_keyController.GetAngle());
+        _player.SetVelocity(velocity);
+        _player.SetAngle(_keyController.GetAngle());
+    }
 
-            
-            if (_fieldOfViews != null) //setting light mode for all players light sources
-            {
-                int lm = _keyController.GetLightMode(); //should NOT be called twice by frame
-                foreach (var fov in _fieldOfViews)
-                {
-                    fov.SetLightMode(lm);
-                }
-            }
-        }
+    private void UpdateLightMode()
+    {
+        int lm = _keyController.GetLightMode(_playerEnergy.IsPreDeath); //should NOT be called twice by frame
+        
+        //setting light mode for main and back lamp
+        _fieldOfViews[0].SetLightMode(lm);
+        _fieldOfViews[1].SetLightMode(lm);
     }
 
     public void StartManager()
     {
+        _keyController = GetComponent<KeyController>();
         GameObject playerGO = GameObject.FindWithTag("Player");
         _player = playerGO.GetComponent<Player>();
+        _playerEnergy = playerGO.GetComponent<Energy>();
         IsLoaded = true;
         _fieldOfViews = new List<FieldOfView>(playerGO.GetComponentsInChildren<FieldOfView>());
         

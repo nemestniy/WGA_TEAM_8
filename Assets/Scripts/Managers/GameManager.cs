@@ -26,6 +26,10 @@ public class GameManager : MonoBehaviour, Manager
     [SerializeField]
     private Cutscene _winCutscene;
 
+    [Header("")]
+    [SerializeField]
+    private float _energyDeathDelay = 4;
+    
     public static GameManager Instance { get; private set; }
     public PlayerManager PlayerManager => _playerManager;
     public EnemyManager EnemyManager => _enemyManager;
@@ -37,7 +41,8 @@ public class GameManager : MonoBehaviour, Manager
     private void Awake()
     {
         Well.OnTrigger += OnWin;
-        Enemy.OnTrigger += OnDie;
+        Enemy.OnTrigger += OnDeathByEnemy;
+        Energy.OnRanoutOfEnergy += OnDeathByRanoutOfEnergy;
     }
 
     public GameManager() : base()
@@ -57,13 +62,19 @@ public class GameManager : MonoBehaviour, Manager
         StartCoroutine(_winCutscene.Show(new Action(StartManager)));
     }
 
-    private void OnDie()
+    private void OnDeathByEnemy()
     {
         PauseManager();
-        StartCoroutine(_screemerCutscene.Show(new Action(ShowDeadCutsceen)));
+        StartCoroutine(_screemerCutscene.Show(new Action(ShowDeathCutsceen)));
     }
 
-    private void ShowDeadCutsceen()
+    private void OnDeathByRanoutOfEnergy()
+    {
+        PauseManager();
+        StartCoroutine(CallWithDelay(_energyDeathDelay, new Action(ShowDeathCutsceen)));
+    }
+
+    private void ShowDeathCutsceen()
     {
         PauseManager();
         StartCoroutine(_deathCutscene.Show(new Action(StartManager)));
@@ -93,6 +104,13 @@ public class GameManager : MonoBehaviour, Manager
         _playerManager.ResumeManager();
 //      _enemyManager.ResumeEnemies();
 //      _mapManager.ResumeMap();
+    }
+    
+    private IEnumerator CallWithDelay(float delay, Action method)
+    {
+        yield return new WaitForSeconds(delay);
+        method?.Invoke();
+        yield return null;
     }
 }
 
