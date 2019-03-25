@@ -187,6 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc115780cfe47348bef9da79adba5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerPref: {fileID: 1759250699673190, guid: 19fbb88713593b540ab908288fd03a98,
+    type: 3}
 --- !u!114 &114666504007120952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _accuracy: 100
+  _modeControl: 3
+  _prevLightMode: 0
 --- !u!1 &1845897928490754
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +282,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9f629a7bbcdf745aed26e0d6ac2b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemies_test: []
+  _player: {fileID: 0}
+  path: {fileID: 0}
+  _enemies: []
+  hexagonsGenerator: {fileID: 4958237195479054178}
+  fieldOfView: {fileID: 0}
 --- !u!1 &7857383769503733680
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,8 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b1e8ce568fdfd4da86df1779c9f227, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfZone: 4
-  _firstLimit: 3
+  MaxZoneSize: 12
+  RandomSeed: 1000
+  _zones: []
 --- !u!114 &1489312119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,3 +457,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf8914e145a095b46b01d7f9637f48b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Background: {fileID: 0}

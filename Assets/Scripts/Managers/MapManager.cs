@@ -16,13 +16,7 @@ public class MapManager : MonoBehaviour, Manager
     private ObjectsGenerator _objectsGenerator;
 
     public bool IsLoaded { get; private set; }
-    public static MapManager Instance { get; private set; }
     
-    public MapManager() : base()
-    {
-        Instance = this;
-    }
-
     private void Awake()
     {
         _hexagonsGenerator = GetComponent<HexagonsGenerator>();

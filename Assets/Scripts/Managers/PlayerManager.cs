@@ -14,12 +14,6 @@ public class PlayerManager : MonoBehaviour, Manager
 
     public bool IsLoaded { get; private set; }
     
-    public static PlayerManager Instance { get; private set; }
-    
-    public PlayerManager() : base()
-    {
-        Instance = this;
-    }
 
     private void Awake()
     {

@@ -16,12 +16,6 @@ public class EnemyManager : MonoBehaviour, Manager
     public FieldOfView fieldOfView;
     public bool IsLoaded { get; private set; }
     
-    public static EnemyManager Instance { get; private set; }
-
-    public EnemyManager() : base()
-    {
-        Instance = this;
-    }
 
     private void Start()
     {

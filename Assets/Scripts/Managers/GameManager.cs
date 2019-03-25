@@ -7,9 +7,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour, Manager
 {
+    [SerializeField]
     private PlayerManager _playerManager;
+    [SerializeField]
     private EnemyManager _enemyManager;
+    [SerializeField]
     private MapManager _mapManager;
+    [SerializeField]
     private AudioManager _audioManager;
     
     [Header("Cutscenes:")]
@@ -32,14 +36,8 @@ public class GameManager : MonoBehaviour, Manager
 
     private void Awake()
     {
-        _playerManager = PlayerManager.Instance;
-        _enemyManager = EnemyManager.Instance;
-        _mapManager = MapManager.Instance;
-        _audioManager = AudioManager.Instance;
-        
         Well.OnTrigger += OnWin;
         Enemy.OnTrigger += OnDie;
-        
     }
 
     public GameManager() : base()
