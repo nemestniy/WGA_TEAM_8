@@ -13,7 +13,6 @@ public class EnemyManager : MonoBehaviour, Manager
     public List<Enemy> _enemies;
 
     public HexagonsGenerator hexagonsGenerator;
-    public FieldOfView fieldOfView;
     public bool IsLoaded { get; private set; }
     
 
@@ -27,9 +26,9 @@ public class EnemyManager : MonoBehaviour, Manager
 
     private void OnMapCreated()
     {
+        path.Scan();
         foreach (Enemy enemy in _enemies)
         {
-            path.Scan();
             enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = FindObjectOfType<Player>().transform;
             enemy.state = Enemy.States.Moving;
             Debug.Log("onMapCreate");
@@ -46,6 +45,8 @@ public class EnemyManager : MonoBehaviour, Manager
             if (Vector2.Distance(enemy.transform.position, enemy.destinationSetter.target.position) <0.5f)
             {
                 enemy.state = Enemy.States.Moving;
+                enemy.escapePointCreated = false;
+                enemy.maneurPointCreated = false;
             }
 
             if (!enemy.inLight)
@@ -69,8 +70,6 @@ public class EnemyManager : MonoBehaviour, Manager
     public void StartManager()
     {
         Debug.Log("Enemy Manager Started");
-
-        
 
         _player = FindObjectOfType<Player>();
 

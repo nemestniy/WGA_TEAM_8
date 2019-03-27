@@ -28,6 +28,7 @@ public class HexagonsGenerator : MonoBehaviour
         ActivateColliders();
 
         MapIsCreate();
+        Debug.Log("Map is created");
     }
 
     private void CloseMap()

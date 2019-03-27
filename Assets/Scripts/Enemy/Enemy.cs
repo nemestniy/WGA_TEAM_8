@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Pathfinding;
 
 public class Enemy : MonoBehaviour, IEnemy
 {
@@ -23,7 +24,8 @@ public class Enemy : MonoBehaviour, IEnemy
     public float time;
     public bool inLight;
     [HideInInspector] public bool escapePointCreated;
-    
+    [HideInInspector] public bool maneurPointCreated;
+
     public enum States // Состояния моба
     {
         Moving, // Движение к игроку по лабиринту
@@ -42,6 +44,7 @@ public class Enemy : MonoBehaviour, IEnemy
         aiPath = GetComponent<Pathfinding.AIPath>();
         inLight = false;
         escapePointCreated = false;
+        maneurPointCreated = false;
     }
 
     private void Update()
@@ -94,47 +97,45 @@ public class Enemy : MonoBehaviour, IEnemy
         if (!escapePointCreated)
         {
             float r = UnityEngine.Random.Range(50f, 100f);
-            float alfa = UnityEngine.Random.Range(0, 359) * Mathf.PI / 180;
+            float alpha = UnityEngine.Random.Range(0, 359) * Mathf.PI / 180;
 
-            float X = player.transform.position.x - (Mathf.Sin(alfa) * r);
-            float Y = player.transform.position.y + (Mathf.Cos(alfa) * r);
+            float X = player.transform.position.x - (Mathf.Sin(alpha) * r);
+            float Y = player.transform.position.y + (Mathf.Cos(alpha) * r);
 
-            Vector2 escapePoint = new Vector2(X, Y);
+            GraphNode escapePoint = AstarPath.active.GetNearest(new Vector2(X, Y)).node;
 
-            GameObject escapeObject = new GameObject("EscapePoint");
-            escapeObject.transform.position = escapePoint;
-
-            destinationSetter.target = escapeObject.transform;
-
-            aiPath.maxSpeed = 20f;
-
-            escapePointCreated = true;
+            if (escapePoint.Walkable)
+            {
+                GameObject escapeObject = new GameObject("EscapePoint");
+                escapeObject.transform.position = (Vector3)escapePoint.position;
+                destinationSetter.target = escapeObject.transform;
+                aiPath.maxSpeed = 20f;
+                escapePointCreated = true; 
+            }
         }
         
     }
 
     private void Maneur() // Маневрирование(уклонение) от луча. Состояние - Frying
     {
-        while(destinationSetter.target == player.transform)// Доделать проверку на свободное место для маневра
+        if(!maneurPointCreated)// Доделать проверку на свободное место для маневра
         {
-           
-            aiPath.maxSpeed = speed * speedDecreaseCoefficient;
             float r = Vector2.Distance(player.transform.position, transform.position);
             float alpha = (player.transform.eulerAngles.z + maneurAngle * (UnityEngine.Random.Range(-1, 1) > 0 ? 1 : -1)) * Mathf.PI / 180;
 
-            Debug.Log("x - " + player.transform.position.x + ", y - " + player.transform.position.y + ", angle - " + player.transform.eulerAngles.z + ", alpha - "+ alpha + ", distance - " + r);
-            Debug.Log("X = " + player.transform.position.x + " + " + "(Sin(" + alpha + ") * " + r +")");
-
             float X = player.transform.position.x - (Mathf.Sin(alpha) * r);
             float Y = player.transform.position.y + (Mathf.Cos(alpha) * r);
-            
 
-            Vector2 maneurPoint = new Vector2(X, Y);
+            GraphNode maneurPoint = AstarPath.active.GetNearest(new Vector2(X, Y)).node;
 
-            GameObject maneurObject = new GameObject("ManeurPoint");
-            maneurObject.transform.position = maneurPoint;
-
-            destinationSetter.target = maneurObject.transform; 
+            if (maneurPoint.Walkable)
+            {
+                GameObject maneurObject = new GameObject("ManeurPoint");
+                maneurObject.transform.position = (Vector3)maneurPoint.position;
+                destinationSetter.target = maneurObject.transform;
+                aiPath.maxSpeed = speed * speedDecreaseCoefficient;
+                maneurPointCreated = true;
+            }
         }
     }
 
