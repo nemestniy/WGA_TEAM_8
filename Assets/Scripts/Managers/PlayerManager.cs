@@ -43,7 +43,6 @@ public class PlayerManager : MonoBehaviour, Manager
     private void UpdateLightMode()
     {
         int lm = _keyController.GetLightMode(_playerEnergy.IsPreDeath); //should NOT be called twice by frame
-        
         //setting light mode for main and back lamp
         _fieldOfViews[0].SetLightMode(lm);
         _fieldOfViews[1].SetLightMode(lm);

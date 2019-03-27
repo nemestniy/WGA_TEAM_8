@@ -34,7 +34,6 @@ public class KeyController : MoveController
     {
         if (isPreDeath)
         {
-            _prevLightMode = 3;
             return 3;
         }
         switch (_modeControl)
@@ -79,20 +78,20 @@ public class KeyController : MoveController
             if (_prevLightMode == 0)
             {
                 _prevLightMode = 1;
-                return 1;
+                return _prevLightMode;
             } 
             _prevLightMode = 0;
-            return 0;
+            return _prevLightMode;
         }
         if (Input.GetButtonDown("Fire2"))
         {
             if (_prevLightMode == 0)
             {
                 _prevLightMode = 2;
-                return 2;
+                return _prevLightMode;
             }
             _prevLightMode = 0;
-            return 0;
+            return _prevLightMode;
         }
         return _prevLightMode;
     }

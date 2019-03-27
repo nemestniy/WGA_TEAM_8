@@ -414,7 +414,7 @@ PrefabInstance:
     - target: {fileID: 114666504007120952, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
         type: 3}
       propertyPath: _modeControl
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1532265142, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: Background
@@ -551,6 +551,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _constantEnergy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _preDeathEnergyLvl
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
 --- !u!1001 &833633927
@@ -669,6 +679,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hexagon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610830379287213668, guid: f45a84f6b432f374a86a4b34cf1f37da,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4610830379287213665, guid: f45a84f6b432f374a86a4b34cf1f37da,
         type: 3}
