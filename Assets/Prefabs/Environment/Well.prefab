@@ -42,8 +42,8 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 14
-  m_Range: 10
+  m_Intensity: 100
+  m_Range: 7
   m_SpotAngle: 90
   m_CookieSize: 10
   m_Shadows:
@@ -61,7 +61,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 0
@@ -214,7 +214,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df38f514e995a3043abe1f6ba8ba2063, type: 2}
+  - {fileID: 2100000, guid: f7a62ac50104aa1428863c93ceb6565c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051ae66ccfda5e744a183f67f10fbf6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _energyContains: 50
 --- !u!82 &1117744471
 AudioSource:
   m_ObjectHideFlags: 0
@@ -402,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f43fab8bb3e48a46b56baf9931afbce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _viewRadius: 9
+  _viewRadius: 3
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 1024

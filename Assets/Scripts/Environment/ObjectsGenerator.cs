@@ -36,7 +36,7 @@ public class ObjectsGenerator : MonoBehaviour
         for(int i = 0; i < _countWell; i++)
         {
             int randomHexagonNumber = Random.Range(0, hexObjects.Length);
-            hexObjects[randomHexagonNumber].GetComponent<Hexagon>().GenerateWell(_well);
+//            hexObjects[randomHexagonNumber].GetComponent<Hexagon>().GenerateWell(_well);
         }
     }
 }
