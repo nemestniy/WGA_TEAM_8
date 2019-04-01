@@ -10,9 +10,14 @@ public class PlayerManager : MonoBehaviour, Manager
     private Transform _startTransform;
     private List<FieldOfView> _fieldOfViews;
     private Energy _playerEnergy;
+    private List<MeshRenderer> _lampsMeshRenderers;
+
+    [SerializeField] private Material _normalViewMat;
+    [SerializeField] private Material _detectiveViewMat;
+    
 
     public bool IsLoaded { get; private set; }
-    
+
 
     void Update()
     {
@@ -46,6 +51,24 @@ public class PlayerManager : MonoBehaviour, Manager
         //setting light mode for main and back lamp
         _fieldOfViews[0].SetLightMode(lm);
         _fieldOfViews[1].SetLightMode(lm);
+
+        if (_fieldOfViews[0]._changingState == 1) //if _changingState == 1 in mane fov than in back too
+        {
+            switch (lm)
+            {
+                case 0: //normal mode
+                    _lampsMeshRenderers[0].material = _normalViewMat;
+                    _lampsMeshRenderers[1].material = _normalViewMat;
+                    break;
+                case 1: //combat mode
+                    //TODO move updating enemies state from FieldOfView to EnemyManager with switching in this string
+                    break;
+                case 2: //detective mode
+                    _lampsMeshRenderers[0].material = _detectiveViewMat;
+                    _lampsMeshRenderers[1].material = _detectiveViewMat;
+                    break;
+            }
+        }
     }
 
     public void StartManager()
@@ -56,6 +79,7 @@ public class PlayerManager : MonoBehaviour, Manager
         _playerEnergy = playerGO.GetComponent<Energy>();
         IsLoaded = true;
         _fieldOfViews = new List<FieldOfView>(playerGO.GetComponentsInChildren<FieldOfView>());
+        _lampsMeshRenderers = new List<MeshRenderer>(playerGO.GetComponentsInChildren<MeshRenderer>());
         
         _isPaused = false;
     }

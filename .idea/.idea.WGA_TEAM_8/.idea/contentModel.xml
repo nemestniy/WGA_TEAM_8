@@ -229,6 +229,11 @@
           </e>
           <e p="Enemy" t="Include">
             <e p="Enemy.cs" t="Include" />
+            <e p="IEnemy.cs" t="Include" />
+          </e>
+          <e p="Energy" t="Include">
+            <e p="Energy.cs" t="Include" />
+            <e p="EnergyAffecter.cs" t="Include" />
           </e>
           <e p="Environment" t="Include">
             <e p="BackgroundController.cs" t="Include" />
@@ -237,6 +242,7 @@
             <e p="MapChanger.cs" t="Include" />
             <e p="MazeGenerator.cs" t="Include" />
             <e p="ObjectsGenerator.cs" t="Include" />
+            <e p="WallGenerator.cs" t="Include" />
             <e p="Well.cs" t="Include" />
             <e p="Zone.cs" t="Include" />
             <e p="ZoneCreator.cs" t="Include" />
@@ -268,7 +274,6 @@
             <e p="PlayerMovementControl.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
-            <e p="Energy.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
           <e p="View" t="Include">
@@ -278,11 +283,18 @@
           </e>
         </e>
         <e p="Shaders" t="Include">
-          <e p="InEditorSpriteStencilMask.shader" t="Include" />
-          <e p="InEditorStencilMask.shader" t="Include" />
-          <e p="StencilMask.shader" t="Include" />
-          <e p="StencilSpriteObject.shader" t="Include" />
-          <e p="StencilSpriteObstacleObject.shader" t="Include" />
+          <e p="ShadowReciever.shader" t="Include" />
+          <e p="Vision" t="Include">
+            <e p="Masks" t="Include">
+              <e p="InEditorSpriteStencilMask.shader" t="Include" />
+              <e p="InEditorStencilMask.shader" t="Include" />
+              <e p="StencilMask.shader" t="Include" />
+              <e p="StencilMaskDetective.shader" t="Include" />
+            </e>
+            <e p="StencilSpriteObject.shader" t="Include" />
+            <e p="VisionAndLight.shader" t="Include" />
+            <e p="VisionAndLightDetective.shader" t="Include" />
+          </e>
           <e p="WaterShader.shader" t="Include" />
         </e>
       </e>

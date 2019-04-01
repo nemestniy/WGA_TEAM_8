@@ -1,6 +1,6 @@
 ﻿// Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
 
-Shader "Custom/VisionAndLight"
+Shader "Custom/VisionAndLightDetective"
 {
     Properties
     {
@@ -30,7 +30,7 @@ Shader "Custom/VisionAndLight"
         Blend One OneMinusSrcAlpha
         
         Stencil {
-		    Ref 1
+		    Ref 2
 		    Comp equal
 		}
 

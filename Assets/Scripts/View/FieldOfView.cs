@@ -39,7 +39,8 @@ public class FieldOfView : MonoBehaviour
 
 	private int _currentMode;
 	private int _prevMode;
-	private float _changingState = 1;
+	[HideInInspector]
+	public float _changingState = 1;
 
     private EnemyManager _enemyManager;
 
