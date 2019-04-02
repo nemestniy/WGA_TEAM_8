@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using UnityEditorInternal;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
+using Random = System.Random;
 
 
 public class Hexagon : MonoBehaviour
@@ -217,6 +222,102 @@ public class Hexagon : MonoBehaviour
         if (attemptsCount < attempts)
             _lastObject = Instantiate(furnitureObject, place, Quaternion.identity);
     }
+
+    [HideInInspector]
+    public List<GameObject> Objects = new List<GameObject>();
+    public void FillHexagon()
+    {
+        switch (UnityEngine.Random.Range(0, 3))
+        {
+            case 0: FillCentricHexagon(); break;
+            case 1: FillMiddleHexagon(); break;
+            case 2: FillDecorativeHexagon(); break;
+        }
+
+        FixObjects();
+    }
+
+    public void FillCentricHexagon()
+    {
+        AddCentralObject(3);
+        AddMedianObject(1);        
+    }
+
+    public void FillMiddleHexagon()
+    {
+        AddMedianObject(2);
+        AddMedianObject(2);
+        for (int i = 0; i < UnityEngine.Random.Range(1, 4); i++) {
+            AddDecorativeObject(1);
+        }
+    }
+
+    public void FillDecorativeHexagon()
+    {
+        for (int i = 0; i < UnityEngine.Random.Range(2, 5); i++)
+        {
+            AddDecorativeObject(1);
+        }
+    }
+
+    public void FillWalledHexagon()
+    {
+        
+    }
+
+    private int _maxFixIter = 16;
+    public void FixObjects()
+    {
+        for (int i = 0; i < _maxFixIter; i++)
+        {
+            Objects.ForEach(FixObjectIter);
+        }
+    }
+
+    public void FixObjectIter(GameObject obj)
+    {
+        Vector3 pos = obj.transform.position - this.transform.position;
+        Vector3 res = Vector3.zero;
+        var sizeMod = ObjectsGenerator.sizePrefix.ToList().IndexOf(obj.name.Substring(5, 2)) + 1;
+        foreach (var o in Objects.Where(o => o != obj))
+        {
+            var l = (obj.transform.position - o.transform.position);
+            var distMod = (o.transform.position - this.transform.position).magnitude / _radius;
+            res += l / l.sqrMagnitude;
+        }    
+        Debug.Log(res);
+        obj.transform.position += res * 2/*Mathf.Sqrt(pos.magnitude / _radius)*/ / Mathf.Pow(sizeMod, 1);
+        
+    }
+
+    public void AddCentralObject(int size)
+    {
+        var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
+            transform.position /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.1f)*/);
+        obj.transform.SetParent(this.transform);
+        Objects.Add(obj);
+    }
+
+    public void AddMedianObject(int size)
+    {
+        var v1 = UnityEngine.Random.onUnitSphere * _radius * 0.4f;
+        v1.z = 0;
+        v1.Normalize();
+        var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
+            transform.position + v1 /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.1f)*/);
+        obj.transform.SetParent(this.transform);
+        Objects.Add(obj);
+    }
+
+    public void AddDecorativeObject(int size)
+    {
+        var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
+            transform.position + (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.65f));
+        obj.transform.SetParent(this.transform);
+        Objects.Add(obj);
+    }
+
+
 
     public Wall[] GetWalls()
     {
