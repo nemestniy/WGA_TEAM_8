@@ -128,14 +128,14 @@ MonoBehaviour:
     energyCost: 0.1
     costDelay: 0
   - name: Detective
-    viewRadius: 0
-    spotLightRadius: 0
-    viewAngle: 0
-    spotLightAngle: 0
-    intensity: 0
-    lightHeight: 0
+    viewRadius: 10
+    spotLightRadius: 10
+    viewAngle: 120
+    spotLightAngle: 120
+    intensity: 70
+    lightHeight: -1
     coordinateY: 0
-    lightColor: {r: 0, g: 0, b: 0, a: 0}
+    lightColor: {r: 0.5847003, g: 0.9811321, b: 0.39337844, a: 0}
     energyCost: 0
     costDelay: 0
   - name: PreDeath
@@ -161,6 +161,7 @@ MonoBehaviour:
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 1024
+  _changingState: 1
   _currentViewRadius: 0
   _currentSpotLightRadius: 0
   _currentViewAngle: 0
@@ -318,7 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingEnergy: 100
-  _preDeathEnergyLvl: 0.1
+  _preDeathEnergyLvl: 0.8
   _maxEnergy: 100
   _minEnergy: 0
   _currentEnergy: 0
@@ -470,14 +471,14 @@ MonoBehaviour:
     energyCost: 0
     costDelay: 0
   - name: DetectiveBack
-    viewRadius: 0
-    spotLightRadius: 0
-    viewAngle: 0
-    spotLightAngle: 0
-    intensity: 0
-    lightHeight: 0
+    viewRadius: 2
+    spotLightRadius: 2
+    viewAngle: 120
+    spotLightAngle: 120
+    intensity: 70
+    lightHeight: -1
     coordinateY: 2
-    lightColor: {r: 0, g: 0, b: 0, a: 0}
+    lightColor: {r: 0.58431375, g: 0.98039216, b: 0.39215687, a: 0}
     energyCost: 0
     costDelay: 0
   - name: PreDeathBack
@@ -503,6 +504,7 @@ MonoBehaviour:
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 1024
+  _changingState: 1
   _currentViewRadius: 0
   _currentSpotLightRadius: 0
   _currentViewAngle: 90

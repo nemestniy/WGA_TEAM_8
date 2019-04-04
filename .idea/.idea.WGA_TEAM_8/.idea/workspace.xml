@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f61e51d0-0527-4b2d-a7d8-0dd507a69c68" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Vision/Masks/InEditorStencilMask.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Vision/Masks/StencilMask.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Vision/Masks/StencilMaskDetective.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Vision/StencilSpriteObject.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Vision/VisionAndLight.shader" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Shaders/Vision/VisionAndLightDetective.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.WGA_TEAM_8/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WGA_TEAM_8/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WGA_TEAM_8/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WGA_TEAM_8/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/LightMaterial.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/LightMaterial.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/View/ObstacleInTheDarkMaterial.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/View/ObstacleInTheDarkMaterial.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/View/ViewVisualizationInEditorMaskMaterial.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/View/ViewVisualizationInEditorMaskMaterial.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/View/ViewVisualizationMaterial.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/View/ViewVisualizationMaterial.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DanilTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DanilTestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/PlayerManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/View/FieldOfView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/View/FieldOfView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/InEditorSpriteStencilMask.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Vision/Masks/InEditorSpriteStencilMask.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/InEditorSpriteStencilMask.shader.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/Vision/Masks/InEditorSpriteStencilMask.shader.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/InEditorStencilMask.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/InEditorStencilMask.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/StencilMask.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/StencilMask.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/StencilSpriteObject.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/StencilSpriteObject.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/StencilSpriteObstacleObject.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shaders/StencilSpriteObstacleObject.shader.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +18,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <folding>
-                <marker date="1554129741225" expanded="true" signature="6:52" ph="..." />
+                <marker date="1554129741225" expanded="false" signature="6:52" ph="..." />
                 <marker date="1554129741225" expanded="true" signature="106:2857" ph="{...}" />
                 <marker date="1554129741225" expanded="true" signature="568:767" ph="{...}" />
                 <marker date="1554129741225" expanded="true" signature="617:673" ph="{...}" />
@@ -61,15 +35,36 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Materials/View/OITDMDetective.mat">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Assets/Materials/View/Masks/ViewVisualizationInEditorMaskMaterial.mat">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Shaders/Vision/Masks/StencilMaskDetective.shader">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+              <folding>
+                <marker date="1554126803633" expanded="true" signature="38:1499" ph="{...}" />
+                <marker date="1554126803633" expanded="true" signature="54:231" ph="{...}" />
+                <marker date="1554126803633" expanded="true" signature="245:1477" ph="{...}" />
+                <marker date="1554126803633" expanded="true" signature="354:390" ph="{...}" />
+                <marker date="1554126803633" expanded="true" signature="403:1469" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assets/Scripts/View/FieldOfView.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
+            <state relative-caret-position="1755">
               <caret line="120" column="56" selection-start-line="120" selection-start-column="56" selection-end-line="120" selection-end-column="56" />
               <folding>
                 <marker date="1554128747571" expanded="false" signature="6:99" ph="..." />
@@ -259,8 +254,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="SolutionExplorer">
+        <option name="show-all-files" value="false" />
+      </pane>
       <pane id="FileSystemExplorer" />
-      <pane id="AssemblyExplorer" />
       <pane id="UnityExplorer">
         <subPane>
           <expand>
@@ -282,6 +279,13 @@
             <path>
               <item name="Project" type="e068e287:UnityExplorerRootNode" />
               <item name="Assets" type="48f920db:UnityExplorerNode$AssetsRoot" />
+              <item name="Materials" type="1045f7f1:UnityExplorerNode" />
+              <item name="View" type="1045f7f1:UnityExplorerNode" />
+              <item name="Masks" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="Project" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="48f920db:UnityExplorerNode$AssetsRoot" />
               <item name="Scripts" type="1045f7f1:UnityExplorerNode" />
             </path>
             <path>
@@ -298,6 +302,24 @@
             </path>
             <path>
               <item name="Project" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="48f920db:UnityExplorerNode$AssetsRoot" />
+              <item name="Shaders" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="Project" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="48f920db:UnityExplorerNode$AssetsRoot" />
+              <item name="Shaders" type="1045f7f1:UnityExplorerNode" />
+              <item name="Vision" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="Project" type="e068e287:UnityExplorerRootNode" />
+              <item name="Assets" type="48f920db:UnityExplorerNode$AssetsRoot" />
+              <item name="Shaders" type="1045f7f1:UnityExplorerNode" />
+              <item name="Vision" type="1045f7f1:UnityExplorerNode" />
+              <item name="Masks" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="Project" type="e068e287:UnityExplorerRootNode" />
               <item name="Packages" type="4e2708dd:PackagesRoot" />
             </path>
           </expand>
@@ -305,9 +327,7 @@
         </subPane>
         <option name="show-hidden-items" value="false" />
       </pane>
-      <pane id="SolutionExplorer">
-        <option name="show-all-files" value="false" />
-      </pane>
+      <pane id="AssemblyExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -384,12 +404,13 @@
       <workItem from="1550566907582" duration="6181000" />
       <workItem from="1550595799123" duration="3312000" />
       <workItem from="1553070793648" duration="3015000" />
-      <workItem from="1554118817626" duration="6505000" />
+      <workItem from="1554118817626" duration="7279000" />
+      <workItem from="1554375848960" duration="438000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161890000" />
+    <option name="totallyTimeSpent" value="163102000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -487,7 +508,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyPathCalculating.cs" />
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Wall.cs" />
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Pass.cs" />
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/Environment/Cell.cs" />
@@ -1555,27 +1575,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Shaders/StencilSpriteObject.shader">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="9" selection-start-line="30" selection-start-column="9" selection-end-line="30" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Shaders/StencilSpriteObstacleObject.shader">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Shaders/StencilMask.shader">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Shaders/StencilSpriteObject.shader" />
+    <entry file="file://$PROJECT_DIR$/Assets/Shaders/StencilSpriteObstacleObject.shader" />
+    <entry file="file://$PROJECT_DIR$/Assets/Shaders/StencilMask.shader" />
     <entry file="file://$PROJECT_DIR$/Assets/Shaders/WaterShader.shader">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-225">
@@ -1645,20 +1647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Shaders/Vision/Masks/StencilMaskDetective.shader">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-          <folding>
-            <marker date="1554126803633" expanded="true" signature="38:1499" ph="{...}" />
-            <marker date="1554126803633" expanded="true" signature="54:231" ph="{...}" />
-            <marker date="1554126803633" expanded="true" signature="245:1477" ph="{...}" />
-            <marker date="1554126803633" expanded="true" signature="354:390" ph="{...}" />
-            <marker date="1554126803633" expanded="true" signature="403:1469" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Shaders/Vision/VisionAndLightDetective.shader">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1690,9 +1678,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PlayerManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <marker date="1554129741225" expanded="false" signature="6:52" ph="..." />
+            <marker date="1554129741225" expanded="true" signature="106:2857" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="568:767" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="617:673" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="709:760" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="808:1101" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="1137:2176" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="1496:2170" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="1530:2160" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="2208:2709" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="2745:2783" ph="{...}" />
+            <marker date="1554129741225" expanded="true" signature="2816:2855" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Materials/View/OITDMDetective.mat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assets/Materials/View/Masks/ViewVisualizationInEditorMaskMaterial.mat">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Assets/Scripts/View/FieldOfView.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
+        <state relative-caret-position="1755">
           <caret line="120" column="56" selection-start-line="120" selection-start-column="56" selection-end-line="120" selection-end-column="56" />
           <folding>
             <marker date="1554128747571" expanded="false" signature="6:99" ph="..." />
@@ -1754,28 +1768,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Managers/PlayerManager.cs">
+    <entry file="file://$PROJECT_DIR$/Assets/Shaders/Vision/Masks/StencilMaskDetective.shader">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="285">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
           <folding>
-            <marker date="1554129741225" expanded="true" signature="6:52" ph="..." />
-            <marker date="1554129741225" expanded="true" signature="106:2857" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="568:767" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="617:673" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="709:760" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="808:1101" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="1137:2176" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="1496:2170" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="1530:2160" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="2208:2709" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="2745:2783" ph="{...}" />
-            <marker date="1554129741225" expanded="true" signature="2816:2855" ph="{...}" />
+            <marker date="1554126803633" expanded="true" signature="38:1499" ph="{...}" />
+            <marker date="1554126803633" expanded="true" signature="54:231" ph="{...}" />
+            <marker date="1554126803633" expanded="true" signature="245:1477" ph="{...}" />
+            <marker date="1554126803633" expanded="true" signature="354:390" ph="{...}" />
+            <marker date="1554126803633" expanded="true" signature="403:1469" ph="{...}" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assets/Materials/View/OITDMDetective.mat">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
