@@ -15,10 +15,14 @@ public class PlayerManager : MonoBehaviour, Manager
     [SerializeField] private Material _normalViewMat;
     [SerializeField] private Material _detectiveViewMat;
     
-
+    public static PlayerManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
 
-
+    public PlayerManager() : base()
+    {
+        Instance = this;
+    }
+    
     void Update()
     {
         if (!_isPaused && _player != null)

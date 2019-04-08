@@ -45,6 +45,12 @@ TagManager:
   - name: Background
     uniqueID: 3225778655
     locked: 0
+  - name: Decor
+    uniqueID: 2374414193
+    locked: 0
+  - name: ObstacleShadow
+    uniqueID: 3795738191
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -56,6 +62,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 2930973567
+    locked: 0
+  - name: Obstacle
+    uniqueID: 264037581
     locked: 0
   - name: Wall
     uniqueID: 539187829

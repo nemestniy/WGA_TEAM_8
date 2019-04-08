@@ -12,13 +12,15 @@ GameObject:
   - component: {fileID: 212339148880735408}
   - component: {fileID: 1083449577}
   - component: {fileID: 1083449576}
+  - component: {fileID: 542227087}
+  - component: {fileID: 542227086}
   m_Layer: 0
   m_Name: Bonfire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4898494634024492
 Transform:
   m_ObjectHideFlags: 0
@@ -51,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7a62ac50104aa1428863c93ceb6565c, type: 2}
+  - {fileID: 2100000, guid: 10423a8acf436d448b950aba1260ed6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,6 +101,36 @@ CircleCollider2D:
   serializedVersion: 2
   m_Radius: 2.56
 --- !u!114 &1083449576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617714054814452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2712ee23dbc2a9946bd73982c35fc7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changeVlue: 50
+  _blockEnergyChsnges: 1
+--- !u!58 &542227087
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617714054814452}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.56
+--- !u!114 &542227086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

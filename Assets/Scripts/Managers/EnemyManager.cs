@@ -13,9 +13,15 @@ public class EnemyManager : MonoBehaviour, Manager
     public List<Enemy> _enemies;
 
     public HexagonsGenerator hexagonsGenerator;
+    
+    public static EnemyManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
     
-
+    public EnemyManager() : base()
+    {
+        Instance = this;
+    }
+    
     private void Start()
     {
         hexagonsGenerator.MapIsCreate += OnMapCreated;

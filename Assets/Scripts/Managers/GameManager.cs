@@ -8,13 +8,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour, Manager
 {
     [SerializeField]
-    private PlayerManager _playerManager;
+    public PlayerManager _playerManager;
     [SerializeField]
-    private EnemyManager _enemyManager;
+    public EnemyManager _enemyManager;
     [SerializeField]
-    private MapManager _mapManager;
+    public MapManager _mapManager;
     [SerializeField]
-    private AudioManager _audioManager;
+    public AudioManager _audioManager;
     
     [Header("Cutscenes:")]
     [SerializeField]

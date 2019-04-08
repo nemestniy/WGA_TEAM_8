@@ -15,7 +15,13 @@ public class MapManager : MonoBehaviour, Manager
     private ZoneCreator _zoneCreator;
     private ObjectsGenerator _objectsGenerator;
 
+    public static MapManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
+    
+    public MapManager() : base()
+    {
+        Instance = this;
+    }
     
     private void Awake()
     {

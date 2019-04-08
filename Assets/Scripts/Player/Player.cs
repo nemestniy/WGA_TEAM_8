@@ -14,6 +14,13 @@ public class Player: MonoBehaviour {
     private Hexagon _currentHexagon;
     private Hexagon _lastHexagon;
     private Animator _animator;
+    
+    public static Player Instance { get; private set; }
+    
+    public Player() : base()
+    {
+        Instance = this;
+    }
 
 //    private bool _wellIsView;
 

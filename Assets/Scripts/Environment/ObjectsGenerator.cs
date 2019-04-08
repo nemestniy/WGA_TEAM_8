@@ -15,6 +15,9 @@ public class ObjectsGenerator : MonoBehaviour
     [SerializeField] private int _countWell;
 
     [SerializeField] private GameObject _well;
+    
+    [Header("Shadows parametrs:")]
+    [SerializeField] public float _dynamicShadowOffset;
 
     private HexagonsGenerator _hexagonsGenerator;
 
