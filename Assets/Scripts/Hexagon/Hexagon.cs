@@ -379,9 +379,9 @@ public class Hexagon : MonoBehaviour
         return isVisited;
     }
 
-    public void GenerateWell(GameObject well)
+    public GameObject GenerateWell(GameObject well)
     {
-        Instantiate(well, transform);
+        return Instantiate(well, transform);
     }
 }
 

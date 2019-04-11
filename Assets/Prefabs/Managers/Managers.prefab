@@ -443,7 +443,6 @@ MonoBehaviour:
   - {fileID: 2184235799086163653, guid: 2ff64abf6b323134a9986b1a37e88b8d, type: 3}
   _distanceBetweenObjects: 2
   _attemptsNumber: 5
-  _countWell: 1
   _well: {fileID: 192543149050041623, guid: 472ce6639233e5e478ee37aa7d58bd88, type: 3}
   _dynamicShadowOffset: 0.4
 --- !u!114 &1532265142

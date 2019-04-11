@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour, Manager
     private List<FieldOfView> _fieldOfViews;
     private Energy _playerEnergy;
     private List<MeshRenderer> _lampsMeshRenderers;
+    public int CurrentLampMode { get; private set; }
 
     [SerializeField] private Material _normalViewMat;
     [SerializeField] private Material _detectiveViewMat;
@@ -51,14 +52,14 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void UpdateLightMode()
     {
-        int lm = _keyController.GetLightMode(_playerEnergy.IsPreDeath); //should NOT be called twice by frame
+        CurrentLampMode = _keyController.GetLightMode(_playerEnergy.IsPreDeath); //should NOT be called twice by frame
         //setting light mode for main and back lamp
-        _fieldOfViews[0].SetLightMode(lm);
-        _fieldOfViews[1].SetLightMode(lm);
+        _fieldOfViews[0].SetLightMode(CurrentLampMode);
+        _fieldOfViews[1].SetLightMode(CurrentLampMode);
 
         if (_fieldOfViews[0]._changingState == 1) //if _changingState == 1 in mane fov than in back too
         {
-            switch (lm)
+            switch (CurrentLampMode)
             {
                 case 0: //normal mode
                     _lampsMeshRenderers[0].material = _normalViewMat;

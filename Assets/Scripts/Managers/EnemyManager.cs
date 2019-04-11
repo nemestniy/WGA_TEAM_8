@@ -14,6 +14,25 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public HexagonsGenerator hexagonsGenerator;
 
+    public float DistanceToClosestEnemy
+    {
+        get
+        {
+            if (_enemies.Count == 0)
+                return -1; //in case of error
+            
+            float minDist = Vector2.Distance(_enemies[0].transform.position,Player.Instance.transform.position);
+            for(int i = 1; i < _enemies.Count; i++)
+            {
+                var curEnemyDist = Vector2.Distance(_enemies[i].transform.position,Player.Instance.transform.position);
+                if (curEnemyDist < minDist)
+                {
+                    minDist = curEnemyDist;
+                }
+            }
+            return minDist;
+        }
+    }
     
     
     public static EnemyManager Instance { get; private set; }
@@ -29,8 +48,6 @@ public class EnemyManager : MonoBehaviour, Manager
         hexagonsGenerator.MapIsCreate += OnMapCreated;
 
     }
-
-    
 
     private void OnMapCreated()
     {

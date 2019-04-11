@@ -7,14 +7,15 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour, Manager
 {
+    [Header("Managers:")]
     [SerializeField]
-    public PlayerManager _playerManager;
+    private PlayerManager _playerManager;
     [SerializeField]
-    public EnemyManager _enemyManager;
+    private EnemyManager _enemyManager;
     [SerializeField]
-    public MapManager _mapManager;
+    private MapManager _mapManager;
     [SerializeField]
-    public AudioManager _audioManager;
+    private AudioManager _audioManager;
     
     [Header("Cutscenes:")]
     [SerializeField]
@@ -29,6 +30,17 @@ public class GameManager : MonoBehaviour, Manager
     [Header("")]
     [SerializeField]
     private float _energyDeathDelay = 4;
+
+    
+    public float DistanceToClosestEnemy => _enemyManager.DistanceToClosestEnemy; //returns -1 if there are no enemy in enemy list
+    public BackgroundController.Biome CurrentBiome => _mapManager.Background.GetBiomeByPosition(Player.Instance.transform.position);
+    public float LampEnergyLvl => Player.Instance.GetComponent<Energy>().CurrentEnergyLvl;
+    public int CurrentLampMode => _playerManager.CurrentLampMode;
+    public float DistanceToWell => _mapManager.GetComponent<ObjectsGenerator>().DistanceToWell; //returns -1 if there are no well
+//    public bool IsEnemyInCurrZone =>;
+//    public Zone CurrentZone =>;
+//    public HexType CurrentHexType =>;
+    
     
     public static GameManager Instance { get; private set; }
     public PlayerManager PlayerManager => _playerManager;

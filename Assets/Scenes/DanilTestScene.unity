@@ -321,11 +321,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: A_
       objectReference: {fileID: 0}
-    - target: {fileID: 4489374314360011557, guid: da1986d58b4cb694986b1dc9b64c1449,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4489374314360011559, guid: da1986d58b4cb694986b1dc9b64c1449,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -520,11 +515,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hexagon
-      objectReference: {fileID: 0}
-    - target: {fileID: 4610830379287213668, guid: f45a84f6b432f374a86a4b34cf1f37da,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4610830379287213665, guid: f45a84f6b432f374a86a4b34cf1f37da,
         type: 3}

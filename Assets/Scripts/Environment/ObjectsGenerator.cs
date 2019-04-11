@@ -12,9 +12,20 @@ public class ObjectsGenerator : MonoBehaviour
     [SerializeField] private int _attemptsNumber;
 
     [Header("Wells parametrs:")]
-    [SerializeField] private int _countWell;
+//    [SerializeField] private int _countWell;
 
     [SerializeField] private GameObject _well;
+
+    public float DistanceToWell
+    {
+        get
+        {
+            if (_well == null)
+                return -1; //in case of error
+            
+            return Vector2.Distance(_well.gameObject.transform.position, Player.Instance.transform.position);
+        }
+    }
     
     [Header("Shadows parametrs:")]
     [SerializeField] public float _dynamicShadowOffset;
@@ -81,10 +92,11 @@ public class ObjectsGenerator : MonoBehaviour
             hexObject.GetComponent<Hexagon>().FillHexagon();
         }
 
-        for(int i = 0; i < _countWell; i++)
-        {
-            int randomHexagonNumber = Random.Range(0, hexObjects.Length);
-//            hexObjects[randomHexagonNumber].GetComponent<Hexagon>().GenerateWell(_well);
-        }
+        int randomHexagonNumber = Random.Range(0, hexObjects.Length);
+        _well = hexObjects[randomHexagonNumber].GetComponent<Hexagon>().GenerateWell(_well);
+//        for(int i = 0; i < _countWell; i++)
+//        {
+//            
+//        }
     }
 }
