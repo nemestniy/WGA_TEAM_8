@@ -234,7 +234,87 @@ public class Hexagon : MonoBehaviour
             case 2: FillDecorativeHexagon(); break;
         }
 
+        ///Debug code for hexa story type
+        //var s = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        //s.transform.position = this.transform.position;
+        //s.name = GetBiome().ToString();
+        //switch (GetStoryType())
+        //{
+        //    case HexaStoryType.Border:
+        //        s.transform.localScale = Vector3.one * 5;
+        //        break;
+        //    case HexaStoryType.Zone:
+        //        s.transform.localScale = Vector3.one * 10;
+        //        break;
+        //    case HexaStoryType.Story:
+        //        s.transform.localScale = Vector3.one * 15;
+        //        break;
+        //}
+        
+
         FixObjects();
+    }
+
+    public enum HexaStoryType
+    {
+        Border,
+        Zone,
+        Story,
+    }
+
+    public BackgroundController.Biome GetBiome()
+    {
+        //return GameManager.Instance.MapManager.Background.GetBiomeByPosition(transform.position);
+        int cWatr = 0, cRock = 0, cSand = 0;
+        var points = Enumerable.Range(0, 6).Select(a =>
+            transform.position + _radius * 0.5f * new Vector3(Mathf.Sin(a * Mathf.PI / 3), Mathf.Cos(a * Mathf.PI / 3), 0)).Select(a => GameManager.Instance.MapManager.Background.GetBiomeByPosition(a));
+        cWatr = points.Count(a => a == BackgroundController.Biome.Water);
+        cRock = points.Count(a => a == BackgroundController.Biome.Rocky);
+        cSand = points.Count(a => a == BackgroundController.Biome.Sandy);
+        switch (GameManager.Instance.MapManager.Background.GetBiomeByPosition(transform.position))
+        {
+            case BackgroundController.Biome.Rocky: cRock++; break;
+            case BackgroundController.Biome.Water: cWatr++; break;
+            case BackgroundController.Biome.Sandy: cSand++; break;
+        }
+        if (cWatr > cRock && cWatr > cSand) return BackgroundController.Biome.Water;
+        else if (cRock > cSand) return BackgroundController.Biome.Rocky;
+        else return BackgroundController.Biome.Sandy;
+    }
+
+    public HexaStoryType GetStoryType()
+    {        
+        if (IsBorder)
+            return HexaStoryType.Border;
+        if (IsZone) return HexaStoryType.Zone;
+        return HexaStoryType.Story;
+    }
+    public bool IsBorder
+    {
+        get
+        {
+            var hexaN = _neighbors.Select(a => a.GetComponent<Hexagon>()).ToList();
+            var myBiome = GetBiome();
+            return (hexaN.Any(a =>
+                a.GetBiome() != myBiome));
+        }
+    }
+
+    public bool IsZone
+    {
+        get
+        {
+            var hexaN = _neighbors.Select(a => a.GetComponent<Hexagon>()).ToList();            
+            return !IsBorder && (hexaN.Any(a =>a.IsBorder));
+        }
+    }
+
+    public bool IsStory
+    {
+        get
+        {            
+            return !IsBorder && !IsZone;
+        }
     }
 
     public void FillCentricHexagon()
