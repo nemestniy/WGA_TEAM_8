@@ -13,7 +13,10 @@ public class Enemy : MonoBehaviour, IEnemy
     public float speed;
     
     public float maneurAngle;
-    public float speedDecreaseCoefficient;
+    public float speedIncreaseCoefficient;
+
+    public float distanceToPlayer;
+    public float eventHorizon;// расстояние на котором враг уже не будет пытаться увернуться от луча фонаря, а просто пойдет напролом (як горизонт событий черной дыры)
 
     [HideInInspector] public delegate void EnemyEvents();
     [HideInInspector] public event EnemyEvents Player_death;
@@ -70,7 +73,7 @@ public class Enemy : MonoBehaviour, IEnemy
                 Pause();
                 break;
         }
-        Debug.Log(player.transform.rotation.eulerAngles.z);
+        distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
     }
 
     
@@ -120,8 +123,10 @@ public class Enemy : MonoBehaviour, IEnemy
     {
         if(!maneurPointCreated)// Доделать проверку на свободное место для маневра
         {
-            float r = Vector2.Distance(player.transform.position, transform.position);
-            float alpha = (player.transform.eulerAngles.z + maneurAngle * (UnityEngine.Random.Range(-1, 1) > 0 ? 1 : -1)) * Mathf.PI / 180;
+            float r = Vector2.Distance(player.transform.position, transform.position) - 5f;
+            float side = UnityEngine.Random.Range(-10, 10) > 0 ? -1 : 1;
+            Debug.LogWarning("side = " + side);
+            float alpha = (player.transform.eulerAngles.z + maneurAngle * side) * Mathf.PI / 180;
 
             float X = player.transform.position.x - (Mathf.Sin(alpha) * r);
             float Y = player.transform.position.y + (Mathf.Cos(alpha) * r);
@@ -133,7 +138,7 @@ public class Enemy : MonoBehaviour, IEnemy
                 GameObject maneurObject = new GameObject("ManeurPoint");
                 maneurObject.transform.position = (Vector3)maneurPoint.position;
                 destinationSetter.target = maneurObject.transform;
-                aiPath.maxSpeed = speed * speedDecreaseCoefficient;
+                aiPath.maxSpeed = speed * speedIncreaseCoefficient;
                 maneurPointCreated = true;
             }
         }

@@ -13,6 +13,8 @@ public class EnemyManager : MonoBehaviour, Manager
     public List<Enemy> _enemies;
 
     public HexagonsGenerator hexagonsGenerator;
+
+    
     
     public static EnemyManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
@@ -53,6 +55,7 @@ public class EnemyManager : MonoBehaviour, Manager
                 enemy.state = Enemy.States.Moving;
                 enemy.escapePointCreated = false;
                 enemy.maneurPointCreated = false;
+                enemy.aiPath.maxSpeed = enemy.speed;
             }
 
             if (!enemy.inLight)
@@ -67,7 +70,10 @@ public class EnemyManager : MonoBehaviour, Manager
                 }
                 else
                 {
-                    enemy.state = Enemy.States.Maneuring;
+                    if (enemy.distanceToPlayer > enemy.eventHorizon)
+                    {
+                        enemy.state = Enemy.States.Maneuring;
+                    }
                 }
             }
         }
