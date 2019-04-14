@@ -130,6 +130,31 @@ public class Hexagon : MonoBehaviour
         return _neighbors;
     }
 
+    public Hexagon GetWallNeighbor(Wall wall)
+    {
+        var neighbor = wall.GetNeighbor(_radius * Mathf.Sqrt(3));
+        if (neighbor != null)
+        {
+            var nHex = neighbor.GetComponent<Hexagon>();
+            if (nHex != null)
+                return nHex;
+            else
+                return neighbor.parent.GetComponent<Hexagon>();
+        }
+        else
+            return null;
+    }
+
+    public List<Hexagon> ReturnNeighborsHex()
+    {
+        List<Hexagon> neighbors = new List<Hexagon>();
+        foreach (var neighbor in _neighbors)
+        {
+            neighbors.Add(neighbor.GetComponent<Hexagon>());
+        }
+        return neighbors;
+    }
+
     public bool NeighborContains(Transform neighbor)
     {
         var neighbors = ReturnNeighbors();
