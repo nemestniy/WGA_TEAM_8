@@ -86,9 +86,9 @@ public class ObjectsGenerator : MonoBehaviour
         foreach (GameObject hexObject in hexObjects)
         {
 
-            //for (int i = 0; i < _objects.Length; i++) {
-            //    hexObject.GetComponent<Hexagon>().GenerateObjects(_distanceBetweenObjects, _attemptsNumber, _objects[i]);
-            //}
+//            for (int i = 0; i < _objects.Length; i++) {
+//                hexObject.GetComponent<Hexagon>().GenerateObjects(_distanceBetweenObjects, _attemptsNumber, _objects[i]);
+//            }
             hexObject.GetComponent<Hexagon>().FillHexagon();
         }
 

@@ -237,6 +237,7 @@
           </e>
           <e p="Environment" t="Include">
             <e p="BackgroundController.cs" t="Include" />
+            <e p="DynamicShadow.cs" t="Include" />
             <e p="HexagonMap.cs" t="Include" />
             <e p="HexagonsGenerator.cs" t="Include" />
             <e p="MapChanger.cs" t="Include" />
