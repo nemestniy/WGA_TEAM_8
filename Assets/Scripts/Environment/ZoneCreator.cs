@@ -44,6 +44,82 @@ public class ZoneCreator : MonoBehaviour
         }
 
         FillClearHexagons();
+        GenerateWalls();
+    }
+
+    private void GenerateWalls()
+    {
+        //foreach (Wall wall in Resources.FindObjectsOfTypeAll(typeof(Wall)))
+        //{
+        //    wall.Enable();
+        //}
+        foreach (var zone in _zones)
+        {
+            var borderHexes = GetBorderHexes(zone);
+            foreach (var hex in borderHexes)
+            {
+                //var borderWall = hex.GetWalls().FirstOrDefault(w => hex.GetWallNeighbor(w) != null && hex.GetWallNeighbor(w).GetZone() != zone);
+                foreach(var wall in hex.GetWalls())
+                {
+                    if (!wall.IsActive())
+                    {
+                        wall.Enable();
+                        var wallNeighbor = hex.GetWallNeighbor(wall);
+                        if (wallNeighbor != null)
+                        {
+                            if (wallNeighbor.GetZone() == zone)
+                                wall.Disable();
+                            else
+                                wall.SetBorder();
+                        }
+                    }
+                    else
+                    {
+                        var wallNeighbor = hex.GetWallNeighbor(wall);
+                        if (wallNeighbor != null)
+                        {
+                            if (wallNeighbor.GetZone() != zone)
+                            {
+                                wall.SetBorder();
+                            }
+                        }
+                    }
+                    //var wallNeighbor = hex.GetWallNeighbor(wall);
+                    //if (wallNeighbor != null)
+                    //{
+                    //    if (wallNeighbor.GetZone() == zone)
+                    //    {
+                    //        wall.Disable();
+                    //    }
+                    //    else
+                    //    {
+                    //        wall.SetBorder();
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    wall.Enable();
+                    //    wall.SetBorder();
+                    //}
+                }
+                //if (borderWall != null)
+                //{
+                //    borderWall.SetBorder();
+                //}
+            }
+        }
+        //foreach (var hex in FindObjectsOfType<Hexagon>())
+        //{
+
+        //    if (hex.GetWalls().Where(w => w.IsActive()).Count() == 6)
+        //    {
+        //        var randNum = Random.Range(0, 5);
+        //        var randWall = hex.GetWalls().ToList()[randNum];
+        //        randWall.Disable();
+        //    }
+
+        //    hex.ActivateBorderWalls();
+        //}
     }
 
     private Hexagon GetRandomNeighbor(List<Transform> neighborsTransforms, Color currentZone)
@@ -57,6 +133,13 @@ public class ZoneCreator : MonoBehaviour
         if (_recursionController >= neighborsTransforms.Count)
             return null;
         return randomNeighbor;
+    }
+
+    private IEnumerable<Hexagon> GetBorderHexes(Zone zone)
+    {
+        var zoneHexes = FindObjectsOfType<Hexagon>().Where(h => h.GetZone() == zone);
+        var borderHexes = zoneHexes.Where(h => h.ReturnNeighborsHex().Any(n => n.GetZone() != zone));
+        return borderHexes;
     }
 
     private Hexagon GetFirstFreeNeighbor(List<Transform> neighborsTransforms, Zone currentZone)

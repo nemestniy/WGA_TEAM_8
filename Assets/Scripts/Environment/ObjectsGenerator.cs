@@ -70,7 +70,7 @@ public class ObjectsGenerator : MonoBehaviour
     {
         var biome = GameManager.Instance.MapManager.Background.GetBiomeByPosition(position);
         var prefab = GetPrefabForStats(size, biome);
-        var obj = Instantiate(prefab, position, Quaternion.identity);
+        var obj = Instantiate(prefab, position, Quaternion.Euler(0, 0, Random.value * 360));
         return obj;
     }
 
