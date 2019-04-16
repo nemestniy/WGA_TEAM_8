@@ -103,8 +103,8 @@ GameObject:
   - component: {fileID: 5969044646530190843}
   - component: {fileID: 6611613775264784880}
   - component: {fileID: 178330111000692011}
-  m_Layer: 0
-  m_Name: water_obt_sml_3_
+  m_Layer: 10
+  m_Name: water_s_obt_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

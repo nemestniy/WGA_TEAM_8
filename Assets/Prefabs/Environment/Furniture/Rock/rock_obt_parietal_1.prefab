@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2235391545030337902}
   - component: {fileID: 2649088921824485786}
   - component: {fileID: 538632773120573848}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: rock_obt_parietal_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

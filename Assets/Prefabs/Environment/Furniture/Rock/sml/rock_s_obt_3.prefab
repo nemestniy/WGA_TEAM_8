@@ -103,8 +103,8 @@ GameObject:
   - component: {fileID: 1610448582661754898}
   - component: {fileID: 1610448582661754899}
   - component: {fileID: 9171816759293607582}
-  m_Layer: 0
-  m_Name: rock_obt_sml_3_
+  m_Layer: 10
+  m_Name: rock_s_obt_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

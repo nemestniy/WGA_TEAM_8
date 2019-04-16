@@ -103,8 +103,8 @@ GameObject:
   - component: {fileID: 6038848013351789864}
   - component: {fileID: 6038848013351789865}
   - component: {fileID: 1635173145553996668}
-  m_Layer: 0
-  m_Name: sand_obt_sml_1_
+  m_Layer: 10
+  m_Name: sand_s_obt_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

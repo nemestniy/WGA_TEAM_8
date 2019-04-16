@@ -62,16 +62,13 @@ public class PlayerManager : MonoBehaviour, Manager
         {
             switch (CurrentLampMode)
             {
-                case 0: //normal mode
-                    _lampsMeshRenderers[0].material = _normalViewMat;
-                    _lampsMeshRenderers[1].material = _normalViewMat;
-                    break;
-                case 1: //combat mode
-                    //TODO move updating enemies state from FieldOfView to EnemyManager with switching in this string
-                    break;
                 case 2: //detective mode
                     _lampsMeshRenderers[0].material = _detectiveViewMat;
                     _lampsMeshRenderers[1].material = _detectiveViewMat;
+                    break;
+                default: //all other modes mode
+                    _lampsMeshRenderers[0].material = _normalViewMat;
+                    _lampsMeshRenderers[1].material = _normalViewMat;
                     break;
             }
         }

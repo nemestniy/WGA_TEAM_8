@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6563480691939699783}
   - component: {fileID: 6563480691939699776}
   - component: {fileID: 7962389635552761309}
-  m_Layer: 0
-  m_Name: rock_obt_sml_6_
+  m_Layer: 10
+  m_Name: rock_s_obt_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
