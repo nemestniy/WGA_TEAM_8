@@ -366,6 +366,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909b83bed17a30f4a9eae768f7194629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1105725831 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4175369692355482, guid: 19fbb88713593b540ab908288fd03a98,
+    type: 3}
+  m_PrefabInstance: {fileID: 196700949}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1289207891
 GameObject:
   m_ObjectHideFlags: 0
@@ -729,12 +735,12 @@ PrefabInstance:
     - target: {fileID: 441357655255495918, guid: 8b70fcb166b58014a9478b08650564dc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.145496
+      value: -0.6
       objectReference: {fileID: 0}
     - target: {fileID: 441357655255495918, guid: 8b70fcb166b58014a9478b08650564dc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41.626045
+      value: 22.6
       objectReference: {fileID: 0}
     - target: {fileID: 441357655255495918, guid: 8b70fcb166b58014a9478b08650564dc,
         type: 3}
@@ -811,6 +817,11 @@ PrefabInstance:
       propertyPath: eventHorizon
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8914237606444993384, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1105725831}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b70fcb166b58014a9478b08650564dc, type: 3}
 --- !u!1001 &1938837079
@@ -1139,7 +1150,7 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1489312117, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: RandomSeed
-      value: 1455
+      value: 2815
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}

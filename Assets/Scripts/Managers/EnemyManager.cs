@@ -14,6 +14,8 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public HexagonsGenerator hexagonsGenerator;
 
+    public List<Transform>visibleEnemiesList;
+
     public float DistanceToClosestEnemy
     {
         get
@@ -75,7 +77,7 @@ public class EnemyManager : MonoBehaviour, Manager
                 enemy.aiPath.maxSpeed = enemy.speed;
             }
 
-            if (!enemy.inLight)
+            /*if (!enemy.inLight)
             {
                 enemy.time = Time.time;
             }
@@ -92,15 +94,45 @@ public class EnemyManager : MonoBehaviour, Manager
                         enemy.state = Enemy.States.Maneuring;
                     }
                 }
+            }*/
+
+            if (enemy.inLight)
+            {
+                if (PlayerManager.Instance.CurrentLampMode == 1)
+                {
+                    if(Time.time - enemy.time > 3.0f)
+                    {
+                        enemy.state = Enemy.States.Escaping;
+                    }
+                    else
+                    {
+                        if (enemy.distanceToPlayer > enemy.eventHorizon)
+                        {
+                            enemy.state = Enemy.States.Maneuring;
+                        }
+                    }
+                }
+                else
+                {
+                    enemy.time = Time.time;
+                }
             }
+            else
+            {
+                enemy.time = Time.time;
+            }
+
+
         }
+
+        UpdateEnemiesState();
     }
 
     public void StartManager()
     {
         Debug.Log("Enemy Manager Started");
 
-        _player = FindObjectOfType<Player>();
+        _player = Player.Instance;
 
         _enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
 
@@ -126,5 +158,23 @@ public class EnemyManager : MonoBehaviour, Manager
         
     }
 
+    private void UpdateEnemiesState()
+    {
+        if (PlayerManager.Instance.ChangingState == 1)
+        {
+            foreach (var enemy in visibleEnemiesList)
+            {
+                enemy.GetComponent<Enemy>().inLight = true;
+            }
+
+            foreach (var enemy in _enemies)
+            {
+                if (!visibleEnemiesList.Contains(enemy.transform))
+                {
+                    enemy.GetComponent<Enemy>().inLight = false;
+                }
+            }
+        }
+    }
 }
 

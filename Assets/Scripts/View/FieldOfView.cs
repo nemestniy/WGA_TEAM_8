@@ -97,10 +97,15 @@ public class FieldOfView : MonoBehaviour
 		DrawFieldOfView(_currentViewRadius, _currentViewAngle);
 		DrawSpotLight(_currentSpotLightRadius, _currentSpotLightAngle, _currentIntensity, _currentLightHeight, _currentLightColor);
 	
-		UpdateEnemiesState();
+		UpdateEnemiesVisibleEnemies();
 	}
 
-	private void ComputeCurrentLightValues(float energyLvl, LampMode prevMode, LampMode currentMode)
+    private void UpdateEnemiesVisibleEnemies()
+    {
+        _enemyManager.visibleEnemiesList = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
+    }
+
+    private void ComputeCurrentLightValues(float energyLvl, LampMode prevMode, LampMode currentMode)
 	{
 		//computing current values of player's lamp, affecting radius by current energy level
 		_currentViewRadius = energyLvl * Mathf.Lerp(prevMode.viewRadius, currentMode.viewRadius, _changingState);
@@ -113,26 +118,6 @@ public class FieldOfView : MonoBehaviour
 		_currentCoordinateY = Mathf.Lerp(prevMode.coordinateY, currentMode.coordinateY, _changingState);
 	}
 
-	private void UpdateEnemiesState()
-	{
-		//this means that the light in combat newMode
-		if (_currentMode == 1 && _changingState == 1) //TODO update enemies state not only in combat mode
-		{
-			List<Transform> visibleEnemies = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
-			foreach (var enemy in visibleEnemies)
-			{
-				enemy.GetComponent<Enemy>().inLight = true;
-			}
-
-			foreach (var enemy in _enemyManager._enemies)
-			{
-				if (!visibleEnemies.Contains(enemy.transform))
-				{
-					enemy.GetComponent<Enemy>().inLight = false;
-				}
-			}
-		}
-	}
 
 	private float timePast = 0;
 	private void FixedUpdate()

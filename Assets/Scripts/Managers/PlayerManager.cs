@@ -15,9 +15,10 @@ public class PlayerManager : MonoBehaviour, Manager
 
     [SerializeField] private Material _normalViewMat;
     [SerializeField] private Material _detectiveViewMat;
-    
+
     public static PlayerManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
+    public float ChangingState => _fieldOfViews[0]._changingState;
 
     public PlayerManager() : base()
     {
