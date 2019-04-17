@@ -32,16 +32,20 @@ public class FieldOfView : MonoBehaviour
 	private Light _spotLight;
 	private MeshFilter _viewMeshFilter;
 	private Mesh _viewMesh; //Vision mesh
-	private bool _isModeChanging;
+	
 	private float _currentChangingTime;
 	private Energy _energy;
 	private const int DegInCircle = 360;
 
-	private int _currentMode;
+	
 	private int _prevMode;
 	[HideInInspector]
-	public float _changingState = 1;
-
+	public float _changingState = 1; //[0,1] shows how close mode to it's final state; 0 - start to change mode, 1 - not changing
+	[HideInInspector]
+	public bool _isModeChanging;
+	[HideInInspector]
+	public int _currentMode;
+	
     private EnemyManager _enemyManager;
 
 	//light values
@@ -74,7 +78,6 @@ public class FieldOfView : MonoBehaviour
 	
 	private void LateUpdate()
 	{
-		_changingState = 1; //[0,1] shows how close mode to it's final state; 0 - start to change mode, 1 - not changing
 		if (_isModeChanging)
 		{
 			if (_currentChangingTime < _changingDuration)
@@ -86,6 +89,7 @@ public class FieldOfView : MonoBehaviour
 			{
 				_currentChangingTime = 0;
 				_isModeChanging = false;
+				_changingState = 1;
 			}
 		}
 
@@ -147,6 +151,7 @@ public class FieldOfView : MonoBehaviour
 			_isModeChanging = true;
 			_prevMode = _currentMode;
 			_currentMode = newMode;
+			_changingState = 0;
 		}
 	}
 

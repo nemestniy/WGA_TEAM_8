@@ -57,12 +57,14 @@ public class PlayerManager : MonoBehaviour, Manager
         //setting light mode for main and back lamp
         _fieldOfViews[0].SetLightMode(CurrentLampMode);
         _fieldOfViews[1].SetLightMode(CurrentLampMode);
+      
 
-        if (_fieldOfViews[0]._changingState == 1) //if _changingState == 1 in mane fov than in back too
+        if (!_fieldOfViews[0]._isModeChanging) //if _changingState == 1 in main fov than in back fov too
         {
             switch (CurrentLampMode)
             {
                 case 2: //detective mode
+                    Debug.Log("detective!!!!");
                     _lampsMeshRenderers[0].material = _detectiveViewMat;
                     _lampsMeshRenderers[1].material = _detectiveViewMat;
                     break;

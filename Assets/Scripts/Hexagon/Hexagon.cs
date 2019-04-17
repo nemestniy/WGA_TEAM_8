@@ -390,7 +390,7 @@ public class Hexagon : MonoBehaviour
             var distMod = (o.transform.position - this.transform.position).magnitude / _radius;
             res += l / l.sqrMagnitude;
         }    
-        Debug.Log(res);
+//        Debug.Log(res);
         obj.transform.position += res * 2/*Mathf.Sqrt(pos.magnitude / _radius)*/ / Mathf.Pow(sizeMod, 1);
         
     }
