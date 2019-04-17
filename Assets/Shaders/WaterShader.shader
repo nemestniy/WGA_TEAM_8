@@ -34,7 +34,7 @@ Shader "Custom/Water"
         
         Stencil {
 		    Ref 1
-		    Comp equal
+		    Comp lequal
 		}
 
         CGPROGRAM

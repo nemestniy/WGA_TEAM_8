@@ -25,9 +25,13 @@
 
 		Pass
 		{
-		Stencil {
-		    Ref 2
-		    Comp equal
+//		Stencil {
+//		    Ref 2
+//		    Comp equal
+//		}
+        Stencil {
+		    Ref 1
+		    Comp lequal
 		}
 		CGPROGRAM
 			#pragma vertex vert

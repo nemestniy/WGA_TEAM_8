@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7779436902809942962}
   - component: {fileID: 7247739827267167154}
-  m_Layer: 0
-  m_Name: rock_sand_dec_7
+  m_Layer: 13
+  m_Name: sand_s_dec_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7a62ac50104aa1428863c93ceb6565c, type: 2}
+  - {fileID: 2100000, guid: 10423a8acf436d448b950aba1260ed6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
