@@ -286,6 +286,7 @@ MonoBehaviour:
   path: {fileID: 0}
   _enemies: []
   hexagonsGenerator: {fileID: 4958237195479054178}
+  visibleEnemiesList: []
 --- !u!1 &7857383769503733680
 GameObject:
   m_ObjectHideFlags: 0

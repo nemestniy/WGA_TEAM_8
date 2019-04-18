@@ -54,7 +54,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Waterfall
+  - name: Well
     uniqueID: 3898487283
     locked: 0
   - name: Player

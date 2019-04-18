@@ -122,17 +122,17 @@ MonoBehaviour:
     viewAngle: 25
     spotLightAngle: 25
     intensity: 800
-    lightHeight: -0.07
-    coordinateY: 0
+    lightHeight: 0
+    coordinateY: 0.7
     lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
     energyCost: 0.1
     costDelay: 0
   - name: Detective
     viewRadius: 10
-    spotLightRadius: 10
+    spotLightRadius: 14
     viewAngle: 120
     spotLightAngle: 120
-    intensity: 70
+    intensity: 20
     lightHeight: -1
     coordinateY: 0
     lightColor: {r: 0.5847003, g: 0.9811321, b: 0.39337844, a: 0}
@@ -160,16 +160,18 @@ MonoBehaviour:
     m_Bits: 512
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4096
   _changingState: 1
-  _currentViewRadius: 0
-  _currentSpotLightRadius: 0
-  _currentViewAngle: 0
-  _currentSpotLightAngle: 0
-  _currentIntensity: 0
+  _isModeChanging: 0
+  _currentMode: 1
+  _currentViewRadius: 30
+  _currentSpotLightRadius: 30
+  _currentViewAngle: 25
+  _currentSpotLightAngle: 25
+  _currentIntensity: 800
   _currentLightHeight: 0
-  _currentCoordinateY: 0
-  _currentLightColor: {r: 0, g: 0, b: 0, a: 0}
+  _currentCoordinateY: 0.7
+  _currentLightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
 --- !u!1 &1759250699673190
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingEnergy: 100
-  _preDeathEnergyLvl: 0.8
+  _preDeathEnergyLvl: 0.2
   _maxEnergy: 100
   _minEnergy: 0
   _currentEnergy: 0
@@ -450,32 +452,32 @@ MonoBehaviour:
   _lightModes:
   - name: BaseBack
     viewRadius: 4
-    spotLightRadius: 4
+    spotLightRadius: 5.5
     viewAngle: 90
     spotLightAngle: 90
-    intensity: 70
+    intensity: 40
     lightHeight: -1
-    coordinateY: 2
+    coordinateY: 2.2
     lightColor: {r: 1, g: 1, b: 1, a: 0}
     energyCost: 0
     costDelay: 0
   - name: CombatBack
-    viewRadius: 6
-    spotLightRadius: 6
-    viewAngle: 25
-    spotLightAngle: 25
-    intensity: 800
+    viewRadius: 2
+    spotLightRadius: 10
+    viewAngle: 90
+    spotLightAngle: 90
+    intensity: 40
     lightHeight: -0.07
-    coordinateY: 4
+    coordinateY: 2
     lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
     energyCost: 0
     costDelay: 0
   - name: DetectiveBack
     viewRadius: 2
-    spotLightRadius: 2
+    spotLightRadius: 3.8
     viewAngle: 120
     spotLightAngle: 120
-    intensity: 70
+    intensity: 40
     lightHeight: -1
     coordinateY: 2
     lightColor: {r: 0.58431375, g: 0.98039216, b: 0.39215687, a: 0}
@@ -483,10 +485,10 @@ MonoBehaviour:
     costDelay: 0
   - name: PreDeathBack
     viewRadius: 4
-    spotLightRadius: 4
+    spotLightRadius: 5.5
     viewAngle: 90
     spotLightAngle: 90
-    intensity: 70
+    intensity: 40
     lightHeight: -1
     coordinateY: 2
     lightColor: {r: 1, g: 1, b: 1, a: 0}
@@ -503,16 +505,18 @@ MonoBehaviour:
     m_Bits: 512
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4096
   _changingState: 1
-  _currentViewRadius: 0
-  _currentSpotLightRadius: 0
+  _isModeChanging: 0
+  _currentMode: 1
+  _currentViewRadius: 2
+  _currentSpotLightRadius: 10
   _currentViewAngle: 90
-  _currentSpotLightAngle: 0
-  _currentIntensity: 70
-  _currentLightHeight: -1
-  _currentCoordinateY: 0
-  _currentLightColor: {r: 1, g: 1, b: 1, a: 0}
+  _currentSpotLightAngle: 90
+  _currentIntensity: 40
+  _currentLightHeight: -0.07
+  _currentCoordinateY: 2
+  _currentLightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
 --- !u!1 &2239788415926145210
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +574,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -639,7 +643,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

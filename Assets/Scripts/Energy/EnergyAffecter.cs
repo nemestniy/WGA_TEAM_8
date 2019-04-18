@@ -6,15 +6,36 @@ public class EnergyAffecter : MonoBehaviour
 {
     [SerializeField]
     private float _changeValue = 50;
-
     [SerializeField] 
     private float _blockEnergyChanges = 1;
-   
+    [SerializeField] 
+    private float _reloadingTime;
+
+    private bool _isReloading = false;
+    private float _timePast;
+
+    private void Update()
+    {
+        if (_isReloading)
+        {
+            if (_timePast < _reloadingTime)
+            {
+                _timePast += Time.deltaTime;
+            }
+            else
+            {
+                _isReloading = false;
+                _timePast = 0;
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && !_isReloading)
         {
             other.GetComponent<Energy>().ChangeEnergyLvl(_changeValue,_blockEnergyChanges);
+            _isReloading = true;
         }
     }
 }
