@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour, Manager
     private void Start()
     {
         StartManager();
-        //StartCoroutine(_startCutscene.Show( new Action(StartManager))); //show method gets delegate what to do after showing
+        StartCoroutine(_startCutscene.Show( new Action(StartManager))); //show method gets delegate what to do after showing
     }
 
     private void OnWin()
