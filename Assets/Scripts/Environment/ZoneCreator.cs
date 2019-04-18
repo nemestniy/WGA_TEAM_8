@@ -83,6 +83,10 @@ public class ZoneCreator : MonoBehaviour
                                 wall.SetBorder();
                             }
                         }
+                        else
+                        {
+                            wall.SetBorder();
+                        }
                     }
                     //var wallNeighbor = hex.GetWallNeighbor(wall);
                     //if (wallNeighbor != null)
@@ -108,18 +112,27 @@ public class ZoneCreator : MonoBehaviour
                 //}
             }
         }
-        //foreach (var hex in FindObjectsOfType<Hexagon>())
-        //{
+        foreach (var hex in FindObjectsOfType<Hexagon>())
+        {
 
-        //    if (hex.GetWalls().Where(w => w.IsActive()).Count() == 6)
-        //    {
-        //        var randNum = Random.Range(0, 5);
-        //        var randWall = hex.GetWalls().ToList()[randNum];
-        //        randWall.Disable();
-        //    }
+            if (hex.GetWalls().Where(w => w.IsActive()).Count() == 6)
+            {
+                var randNum = Random.Range(0, 5);
+                var randWall = hex.GetWalls().ToList()[randNum];
+                int trys = 0;
+                while(hex.GetWallNeighbor(randWall) == null)
+                {
+                    if (trys > 5)
+                        break;
+                    trys++;
+                    randNum = Random.Range(0, 5);
+                    randWall = hex.GetWalls().ToList()[randNum];
+                }
+                randWall.Disable();
+            }
 
-        //    hex.ActivateBorderWalls();
-        //}
+            hex.ActivateBorderWalls();
+        }
     }
 
     private Hexagon GetRandomNeighbor(List<Transform> neighborsTransforms, Color currentZone)

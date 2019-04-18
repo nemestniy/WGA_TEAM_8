@@ -188,7 +188,7 @@ public class Hexagon : MonoBehaviour
                 }
             }
         }
-        
+
         OnWallsChange?.Invoke();
         //Debug.Log("Wall was changed");
     }
