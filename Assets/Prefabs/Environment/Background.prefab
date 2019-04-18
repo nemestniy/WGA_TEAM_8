@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 98636746594368651}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 7982723135698129469}
   m_Father: {fileID: 0}
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayerID: -1069188641
   m_SortingLayer: -3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ed728f59786f4b142a7d0f2e01cf7a38, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d61052c2f42f12643863035b1886fd7c, type: 3}
   m_Color: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10aa8531ae5766428acab926b1d8d1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  biomeTexture: {fileID: 2800000, guid: 4112ab64b0465dd4e97d0021abdd6230, type: 3}
+  biomeTexture: {fileID: 2800000, guid: 8b8ffdd9c8be6a74682e5b20e7e52afd, type: 3}
 --- !u!1 &7381072224039171126
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ed728f59786f4b142a7d0f2e01cf7a38, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d61052c2f42f12643863035b1886fd7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

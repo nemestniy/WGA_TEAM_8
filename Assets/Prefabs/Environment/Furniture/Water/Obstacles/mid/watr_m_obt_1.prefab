@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2440168245033412775}
   - component: {fileID: 688777257478678708}
   m_Layer: 10
-  m_Name: water_m_obt_1
+  m_Name: watr_m_obt_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6035733686024325641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -2.87, y: 2.5, z: 0}
+  m_LocalScale: {x: 0.79043, y: 0.79043, z: 0.79043}
   m_Children:
   - {fileID: 2914347222050286889}
   m_Father: {fileID: 0}
