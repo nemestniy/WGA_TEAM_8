@@ -1141,7 +1141,7 @@ PrefabInstance:
       objectReference: {fileID: 2106164595}
     - target: {fileID: 1489312117, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: RandomSeed
-      value: 14
+      value: 1302
       objectReference: {fileID: 0}
     - target: {fileID: 114666504007120952, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
         type: 3}

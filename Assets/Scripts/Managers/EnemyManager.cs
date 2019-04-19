@@ -16,6 +16,8 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public List<Transform>visibleEnemiesList;
 
+    private int framecount = 0;
+
     public float DistanceToClosestEnemy
     {
         get
@@ -126,6 +128,12 @@ public class EnemyManager : MonoBehaviour, Manager
         }
 
         UpdateEnemiesState();
+        framecount++;
+        if (framecount > 60)
+        {
+            path.Scan();
+            framecount = 0;
+        }
     }
 
     public void StartManager()
