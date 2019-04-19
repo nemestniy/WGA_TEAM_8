@@ -1,24 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public class PlayerManager : MonoBehaviour, Manager
 {
     private Player _player;
+    private Animator _playerLampStates;
     private KeyController _keyController;
     private bool _isPaused = true;
     private Transform _startTransform;
-    private List<FieldOfView> _fieldOfViews;
     private Energy _playerEnergy;
-    private List<MeshRenderer> _lampsMeshRenderers;
     public int CurrentLampMode { get; private set; }
-
-    [SerializeField] private Material _normalViewMat;
-    [SerializeField] private Material _detectiveViewMat;
+    
 
     public static PlayerManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
-    public float ChangingState => _fieldOfViews[0]._changingState;
 
     public PlayerManager() : base()
     {
@@ -32,10 +29,7 @@ public class PlayerManager : MonoBehaviour, Manager
             UpdatePlayerMovement();
         }
 
-        if (_fieldOfViews != null)
-        {
-            UpdateLightMode();
-        } 
+        UpdateLightMode();
     }
 
     private void UpdatePlayerMovement()
@@ -50,41 +44,31 @@ public class PlayerManager : MonoBehaviour, Manager
         _player.SetVelocity(velocity);
         _player.SetAngle(_keyController.GetAngle());
     }
+    
+    
+    private static readonly int ChangeUp = Animator.StringToHash("ChangeUp");
+    private static readonly int ChangeDown = Animator.StringToHash("ChangeDown");
 
     private void UpdateLightMode()
     {
-        CurrentLampMode = _keyController.GetLightMode(_playerEnergy.IsPreDeath); //should NOT be called twice by frame
-        //setting light mode for main and back lamp
-        _fieldOfViews[0].SetLightMode(CurrentLampMode);
-        _fieldOfViews[1].SetLightMode(CurrentLampMode);
-      
-
-        if (!_fieldOfViews[0]._isModeChanging) //if _changingState == 1 in main fov than in back fov too
+        switch (_keyController.GetWheelMovment())
         {
-            switch (CurrentLampMode)
-            {
-                case 2: //detective mode
-                    Debug.Log("detective!!!!");
-                    _lampsMeshRenderers[0].material = _detectiveViewMat;
-                    _lampsMeshRenderers[1].material = _detectiveViewMat;
-                    break;
-                default: //all other modes mode
-                    _lampsMeshRenderers[0].material = _normalViewMat;
-                    _lampsMeshRenderers[1].material = _normalViewMat;
-                    break;
-            }
+            case KeyController.WheelMovment.Up:
+                _playerLampStates.SetTrigger(ChangeUp);
+                break;
+            case KeyController.WheelMovment.Down:
+                _playerLampStates.SetTrigger(ChangeDown);
+                break;
         }
     }
 
     public void StartManager()
     {
         _keyController = GetComponent<KeyController>();
-        GameObject playerGO = GameObject.FindWithTag("Player");
-        _player = playerGO.GetComponent<Player>();
-        _playerEnergy = playerGO.GetComponent<Energy>();
+        _player = Player.Instance;
+        _playerEnergy = _player.gameObject.GetComponent<Energy>();
         IsLoaded = true;
-        _fieldOfViews = new List<FieldOfView>(playerGO.GetComponentsInChildren<FieldOfView>());
-        _lampsMeshRenderers = new List<MeshRenderer>(playerGO.GetComponentsInChildren<MeshRenderer>());
+        _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
         
         _isPaused = false;
     }

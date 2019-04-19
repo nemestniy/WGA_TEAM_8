@@ -29,7 +29,22 @@ public class KeyController : MoveController
             angle *= -1;
         return angle;
     }
+
     
+    public WheelMovment GetWheelMovment()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            return WheelMovment.Up;
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            return WheelMovment.Down;
+        }
+
+        return WheelMovment.None;
+    }
+
     public int GetLightMode(bool isPreDeath)
     {
         if (isPreDeath)
@@ -53,6 +68,7 @@ public class KeyController : MoveController
 
     [ShowOnly, SerializeField]
     private int _prevLightMode;
+
 
     private int SwitchingByWeel()
     {
@@ -138,5 +154,12 @@ public class KeyController : MoveController
         HoldButtons,
         ClickButtons,
         UpAndDownRoll
+    }
+    
+    public enum WheelMovment
+    {
+        None,
+        Up,
+        Down
     }
 }

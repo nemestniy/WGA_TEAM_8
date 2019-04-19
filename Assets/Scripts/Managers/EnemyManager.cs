@@ -98,7 +98,7 @@ public class EnemyManager : MonoBehaviour, Manager
 
             if (enemy.inLight)
             {
-                if (PlayerManager.Instance.CurrentLampMode == 1)
+                if (_player.transform.GetChild(0).GetComponent<Lamp>()._isFrying)
                 {
                     if(Time.time - enemy.time > 3.0f)
                     {
@@ -130,8 +130,6 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        Debug.Log("Enemy Manager Started");
-
         _player = Player.Instance;
 
         _enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
@@ -160,7 +158,7 @@ public class EnemyManager : MonoBehaviour, Manager
 
     private void UpdateEnemiesState()
     {
-        if (PlayerManager.Instance.ChangingState == 1)
+        if (_player.transform.GetChild(0).GetComponent<Lamp>()._isFrying/*PlayerManager.Instance.ChangingState == 1*/)
         {
             foreach (var enemy in visibleEnemiesList)
             {

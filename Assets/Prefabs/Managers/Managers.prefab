@@ -187,8 +187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfc115780cfe47348bef9da79adba5c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _normalViewMat: {fileID: 2100000, guid: 0a129eae0b99eb445902243064977aed, type: 2}
-  _detectiveViewMat: {fileID: 2100000, guid: c07c43b32d531254db7a262fb1e9b579, type: 2}
 --- !u!114 &114666504007120952
 MonoBehaviour:
   m_ObjectHideFlags: 0

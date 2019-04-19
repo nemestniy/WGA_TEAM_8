@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1620784085143808}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6222861371053829206}
-  m_Father: {fileID: 4175369692355482}
-  m_RootOrder: 0
+  m_Father: {fileID: 291333216204668590}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &33216750422343312
 MeshFilter:
@@ -104,51 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6894db217ab2a8f45a0c4b364bd6b126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lightModes:
-  - name: Base
-    viewRadius: 20
-    spotLightRadius: 20
-    viewAngle: 90
-    spotLightAngle: 90
-    intensity: 70
-    lightHeight: -1
-    coordinateY: 0
-    lightColor: {r: 1, g: 1, b: 1, a: 0}
-    energyCost: 0
-    costDelay: 0
-  - name: Combat
-    viewRadius: 30
-    spotLightRadius: 30
-    viewAngle: 25
-    spotLightAngle: 25
-    intensity: 800
-    lightHeight: 0
-    coordinateY: 0.7
-    lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
-    energyCost: 0.1
-    costDelay: 0
-  - name: Detective
-    viewRadius: 10
-    spotLightRadius: 14
-    viewAngle: 120
-    spotLightAngle: 120
-    intensity: 20
-    lightHeight: -1
-    coordinateY: 0
-    lightColor: {r: 0.5847003, g: 0.9811321, b: 0.39337844, a: 0}
-    energyCost: 0
-    costDelay: 0
-  - name: PreDeath
-    viewRadius: 20
-    spotLightRadius: 20
-    viewAngle: 90
-    spotLightAngle: 90
-    intensity: 70
-    lightHeight: -1
-    coordinateY: 0
-    lightColor: {r: 1, g: 1, b: 1, a: 0}
-    energyCost: 0.06
-    costDelay: 0
+  _isMain: 1
   _changingDuration: 1
   _meshResolution: 4
   _edgeResolveIterations: 10
@@ -161,9 +117,6 @@ MonoBehaviour:
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 4096
-  _changingState: 1
-  _isModeChanging: 0
-  _currentMode: 1
   _currentViewRadius: 30
   _currentSpotLightRadius: 30
   _currentViewAngle: 25
@@ -205,8 +158,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4261111834815354}
-  - {fileID: 8563616529187633948}
+  - {fileID: 291333216204668590}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -325,7 +277,7 @@ MonoBehaviour:
   _maxEnergy: 100
   _minEnergy: 0
   _currentEnergy: 0
-  _constantEnergy: 0
+  _constantEnergy: 1
 --- !u!95 &1016308930
 Animator:
   serializedVersion: 3
@@ -372,13 +324,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428875428254133807}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1399248951142556431}
-  m_Father: {fileID: 4175369692355482}
-  m_RootOrder: 1
+  m_Father: {fileID: 291333216204668590}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!33 &5626648548317310640
 MeshFilter:
@@ -449,51 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6894db217ab2a8f45a0c4b364bd6b126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lightModes:
-  - name: BaseBack
-    viewRadius: 4
-    spotLightRadius: 5.5
-    viewAngle: 90
-    spotLightAngle: 90
-    intensity: 40
-    lightHeight: -1
-    coordinateY: 2.2
-    lightColor: {r: 1, g: 1, b: 1, a: 0}
-    energyCost: 0
-    costDelay: 0
-  - name: CombatBack
-    viewRadius: 2
-    spotLightRadius: 10
-    viewAngle: 90
-    spotLightAngle: 90
-    intensity: 40
-    lightHeight: -0.07
-    coordinateY: 2
-    lightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
-    energyCost: 0
-    costDelay: 0
-  - name: DetectiveBack
-    viewRadius: 2
-    spotLightRadius: 3.8
-    viewAngle: 120
-    spotLightAngle: 120
-    intensity: 40
-    lightHeight: -1
-    coordinateY: 2
-    lightColor: {r: 0.58431375, g: 0.98039216, b: 0.39215687, a: 0}
-    energyCost: 0
-    costDelay: 0
-  - name: PreDeathBack
-    viewRadius: 4
-    spotLightRadius: 5.5
-    viewAngle: 90
-    spotLightAngle: 90
-    intensity: 40
-    lightHeight: -1
-    coordinateY: 2
-    lightColor: {r: 1, g: 1, b: 1, a: 0}
-    energyCost: 0
-    costDelay: 0
+  _isMain: 0
   _changingDuration: 1
   _meshResolution: 4
   _edgeResolveIterations: 10
@@ -506,9 +414,6 @@ MonoBehaviour:
   _obstacleMask:
     serializedVersion: 2
     m_Bits: 4096
-  _changingState: 1
-  _isModeChanging: 0
-  _currentMode: 1
   _currentViewRadius: 2
   _currentSpotLightRadius: 10
   _currentViewAngle: 90
@@ -655,3 +560,157 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &4300761013367422325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 291333216204668590}
+  - component: {fileID: 1870450995}
+  - component: {fileID: 1870450996}
+  m_Layer: 8
+  m_Name: Lamp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &291333216204668590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4300761013367422325}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8563616529187633948}
+  - {fileID: 4261111834815354}
+  m_Father: {fileID: 4175369692355482}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1870450995
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4300761013367422325}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 61c5f929a76417e4e8428a09cdbcdb9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1870450996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4300761013367422325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29090fc2b02ce54480905f0f2fb200c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _normalViewMat: {fileID: 2100000, guid: 0a129eae0b99eb445902243064977aed, type: 2}
+  _detectiveViewMat: {fileID: 2100000, guid: c07c43b32d531254db7a262fb1e9b579, type: 2}
+  _lampEnergy: {fileID: 5894203408845879875}
+  _lampModes:
+  - name: Base
+    energyCost: 0
+    costDelay: 0
+    mainLight:
+      viewRadius: 20
+      spotLightRadius: 20
+      viewAngle: 90
+      spotLightAngle: 90
+      intensity: 70
+      lightHeight: -1
+      coordinateY: 0
+      lightColor: {r: 1, g: 1, b: 1, a: 0}
+    backLight:
+      viewRadius: 4
+      spotLightRadius: 5.5
+      viewAngle: 90
+      spotLightAngle: 90
+      intensity: 40
+      lightHeight: -1
+      coordinateY: 2.2
+      lightColor: {r: 1, g: 1, b: 1, a: 0}
+  - name: Combat
+    energyCost: 0.1
+    costDelay: 0
+    mainLight:
+      viewRadius: 30
+      spotLightRadius: 30
+      viewAngle: 25
+      spotLightAngle: 25
+      intensity: 800
+      lightHeight: 0
+      coordinateY: 0.7
+      lightColor: {r: 0.5176471, g: 0.10196079, b: 0, a: 0}
+    backLight:
+      viewRadius: 2
+      spotLightRadius: 10
+      viewAngle: 90
+      spotLightAngle: 90
+      intensity: 40
+      lightHeight: -0.07
+      coordinateY: 2
+      lightColor: {r: 0.5176471, g: 0.10196079, b: 0, a: 0}
+  - name: Detective
+    energyCost: 0
+    costDelay: 0
+    mainLight:
+      viewRadius: 10
+      spotLightRadius: 14
+      viewAngle: 120
+      spotLightAngle: 120
+      intensity: 20
+      lightHeight: -1
+      coordinateY: 0
+      lightColor: {r: 0.58431375, g: 0.9803922, b: 0.3921569, a: 0}
+    backLight:
+      viewRadius: 2
+      spotLightRadius: 3.8
+      viewAngle: 120
+      spotLightAngle: 120
+      intensity: 40
+      lightHeight: -1
+      coordinateY: 2
+      lightColor: {r: 0.58431375, g: 0.9803922, b: 0.3921569, a: 0}
+  - name: PreDeath
+    energyCost: 0.06
+    costDelay: 0
+    mainLight:
+      viewRadius: 20
+      spotLightRadius: 20
+      viewAngle: 90
+      spotLightAngle: 90
+      intensity: 70
+      lightHeight: -1
+      coordinateY: 0
+      lightColor: {r: 1, g: 1, b: 1, a: 0}
+    backLight:
+      viewRadius: 4
+      spotLightRadius: 5.5
+      viewAngle: 90
+      spotLightAngle: 90
+      intensity: 40
+      lightHeight: -1
+      coordinateY: 2
+      lightColor: {r: 1, g: 1, b: 1, a: 0}
+  _isFrying: 0

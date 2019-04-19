@@ -7,11 +7,11 @@ using UnityEngine.Serialization;
 public class FieldOfView : MonoBehaviour
 {
 	[SerializeField]
-	private List<LampMode> _lightModes;
-
-	[Header("")]
+	private bool _isMain; //true for main light and false for back light
 	[SerializeField]
 	private float _changingDuration = 1;
+	
+	[Header("")]
 	[SerializeField]
 	private float _meshResolution = 4; //how many rays will be casted per 1 degree
 	[SerializeField]
@@ -35,16 +35,15 @@ public class FieldOfView : MonoBehaviour
 	
 	private float _currentChangingTime;
 	private Energy _energy;
-	private const int DegInCircle = 360;
 
+	private List<Lamp.LampMode> _lampModes;
 	
 	private int _prevMode;
-	[HideInInspector]
-	public float _changingState = 1; //[0,1] shows how close mode to it's final state; 0 - start to change mode, 1 - not changing
-	[HideInInspector]
-	public bool _isModeChanging;
-	[HideInInspector]
-	public int _currentMode;
+	
+	private float _changingState = 1; //[0,1] shows how close mode to it's final state; 0 - start to change mode, 1 - not changing
+	
+
+	private int _currentMode;
 	
     private EnemyManager _enemyManager;
 
@@ -58,12 +57,6 @@ public class FieldOfView : MonoBehaviour
 	[HideInInspector] public float _currentCoordinateY;
 	[HideInInspector] public Color _currentLightColor;
 
-//	private void Awake()
-//	{
-//		Energy.OnPreDeath += OnPreDeath;
-//		Energy.OnNotPreDeath += OnNotPreDeath;
-//	}
-
 	private void Start()
 	{
 		_spotLight = GetComponentInChildren<Light>();
@@ -73,27 +66,26 @@ public class FieldOfView : MonoBehaviour
 		_energy =  GetComponentInParent<Energy>();
 
 		_enemyManager = GameManager.Instance.EnemyManager;
+		_lampModes = Player.Instance.transform.GetChild(0).GetComponent<Lamp>()._lampModes;
 	}
 
 	
 	private void LateUpdate()
 	{
-		if (_isModeChanging)
+		if (_isMain) //compute depending on is it main light or back light
 		{
-			if (_currentChangingTime < _changingDuration)
-			{
-				_currentChangingTime += Time.deltaTime;
-				_changingState = _currentChangingTime / _changingDuration;
-			}
-			else
-			{
-				_currentChangingTime = 0;
-				_isModeChanging = false;
-				_changingState = 1;
-			}
+			ComputeCurrentLightValues(_energy.CurrentEnergyLvl,
+				_lampModes[_prevMode].mainLight,
+				_lampModes[_currentMode].mainLight,
+				_changingState);
 		}
-
-		ComputeCurrentLightValues(_energy.CurrentEnergyLvl, _lightModes[_prevMode], _lightModes[_currentMode]);
+		else
+		{
+			ComputeCurrentLightValues(_energy.CurrentEnergyLvl,
+				_lampModes[_prevMode].backLight,
+				_lampModes[_currentMode].backLight,
+				_changingState);
+		}
 		
 		//updating light values
 		var position = transform.localPosition;
@@ -109,29 +101,30 @@ public class FieldOfView : MonoBehaviour
         _enemyManager.visibleEnemiesList = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
     }
 
-    private void ComputeCurrentLightValues(float energyLvl, LampMode prevMode, LampMode currentMode)
+    private void ComputeCurrentLightValues(float energyLvl, Lamp.LightMode prevMode, Lamp.LightMode currentMode, float changingState)
 	{
 		//computing current values of player's lamp, affecting radius by current energy level
-		_currentViewRadius = energyLvl * Mathf.Lerp(prevMode.viewRadius, currentMode.viewRadius, _changingState);
-		_currentSpotLightRadius = energyLvl * Mathf.Lerp(prevMode.spotLightRadius, currentMode.spotLightRadius, _changingState);
-		_currentViewAngle = Mathf.Lerp( prevMode.viewAngle, currentMode.viewAngle, _changingState);
-		_currentSpotLightAngle = Mathf.Lerp( prevMode.spotLightAngle, currentMode.spotLightAngle, _changingState);
-		_currentIntensity = Mathf.Lerp(prevMode.intensity, currentMode.intensity, _changingState);
-		_currentLightHeight = Mathf.Lerp(prevMode.lightHeight, currentMode.lightHeight, _changingState);
-		_currentLightColor = Color.Lerp(prevMode.lightColor, currentMode.lightColor, _changingState);
-		_currentCoordinateY = Mathf.Lerp(prevMode.coordinateY, currentMode.coordinateY, _changingState);
+		_currentViewRadius = energyLvl * Mathf.Lerp(prevMode.viewRadius, currentMode.viewRadius, changingState);
+		_currentSpotLightRadius = energyLvl * Mathf.Lerp(prevMode.spotLightRadius, currentMode.spotLightRadius, changingState);
+		_currentViewAngle = Mathf.Lerp( prevMode.viewAngle, currentMode.viewAngle, changingState);
+		_currentSpotLightAngle = Mathf.Lerp( prevMode.spotLightAngle, currentMode.spotLightAngle, changingState);
+		_currentIntensity = Mathf.Lerp(prevMode.intensity, currentMode.intensity, changingState);
+		_currentLightHeight = Mathf.Lerp(prevMode.lightHeight, currentMode.lightHeight, changingState);
+		_currentLightColor = Color.Lerp(prevMode.lightColor, currentMode.lightColor, changingState);
+		_currentCoordinateY = Mathf.Lerp(prevMode.coordinateY, currentMode.coordinateY, changingState);
 	}
 
 
 	private float timePast = 0;
+
 	private void FixedUpdate()
 	{
 		//light is not changing now
 		if (_changingState == 1)
 		{
-			if (timePast > _lightModes[_currentMode].costDelay)
+			if (timePast > _lampModes[_currentMode].costDelay)
 			{
-				_energy.ChangeEnergyLvl(-_lightModes[_currentMode].energyCost, 0); //affect by negative value of energy cost
+				_energy.ChangeEnergyLvl(-_lampModes[_currentMode].energyCost, 0); //affect by negative value of energy cost
 			}
 			else
 			{
@@ -144,17 +137,13 @@ public class FieldOfView : MonoBehaviour
 		}
 	}
 
-	public void SetLightMode(int newMode)
+	public void SetLightMode(int newMode, int prevMode, float changingState)
 	{
-		if (!_isModeChanging && _currentMode != newMode) //change the light to the combat newMode
-		{
-			_isModeChanging = true;
-			_prevMode = _currentMode;
-			_currentMode = newMode;
-			_changingState = 0;
-		}
+		_currentMode = newMode;
+		_prevMode = prevMode;
+		_changingState = changingState;
 	}
-
+	
 	private void DrawSpotLight(float radius, float angel, float intensity, float height, Color color)
 	{
 		_spotLight.range = radius;
@@ -353,23 +342,5 @@ public class FieldOfView : MonoBehaviour
 			this.pointA = pointA;
 			this.pointB = pointB;
 		}
-	}
-	
-	[Serializable]
-	public struct LampMode
-	{
-		public string name;
-		public float viewRadius;
-		public float spotLightRadius;
-		[Range(0, DegInCircle)]
-		public float viewAngle;
-		[Range(0, DegInCircle)]
-		public float spotLightAngle;
-		public float intensity;
-		public float lightHeight;
-		public float coordinateY;
-		public Color lightColor;
-		public float energyCost;
-		public float costDelay;
 	}
 }

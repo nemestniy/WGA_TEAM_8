@@ -16,6 +16,7 @@ public class Energy : MonoBehaviour
 
     private bool _isPreDeath = false;
     private float _blockTimeLeft = 0;
+    
 
     [SerializeField] private bool _constantEnergy;
 
@@ -46,14 +47,7 @@ public class Energy : MonoBehaviour
                 OnRanoutOfEnergy?.Invoke();
             }
 
-            if (CurrentEnergyLvl <= _preDeathEnergyLvl && !_isPreDeath)
-            {
-                _isPreDeath = true;
-            }
-            else if(_isPreDeath)
-            {
-                _isPreDeath = false;
-            }
+            _isPreDeath = CurrentEnergyLvl <= _preDeathEnergyLvl;
             
             _blockTimeLeft = blockTime; //block all energy changes for blockTime
         }
