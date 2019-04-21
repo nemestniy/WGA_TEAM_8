@@ -27,9 +27,9 @@ public class Hexagon : MonoBehaviour
     private bool isVisited;
 
     private List<Transform> freeNeigbours = null;
-    
+
     //public delegate void OnWallsChangeAction(); - Нафиг нам этот делегат, если есть стандартный Action мы не используем аргументов;
-    
+
     public static event Action OnWallsChange;
 
     public float GetRadius()
@@ -99,9 +99,9 @@ public class Hexagon : MonoBehaviour
                 {
                     // if neighbor is no, generate new neighbor
                     var hexagon = Instantiate(gameObject,
-                        wall.GetDirection() * (Mathf.Sqrt(3) * _radius) + (Vector2)transform.position,
+                        wall.GetDirection() * (Mathf.Sqrt(3) * _radius) + (Vector2) transform.position,
                         Quaternion.identity) as GameObject;
-                    if(transform.parent != null)
+                    if (transform.parent != null)
                         hexagon.transform.parent = transform.parent;
                 }
 
@@ -152,6 +152,7 @@ public class Hexagon : MonoBehaviour
         {
             neighbors.Add(neighbor.GetComponent<Hexagon>());
         }
+
         return neighbors;
     }
 
@@ -181,14 +182,15 @@ public class Hexagon : MonoBehaviour
         {
             if (_walls[i] != null)
             {
-                if (!_walls[i].IsActive() && _walls[i] != wallSwitched && !_walls[i].GetWallUnderMe().CompareTag("Wall"))
+                if (!_walls[i].IsActive() && _walls[i] != wallSwitched &&
+                    !_walls[i].GetWallUnderMe().CompareTag("Wall"))
                 {
                     _walls[i].Enable();
                     continue;
                 }
             }
         }
-        
+
         OnWallsChange?.Invoke();
         //Debug.Log("Wall was changed");
     }
@@ -232,7 +234,8 @@ public class Hexagon : MonoBehaviour
         do
         {
             check = false;
-            place = new Vector2(UnityEngine.Random.Range(-_radius, _radius) + transform.position.x, UnityEngine.Random.Range(-_radius, _radius) + transform.position.y);
+            place = new Vector2(UnityEngine.Random.Range(-_radius, _radius) + transform.position.x,
+                UnityEngine.Random.Range(-_radius, _radius) + transform.position.y);
             if (_lastObject != null && Vector2.Distance(place, _lastObject.transform.position) < distance)
             {
                 //If there are one or more colliders with tag furniture, finding new random position for furniture
@@ -248,17 +251,33 @@ public class Hexagon : MonoBehaviour
             _lastObject = Instantiate(furnitureObject, place, Quaternion.identity);
     }
 
-    [HideInInspector]
-    public List<GameObject> Objects = new List<GameObject>();
+    [HideInInspector] public List<GameObject> Objects = new List<GameObject>();
+
     public void FillHexagon()
     {
-        switch (UnityEngine.Random.Range(0, 3))
+        try
         {
-            case 0: FillCentricHexagon(); break;
-            case 1: FillMiddleHexagon(); break;
-            case 2: FillDecorativeHexagon(); break;
+            switch (UnityEngine.Random.Range(0, 3))
+            {
+                case 0:
+                    FillCentricHexagon();
+                    break;
+                case 1:
+                    FillMiddleHexagon();
+                    break;
+                case 2:
+                    FillDecorativeHexagon();
+                    break;
+            }
         }
+        catch
+        {
 
+        }
+        finally
+        {
+
+        }
         ///Debug code for hexa story type
         //var s = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         //s.transform.position = this.transform.position;
@@ -275,7 +294,7 @@ public class Hexagon : MonoBehaviour
         //        s.transform.localScale = Vector3.one * 15;
         //        break;
         //}
-        
+
 
         FixObjects();
     }
@@ -292,28 +311,38 @@ public class Hexagon : MonoBehaviour
         //return GameManager.Instance.MapManager.Background.GetBiomeByPosition(transform.position);
         int cWatr = 0, cRock = 0, cSand = 0;
         var points = Enumerable.Range(0, 6).Select(a =>
-            transform.position + _radius * 0.5f * new Vector3(Mathf.Sin(a * Mathf.PI / 3), Mathf.Cos(a * Mathf.PI / 3), 0)).Select(a => GameManager.Instance.MapManager.Background.GetBiomeByPosition(a));
+                transform.position +
+                _radius * 0.5f * new Vector3(Mathf.Sin(a * Mathf.PI / 3), Mathf.Cos(a * Mathf.PI / 3), 0))
+            .Select(a => GameManager.Instance.MapManager.Background.GetBiomeByPosition(a));
         cWatr = points.Count(a => a == BackgroundController.Biome.Water);
         cRock = points.Count(a => a == BackgroundController.Biome.Rocky);
         cSand = points.Count(a => a == BackgroundController.Biome.Sandy);
         switch (GameManager.Instance.MapManager.Background.GetBiomeByPosition(transform.position))
         {
-            case BackgroundController.Biome.Rocky: cRock++; break;
-            case BackgroundController.Biome.Water: cWatr++; break;
-            case BackgroundController.Biome.Sandy: cSand++; break;
+            case BackgroundController.Biome.Rocky:
+                cRock++;
+                break;
+            case BackgroundController.Biome.Water:
+                cWatr++;
+                break;
+            case BackgroundController.Biome.Sandy:
+                cSand++;
+                break;
         }
+
         if (cWatr > cRock && cWatr > cSand) return BackgroundController.Biome.Water;
         else if (cRock > cSand) return BackgroundController.Biome.Rocky;
         else return BackgroundController.Biome.Sandy;
     }
 
     public HexaStoryType GetStoryType()
-    {        
+    {
         if (IsBorder)
             return HexaStoryType.Border;
         if (IsZone) return HexaStoryType.Zone;
         return HexaStoryType.Story;
     }
+
     public bool IsBorder
     {
         get
@@ -329,30 +358,28 @@ public class Hexagon : MonoBehaviour
     {
         get
         {
-            var hexaN = _neighbors.Select(a => a.GetComponent<Hexagon>()).ToList();            
-            return !IsBorder && (hexaN.Any(a =>a.IsBorder));
+            var hexaN = _neighbors.Select(a => a.GetComponent<Hexagon>()).ToList();
+            return !IsBorder && (hexaN.Any(a => a.IsBorder));
         }
     }
 
     public bool IsStory
     {
-        get
-        {            
-            return !IsBorder && !IsZone;
-        }
+        get { return !IsBorder && !IsZone; }
     }
 
     public void FillCentricHexagon()
     {
         AddCentralObject(3);
-        AddMedianObject(1);        
+        AddMedianObject(1);
     }
 
     public void FillMiddleHexagon()
     {
         AddMedianObject(2);
         AddMedianObject(2);
-        for (int i = 0; i < UnityEngine.Random.Range(1, 4); i++) {
+        for (int i = 0; i < UnityEngine.Random.Range(1, 4); i++)
+        {
             AddDecorativeObject(1);
         }
     }
@@ -367,10 +394,11 @@ public class Hexagon : MonoBehaviour
 
     public void FillWalledHexagon()
     {
-        
+
     }
 
     private int _maxFixIter = 16;
+
     public void FixObjects()
     {
         for (int i = 0; i < _maxFixIter; i++)
@@ -389,37 +417,56 @@ public class Hexagon : MonoBehaviour
             var l = (obj.transform.position - o.transform.position);
             var distMod = (o.transform.position - this.transform.position).magnitude / _radius;
             res += l / l.sqrMagnitude;
-        }    
+        }
+
 //        Debug.Log(res);
-        obj.transform.position += res * 2/*Mathf.Sqrt(pos.magnitude / _radius)*/ / Mathf.Pow(sizeMod, 1);
-        
+        obj.transform.position += res * 2 /*Mathf.Sqrt(pos.magnitude / _radius)*/ / Mathf.Pow(sizeMod, 1);
+
     }
 
     public void AddCentralObject(int size)
     {
-        var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
-            transform.position /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.1f)*/);
-        obj.transform.SetParent(this.transform);
-        Objects.Add(obj);
+        try
+        {
+            var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
+                transform.position /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.1f)*/);
+            obj.transform.SetParent(this.transform);
+            Objects.Add(obj);
+        }
+        finally
+        {
+        }
     }
 
     public void AddMedianObject(int size)
     {
-        var v1 = UnityEngine.Random.onUnitSphere * _radius * 0.4f;
-        v1.z = 0;
-        v1.Normalize();
-        var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
-            transform.position + v1 /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.1f)*/);
-        obj.transform.SetParent(this.transform);
-        Objects.Add(obj);
+        try
+        {
+            var v1 = UnityEngine.Random.onUnitSphere * _radius * 0.4f;
+            v1.z = 0;
+            v1.Normalize();
+            var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
+                transform.position + v1 /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.1f)*/);
+            obj.transform.SetParent(this.transform);
+            Objects.Add(obj);
+        }
+        finally
+        {
+        }
     }
 
     public void AddDecorativeObject(int size)
     {
-        var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
-            transform.position + (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.65f));
-        obj.transform.SetParent(this.transform);
-        Objects.Add(obj);
+        try
+        {
+            var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
+                transform.position + (Vector3) (UnityEngine.Random.insideUnitCircle * _radius * 0.65f));
+            obj.transform.SetParent(this.transform);
+            Objects.Add(obj);
+        }
+        finally
+        {
+        }
     }
 
 
@@ -428,6 +475,7 @@ public class Hexagon : MonoBehaviour
     {
         return _walls;
     }
+
     public void ActivateBorderWalls()
     {
         if (_walls != null)
@@ -459,7 +507,7 @@ public class Hexagon : MonoBehaviour
             RaycastHit2D hit = Physics2D.Linecast(origin, target, 1 << LayerMask.NameToLayer("Obstacle"));
             ////Debug.Log("target: " + target + ", origin: " + origin);
             ////Debug.Log(hit.collider.gameObject.tag);
-            if (hit.collider == null) 
+            if (hit.collider == null)
             {
                 //Debug.Log("Added" + neighbour.position);
                 freeNeighbours.Add(neighbour.gameObject.GetComponent<Hexagon>());
