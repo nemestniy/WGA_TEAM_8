@@ -271,6 +271,10 @@ PrefabInstance:
       propertyPath: _obstacleMask.m_Bits
       value: 4096
       objectReference: {fileID: 0}
+    - target: {fileID: 1870450996, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
+      propertyPath: _lampModes.Array.data[1].costDelay
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
 --- !u!224 &363236574 stripped
