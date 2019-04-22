@@ -4,24 +4,20 @@ public class Energy : MonoBehaviour
 {
     [SerializeField]
     private float _startingEnergy = 100;
-    [SerializeField, Range(0, 1)]
-    private float _preDeathEnergyLvl = .1f; 
+
     [SerializeField]
-    
     private float _maxEnergy = 100;
     [SerializeField]
     private float _minEnergy = 0;
     [ShowOnly, SerializeField] 
     private float _currentEnergy;
 
-    private bool _isPreDeath = false;
     private float _blockTimeLeft = 0;
     
 
     [SerializeField] private bool _constantEnergy;
 
     public float CurrentEnergyLvl => _currentEnergy / _maxEnergy;
-    public bool IsPreDeath => _isPreDeath;
     
     public delegate void OnRanoutOfEnergyAction();
     public static event OnRanoutOfEnergyAction OnRanoutOfEnergy; // событие для вызова катсцены смерти игрока когда его съели
@@ -47,7 +43,6 @@ public class Energy : MonoBehaviour
                 OnRanoutOfEnergy?.Invoke();
             }
 
-            _isPreDeath = CurrentEnergyLvl <= _preDeathEnergyLvl;
             
             _blockTimeLeft = blockTime; //block all energy changes for blockTime
         }

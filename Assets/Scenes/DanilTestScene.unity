@@ -317,6 +317,22 @@ PrefabInstance:
       propertyPath: Background
       value: 
       objectReference: {fileID: 532223101}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[0].gameEvent
+      value: Energy consumed
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[0].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[0].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
 --- !u!1001 &704396766
@@ -712,7 +728,7 @@ PrefabInstance:
     - target: {fileID: 8914237606444993381, guid: 8b70fcb166b58014a9478b08650564dc,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 441357655255495918, guid: 8b70fcb166b58014a9478b08650564dc,
         type: 3}
