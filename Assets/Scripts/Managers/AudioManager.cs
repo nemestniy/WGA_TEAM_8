@@ -1,12 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour, Manager
 {
     
     [SerializeField]
-    private List<AudioClip> _audioClips;
+    private List<AudioClip> _backgroundMusic;
+
+    [SerializeField] private List<SoundEventPair> _soundEvents;
+//    [SerializeField] private List<SoundStatePair> _soundStates;
     
     private AudioSource _audioSource;
     private bool _paused;
@@ -23,6 +28,17 @@ public class AudioManager : MonoBehaviour, Manager
     {
         _audioSource = GetComponent<AudioSource>();
     }
+    
+    
+    public void TriggerSoundEvent(string audioEventName)
+    {
+        IEnumerable<SoundEventPair> calledSoundEvents = _soundEvents.Where(se => se.gameEvent.Equals(audioEventName));
+        foreach (var soundEvent in calledSoundEvents)
+        {
+            _audioSource.PlayOneShot(soundEvent.audioEvent.sound, soundEvent.audioEvent.volume);
+        }
+    }
+    
     
     private IEnumerator PlayBackgroundMusic(List<AudioClip> audioClips)
     {
@@ -49,7 +65,7 @@ public class AudioManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        StartCoroutine(PlayBackgroundMusic(_audioClips));
+        StartCoroutine(PlayBackgroundMusic(_backgroundMusic));
         IsLoaded = true;
         _paused = false;
     }
@@ -64,5 +80,33 @@ public class AudioManager : MonoBehaviour, Manager
     {
         _audioSource.UnPause();
         _paused = false;
+    }
+    
+    [Serializable]
+    public struct SoundEventPair
+    {
+        public string gameEvent;
+        public AudioEvent audioEvent;
+    }
+    
+    [Serializable]
+    public struct AudioEvent
+    {
+        public AudioClip sound;
+        public float volume;
+    }
+    
+    [Serializable]
+    public struct SoundStatePair
+    {
+        public string gameState;
+        public AudioEvent audioEvent;
+    }
+    
+    [Serializable]
+    public struct AudioState
+    {
+        public AudioClip sound;
+        public float volume;
     }
 }
