@@ -29,7 +29,6 @@ public class AudioManager : MonoBehaviour, Manager
         _audioSource = GetComponent<AudioSource>();
     }
     
-    
     public void TriggerSoundEvent(string audioEventName)
     {
         IEnumerable<SoundEventPair> calledSoundEvents = _soundEvents.Where(se => se.gameEvent.Equals(audioEventName));
@@ -38,7 +37,6 @@ public class AudioManager : MonoBehaviour, Manager
             _audioSource.PlayOneShot(soundEvent.audioEvent.sound, soundEvent.audioEvent.volume);
         }
     }
-    
     
     private IEnumerator PlayBackgroundMusic(List<AudioClip> audioClips)
     {
@@ -81,7 +79,6 @@ public class AudioManager : MonoBehaviour, Manager
         _audioSource.UnPause();
         _paused = false;
     }
-    
     [Serializable]
     public struct SoundEventPair
     {
