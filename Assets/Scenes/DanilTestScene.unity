@@ -322,6 +322,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundStates.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: _soundEvents.Array.data[0].gameEvent
       value: Energy consumed
       objectReference: {fileID: 0}
@@ -331,6 +335,14 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
     - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: _soundEvents.Array.data[0].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundStates.Array.data[0].gameState
+      value: Player moving stone
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundStates.Array.data[0].audioEvent.volume
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
