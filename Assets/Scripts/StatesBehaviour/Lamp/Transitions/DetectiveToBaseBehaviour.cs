@@ -2,33 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetectiveToBaseBehaviour : StateMachineBehaviour
+public class DetectiveToBaseBehaviour : TransitionStateBehaviour
 {
-    private const int PREV_MODE_NUM = 2;
-    private const int NEXT_MODE_NUM = 0;
-    [SerializeField] private float _timeToChange = 1;
-    private float _currentTime;
-    private static readonly int HasChanged = Animator.StringToHash("HasChanged");
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _currentTime = 0;
+        TransitionOnStateEnter(animator, stateInfo, layerIndex);
     }
 
-    private void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_currentTime < _timeToChange)
-        {
-            _currentTime += Time.deltaTime;
-        }
-        else
-        {
-            animator.SetTrigger(HasChanged);
-        }
-        Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(NEXT_MODE_NUM, PREV_MODE_NUM,_currentTime); 
+        TransitionOnStateUpdate(animator, stateInfo, layerIndex);
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        TransitionOnStateExit(animator, stateInfo, layerIndex);
     }
 }
