@@ -15,7 +15,6 @@ public interface IEnemy
     EnemyType GetEnemyType();
     void SetOnLight();
     void SetOutOfLight();
-    void Pause();
 
     
 }

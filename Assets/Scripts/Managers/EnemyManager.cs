@@ -152,7 +152,7 @@ public class EnemyManager : MonoBehaviour, Manager
         Debug.Log("Pause EnemyManager");
         foreach (IEnemy enemy in enemies)
         {
-            enemy.SetState(State.Paused);
+            //enemy.SetState(State.Paused);
         }
     }
 

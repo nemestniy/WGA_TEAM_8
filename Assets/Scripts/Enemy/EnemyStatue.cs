@@ -51,9 +51,6 @@ public class EnemyStatue : MonoBehaviour, IEnemy
             case State.Maneuring:
                 
                 break;
-            case State.Paused:
-                
-                break;
         }
         distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
     }
