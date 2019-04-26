@@ -44,8 +44,14 @@ public class AudioManager : MonoBehaviour, Manager
     {
         while (true)
         {
+            if (audioClips.Count == 0) //in case of audioClips list is empty
+                yield return null;
+            
             foreach (var clip in audioClips)
             {
+                if(clip.length == 0) //in case of clips length is 0
+                    yield return null;
+                
                 _audioSource.clip = clip;
                 _audioSource.Play();
                 

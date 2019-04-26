@@ -109,7 +109,7 @@ MonoBehaviour:
   _currentModeNum: 0
   _energyCost: 0
   _costDelay: 0
-  _stateSound: {fileID: 0}
+  _stateSound: {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
 --- !u!114 &114341473242153396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -840,7 +840,6 @@ AnimatorState:
   - {fileID: 1101735021980366182}
   m_StateMachineBehaviours:
   - {fileID: 114276122907222760}
-  - {fileID: 114850009209047944}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
