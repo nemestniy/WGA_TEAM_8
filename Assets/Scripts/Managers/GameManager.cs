@@ -37,13 +37,11 @@ public class GameManager : MonoBehaviour, Manager
     public float LampEnergyLvl => Player.Instance.GetComponent<Energy>().CurrentEnergyLvl;
     public int CurrentLampMode => _playerManager.CurrentLampMode;
     public float DistanceToWell => _mapManager.GetComponent<ObjectsGenerator>().DistanceToWell; //returns -1 if there are no well
-    public bool IsPlayerMoving =>
-        Player.Instance.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkAnimation");
 //    public bool IsEnemyInCurrZone =>;
 //    public Zone CurrentZone =>;
 //    public HexType CurrentHexType =>;
-
-
+    
+    
     public static GameManager Instance { get; private set; }
     public PlayerManager PlayerManager => _playerManager;
     public EnemyManager EnemyManager => _enemyManager;

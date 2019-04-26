@@ -14,25 +14,25 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: ChangeDown
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: HasChanged
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: EnergyLvl
     m_Type: 1
     m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -58,10 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbad007daa8960489dd076ed934937e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentModeNum: 1
-  _energyCost: 0.1
-  _costDelay: 2
-  _stateSound: {fileID: 0}
 --- !u!114 &114251662668140140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -74,10 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6abb9ba96673ec41abeec35522faad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 1
-  _nextModeNum: 0
   _timeToChange: 1
-  _stateSound: {fileID: 0}
 --- !u!114 &114276122907222760
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -90,10 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac2e9f251ff9fd41b0be780a6537e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 2
-  _nextModeNum: 1
   _timeToChange: 1
-  _stateSound: {fileID: 0}
 --- !u!114 &114298208422994846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -106,10 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 202d27fe43eb4a4ea9e35e1d9aa93edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentModeNum: 0
-  _energyCost: 0
-  _costDelay: 0
-  _stateSound: {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
 --- !u!114 &114341473242153396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,10 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8b0348c552c0614490e9c807c1d6e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 2
-  _nextModeNum: 0
   _timeToChange: 1
-  _stateSound: {fileID: 0}
 --- !u!114 &114421798104475472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -138,10 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682678b585e44f41af6369600c9e78a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 3
-  _nextModeNum: 0
   _timeToChange: 1
-  _stateSound: {fileID: 0}
 --- !u!114 &114460005481644892
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -154,10 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5343ea2441773e7498a850a3579668fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 2
-  _nextModeNum: 3
   _timeToChange: 1
-  _stateSound: {fileID: 0}
 --- !u!114 &114488606964766990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,10 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ec86140c844887a457325ab6f7b83b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentModeNum: 3
-  _energyCost: 0.06
-  _costDelay: 0
-  _stateSound: {fileID: 0}
 --- !u!114 &114528743838574974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -186,10 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a9879311ff5a34abe765ddc39b618f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentModeNum: 2
-  _energyCost: 0
-  _costDelay: 0
-  _stateSound: {fileID: 0}
 --- !u!114 &114605693504798332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,10 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6afe769ea02b8a443937d8cf0a4be029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 1
-  _nextModeNum: 2
   _timeToChange: 1
-  _stateSound: {fileID: 0}
 --- !u!114 &114617166643938826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,10 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac652fcfcabc9a64a90e9542979c2f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 0
-  _nextModeNum: 3
   _timeToChange: 1
-  _stateSound: {fileID: 0}
 --- !u!114 &114653508016995032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,10 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7fdc69a877f0045862613c34e024a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 1
-  _nextModeNum: 3
   _timeToChange: 1
-  _stateSound: {fileID: 0}
 --- !u!114 &114656074448005474
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -250,10 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db997366fd588764ca9dbdbce71e471a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 0
-  _nextModeNum: 2
   _timeToChange: 1
-  _stateSound: {fileID: 0}
 --- !u!114 &114833823316309064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -266,22 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 431d061de13743299cea446695ec4aee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prevModeNum: 0
-  _nextModeNum: 1
   _timeToChange: 1
-  _stateSound: {fileID: 0}
---- !u!114 &114850009209047944
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b2fb42da1afcd44dbf68c7df950c146, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1101 &1101033761078088794
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

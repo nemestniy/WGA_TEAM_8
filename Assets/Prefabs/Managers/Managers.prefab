@@ -47,7 +47,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -140,14 +140,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa82cbea0c212747ac58e85ebf7f49d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backgroundMusic:
-  - {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
-  - {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
-  _soundEvents:
-  - gameEvent: Energy consumed
-    audioEvent:
-      sound: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
-      volume: 1
+  _audioClips:
+  - {fileID: 8300000, guid: a216fbe253a235a418eb996c036b1402, type: 3}
+  - {fileID: 8300000, guid: 36bf1b51894682e47861811471d39a17, type: 3}
 --- !u!1 &1182577274369688
 GameObject:
   m_ObjectHideFlags: 0

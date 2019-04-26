@@ -51,6 +51,8 @@ public class Lamp : MonoBehaviour
     public struct LampMode
     {
         public string name;
+        public float energyCost;
+        public float costDelay;
         public LightMode mainLight;
         public LightMode backLight;
     }
