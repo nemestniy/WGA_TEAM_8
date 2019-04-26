@@ -13,6 +13,7 @@ public class EnergySource : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().sprite = _spriteOff;
             transform.GetChild(0).gameObject.SetActive(false);
+            AudioManager.Instance.TriggerSoundEvent("Energy consumed");
         }
     }
     
