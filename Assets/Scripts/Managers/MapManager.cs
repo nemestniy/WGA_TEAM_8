@@ -33,15 +33,17 @@ public class MapManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+       
         _hexagonsGenerator.GenerateMap();
         IsLoaded = true;
-//        HexagonGenerated?.Invoke();
-//
-//        _zoneCreator.CreateZones();
-//        ZoneCreated?.Invoke();
-//
-//        _objectsGenerator.GenerateObjects();
-//        ObjectGenerated?.Invoke();
+        //        HexagonGenerated?.Invoke();
+        //
+        //        _zoneCreator.CreateZones();
+        //        ZoneCreated?.Invoke();
+        //
+        //        _objectsGenerator.GenerateObjects();
+        //        ObjectGenerated?.Invoke(); 
+        Debug.Log("MapManager Started");
     }
 
     public void PauseManager()

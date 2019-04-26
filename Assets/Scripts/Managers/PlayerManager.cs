@@ -64,6 +64,7 @@ public class PlayerManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+        Debug.Log("PlayerManager Started");
         _keyController = GetComponent<KeyController>();
         _player = Player.Instance;
         _playerEnergy = _player.gameObject.GetComponent<Energy>();

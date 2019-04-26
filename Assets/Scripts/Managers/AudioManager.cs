@@ -49,9 +49,11 @@ public class AudioManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+        
         StartCoroutine(PlayBackgroundMusic(_audioClips));
         IsLoaded = true;
         _paused = false;
+        Debug.Log("AudioManager Started");
     }
 
     public void PauseManager()

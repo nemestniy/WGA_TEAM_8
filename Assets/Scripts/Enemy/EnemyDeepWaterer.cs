@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System;
 using Pathfinding;
 
-public class Enemy : MonoBehaviour
+public class EnemyDeepWaterer : MonoBehaviour, IEnemy
 {
     public Player player;
     public AstarPath path;
 
-    public States state;
+
+    [ShowOnly] public State state;
+    EnemySavedState savedState;
 
     public float speed;
     
@@ -21,28 +23,17 @@ public class Enemy : MonoBehaviour
     [HideInInspector] public delegate void EnemyEvents();
     [HideInInspector] public event EnemyEvents Player_death;
 
-    public Pathfinding.AIDestinationSetter destinationSetter;
-    public Pathfinding.AIPath aiPath;
+    public AIDestinationSetter destinationSetter;
+    public AIPath aiPath;
 
     public float time;
     public bool inLight;
     [HideInInspector] public bool escapePointCreated;
     [HideInInspector] public bool maneurPointCreated;
 
-    public enum States // Состояния моба
+    public void Start()
     {
-        Moving, // Движение к игроку по лабиринту
-        WaySearching, // Поиск пути до игрока
-        Waiting, // Ожидание
-        Hunting, // Активное преследование
-        Maneuring, // Прожарка в луче фонаря
-        Escaping, // Бегство
-        Paused, // Пауза в игре
-
-    }
-
-    private void Start()
-    {
+        player = Player.Instance;
         destinationSetter = GetComponent<Pathfinding.AIDestinationSetter>();
         aiPath = GetComponent<Pathfinding.AIPath>();
         inLight = false;
@@ -54,23 +45,20 @@ public class Enemy : MonoBehaviour
     {
         switch (state) // Действия моба в зависимости от состояния
         {
-            case States.WaySearching:
+            case State.WaySearching:
                 FindWayToPlayer();
                 break;
-            case States.Moving:
+            case State.Moving:
                 FollowPlayer();
                 break;
-            case States.Hunting:
+            case State.Hunting:
                 HuntPlayer();
                 break;
-            case States.Escaping:
+            case State.Escaping:
                 Escape();
                 break;
-            case States.Maneuring:
+            case State.Maneuring:
                 Maneur();
-                break;
-            case States.Paused:
-                Pause();
                 break;
         }
         distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
@@ -153,7 +141,7 @@ public class Enemy : MonoBehaviour
         aiPath.maxSpeed = speed;
 
         destinationSetter.target = player.transform;
-        GetComponent<Pathfinding.AIPath>().canMove = true;
+        GetComponent<AIPath>().canMove = true;
     }
 
     private void FindWayToPlayer() // Поиск пути до игрока. Состояние - WaySearching
@@ -161,9 +149,45 @@ public class Enemy : MonoBehaviour
         //path.Scan();
     }
 
-    private void Pause()
+    public void Pause()
     {
         Debug.Log("Enemy Paused");
         GetComponent<Pathfinding.AIPath>().canMove = false;
+        
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
+    public AIDestinationSetter GetDestinationSetter()
+    {
+        return destinationSetter;
+    }
+
+    public void SetState(State state)
+    {
+        this.state = state;
+    }
+
+    public EnemyType GetEnemyType()
+    {
+        return EnemyType.DeepWaterer;
+    }
+
+    public void SetOnLight()
+    {
+        inLight = true;
+    }
+
+    public void SetOutOfLight()
+    {
+        inLight = false;
+    }
+
+    public State GetState()
+    {
+        return state;
     }
 }

@@ -10,7 +10,9 @@ public class EnemyManager : MonoBehaviour, Manager
     public Player _player;
     public AstarPath path;
 
-    public List<Enemy> _enemies;
+    public List<IEnemy> enemies;
+    public List<EnemyDeepWaterer> enemyDeepWaterers;
+    public List<EnemyStatue> enemyStatues;
 
     public HexagonsGenerator hexagonsGenerator;
 
@@ -22,13 +24,13 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         get
         {
-            if (_enemies.Count == 0)
+            if (enemies.Count == 0)
                 return -1; //in case of error
             
-            float minDist = Vector2.Distance(_enemies[0].transform.position,Player.Instance.transform.position);
-            for(int i = 1; i < _enemies.Count; i++)
+            float minDist = Vector2.Distance(enemies[0].GetTransform().position, Player.Instance.transform.position);
+            for(int i = 1; i < enemies.Count; i++)
             {
-                var curEnemyDist = Vector2.Distance(_enemies[i].transform.position,Player.Instance.transform.position);
+                var curEnemyDist = Vector2.Distance(enemies[i].GetTransform().position, Player.Instance.transform.position);
                 if (curEnemyDist < minDist)
                 {
                     minDist = curEnemyDist;
@@ -50,16 +52,17 @@ public class EnemyManager : MonoBehaviour, Manager
     private void Start()
     {
         hexagonsGenerator.MapIsCreate += OnMapCreated;
+        
 
     }
 
     private void OnMapCreated()
     {
         path.Scan();
-        foreach (Enemy enemy in _enemies)
+        foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
         {
             enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = FindObjectOfType<Player>().transform;
-            enemy.state = Enemy.States.Moving;
+            enemy.state = State.Moving;
             Debug.Log("onMapCreate");
         }
 
@@ -69,34 +72,15 @@ public class EnemyManager : MonoBehaviour, Manager
 
     void Update()
     {
-        foreach (var enemy in _enemies)
+        foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
         {
             if (Vector2.Distance(enemy.transform.position, enemy.destinationSetter.target.position) <0.5f)
             {
-                enemy.state = Enemy.States.Moving;
+                enemy.state = State.Moving;
                 enemy.escapePointCreated = false;
                 enemy.maneurPointCreated = false;
                 enemy.aiPath.maxSpeed = enemy.speed;
             }
-
-            /*if (!enemy.inLight)
-            {
-                enemy.time = Time.time;
-            }
-            else
-            {
-                if(Time.time - enemy.time > 3.0f)
-                {
-                    enemy.state = Enemy.States.Escaping;
-                }
-                else
-                {
-                    if (enemy.distanceToPlayer > enemy.eventHorizon)
-                    {
-                        enemy.state = Enemy.States.Maneuring;
-                    }
-                }
-            }*/
 
             if (enemy.inLight)
             {
@@ -104,13 +88,13 @@ public class EnemyManager : MonoBehaviour, Manager
                 {
                     if(Time.time - enemy.time > 3.0f)
                     {
-                        enemy.state = Enemy.States.Escaping;
+                        enemy.state = State.Escaping;
                     }
                     else
                     {
                         if (enemy.distanceToPlayer > enemy.eventHorizon)
                         {
-                            enemy.state = Enemy.States.Maneuring;
+                            enemy.state = State.Maneuring;
                         }
                     }
                 }
@@ -138,24 +122,37 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+        Debug.Log("EnemyManager Starting...");
         _player = Player.Instance;
+        enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
+        enemyStatues = new List<EnemyStatue>(FindObjectsOfType<EnemyStatue>());
+        enemies = new List<IEnemy>();
+        enemies.AddRange(FindObjectsOfType<EnemyDeepWaterer>());
+        enemies.AddRange(FindObjectsOfType<EnemyStatue>());
 
-        _enemies = new List<Enemy>(FindObjectsOfType<Enemy>());
-
-        foreach (Enemy enemy in _enemies)
+        foreach (IEnemy enemy in enemyDeepWaterers)
         {
             path.Scan();
-            enemy.state = Enemy.States.Moving;
+            switch (enemy.GetEnemyType())
+            {
+                case EnemyType.DeepWaterer:
+                    enemy.SetState(State.Moving);
+                    break;
+
+                case EnemyType.Statue:
+                    enemy.SetState(State.Waiting);
+                    break;
+            }
         }
-        
+        Debug.Log("EnemyManager Started");
     }
 
     public void PauseManager()
     {
         Debug.Log("Pause EnemyManager");
-        foreach (Enemy enemy in _enemies)
+        foreach (IEnemy enemy in enemies)
         {
-            enemy.state = Enemy.States.Paused;
+            enemy.SetState(State.Paused);
         }
     }
 
@@ -166,21 +163,20 @@ public class EnemyManager : MonoBehaviour, Manager
 
     private void UpdateEnemiesState()
     {
-        if (_player.transform.GetChild(0).GetComponent<Lamp>()._isFrying/*PlayerManager.Instance.ChangingState == 1*/)
-        {
+        
             foreach (var enemy in visibleEnemiesList)
             {
-                enemy.GetComponent<Enemy>().inLight = true;
+                enemy.GetComponent<EnemyDeepWaterer>().inLight = true;
             }
 
-            foreach (var enemy in _enemies)
+            foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
             {
                 if (!visibleEnemiesList.Contains(enemy.transform))
                 {
-                    enemy.GetComponent<Enemy>().inLight = false;
+                    enemy.GetComponent<EnemyDeepWaterer>().inLight = false;
                 }
             }
-        }
+        
     }
 }
 
