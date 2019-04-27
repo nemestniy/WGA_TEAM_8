@@ -43,16 +43,8 @@ public class MapManager : MonoBehaviour, Manager
         //
         //        _objectsGenerator.GenerateObjects();
         //        ObjectGenerated?.Invoke(); 
-        Debug.Log("MapManager Started");
     }
 
-    public void PauseManager()
-    {
-        
-    }
-
-    public void ResumeManager()
-    {
-        
-    }
+    public void PauseManager(){}
+    public void ResumeManager(){}
 }

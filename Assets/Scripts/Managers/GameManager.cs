@@ -7,14 +7,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour, Manager
 {
-    [Header("Managers:")]
-    [SerializeField]
+//    [Header("Managers:")]
+//    [SerializeField]
     private PlayerManager _playerManager;
-    [SerializeField]
+//    [SerializeField]
     private EnemyManager _enemyManager;
-    [SerializeField]
+//    [SerializeField]
     private MapManager _mapManager;
-    [SerializeField]
+//    [SerializeField]
     private AudioManager _audioManager;
     
     [Header("Cutscenes:")]
@@ -45,10 +45,6 @@ public class GameManager : MonoBehaviour, Manager
 
 
     public static GameManager Instance { get; private set; }
-    public PlayerManager PlayerManager => _playerManager;
-    public EnemyManager EnemyManager => _enemyManager;
-    public MapManager MapManager => _mapManager;
-    public AudioManager AudioManager => _audioManager;
 
     public bool IsLoaded { get; private set; }
 
@@ -66,8 +62,12 @@ public class GameManager : MonoBehaviour, Manager
 
     private void Start()
     {
-        StartManager();
+        ConnectManagers();
+        
+        _mapManager.StartManager();
         StartCoroutine(_startCutscene.Show( new Action(StartManager))); //show method gets delegate what to do after showing
+        
+        IsLoaded = true;
     }
 
     private void OnWin()
@@ -97,11 +97,9 @@ public class GameManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        _mapManager.StartManager();
         _audioManager.StartManager();
         _playerManager.StartManager();
         _enemyManager.StartManager();
-        IsLoaded = true;
     }
 
     public void PauseManager()
@@ -109,7 +107,6 @@ public class GameManager : MonoBehaviour, Manager
         _audioManager.PauseManager();
         _playerManager.PauseManager();
         _enemyManager.PauseManager();
-//      _mapManager.PauseManager();
     }
 
     public void ResumeManager()
@@ -117,7 +114,6 @@ public class GameManager : MonoBehaviour, Manager
         _audioManager.ResumeManager();
         _playerManager.ResumeManager();
 //      _enemyManager.ResumeEnemies();
-//      _mapManager.ResumeMap();
     }
     
     private IEnumerator CallWithDelay(float delay, Action method)
@@ -125,6 +121,14 @@ public class GameManager : MonoBehaviour, Manager
         yield return new WaitForSeconds(delay);
         method?.Invoke();
         yield return null;
+    }
+
+    private void ConnectManagers()
+    {
+        _playerManager = PlayerManager.Instance;
+        _enemyManager = EnemyManager.Instance;
+        _mapManager = MapManager.Instance;
+        _audioManager = AudioManager.Instance;
     }
 }
 

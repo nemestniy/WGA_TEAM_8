@@ -65,7 +65,7 @@ public class FieldOfView : MonoBehaviour
 		_viewMeshFilter.mesh = _viewMesh;
 		_energy =  GetComponentInParent<Energy>();
 
-		_enemyManager = GameManager.Instance.EnemyManager;
+		_enemyManager = EnemyManager.Instance;
 		_lampModes = Player.Instance.transform.GetChild(0).GetComponent<Lamp>()._lampModes;
 	}
 

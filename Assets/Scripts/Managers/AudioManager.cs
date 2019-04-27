@@ -14,10 +14,14 @@ public class AudioManager : MonoBehaviour, Manager
 //    [SerializeField] private List<SoundStatePair> _soundStates;
     
     private AudioSource _audioSource;
-    private bool _paused;
+    public bool Paused{ get; private set; }
 
     public static AudioManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
+    
+    public static event Action OnAudioStart;
+    public static event Action OnAudioPause;
+    public static event Action OnAudioResume;
     
     public AudioManager() : base()
     {
@@ -27,6 +31,7 @@ public class AudioManager : MonoBehaviour, Manager
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        Paused = true;
     }
     
     
@@ -58,7 +63,7 @@ public class AudioManager : MonoBehaviour, Manager
                 float timePassed = 0;
                 while (timePassed < _audioSource.clip.length)
                 {
-                    if (!_paused)
+                    if (!Paused)
                     {
                         timePassed += Time.deltaTime;
                     }
@@ -71,23 +76,24 @@ public class AudioManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-
         StartCoroutine(PlayBackgroundMusic(_backgroundMusic));
         IsLoaded = true;
-        _paused = false;
-        Debug.Log("AudioManager Started");
+        Paused = false;
+        OnAudioStart?.Invoke();
     }
 
     public void PauseManager()
     {
         _audioSource.Pause();
-        _paused = true;
+        Paused = true;
+        OnAudioPause?.Invoke();
     }
     
     public void ResumeManager()
     {
         _audioSource.UnPause();
-        _paused = false;
+        Paused = false;
+        OnAudioResume?.Invoke();
     }
     
     [Serializable]

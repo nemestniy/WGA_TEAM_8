@@ -52,8 +52,6 @@ public class EnemyManager : MonoBehaviour, Manager
     private void Start()
     {
         hexagonsGenerator.MapIsCreate += OnMapCreated;
-        
-
     }
 
     private void OnMapCreated()
@@ -122,7 +120,6 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        Debug.Log("EnemyManager Starting...");
         _player = Player.Instance;
         enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
         enemyStatues = new List<EnemyStatue>(FindObjectsOfType<EnemyStatue>());
@@ -144,12 +141,10 @@ public class EnemyManager : MonoBehaviour, Manager
                     break;
             }
         }
-        Debug.Log("EnemyManager Started");
     }
 
     public void PauseManager()
     {
-        Debug.Log("Pause EnemyManager");
         foreach (IEnemy enemy in enemies)
         {
             //enemy.SetState(State.Paused);

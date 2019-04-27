@@ -26,7 +26,13 @@ public class TransitionStateBehaviour : StateMachineBehaviour
         
         _lampsAudioSource = animator.GetComponent<AudioSource>();
         _lampsAudioSource.clip = _stateSound;
-        _lampsAudioSource.Play();
+        
+        AudioManager.OnAudioStart += StartSound;
+        AudioManager.OnAudioPause += PauseSound;
+        AudioManager.OnAudioResume += ResumeSound;
+        
+        if(!AudioManager.Instance.Paused)
+            _lampsAudioSource.Play();
     }
 
     protected void TransitionOnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
@@ -45,5 +51,21 @@ public class TransitionStateBehaviour : StateMachineBehaviour
     protected void TransitionOnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _lampsAudioSource.Stop();
+    }
+    
+    private void StartSound()
+    {
+        _lampsAudioSource.Play();
+    }
+    
+
+    private void PauseSound()
+    {
+        _lampsAudioSource.Pause();
+    }
+
+    private void ResumeSound()
+    {
+        _lampsAudioSource.UnPause();
     }
 }
