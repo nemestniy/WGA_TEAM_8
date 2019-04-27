@@ -117,25 +117,7 @@ public class FieldOfView : MonoBehaviour
 
 	private float timePast = 0;
 
-	private void FixedUpdate()
-	{
-		//light is not changing now
-		if (_changingState == 1)
-		{
-			if (timePast > _lampModes[_currentMode].costDelay)
-			{
-				_energy.ChangeEnergyLvl(-_lampModes[_currentMode].energyCost, 0); //affect by negative value of energy cost
-			}
-			else
-			{
-				timePast += Time.deltaTime;
-			}
-		}
-		else
-		{
-			timePast = 0;
-		}
-	}
+	
 
 	public void SetLightMode(int newMode, int prevMode, float changingState)
 	{
