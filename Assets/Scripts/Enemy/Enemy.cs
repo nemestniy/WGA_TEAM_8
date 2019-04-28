@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using Pathfinding;
 
-public class Enemy : MonoBehaviour, IEnemy
+public class Enemy : MonoBehaviour
 {
     public Player player;
     public AstarPath path;

@@ -20,15 +20,19 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         Instance = this;
     }
-    
+
+    private void Awake()
+    {
+        _isPaused = true;
+    }
+
     void Update()
     {
-        if (!_isPaused && _player != null)
-        {
+        if (_isPaused || _player == null)
+            return;
+        
             UpdatePlayerMovement();
-        }
-
-        UpdateLightMode();
+            UpdateLightMode();
     }
 
     private void UpdatePlayerMovement()

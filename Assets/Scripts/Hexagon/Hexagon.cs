@@ -313,11 +313,11 @@ public class Hexagon : MonoBehaviour
         var points = Enumerable.Range(0, 6).Select(a =>
                 transform.position +
                 _radius * 0.5f * new Vector3(Mathf.Sin(a * Mathf.PI / 3), Mathf.Cos(a * Mathf.PI / 3), 0))
-            .Select(a => GameManager.Instance.MapManager.Background.GetBiomeByPosition(a));
+            .Select(a => MapManager.Instance.Background.GetBiomeByPosition(a));
         cWatr = points.Count(a => a == BackgroundController.Biome.Water);
         cRock = points.Count(a => a == BackgroundController.Biome.Rocky);
         cSand = points.Count(a => a == BackgroundController.Biome.Sandy);
-        switch (GameManager.Instance.MapManager.Background.GetBiomeByPosition(transform.position))
+        switch (MapManager.Instance.Background.GetBiomeByPosition(transform.position))
         {
             case BackgroundController.Biome.Rocky:
                 cRock++;

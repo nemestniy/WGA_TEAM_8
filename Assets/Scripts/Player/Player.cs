@@ -8,6 +8,9 @@ public class Player: MonoBehaviour {
 
     [SerializeField]
     private float _speed;
+    
+    [SerializeField]
+    private float _normalAnimationSpeed;
 
     private Rigidbody2D _rigidbody;
     private Hexagon _currentHexagon;
@@ -95,6 +98,7 @@ public class Player: MonoBehaviour {
 
     public void Update()
     {
+        _animator.speed = _speed / _normalAnimationSpeed;
 //        Debug.Log(GameManager.Instance.MapManager.Background.GetBiomeByPosition(gameObject.transform.position));
     }
 }
