@@ -9,7 +9,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     public AstarPath path;
 
 
-    [ShowOnly] public State state;
+    [SerializeField] [ShowOnly] private State state;
     EnemySavedState savedState;
 
     public float speed;
@@ -46,13 +46,13 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         switch (state) // Действия моба в зависимости от состояния
         {
             case State.WaySearching:
-                FindWayToPlayer();
+                //
                 break;
             case State.Moving:
-                FollowPlayer();
+                Move();
                 break;
             case State.Hunting:
-                HuntPlayer();
+                //
                 break;
             case State.Escaping:
                 Escape();
@@ -76,11 +76,6 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         {
             OnTrigger?.Invoke();
         }
-    }
-
-    private void HuntPlayer() // Активное преследование игрока. Состояние - Hunting
-    {
-               
     }
 
     public void Escape() // Сбежать в ужасе. Состояние - Escaping (Потом переименовать метод в Escape)
@@ -134,25 +129,20 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
 
     
 
-    private void FollowPlayer() // Движение по вычисленному пути до игрока. Состояние - Moving
+    private void Move() // Движение по вычисленному пути до игрока. Состояние - Moving
     {
-        player = FindObjectOfType<Player>();
+        //player = FindObjectOfType<Player>();
 
         aiPath.maxSpeed = speed;
 
-        destinationSetter.target = player.transform;
+        //destinationSetter.target = player.transform;
         GetComponent<AIPath>().canMove = true;
-    }
-
-    private void FindWayToPlayer() // Поиск пути до игрока. Состояние - WaySearching
-    {
-        //path.Scan();
     }
 
     public void Pause()
     {
         Debug.Log("Enemy Paused");
-        GetComponent<Pathfinding.AIPath>().canMove = false;
+        GetComponent<AIPath>().canMove = false;
         
     }
 

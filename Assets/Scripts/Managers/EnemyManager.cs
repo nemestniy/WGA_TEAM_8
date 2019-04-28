@@ -10,15 +10,16 @@ public class EnemyManager : MonoBehaviour, Manager
     public Player _player;
     public AstarPath path;
 
-    public List<IEnemy> enemies;
-    public List<EnemyDeepWaterer> enemyDeepWaterers;
-    public List<EnemyStatue> enemyStatues;
+    [SerializeField] [ShowOnly] private List<IEnemy> enemies;
+    [SerializeField] [ShowOnly] private List<EnemyDeepWaterer> enemyDeepWaterers;
+    [SerializeField] [ShowOnly] private List<EnemyStatue> enemyStatues;
 
     public HexagonsGenerator hexagonsGenerator;
 
-    public List<Transform>visibleEnemiesList;
+    public List<Transform> visibleEnemiesList;
 
     private int framecount = 0;
+    private CommonUtils commonUtils;
 
     public float DistanceToClosestEnemy
     {
@@ -51,62 +52,90 @@ public class EnemyManager : MonoBehaviour, Manager
     
     private void Start()
     {
-        hexagonsGenerator.MapIsCreate += OnMapCreated;
+        //hexagonsGenerator.MapIsCreate += OnMapCreated;
+        enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
+        enemyStatues = new List<EnemyStatue>(FindObjectsOfType<EnemyStatue>());
+        enemies = new List<IEnemy>();
+        enemies.AddRange(FindObjectsOfType<EnemyDeepWaterer>());
+        enemies.AddRange(FindObjectsOfType<EnemyStatue>());
+
+        commonUtils = CommonUtils.Instance;
+        _player = Player.Instance;
     }
 
-    private void OnMapCreated()
+    /*private void OnMapCreated()
     {
+        Debug.Log("onMapCreate");
         path.Scan();
         foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
         {
-            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = FindObjectOfType<Player>().transform;
-            enemy.state = State.Moving;
-            Debug.Log("onMapCreate");
+            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.Instance.transform;
+            enemy.SetState(State.Moving);
+            
         }
 
         IsLoaded = true;
 
-    }
+    }*/
 
     void Update()
     {
-        foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
+        foreach (EnemyDeepWaterer deepWaterer in enemyDeepWaterers)
         {
-            if (Vector2.Distance(enemy.transform.position, enemy.destinationSetter.target.position) <0.5f)
+            if (deepWaterer.GetDestinationSetter().target != null && Vector2.Distance(deepWaterer.transform.position, deepWaterer.GetDestinationSetter().target.position) < 0.5f)
             {
-                enemy.state = State.Moving;
-                enemy.escapePointCreated = false;
-                enemy.maneurPointCreated = false;
-                enemy.aiPath.maxSpeed = enemy.speed;
+                deepWaterer.SetState(State.Moving);
+                deepWaterer.escapePointCreated = false;
+                deepWaterer.maneurPointCreated = false;
+                deepWaterer.aiPath.maxSpeed = deepWaterer.speed;
             }
 
-            if (enemy.inLight)
+            if (deepWaterer.inLight)
             {
                 if (_player.transform.GetChild(0).GetComponent<Lamp>()._isFrying)
                 {
-                    if(Time.time - enemy.time > 3.0f)
+                    if (Time.time - deepWaterer.time > 3.0f)
                     {
-                        enemy.state = State.Escaping;
+                        deepWaterer.SetState(State.Escaping);
                     }
                     else
                     {
-                        if (enemy.distanceToPlayer > enemy.eventHorizon)
+                        if (deepWaterer.distanceToPlayer > deepWaterer.eventHorizon)
                         {
-                            enemy.state = State.Maneuring;
+                            deepWaterer.SetState(State.Maneuring);
                         }
                     }
                 }
                 else
                 {
-                    enemy.time = Time.time;
+                    deepWaterer.time = Time.time;
                 }
             }
             else
             {
-                enemy.time = Time.time;
+                deepWaterer.time = Time.time;
             }
 
+        }
 
+        foreach (EnemyStatue statue in enemyStatues)
+        {
+            if (statue.GetState() == State.Waiting && !statue.inLight)
+            {
+                GameObject statueHex = commonUtils.GetHexagonByPoint(statue.transform.position);
+                GameObject playerHex = commonUtils.GetHexagonByPoint(_player.transform.position);
+                if (statueHex == playerHex && statueHex != null && playerHex != null)
+                {
+                    Debug.Log("Player near statue");
+                    statue.GetDestinationSetter().target = _player.transform;
+                    statue.SetState(State.Moving);
+                } 
+            }
+
+            if (statue.inLight)
+            {
+                statue.SetState(State.Waiting);
+            }
         }
 
         UpdateEnemiesState();
@@ -114,25 +143,24 @@ public class EnemyManager : MonoBehaviour, Manager
         if (framecount > 60)
         {
             path.Scan();
+            Debug.Log("Scanning...");
             framecount = 0;
         }
     }
 
     public void StartManager()
     {
-        _player = Player.Instance;
-        enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
-        enemyStatues = new List<EnemyStatue>(FindObjectsOfType<EnemyStatue>());
-        enemies = new List<IEnemy>();
-        enemies.AddRange(FindObjectsOfType<EnemyDeepWaterer>());
-        enemies.AddRange(FindObjectsOfType<EnemyStatue>());
+        path.Scan();
 
-        foreach (IEnemy enemy in enemyDeepWaterers)
+        CommonUtils.Instance.InitializeCommonUtils();
+
+        foreach (IEnemy enemy in enemies)
         {
             path.Scan();
             switch (enemy.GetEnemyType())
             {
                 case EnemyType.DeepWaterer:
+                    enemy.GetDestinationSetter().target = Player.Instance.transform;
                     enemy.SetState(State.Moving);
                     break;
 
@@ -141,6 +169,7 @@ public class EnemyManager : MonoBehaviour, Manager
                     break;
             }
         }
+        IsLoaded = true;
     }
 
     public void PauseManager()
@@ -159,18 +188,18 @@ public class EnemyManager : MonoBehaviour, Manager
     private void UpdateEnemiesState()
     {
         
-            foreach (var enemy in visibleEnemiesList)
-            {
-                enemy.GetComponent<EnemyDeepWaterer>().inLight = true;
-            }
+        foreach (Transform enemy in visibleEnemiesList)
+        {
+            enemy.gameObject.GetComponent<IEnemy>().SetOnLight();
+        }
 
-            foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
+        foreach (IEnemy enemy in enemies)
+        {
+            if (!visibleEnemiesList.Contains(enemy.GetTransform()))
             {
-                if (!visibleEnemiesList.Contains(enemy.transform))
-                {
-                    enemy.GetComponent<EnemyDeepWaterer>().inLight = false;
-                }
+                enemy.SetOutOfLight();
             }
+        }
         
     }
 }
