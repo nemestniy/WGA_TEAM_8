@@ -20,9 +20,15 @@ public class EnemyStatue : MonoBehaviour, IEnemy
     public float time;
     public bool inLight;
 
-    [ShowOnly] public State state;
+    [SerializeField] private State state;
 
     public float speed;
+
+    public delegate void OnTriggerAction();
+    public static event OnTriggerAction OnTrigger;
+
+    [HideInInspector] public delegate void EnemyEvents();
+    [HideInInspector] public event EnemyEvents Player_death;
 
     public void Start()
     {
@@ -30,17 +36,18 @@ public class EnemyStatue : MonoBehaviour, IEnemy
         destinationSetter = GetComponent<AIDestinationSetter>();
         aiPath = GetComponent<AIPath>();
         inLight = false;
+        GetComponent<AIPath>().canMove = false;
     }
 
     private void Update()
     {
         switch (state) // Действия моба в зависимости от состояния
         {
-            case State.WaySearching:
-                
+            case State.Waiting:
+                GetComponent<AIPath>().canMove = false;
                 break;
             case State.Moving:
-                
+                GetComponent<AIPath>().canMove = true;
                 break;
             case State.Hunting:
                 
@@ -55,39 +62,48 @@ public class EnemyStatue : MonoBehaviour, IEnemy
         distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            OnTrigger?.Invoke();
+        }
+    }
+
     public AIDestinationSetter GetDestinationSetter()
     {
-        throw new NotImplementedException();
+        return destinationSetter;
     }
 
     public EnemyType GetEnemyType()
     {
-        throw new NotImplementedException();
+        return EnemyType.Statue;
     }
 
     public State GetState()
     {
-        throw new NotImplementedException();
+        return state;
     }
 
     public Transform GetTransform()
     {
-        throw new NotImplementedException();
+        return transform;
     }
 
     public void SetOnLight()
     {
-        throw new NotImplementedException();
+        inLight = true;
     }
 
     public void SetOutOfLight()
     {
-        throw new NotImplementedException();
+        inLight = false;
     }
 
     public void SetState(State state)
     {
-        throw new NotImplementedException();
+        Debug.Log("Setting state");
+        this.state = state;
     }
     
 }

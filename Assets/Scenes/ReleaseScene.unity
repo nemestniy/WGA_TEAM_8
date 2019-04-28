@@ -846,18 +846,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9aba53270fe9fc4ab4f9211ad9c72fe, type: 3}
---- !u!114 &1796686016 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1844319208}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c14b9fa30f6d84419c390d4bcc46664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1831163176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -967,6 +955,46 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: path
+      value: 
+      objectReference: {fileID: 2106164595}
+    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: maneurAngle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: speedDecreaseCoefficient
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: speedIncreaseCoefficient
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: eventHorizon
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 441357655255495918, guid: 8b70fcb166b58014a9478b08650564dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1022,46 +1050,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
-        type: 3}
-      propertyPath: path
-      value: 
-      objectReference: {fileID: 2106164595}
-    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
-        type: 3}
-      propertyPath: speed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
-        type: 3}
-      propertyPath: maneurAngle
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
-        type: 3}
-      propertyPath: speedDecreaseCoefficient
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
-        type: 3}
-      propertyPath: speedIncreaseCoefficient
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
-        type: 3}
-      propertyPath: eventHorizon
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8914237606444993384, guid: 8b70fcb166b58014a9478b08650564dc,
         type: 3}
       propertyPath: target
@@ -1092,7 +1080,13 @@ PrefabInstance:
       propertyPath: eventHorizon
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 516967047146483248, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: state
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8b70fcb166b58014a9478b08650564dc, type: 3}
 --- !u!1001 &1938837079
 PrefabInstance:
@@ -1192,7 +1186,7 @@ Transform:
   m_Children:
   - {fileID: 1295579402}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2005225530
 PrefabInstance:
@@ -1283,7 +1277,7 @@ PrefabInstance:
         type: 3}
       propertyPath: enemyDeepWaterers.Array.data[0]
       value: 
-      objectReference: {fileID: 1796686016}
+      objectReference: {fileID: 0}
     - target: {fileID: 1489312117, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: RandomSeed
       value: 1302

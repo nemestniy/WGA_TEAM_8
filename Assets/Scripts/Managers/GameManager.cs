@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour, Manager
     {
         Well.OnTrigger += OnWin;
         Enemy.OnTrigger += OnDeathByEnemy;
+        EnemyDeepWaterer.OnTrigger += OnDeathByEnemy;
+        EnemyStatue.OnTrigger += OnDeathByEnemy;
         Energy.OnRanoutOfEnergy += OnDeathByRanoutOfEnergy;
     }
 
