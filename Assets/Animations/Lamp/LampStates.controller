@@ -109,7 +109,7 @@ MonoBehaviour:
   _currentModeNum: 0
   _energyCost: 0
   _costDelay: 0
-  _stateSound: {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
+  _stateSound: {fileID: 0}
 --- !u!114 &114341473242153396
 MonoBehaviour:
   m_ObjectHideFlags: 1

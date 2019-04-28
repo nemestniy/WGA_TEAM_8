@@ -12,6 +12,8 @@ public class AudioManager : MonoBehaviour, Manager
 
     [SerializeField] private List<SoundEventPair> _soundEvents;
 //    [SerializeField] private List<SoundStatePair> _soundStates;
+
+    
     
     private AudioSource _audioSource;
     public bool Paused{ get; private set; }
@@ -34,9 +36,11 @@ public class AudioManager : MonoBehaviour, Manager
         Paused = true;
     }
     
-    
     public void TriggerSoundEvent(string audioEventName)
     {
+        if (Paused)
+            return;
+        
         IEnumerable<SoundEventPair> calledSoundEvents = _soundEvents.Where(se => se.gameEvent.Equals(audioEventName));
         foreach (var soundEvent in calledSoundEvents)
         {

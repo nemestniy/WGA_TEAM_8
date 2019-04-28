@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 5894203408845879875}
   - component: {fileID: 1016308930}
   - component: {fileID: 398690655}
+  - component: {fileID: 676225781}
   m_Layer: 8
   m_Name: Player_cultist
   m_TagString: Player
@@ -261,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5.5
+  _normalAnimationSpeed: 5.5
 --- !u!114 &5894203408845879875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +395,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &676225781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759250699673190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f71f9ad60cd6a42a219f2ee160ade6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stepsRock:
+  - {fileID: 8300000, guid: 57d922400b4f72d4d92484f46da57de2, type: 3}
+  - {fileID: 8300000, guid: 7523404eb0640414095b11d2db24e2fc, type: 3}
+  - {fileID: 8300000, guid: 8cf8f9589bda2474b9b882de268c64b1, type: 3}
+  - {fileID: 8300000, guid: 28563d2aa39bf214c9d7c6a73ca99d9c, type: 3}
+  _stepsWater:
+  - {fileID: 8300000, guid: 5a74637362cfe0744b60a902e3923c9e, type: 3}
+  - {fileID: 8300000, guid: b9bcb1c1b2378414e8d9b4833659721b, type: 3}
+  - {fileID: 8300000, guid: a84af45de6bb4e545b6a9208622d811b, type: 3}
+  _stepsSand: []
+  volLowRange: 0.5
+  volHighRange: 1
 --- !u!1 &1428875428254133807
 GameObject:
   m_ObjectHideFlags: 0
