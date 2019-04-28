@@ -13,6 +13,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     EnemySavedState savedState;
 
     public float speed;
+    public float _normalAnimationSpeed;
     
     public float maneurAngle;
     public float speedIncreaseCoefficient;
@@ -62,6 +63,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
                 break;
         }
         distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
+        
     }
 
     

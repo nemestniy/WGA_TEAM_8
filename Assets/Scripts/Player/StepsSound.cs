@@ -18,11 +18,13 @@ public class StepsSound : MonoBehaviour
     private float volHighRange = 1.0f;
 
     private AudioSource _audioSource;
-    private MapManager _mapManager = MapManager.Instance;
-    private System.Random rnd = new System.Random();
+    private MapManager _mapManager;
+    private System.Random rnd;
         
     private void Awake()
     {
+        _mapManager = MapManager.Instance;
+        rnd = new System.Random();
         _audioSource = GetComponent<AudioSource>();
     }
 
