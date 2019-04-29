@@ -31,6 +31,15 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     public bool inLight;
     [HideInInspector] public bool escapePointCreated;
     [HideInInspector] public bool maneurPointCreated;
+    
+    
+    private Animator animator;
+    private static readonly int IsRunning = Animator.StringToHash("IsRunning");
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void Start()
     {
@@ -129,12 +138,22 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         }
     }
 
-    
+    public void StartAnimation()
+    {
+        if(animator != null)
+            animator.SetBool(IsRunning, true);
+    }
+
+    public void StopAnimation()
+    {
+        if(animator != null)
+            animator.SetBool(IsRunning, false);
+    }
 
     private void Move() // Движение по вычисленному пути до игрока. Состояние - Moving
     {
         //player = FindObjectOfType<Player>();
-
+        StartAnimation();
         aiPath.maxSpeed = speed;
 
         //destinationSetter.target = player.transform;
@@ -143,6 +162,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
 
     public void Pause()
     {
+        StopAnimation();
         Debug.Log("Enemy Paused");
         GetComponent<AIPath>().canMove = false;
         

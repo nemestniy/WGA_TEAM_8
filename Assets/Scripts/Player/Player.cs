@@ -16,7 +16,8 @@ public class Player: MonoBehaviour {
     private Hexagon _currentHexagon;
     private Hexagon _lastHexagon;
     private Animator _animator;
-    
+    private static readonly int PlayerGo = Animator.StringToHash("PlayerGo");
+
     public static Player Instance { get; private set; }
     
     public Player() : base()
@@ -87,13 +88,13 @@ public class Player: MonoBehaviour {
     public void StartAnimation()
     {
         if(_animator != null)
-            _animator.SetBool("PlayerGo", true);
+            _animator.SetBool(PlayerGo, true);
     }
 
     public void StopAnimation()
     {
         if(_animator != null)
-            _animator.SetBool("PlayerGo", false);
+            _animator.SetBool(PlayerGo, false);
     }
 
     public void Update()
