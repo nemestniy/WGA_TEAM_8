@@ -36,6 +36,11 @@ public class EnergyAffecter : MonoBehaviour
         {
             other.GetComponent<Energy>().ChangeEnergyLvl(_changeValue,_blockEnergyChanges);
             _isReloading = true;
+            var particlesController = GetComponentInChildren<KrevedkoController>();
+            if (particlesController != null)
+            {
+                particlesController.Collect(other.gameObject);
+            }
         }
     }
 }
