@@ -396,5 +396,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _changeValue: -60
-  _blockEnergyChanges: 1
+  _timeToAffect: 0
   _reloadingTime: 3

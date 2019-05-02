@@ -39,9 +39,12 @@ public class LampStateBahaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if(_costDelay == 0)
+            return;
+        
         if (_timePast > _costDelay)
         {
-            _playersEnergy.ChangeEnergyLvl(-_energyCost, 0); //affect by negative value of energy cost
+            _playersEnergy.ChangeEnergyLvl(-_energyCost); //affect by negative value of energy cost
         }
         else
         {

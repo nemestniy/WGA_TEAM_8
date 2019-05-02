@@ -7,7 +7,7 @@ public class EnergyAffecter : MonoBehaviour
     [SerializeField]
     private float _changeValue = 50;
     [SerializeField] 
-    private float _blockEnergyChanges = 1;
+    private float _timeToAffect = 1;
     [SerializeField] 
     private float _reloadingTime;
 
@@ -30,13 +30,11 @@ public class EnergyAffecter : MonoBehaviour
         }
     }
     
-    private static readonly int GotDamage = Animator.StringToHash("GotDamage");
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player") && !_isReloading)
         {
-            other.GetComponent<Energy>().ChangeEnergyLvl(_changeValue,_blockEnergyChanges);
+            other.GetComponent<Energy>().ChangeEnergyLvl(_changeValue, _timeToAffect);
             _isReloading = true;
             var particlesController = GetComponentInChildren<KrevedkoController>();
             if (particlesController != null)

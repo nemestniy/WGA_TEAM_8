@@ -1,22 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography;
+using UnityEngine;
 
 public class Energy : MonoBehaviour
 {
     [SerializeField]
     private float _startingEnergy = 100;
-
     [SerializeField]
     private float _maxEnergy = 100;
     [SerializeField]
     private float _minEnergy = 0;
     [ShowOnly, SerializeField] 
     private float _currentEnergy;
+    [SerializeField]
+    private bool _constantEnergy;
 
-    private float _blockTimeLeft = 0;
     private bool _isOnMinEnergy;
+    private List<EnergyAffecter> _energyAffecters = new List<EnergyAffecter>();
     
 
-    [SerializeField] private bool _constantEnergy;
 
     public float CurrentEnergyLvl => _currentEnergy / _maxEnergy;
     
@@ -28,31 +30,59 @@ public class Energy : MonoBehaviour
         _currentEnergy = _startingEnergy;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        _blockTimeLeft =  (_blockTimeLeft - Time.deltaTime > 0) ? _blockTimeLeft - Time.deltaTime : 0; //decrease _blockTimeLeft every frame but not lower then 0
-    }
 
-    public void ChangeEnergyLvl(float amount, float blockTime)
-    {
-        if (!_constantEnergy && _blockTimeLeft == 0)
+        foreach (var affecter in _energyAffecters)
         {
-            _currentEnergy = Mathf.Clamp(_currentEnergy + amount, _minEnergy, _maxEnergy);
-
-            if (_currentEnergy == _minEnergy)
+            float frameChange;
+            if (affecter.timeToAffect == 0)
             {
-                if (!_isOnMinEnergy)
-                {
-                    OnRanoutOfEnergy?.Invoke();
-                    _isOnMinEnergy = true;
-                }
+                frameChange = affecter.amount; //to change energy lvl instantly
             }
             else
             {
-                _isOnMinEnergy = false;
+                frameChange = affecter.amount * (Time.deltaTime / affecter.timeToAffect); //compute amount of energy lvl changing for this frame
+                affecter.timeLeft -= Time.deltaTime;
             }
-            
-            _blockTimeLeft = blockTime; //block all energy changes for blockTime
+            _currentEnergy = Mathf.Clamp(_currentEnergy + frameChange, _minEnergy, _maxEnergy); //apply energy changing in for this frame
+        }
+
+        _energyAffecters.RemoveAll(e => e.timeLeft <= 0); //delete all consumed energy changers 
+
+        if (_currentEnergy == _minEnergy)
+        {
+            if (!_isOnMinEnergy)
+            {
+                OnRanoutOfEnergy?.Invoke();
+                _isOnMinEnergy = true;
+            }
+        }
+        else
+        {
+            _isOnMinEnergy = false;
+        }
+    }
+
+    public void ChangeEnergyLvl(float amount, float timeToChange = 0)
+    {
+        if (_constantEnergy)
+            return;
+        
+        _energyAffecters.Add(new EnergyAffecter(amount, timeToChange));
+    }
+    
+    public class EnergyAffecter
+    {
+        public float amount;
+        public float timeToAffect;
+        public float timeLeft;
+
+        public EnergyAffecter(float amount, float timeToAffect)
+        {
+            this.amount = amount;
+            this.timeToAffect = timeToAffect;
+            this.timeLeft = timeToAffect;
         }
     }
 }
