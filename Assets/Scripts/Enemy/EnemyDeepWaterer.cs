@@ -35,6 +35,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     
     private Animator animator;
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
+    private static readonly int GotDamage = Animator.StringToHash("GotDamage");
 
     private void Awake()
     {
@@ -85,7 +86,8 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            OnTrigger?.Invoke();
+            other.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
+//            OnTrigger?.Invoke();
         }
     }
 

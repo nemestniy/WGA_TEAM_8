@@ -20,7 +20,7 @@ public class LampStateBahaviour : StateMachineBehaviour
     private float _timePast = 0;
     private Energy _playersEnergy;
     
-    protected void LampOnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         //1 means mode is not changing
         Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(_currentModeNum,_currentModeNum,1); 
@@ -37,7 +37,7 @@ public class LampStateBahaviour : StateMachineBehaviour
             _lampsAudioSource.Play();
     }
 
-    protected void LampOnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (_timePast > _costDelay)
         {
@@ -49,7 +49,7 @@ public class LampStateBahaviour : StateMachineBehaviour
         }
     }
 
-    protected void LampOnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _lampsAudioSource.Stop();
     }

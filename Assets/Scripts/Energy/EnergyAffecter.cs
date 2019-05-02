@@ -29,6 +29,8 @@ public class EnergyAffecter : MonoBehaviour
             }
         }
     }
+    
+    private static readonly int GotDamage = Animator.StringToHash("GotDamage");
 
     private void OnTriggerEnter2D(Collider2D other)
     {

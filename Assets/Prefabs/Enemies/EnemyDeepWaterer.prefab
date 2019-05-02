@@ -18,6 +18,9 @@ GameObject:
   - component: {fileID: 8914237606444993386}
   - component: {fileID: 2104192028848696225}
   - component: {fileID: 969946463}
+  - component: {fileID: 1462112169}
+  - component: {fileID: 1773624129}
+  - component: {fileID: 1773624128}
   m_Layer: 9
   m_Name: EnemyDeepWaterer
   m_TagString: Untagged
@@ -138,12 +141,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   path: {fileID: 0}
-  state: 0
-  speed: 0
-  maneurAngle: 0
-  speedIncreaseCoefficient: 0
+  state: 2
+  speed: 3
+  _normalAnimationSpeed: 0
+  maneurAngle: 20
+  speedIncreaseCoefficient: 3
   distanceToPlayer: 0
-  eventHorizon: 0
+  eventHorizon: 10
   destinationSetter: {fileID: 0}
   aiPath: {fileID: 0}
   time: 0
@@ -343,3 +347,54 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1462112169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8914237606444993381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25f71f9ad60cd6a42a219f2ee160ade6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stepsRock:
+  - {fileID: 8300000, guid: 8cf8f9589bda2474b9b882de268c64b1, type: 3}
+  _stepsWater:
+  - {fileID: 8300000, guid: 7523404eb0640414095b11d2db24e2fc, type: 3}
+  _stepsSand:
+  - {fileID: 8300000, guid: 57d922400b4f72d4d92484f46da57de2, type: 3}
+  volLowRange: 0.5
+  volHighRange: 1
+--- !u!58 &1773624129
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8914237606444993381}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.395
+--- !u!114 &1773624128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8914237606444993381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2712ee23dbc2a9946bd73982c35fc7ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _changeValue: -60
+  _blockEnergyChanges: 1
+  _reloadingTime: 3

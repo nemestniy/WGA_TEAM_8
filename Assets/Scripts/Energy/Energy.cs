@@ -13,6 +13,7 @@ public class Energy : MonoBehaviour
     private float _currentEnergy;
 
     private float _blockTimeLeft = 0;
+    private bool _isOnMinEnergy;
     
 
     [SerializeField] private bool _constantEnergy;
@@ -40,9 +41,16 @@ public class Energy : MonoBehaviour
 
             if (_currentEnergy == _minEnergy)
             {
-                OnRanoutOfEnergy?.Invoke();
+                if (!_isOnMinEnergy)
+                {
+                    OnRanoutOfEnergy?.Invoke();
+                    _isOnMinEnergy = true;
+                }
             }
-
+            else
+            {
+                _isOnMinEnergy = false;
+            }
             
             _blockTimeLeft = blockTime; //block all energy changes for blockTime
         }

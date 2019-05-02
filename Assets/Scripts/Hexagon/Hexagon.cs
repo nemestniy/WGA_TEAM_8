@@ -12,7 +12,8 @@ public class Hexagon : MonoBehaviour
 {
     private Wall[] _walls;
     private List<Vector2> _directions;
-    private float _radius;
+    public float ExternalRadius { get; private set; } //radius from centre to vertex
+    public float InternalRadius { get; private set; } //radius from centre to wall
     private PolygonCollider2D _collider;
     private SpriteRenderer _spriteRenderer;
 
@@ -32,10 +33,6 @@ public class Hexagon : MonoBehaviour
 
     public static event Action OnWallsChange;
 
-    public float GetRadius()
-    {
-        return _radius;
-    }
 
 
     //Initialization of all components
@@ -48,7 +45,8 @@ public class Hexagon : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
         var sprite = _spriteRenderer.sprite;
-        _radius = (sprite.rect.width * transform.localScale.x) / (2 * sprite.pixelsPerUnit);
+        ExternalRadius = (sprite.rect.width * transform.localScale.x) / (2 * sprite.pixelsPerUnit);
+        InternalRadius = (sprite.rect.height * transform.localScale.x) / (2 * sprite.pixelsPerUnit);
 
         //Getting control of hexagonCollider
         _collider = GetComponent<PolygonCollider2D>();
@@ -95,11 +93,11 @@ public class Hexagon : MonoBehaviour
             //Get wall and check neighbor
             foreach (Wall wall in _walls)
             {
-                if (wall.GetNeighbor(_radius * Mathf.Sqrt(3)) == null)
+                if (wall.GetNeighbor(ExternalRadius * Mathf.Sqrt(3)) == null)
                 {
                     // if neighbor is no, generate new neighbor
                     var hexagon = Instantiate(gameObject,
-                        wall.GetDirection() * (Mathf.Sqrt(3) * _radius) + (Vector2) transform.position,
+                        wall.GetDirection() * (Mathf.Sqrt(3) * ExternalRadius) + (Vector2) transform.position,
                         Quaternion.identity) as GameObject;
                     if (transform.parent != null)
                         hexagon.transform.parent = transform.parent;
@@ -115,7 +113,7 @@ public class Hexagon : MonoBehaviour
         {
             foreach (Wall wall in _walls)
             {
-                var neighbor = wall.GetNeighbor(_radius * Mathf.Sqrt(3));
+                var neighbor = wall.GetNeighbor(ExternalRadius * Mathf.Sqrt(3));
                 if (neighbor != null)
                 {
                     _neighbors.Add(neighbor.parent);
@@ -132,7 +130,7 @@ public class Hexagon : MonoBehaviour
 
     public Hexagon GetWallNeighbor(Wall wall)
     {
-        var neighbor = wall.GetNeighbor(_radius * Mathf.Sqrt(3));
+        var neighbor = wall.GetNeighbor(ExternalRadius * Mathf.Sqrt(3));
         if (neighbor != null)
         {
             var nHex = neighbor.GetComponent<Hexagon>();
@@ -202,7 +200,7 @@ public class Hexagon : MonoBehaviour
         {
 
             var number = UnityEngine.Random.Range(0, _walls.Length);
-            var neighbor = _walls[number].GetNeighbor(_radius * Mathf.Sqrt(3));
+            var neighbor = _walls[number].GetNeighbor(ExternalRadius * Mathf.Sqrt(3));
 
             if (_walls[number].IsActive() && !_walls[number].IsBorder())
                 _walls[number].Disable();
@@ -234,8 +232,8 @@ public class Hexagon : MonoBehaviour
         do
         {
             check = false;
-            place = new Vector2(UnityEngine.Random.Range(-_radius, _radius) + transform.position.x,
-                UnityEngine.Random.Range(-_radius, _radius) + transform.position.y);
+            place = new Vector2(UnityEngine.Random.Range(-ExternalRadius, ExternalRadius) + transform.position.x,
+                UnityEngine.Random.Range(-ExternalRadius, ExternalRadius) + transform.position.y);
             if (_lastObject != null && Vector2.Distance(place, _lastObject.transform.position) < distance)
             {
                 //If there are one or more colliders with tag furniture, finding new random position for furniture
@@ -312,7 +310,7 @@ public class Hexagon : MonoBehaviour
         int cWatr = 0, cRock = 0, cSand = 0;
         var points = Enumerable.Range(0, 6).Select(a =>
                 transform.position +
-                _radius * 0.5f * new Vector3(Mathf.Sin(a * Mathf.PI / 3), Mathf.Cos(a * Mathf.PI / 3), 0))
+                ExternalRadius * 0.5f * new Vector3(Mathf.Sin(a * Mathf.PI / 3), Mathf.Cos(a * Mathf.PI / 3), 0))
             .Select(a => MapManager.Instance.Background.GetBiomeByPosition(a));
         cWatr = points.Count(a => a == BackgroundController.Biome.Water);
         cRock = points.Count(a => a == BackgroundController.Biome.Rocky);
@@ -415,12 +413,12 @@ public class Hexagon : MonoBehaviour
         foreach (var o in Objects.Where(o => o != obj))
         {
             var l = (obj.transform.position - o.transform.position);
-            var distMod = (o.transform.position - this.transform.position).magnitude / _radius;
+            var distMod = (o.transform.position - this.transform.position).magnitude / ExternalRadius;
             res += l / l.sqrMagnitude;
         }
 
 //        Debug.Log(res);
-        obj.transform.position += res * 2 /*Mathf.Sqrt(pos.magnitude / _radius)*/ / Mathf.Pow(sizeMod, 1);
+        obj.transform.position += res * 2 /*Mathf.Sqrt(pos.magnitude / ExternalRadius)*/ / Mathf.Pow(sizeMod, 1);
 
     }
 
@@ -429,7 +427,7 @@ public class Hexagon : MonoBehaviour
         try
         {
             var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
-                transform.position /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.1f)*/);
+                transform.position /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * ExternalRadius * 0.1f)*/);
             obj.transform.SetParent(this.transform);
             Objects.Add(obj);
         }
@@ -442,11 +440,11 @@ public class Hexagon : MonoBehaviour
     {
         try
         {
-            var v1 = UnityEngine.Random.onUnitSphere * _radius * 0.4f;
+            var v1 = UnityEngine.Random.onUnitSphere * ExternalRadius * 0.4f;
             v1.z = 0;
             v1.Normalize();
             var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
-                transform.position + v1 /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * _radius * 0.1f)*/);
+                transform.position + v1 /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * ExternalRadius * 0.1f)*/);
             obj.transform.SetParent(this.transform);
             Objects.Add(obj);
         }
@@ -460,7 +458,7 @@ public class Hexagon : MonoBehaviour
         try
         {
             var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
-                transform.position + (Vector3) (UnityEngine.Random.insideUnitCircle * _radius * 0.65f));
+                transform.position + (Vector3) (UnityEngine.Random.insideUnitCircle * ExternalRadius * 0.65f));
             obj.transform.SetParent(this.transform);
             Objects.Add(obj);
         }
@@ -482,7 +480,7 @@ public class Hexagon : MonoBehaviour
         {
             foreach (Wall wall in _walls)
             {
-                var neighbor = wall.GetNeighbor(_radius * Mathf.Sqrt(3));
+                var neighbor = wall.GetNeighbor(ExternalRadius * Mathf.Sqrt(3));
                 if (neighbor == null)
                 {
                     wall.SetBorder();
