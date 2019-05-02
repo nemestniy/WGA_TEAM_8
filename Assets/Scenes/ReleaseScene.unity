@@ -246,49 +246,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _preDeathEnergyLvl
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _constantEnergy
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1870450996, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
-      propertyPath: _lampModes.Array.data[1].costDelay
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4491154825047750830, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _obstacleMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 4491154825047750830, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _changingDuration
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2775123204934403414, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: _obstacleMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 5842483332482770170, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 16183
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170383091770925897, guid: 19fbb88713593b540ab908288fd03a98,
-        type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 16183
-      objectReference: {fileID: 0}
-    - target: {fileID: 398690655, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
-      propertyPath: Mute
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
 --- !u!224 &363236574 stripped
@@ -547,51 +504,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 196700949}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1221767172
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1221767174}
-  - component: {fileID: 1221767173}
-  m_Layer: 0
-  m_Name: CommonUtils
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1221767173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1221767172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bf8b0b31b36d6b48b3a089ed4add527, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hexagons: {fileID: 1962099886}
-  hexagonsArraylist: []
---- !u!4 &1221767174
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1221767172}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.511505, y: -25.271404, z: -0.49027258}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1289207891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,6 +1028,11 @@ PrefabInstance:
       propertyPath: state
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8914237606444993384, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1105725831}
     - target: {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc,
         type: 3}
       propertyPath: path
@@ -1156,11 +1073,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8914237606444993384, guid: 8b70fcb166b58014a9478b08650564dc,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1105725831}
     m_RemovedComponents:
     - {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8b70fcb166b58014a9478b08650564dc, type: 3}
