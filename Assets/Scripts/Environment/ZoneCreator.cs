@@ -60,7 +60,7 @@ public class ZoneCreator : MonoBehaviour
 
         foreach (var zone in _zones)
         {
-            List<Wall> _borderWalls = new List<Wall>();
+            List<Wall> borderWalls = new List<Wall>();
             var borderHexes = GetBorderHexes(zone);
             foreach (var hex in borderHexes)
             {
@@ -79,7 +79,7 @@ public class ZoneCreator : MonoBehaviour
                             {
                                 wall.SetBorder();
                                 //wall.ChangeColor(zone.GetColor());
-                                _borderWalls.Add(wall);
+                                borderWalls.Add(wall);
                             }
                         }
                     }
@@ -92,7 +92,7 @@ public class ZoneCreator : MonoBehaviour
                             {
                                 wall.SetBorder();
                                 //wall.ChangeColor(zone.GetColor());
-                                _borderWalls.Add(wall);
+                                borderWalls.Add(wall);
                             }
                         }
                     }
@@ -119,16 +119,15 @@ public class ZoneCreator : MonoBehaviour
                 //    borderWall.SetBorder();
                 //}
             }
-
-            //MakePass(_borderWalls, zone);
-            var activeWall = _borderWalls[Random.Range(1, _borderWalls.Count - 1)];
+            MakePass(borderWalls);
+            /*var activeWall = _borderWalls[Random.Range(1, _borderWalls.Count - 1)];
             activeWall.Disable();
             var wallUnderActiveWall = activeWall.GetWallUnderMe();
             if (wallUnderActiveWall != null)
             {
                 wallUnderActiveWall.gameObject.SetActive(false);
                 Destroy(wallUnderActiveWall.gameObject);
-            }
+            }*/
 
 
 
@@ -147,29 +146,34 @@ public class ZoneCreator : MonoBehaviour
         //}
     }
 
-    /*private void MakePass(List<Wall> walls, Zone zoneInside)
+    private void MakePass(List<Wall> walls)
     {
-        int wallsCount = 0;
         var borderZones = new List<Zone>();
-        borderZones.Add(walls[0].GetHexagonNeighbor().GetZone());
-        borderZones.Add(zoneInside);
-        foreach (Wall wall in walls)
+        if (walls != null)
         {
-            var zone = wall.GetHexagonNeighbor().GetZone();
-            
-            if (!borderZones.Contains(zone))                    //Раскидать граничащие стенки по отдельным листам 
+            foreach (Wall wall in walls)
             {
-                Debug.Log("zone - " + zone.GetColor() + "    index - " + walls.IndexOf(wall));
-                borderZones.Add(zone);
-                int indexOfWall = walls.IndexOf(wall);
-                OpenPass(walls[Random.Range(wallsCount, indexOfWall)]);
-                wallsCount = indexOfWall;
-            }       
+                var neighborHex = wall.GetHexagonNeighbor();
+                if (neighborHex != null)
+                {
+                    var zone = neighborHex.GetZone();
+                    if (!borderZones.Contains(zone))
+                        borderZones.Add(zone);
+                }
+            }
+
+            foreach (Zone zone in borderZones)
+            {
+                var borderWall = walls.FirstOrDefault(h => h.GetNeighborZone() == zone);
+                if (borderWall != null)
+                    OpenPass(borderWall);
+            }
         }
     }
 
     private void OpenPass(Wall activeWall)
     {
+        Debug.Log("OpenPass");
         activeWall.Disable();
         var wallUnderActiveWall = activeWall.GetWallUnderMe();
         if (wallUnderActiveWall != null)
@@ -177,7 +181,7 @@ public class ZoneCreator : MonoBehaviour
             wallUnderActiveWall.gameObject.SetActive(false);
             Destroy(wallUnderActiveWall.gameObject);
         }
-    }*/
+    }
 
     private Hexagon GetRandomNeighbor(List<Transform> neighborsTransforms, Color currentZone)
     {

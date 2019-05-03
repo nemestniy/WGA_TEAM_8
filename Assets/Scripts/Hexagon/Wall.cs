@@ -81,5 +81,23 @@ public class Wall : MonoBehaviour
     {
         return _isBorder;
     }
+
+    public Hexagon GetHexagon()
+    {
+        return transform.parent.GetComponent<Hexagon>();
+    }
+
+    public Hexagon GetHexagonNeighbor()
+    {
+        return GetHexagon().GetWallNeighbor(this);
+    }
+
+    public Zone GetNeighborZone()
+    {
+        var neighborHex = GetHexagonNeighbor();
+        if (neighborHex != null)
+            return neighborHex.GetZone();
+        else return null;
+    }
 }
 
