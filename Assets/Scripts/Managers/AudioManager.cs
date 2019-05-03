@@ -1,18 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour, Manager
 {
     
     [SerializeField]
-    private List<AudioClip> _audioClips;
+    private List<AudioClip> _backgroundMusic;
+
+    [SerializeField] private List<SoundEventPair> _soundEvents;
+//    [SerializeField] private List<SoundStatePair> _soundStates;
+
+    
     
     private AudioSource _audioSource;
-    private bool _paused;
+    public bool Paused{ get; private set; }
 
     public static AudioManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
+    
+    public static event Action OnAudioStart;
+    public static event Action OnAudioPause;
+    public static event Action OnAudioResume;
     
     public AudioManager() : base()
     {
@@ -22,21 +33,41 @@ public class AudioManager : MonoBehaviour, Manager
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+        Paused = true;
     }
+    
+    public void TriggerSoundEvent(string audioEventName)
+    {
+        if (Paused)
+            return;
+        
+        IEnumerable<SoundEventPair> calledSoundEvents = _soundEvents.Where(se => se.gameEvent.Equals(audioEventName));
+        foreach (var soundEvent in calledSoundEvents)
+        {
+            _audioSource.PlayOneShot(soundEvent.audioEvent.sound, soundEvent.audioEvent.volume);
+        }
+    }
+    
     
     private IEnumerator PlayBackgroundMusic(List<AudioClip> audioClips)
     {
         while (true)
         {
+            if (audioClips.Count == 0) //in case of audioClips list is empty
+                yield return null;
+            
             foreach (var clip in audioClips)
             {
+                if(clip.length == 0) //in case of clips length is 0
+                    yield return null;
+                
                 _audioSource.clip = clip;
                 _audioSource.Play();
                 
                 float timePassed = 0;
                 while (timePassed < _audioSource.clip.length)
                 {
-                    if (!_paused)
+                    if (!Paused)
                     {
                         timePassed += Time.deltaTime;
                     }
@@ -49,20 +80,51 @@ public class AudioManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        StartCoroutine(PlayBackgroundMusic(_audioClips));
+        StartCoroutine(PlayBackgroundMusic(_backgroundMusic));
         IsLoaded = true;
-        _paused = false;
+        Paused = false;
+        OnAudioStart?.Invoke();
     }
 
     public void PauseManager()
     {
         _audioSource.Pause();
-        _paused = true;
+        Paused = true;
+        OnAudioPause?.Invoke();
     }
     
     public void ResumeManager()
     {
         _audioSource.UnPause();
-        _paused = false;
+        Paused = false;
+        OnAudioResume?.Invoke();
+    }
+    
+    [Serializable]
+    public struct SoundEventPair
+    {
+        public string gameEvent;
+        public AudioEvent audioEvent;
+    }
+    
+    [Serializable]
+    public struct AudioEvent
+    {
+        public AudioClip sound;
+        public float volume;
+    }
+    
+    [Serializable]
+    public struct SoundStatePair
+    {
+        public string gameState;
+        public AudioEvent audioEvent;
+    }
+    
+    [Serializable]
+    public struct AudioState
+    {
+        public AudioClip sound;
+        public float volume;
     }
 }

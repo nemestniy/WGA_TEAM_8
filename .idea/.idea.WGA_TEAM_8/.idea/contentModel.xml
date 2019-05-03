@@ -234,6 +234,7 @@
           <e p="Energy" t="Include">
             <e p="Energy.cs" t="Include" />
             <e p="EnergyAffecter.cs" t="Include" />
+            <e p="EnergySource.cs" t="Include" />
           </e>
           <e p="Environment" t="Include">
             <e p="BackgroundController.cs" t="Include" />
@@ -256,6 +257,28 @@
             <e p="KeyController.cs" t="Include" />
             <e p="MoveController.cs" t="Include" />
           </e>
+          <e p="LampStatesBehaviour" t="Include">
+            <e p="States" t="Include">
+              <e p="BaseBehaviour.cs" t="Include" />
+              <e p="CombatBehaviour.cs" t="Include" />
+              <e p="DeathBehaviour.cs" t="Include" />
+              <e p="DetectiveBehaviour.cs" t="Include" />
+            </e>
+            <e p="Transitions" t="Include">
+              <e p="BaseToCombatBehaviour.cs" t="Include" />
+              <e p="BaseToDeathBehaviour.cs" t="Include" />
+              <e p="BaseToDetectiveBehaviour.cs" t="Include" />
+              <e p="CombatToBaseBehaviour.cs" t="Include" />
+              <e p="CombatToDeathBehaviour.cs" t="Include" />
+              <e p="CombatToDetectiveBehaviour.cs" t="Include" />
+              <e p="DeathToBaseBehaviour.cs" t="Include" />
+              <e p="DeathToCombatBehaviour.cs" t="Include" />
+              <e p="DeathToDetectiveBehaviour.cs" t="Include" />
+              <e p="DetectiveToBaseBehaviour.cs" t="Include" />
+              <e p="DetectiveToCombatBehaviour.cs" t="Include" />
+              <e p="DetectiveToDeathBehaviour.cs" t="Include" />
+            </e>
+          </e>
           <e p="LevelManager" t="Include">
             <e p="DebugLoadLevel.cs" t="Include" />
             <e p="LevelLoader.cs" t="Include" />
@@ -275,6 +298,7 @@
             <e p="PlayerMovementControl.cs" t="Include" />
           </e>
           <e p="Player" t="Include">
+            <e p="Lamp.cs" t="Include" />
             <e p="Player.cs" t="Include" />
           </e>
           <e p="View" t="Include">

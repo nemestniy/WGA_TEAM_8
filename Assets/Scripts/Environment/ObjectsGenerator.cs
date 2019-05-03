@@ -68,7 +68,7 @@ public class ObjectsGenerator : MonoBehaviour
 
     public GameObject SpawnObjectForPlace(int size, Vector3 position)
     {
-        var biome = GameManager.Instance.MapManager.Background.GetBiomeByPosition(position);
+        var biome = MapManager.Instance.Background.GetBiomeByPosition(position);
         var prefab = GetPrefabForStats(size, biome);
         var obj = Instantiate(prefab, position, Quaternion.Euler(0, 0, Random.value * 360));
         return obj;

@@ -8,12 +8,16 @@ public class Player: MonoBehaviour {
 
     [SerializeField]
     private float _speed;
+    
+    [SerializeField]
+    private float _normalAnimationSpeed;
 
     private Rigidbody2D _rigidbody;
     private Hexagon _currentHexagon;
     private Hexagon _lastHexagon;
     private Animator _animator;
-    
+    private static readonly int PlayerGo = Animator.StringToHash("PlayerGo");
+
     public static Player Instance { get; private set; }
     
     public Player() : base()
@@ -84,17 +88,18 @@ public class Player: MonoBehaviour {
     public void StartAnimation()
     {
         if(_animator != null)
-            _animator.SetBool("PlayerGo", true);
+            _animator.SetBool(PlayerGo, true);
     }
 
     public void StopAnimation()
     {
         if(_animator != null)
-            _animator.SetBool("PlayerGo", false);
+            _animator.SetBool(PlayerGo, false);
     }
 
     public void Update()
     {
+        _animator.speed = _speed / _normalAnimationSpeed;
 //        Debug.Log(GameManager.Instance.MapManager.Background.GetBiomeByPosition(gameObject.transform.position));
     }
 }

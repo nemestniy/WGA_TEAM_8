@@ -10,7 +10,6 @@ public class PlayerManager : MonoBehaviour, Manager
     private KeyController _keyController;
     private bool _isPaused = true;
     private Transform _startTransform;
-    private Energy _playerEnergy;
     public int CurrentLampMode { get; private set; }
     
 
@@ -21,15 +20,19 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         Instance = this;
     }
-    
+
+    private void Awake()
+    {
+        _isPaused = true;
+    }
+
     void Update()
     {
-        if (!_isPaused && _player != null)
-        {
+        if (_isPaused || _player == null)
+            return;
+        
             UpdatePlayerMovement();
-        }
-
-        UpdateLightMode();
+            UpdateLightMode();
     }
 
     private void UpdatePlayerMovement()
@@ -66,7 +69,6 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         _keyController = GetComponent<KeyController>();
         _player = Player.Instance;
-        _playerEnergy = _player.gameObject.GetComponent<Energy>();
         IsLoaded = true;
         _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
         
