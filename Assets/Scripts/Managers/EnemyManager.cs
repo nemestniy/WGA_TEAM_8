@@ -173,13 +173,24 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         foreach (IEnemy enemy in enemies)
         {
-//            enemy.SetState(State.Paused);
+            enemy.Pause();
         }
     }
 
     public void ResumeManager()
     {
-        
+        foreach (IEnemy enemy in enemies)
+        {
+            enemy.Resume();
+        }
+    }
+
+    public void SaveManagerState() // для последующей возможности сохранить игру
+    {
+        foreach (IEnemy enemy in enemies)
+        {
+            enemy.SaveState();
+        }
     }
 
     private void UpdateEnemiesState()

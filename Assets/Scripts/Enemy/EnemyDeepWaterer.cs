@@ -8,9 +8,8 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     public Player player;
     public AstarPath path;
 
-
     [SerializeField] [ShowOnly] private State state;
-    EnemySavedState savedState;
+    private EnemySavedState savedState;
 
     public float speed;
     public float _normalAnimationSpeed;
@@ -56,9 +55,6 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     {
         switch (state) // Действия моба в зависимости от состояния
         {
-            case State.WaySearching:
-                //
-                break;
             case State.Moving:
                 Move();
                 break;
@@ -91,7 +87,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         }
     }
 
-    public void Escape() // Сбежать в ужасе. Состояние - Escaping (Потом переименовать метод в Escape)
+    public void Escape() // Сбежать в ужасе. Состояние - Escaping
     {
         if (!escapePointCreated)
         {
@@ -162,14 +158,6 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         GetComponent<AIPath>().canMove = true;
     }
 
-    public void Pause()
-    {
-        StopAnimation();
-        Debug.Log("Enemy Paused");
-        GetComponent<AIPath>().canMove = false;
-        
-    }
-
     public Transform GetTransform()
     {
         return transform;
@@ -203,5 +191,27 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     public State GetState()
     {
         return state;
+    }
+
+    public void SaveState()
+    {
+        savedState = new EnemySavedState(state, destinationSetter.target, transform.position);
+    }
+
+    public void RestoreState()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Pause()
+    {
+        aiPath.canMove = false;
+        StopAnimation();
+    }
+
+    public void Resume()
+    {
+        aiPath.canMove = true;
+        StartAnimation();
     }
 }
