@@ -122,7 +122,6 @@ public class ZoneCreator : MonoBehaviour
 
             //MakePass(_borderWalls, zone);
             var activeWall = _borderWalls[Random.Range(1, _borderWalls.Count - 1)];
-            Debug.LogError(activeWall.transform);
             activeWall.Disable();
             var wallUnderActiveWall = activeWall.GetWallUnderMe();
             if (wallUnderActiveWall != null)
