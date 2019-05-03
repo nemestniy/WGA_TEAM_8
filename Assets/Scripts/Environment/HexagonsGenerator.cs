@@ -23,9 +23,10 @@ public class HexagonsGenerator : MonoBehaviour
         GenerateHexagons(_mapSize);
         FindNeighbors();
         CloseMap();
-        ClearWalls(_wallsForDelete);
-        DestroyAllExcessWalls();
-        ActivateColliders();
+        //DestroyAllExcessWalls();
+        //DisableAllWalls();
+        //ClearWalls(_wallsForDelete);
+        //ActivateColliders();
 
         MapIsCreate();
         Debug.Log("Map is created");
@@ -38,6 +39,20 @@ public class HexagonsGenerator : MonoBehaviour
         {
             hexObject.GetComponent<Hexagon>().ActivateBorderWalls();
         }
+    }
+
+    public void DisableAllWalls()
+    {
+        var walls = GetWallsWithoutBorder();
+        foreach(Wall wall in walls)
+        {
+            wall.Disable();
+        }
+    }
+
+    private IEnumerable<Wall> GetWallsWithoutBorder()
+    {
+        return FindObjectsOfType<Wall>().Where(h => !h.IsBorder());
     }
 
     private void ActivateColliders()
@@ -144,7 +159,7 @@ public class HexagonsGenerator : MonoBehaviour
         }
     }
 
-    private void DestroyAllExcessWalls()
+    public void DestroyAllExcessWalls()
     {
         var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
         foreach (GameObject hexObject in _hexObjects)

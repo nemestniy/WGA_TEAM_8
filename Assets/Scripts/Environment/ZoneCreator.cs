@@ -10,19 +10,18 @@ public class ZoneCreator : MonoBehaviour
 
     private HexagonsGenerator _hexagonsGenerator;
 
-    public List<Zone> _zones;
+    private List<Zone> _zones;
 
     private int _recursionController;
     private IEnumerable<Hexagon> _generatedHexagons;
-
+ 
     private void Awake()
     {
         _hexagonsGenerator = GetComponent<HexagonsGenerator>();
-        _hexagonsGenerator.MapIsCreate += CreateZones;
         Random.InitState(RandomSeed);
     }
 
-    private void CreateZones()
+    public void CreateZones()
     {
         var Hexagons = GameObject.FindGameObjectsWithTag("Hexagon");
         var hexObjects = FindObjectsOfType<Hexagon>();
@@ -45,6 +44,11 @@ public class ZoneCreator : MonoBehaviour
 
         FillClearHexagons();
         GenerateWalls();
+
+        _hexagonsGenerator.DestroyAllExcessWalls();
+        _hexagonsGenerator.DisableAllWalls();
+
+        ActivateRandomWalls();
     }
 
     private void GenerateWalls()
@@ -53,8 +57,10 @@ public class ZoneCreator : MonoBehaviour
         //{
         //    wall.Enable();
         //}
+
         foreach (var zone in _zones)
         {
+            List<Wall> _borderWalls = new List<Wall>();
             var borderHexes = GetBorderHexes(zone);
             foreach (var hex in borderHexes)
             {
@@ -70,7 +76,11 @@ public class ZoneCreator : MonoBehaviour
                             if (wallNeighbor.GetZone() == zone)
                                 wall.Disable();
                             else
+                            {
                                 wall.SetBorder();
+                                //wall.ChangeColor(zone.GetColor());
+                                _borderWalls.Add(wall);
+                            }
                         }
                     }
                     else
@@ -81,6 +91,8 @@ public class ZoneCreator : MonoBehaviour
                             if (wallNeighbor.GetZone() != zone)
                             {
                                 wall.SetBorder();
+                                //wall.ChangeColor(zone.GetColor());
+                                _borderWalls.Add(wall);
                             }
                         }
                     }
@@ -107,6 +119,20 @@ public class ZoneCreator : MonoBehaviour
                 //    borderWall.SetBorder();
                 //}
             }
+
+            //MakePass(_borderWalls, zone);
+            var activeWall = _borderWalls[Random.Range(1, _borderWalls.Count - 1)];
+            Debug.LogError(activeWall.transform);
+            activeWall.Disable();
+            var wallUnderActiveWall = activeWall.GetWallUnderMe();
+            if (wallUnderActiveWall != null)
+            {
+                wallUnderActiveWall.gameObject.SetActive(false);
+                Destroy(wallUnderActiveWall.gameObject);
+            }
+
+
+
         }
         //foreach (var hex in FindObjectsOfType<Hexagon>())
         //{
@@ -121,6 +147,38 @@ public class ZoneCreator : MonoBehaviour
         //    hex.ActivateBorderWalls();
         //}
     }
+
+    /*private void MakePass(List<Wall> walls, Zone zoneInside)
+    {
+        int wallsCount = 0;
+        var borderZones = new List<Zone>();
+        borderZones.Add(walls[0].GetHexagonNeighbor().GetZone());
+        borderZones.Add(zoneInside);
+        foreach (Wall wall in walls)
+        {
+            var zone = wall.GetHexagonNeighbor().GetZone();
+            
+            if (!borderZones.Contains(zone))                    //Раскидать граничащие стенки по отдельным листам 
+            {
+                Debug.Log("zone - " + zone.GetColor() + "    index - " + walls.IndexOf(wall));
+                borderZones.Add(zone);
+                int indexOfWall = walls.IndexOf(wall);
+                OpenPass(walls[Random.Range(wallsCount, indexOfWall)]);
+                wallsCount = indexOfWall;
+            }       
+        }
+    }
+
+    private void OpenPass(Wall activeWall)
+    {
+        activeWall.Disable();
+        var wallUnderActiveWall = activeWall.GetWallUnderMe();
+        if (wallUnderActiveWall != null)
+        {
+            wallUnderActiveWall.gameObject.SetActive(false);
+            Destroy(wallUnderActiveWall.gameObject);
+        }
+    }*/
 
     private Hexagon GetRandomNeighbor(List<Transform> neighborsTransforms, Color currentZone)
     {
@@ -139,6 +197,13 @@ public class ZoneCreator : MonoBehaviour
     {
         var zoneHexes = FindObjectsOfType<Hexagon>().Where(h => h.GetZone() == zone);
         var borderHexes = zoneHexes.Where(h => h.ReturnNeighborsHex().Any(n => n.GetZone() != zone));
+        return borderHexes;
+    }
+
+    private IEnumerable<Hexagon> GetInternalHexas(Zone zone)
+    {
+        var zoneHexes = FindObjectsOfType<Hexagon>().Where(h => h.GetZone() == zone);
+        var borderHexes = zoneHexes.Where(h => h.ReturnNeighborsHex().All(n => n.GetZone() == zone));
         return borderHexes;
     }
 
@@ -183,7 +248,28 @@ public class ZoneCreator : MonoBehaviour
         }
     }
 
-    private IEnumerable<Hexagon> ReturnFreeHexNeighbors( Hexagon hex)
+    private void ActivateRandomWalls()
+    {
+        foreach(Zone zone in _zones)
+        {
+            var hexas = GetInternalHexas(zone);
+            foreach(Hexagon hex in hexas)
+            {
+                var walls = hex.GetWalls();
+                foreach (Wall wall in walls)
+                {
+                    if (wall != null && !wall.IsActive())
+                    {
+                        wall.Enable();
+                        break;
+                    }
+                }
+                
+            }
+        }
+    }
+
+    private IEnumerable<Hexagon> ReturnFreeHexNeighbors(Hexagon hex)
     {
         return _generatedHexagons.Where(h => h.ReturnNeighbors().Contains(hex.transform) && h.GetZone() == null);
     }

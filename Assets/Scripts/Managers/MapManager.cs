@@ -29,6 +29,13 @@ public class MapManager : MonoBehaviour, Manager
         _zoneCreator = GetComponent<ZoneCreator>();
         _objectsGenerator = GetComponent<ObjectsGenerator>();
         Background = FindObjectOfType<BackgroundController>();
+
+        _hexagonsGenerator.MapIsCreate += _hexagonsGenerator_MapIsCreate;
+    }
+
+    private void _hexagonsGenerator_MapIsCreate()
+    {
+       _zoneCreator.CreateZones();
     }
 
     public void StartManager()
