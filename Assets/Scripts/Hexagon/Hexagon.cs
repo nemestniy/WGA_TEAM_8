@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using UnityEditorInternal;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 using Random = System.Random;
@@ -216,10 +215,17 @@ public class Hexagon : MonoBehaviour
         {
             foreach (Wall wall in _walls)
             {
-                //check wall under other wall
-                var underWall = wall.GetWallUnderMe();
-                if (underWall != null && wall.IsActive() && underWall.CompareTag("Wall"))
-                    Destroy(underWall.gameObject);
+                if (wall != null && wall.gameObject.activeSelf)
+                {
+                    //check wall under other wall
+                    var underWall = wall.GetWallUnderMe();
+
+                    if (underWall != null && underWall.CompareTag("Wall"))
+                    {
+                        underWall.gameObject.SetActive(false);
+                        Destroy(underWall.gameObject);
+                    }
+                }
             }
         }
     }

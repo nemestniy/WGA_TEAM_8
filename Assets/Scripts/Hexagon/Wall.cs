@@ -7,6 +7,8 @@ public class Wall : MonoBehaviour
     private bool _isActive;
     private bool _isBorder;
 
+    public Transform underWall;
+
     private void Awake()
     {
         _collider = GetComponent<PolygonCollider2D>();
@@ -37,9 +39,14 @@ public class Wall : MonoBehaviour
     public Transform GetWallUnderMe()
     {
         //Make little Ray and check, that ray won`t return himself, after that it return wall under him
+        _collider.enabled = false;
         var hit = Physics2D.Linecast(transform.position, GetDirection() + (Vector2)transform.parent.position);
+        _collider.enabled = true;
         if (hit.transform != null && hit.transform != transform)
+        {
+            underWall = hit.transform;
             return hit.transform;
+        }
         return null;
     }
 
