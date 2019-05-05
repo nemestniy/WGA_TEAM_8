@@ -47,6 +47,7 @@ public class CopyViewMesh : MonoBehaviour
         //    vertices[(int)i] = new Vector3(Mathf.Sin(Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
         //}
         var parent = GetComponentInParent<FieldOfView>();
+        _viewMesh.Clear();
         _viewMesh.vertices = parent.vertices;
         _viewMesh.triangles = parent.triangles;
         _viewMesh.colors = parent.colors;

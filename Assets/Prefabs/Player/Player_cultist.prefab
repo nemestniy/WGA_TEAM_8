@@ -124,9 +124,11 @@ MonoBehaviour:
   _currentViewAngle: 25
   _currentSpotLightAngle: 25
   _currentIntensity: 800
+  _currentIntensityMult: 1
   _currentLightHeight: 0
   _currentCoordinateY: 0.7
   _currentLightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
+  SkipRadius: 1
 --- !u!1 &1759250699673190
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,7 +451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455787303813005530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 72.76, y: -44.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4261111834815354}
@@ -638,9 +640,11 @@ MonoBehaviour:
   _currentViewAngle: 90
   _currentSpotLightAngle: 90
   _currentIntensity: 40
+  _currentIntensityMult: 1
   _currentLightHeight: -0.07
   _currentCoordinateY: 2
   _currentLightColor: {r: 0.5176471, g: 0.101960786, b: 0, a: 0}
+  SkipRadius: 2
 --- !u!1 &2239788415926145210
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,8 +809,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3611485338609526535}
-  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
-  m_LocalPosition: {x: -72.76, y: 44.1, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8563616529187633948}

@@ -35,7 +35,7 @@ Shader "Custom/ScreenFog"
         Cull Off
         Lighting Off
         ZWrite Off
-        Blend SrcAlpha One
+        Blend SrcAlpha OneMinusSrcAlpha
 
         CGPROGRAM
         #pragma surface surf Lambert vertex:vert nofog nolightmap nodynlightmap keepalpha noinstancing

@@ -153,6 +153,8 @@ public class FieldOfView : MonoBehaviour
 		return visibleEnemies;
 	}
 
+    public float SkipRadius = 0.0f;
+
     [HideInInspector]
     public Vector3[] vertices { get; private set; }
     [HideInInspector]
@@ -171,11 +173,12 @@ public class FieldOfView : MonoBehaviour
 	    colors = new Color[vertexCount * 2];                
 		for (int i = 0; i < vertexCount - 1; i++)
         {
-            vertices[i] = Vector2.zero;
+            
 			vertices[i + vertexCount] = transform.InverseTransformPoint(viewPoints[i]);
+            vertices[i] = SkipRadius * vertices[i + vertexCount].normalized;
             var c = Math.Min(1, Math.Min(i, vertexCount - i - 2) / _meshResolution / 20);
             colors[i] = new Color(0, 0, 0, Mathf.Pow(1 -c, 2));
-            colors[i + vertexCount] = new Color(0, 0,0 , Mathf.Pow(1 - c, 2));
+            colors[i + vertexCount] = new Color(0, 0,0 , vertices[i + vertexCount].magnitude / viewRadius);
 
             if (i < vertexCount - 2)
 			{
