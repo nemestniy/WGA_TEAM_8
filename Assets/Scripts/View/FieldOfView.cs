@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -54,6 +55,7 @@ public class FieldOfView : MonoBehaviour
 	[HideInInspector] public float _currentViewAngle;
 	[HideInInspector] public float _currentSpotLightAngle;
 	[HideInInspector] public float _currentIntensity;
+	[HideInInspector] public float _currentIntensityMult = 1;
 	[HideInInspector] public float _currentLightHeight;
 	[HideInInspector] public float _currentCoordinateY;
 	[HideInInspector] public Color _currentLightColor;
@@ -109,18 +111,13 @@ public class FieldOfView : MonoBehaviour
 		_currentSpotLightRadius = energyLvl * Mathf.Lerp(prevMode.spotLightRadius, currentMode.spotLightRadius, changingState);
 		_currentViewAngle = Mathf.Lerp( prevMode.viewAngle, currentMode.viewAngle, changingState);
 		_currentSpotLightAngle = Mathf.Lerp( prevMode.spotLightAngle, currentMode.spotLightAngle, changingState);
-		_currentIntensity = Mathf.Lerp(prevMode.intensity, currentMode.intensity, changingState);
+		_currentIntensity = Mathf.Lerp(prevMode.intensity, currentMode.intensity, changingState) * _currentIntensityMult;
 		_currentLightHeight = Mathf.Lerp(prevMode.lightHeight, currentMode.lightHeight, changingState);
 		_currentLightColor = Color.Lerp(prevMode.lightColor, currentMode.lightColor, changingState);
 		_currentCoordinateY = Mathf.Lerp(prevMode.coordinateY, currentMode.coordinateY, changingState);
 	}
 
-
-	private float timePast = 0;
-
-	
-
-	public void SetLightMode(int newMode, int prevMode, float changingState)
+    public void SetLightMode(int newMode, int prevMode, float changingState)
 	{
 		_currentMode = newMode;
 		_prevMode = prevMode;

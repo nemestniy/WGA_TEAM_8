@@ -7,7 +7,15 @@ using UnityEngine;
 
 struct EnemySavedState
 {
-    public Transform lastPosition;
+    public EnemySavedState(State state, Transform target, Vector3 position)
+    {
+        this.lastState = state;
+        this.lastTarget = target;
+        this.lastPosition = position;
+    }
+
+    public Transform lastTarget;
+    public Vector3 lastPosition;
     public State lastState;
 }
 

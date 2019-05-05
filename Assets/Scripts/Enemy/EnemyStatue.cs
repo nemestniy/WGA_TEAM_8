@@ -10,7 +10,9 @@ public class EnemyStatue : MonoBehaviour, IEnemy
 {
     public Player player;
     public AstarPath path;
-
+    [SerializeField] [ShowOnly] private State state;
+    private EnemySavedState savedState;
+    public float speed;
     public float distanceToPlayer;
     public float eventHorizon;
 
@@ -20,15 +22,20 @@ public class EnemyStatue : MonoBehaviour, IEnemy
     public float time;
     public bool inLight;
 
-    [SerializeField] private State state;
+    
+    
 
-    public float speed;
+    
 
     public delegate void OnTriggerAction();
     public static event OnTriggerAction OnTrigger;
 
     [HideInInspector] public delegate void EnemyEvents();
     [HideInInspector] public event EnemyEvents Player_death;
+
+    private Animator animator;
+    private static readonly int IsRunning = Animator.StringToHash("IsRunning");
+    private static readonly int GotDamage = Animator.StringToHash("GotDamage");
 
     public void Start()
     {
@@ -105,6 +112,39 @@ public class EnemyStatue : MonoBehaviour, IEnemy
         Debug.Log("Setting state");
         this.state = state;
     }
-    
+
+    public void SaveState()
+    {
+        savedState = new EnemySavedState(state, destinationSetter.target, transform.position);
+    }
+
+    public void RestoreState()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Pause()
+    {
+        aiPath.canMove = false;
+        StopAnimation();
+    }
+
+    public void Resume()
+    {
+        aiPath.canMove = true;
+        StartAnimation();
+    }
+
+    public void StartAnimation()
+    {
+        if (animator != null)
+            animator.SetBool(IsRunning, true);
+    }
+
+    public void StopAnimation()
+    {
+        if (animator != null)
+            animator.SetBool(IsRunning, false);
+    }
 }
 

@@ -12,6 +12,7 @@ public enum State // Состояния моба
     Waiting, // Ожидание
     Hunting, // Активное преследование
     Maneuring, // Прожарка в луче фонаря
-    Escaping// Бегство
+    Escaping,// Бегство
+    Paused
 }
 

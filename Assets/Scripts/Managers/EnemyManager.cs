@@ -19,7 +19,6 @@ public class EnemyManager : MonoBehaviour, Manager
     public List<Transform> visibleEnemiesList;
 
     private int framecount = 0;
-    private CommonUtils commonUtils;
 
     public float DistanceToClosestEnemy
     {
@@ -59,8 +58,8 @@ public class EnemyManager : MonoBehaviour, Manager
         enemies.AddRange(FindObjectsOfType<EnemyDeepWaterer>());
         enemies.AddRange(FindObjectsOfType<EnemyStatue>());
 
-        commonUtils = CommonUtils.Instance;
         _player = Player.Instance;
+        hexagonsGenerator = MapManager.Instance.GetComponent<HexagonsGenerator>();
     }
 
     /*private void OnMapCreated()
@@ -122,11 +121,11 @@ public class EnemyManager : MonoBehaviour, Manager
         {
             if (statue.GetState() == State.Waiting && !statue.inLight)
             {
-                GameObject statueHex = commonUtils.GetHexagonByPoint(statue.transform.position);
-                GameObject playerHex = commonUtils.GetHexagonByPoint(_player.transform.position);
+                GameObject statueHex = hexagonsGenerator.GetHexagonByPoint(statue.transform.position);
+                GameObject playerHex = hexagonsGenerator.GetHexagonByPoint(_player.transform.position);
+//                Debug.Log("playerHex" + playerHex);
                 if (statueHex == playerHex && statueHex != null && playerHex != null)
                 {
-                    Debug.Log("Player near statue");
                     statue.GetDestinationSetter().target = _player.transform;
                     statue.SetState(State.Moving);
                 } 
@@ -152,8 +151,6 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         path.Scan();
 
-        CommonUtils.Instance.InitializeCommonUtils();
-
         foreach (IEnemy enemy in enemies)
         {
             path.Scan();
@@ -176,13 +173,24 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         foreach (IEnemy enemy in enemies)
         {
-            //enemy.SetState(State.Paused);
+            enemy.Pause();
         }
     }
 
     public void ResumeManager()
     {
-        
+        foreach (IEnemy enemy in enemies)
+        {
+            enemy.Resume();
+        }
+    }
+
+    public void SaveManagerState() // для последующей возможности сохранить игру
+    {
+        foreach (IEnemy enemy in enemies)
+        {
+            enemy.SaveState();
+        }
     }
 
     private void UpdateEnemiesState()

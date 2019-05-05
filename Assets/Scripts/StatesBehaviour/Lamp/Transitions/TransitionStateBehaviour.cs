@@ -20,7 +20,7 @@ public class TransitionStateBehaviour : StateMachineBehaviour
     private AudioSource _lampsAudioSource;
     private static readonly int HasChanged = Animator.StringToHash("HasChanged");
 
-    protected void TransitionOnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _currentTime = 0;
         
@@ -35,7 +35,7 @@ public class TransitionStateBehaviour : StateMachineBehaviour
             _lampsAudioSource.Play();
     }
 
-    protected void TransitionOnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
         if (_currentTime < _timeToChange)
         {
@@ -48,7 +48,7 @@ public class TransitionStateBehaviour : StateMachineBehaviour
         Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(_nextModeNum, _prevModeNum,_currentTime / _timeToChange); 
     }
     
-    protected void TransitionOnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _lampsAudioSource.Stop();
     }

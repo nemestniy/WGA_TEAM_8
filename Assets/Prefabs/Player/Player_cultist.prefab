@@ -281,7 +281,7 @@ MonoBehaviour:
   _maxEnergy: 100
   _minEnergy: 0
   _currentEnergy: 0
-  _constantEnergy: 1
+  _constantEnergy: 0
 --- !u!95 &1016308930
 Animator:
   serializedVersion: 3
@@ -418,7 +418,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a74637362cfe0744b60a902e3923c9e, type: 3}
   - {fileID: 8300000, guid: b9bcb1c1b2378414e8d9b4833659721b, type: 3}
   - {fileID: 8300000, guid: a84af45de6bb4e545b6a9208622d811b, type: 3}
-  _stepsSand: []
+  _stepsSand:
+  - {fileID: 8300000, guid: 57d922400b4f72d4d92484f46da57de2, type: 3}
   volLowRange: 0.5
   volHighRange: 1
 --- !u!1 &455787303813005530
@@ -700,7 +701,7 @@ Light:
   m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 16183
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -769,7 +770,7 @@ Light:
   m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 16183
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
@@ -1016,6 +1017,25 @@ MonoBehaviour:
       lightHeight: -1
       coordinateY: 2
       lightColor: {r: 1, g: 1, b: 1, a: 0}
+  - name: AfterDamage
+    mainLight:
+      viewRadius: 0
+      spotLightRadius: 0
+      viewAngle: 0
+      spotLightAngle: 0
+      intensity: 0
+      lightHeight: 0
+      coordinateY: 0
+      lightColor: {r: 0, g: 0, b: 0, a: 0}
+    backLight:
+      viewRadius: 0
+      spotLightRadius: 0
+      viewAngle: 0
+      spotLightAngle: 0
+      intensity: 0
+      lightHeight: 0
+      coordinateY: 2
+      lightColor: {r: 0, g: 0, b: 0, a: 0}
   _isFrying: 0
 --- !u!82 &1942047866
 AudioSource:

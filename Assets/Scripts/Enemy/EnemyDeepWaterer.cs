@@ -8,9 +8,8 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     public Player player;
     public AstarPath path;
 
-
     [SerializeField] [ShowOnly] private State state;
-    EnemySavedState savedState;
+    private EnemySavedState savedState;
 
     public float speed;
     public float _normalAnimationSpeed;
@@ -31,6 +30,16 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     public bool inLight;
     [HideInInspector] public bool escapePointCreated;
     [HideInInspector] public bool maneurPointCreated;
+    
+    
+    private Animator animator;
+    private static readonly int IsRunning = Animator.StringToHash("IsRunning");
+    private static readonly int GotDamage = Animator.StringToHash("GotDamage");
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void Start()
     {
@@ -46,9 +55,6 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     {
         switch (state) // Действия моба в зависимости от состояния
         {
-            case State.WaySearching:
-                //
-                break;
             case State.Moving:
                 Move();
                 break;
@@ -76,11 +82,12 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            OnTrigger?.Invoke();
+            other.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
+//            OnTrigger?.Invoke();
         }
     }
 
-    public void Escape() // Сбежать в ужасе. Состояние - Escaping (Потом переименовать метод в Escape)
+    public void Escape() // Сбежать в ужасе. Состояние - Escaping
     {
         if (!escapePointCreated)
         {
@@ -129,23 +136,26 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         }
     }
 
-    
+    public void StartAnimation()
+    {
+        if(animator != null)
+            animator.SetBool(IsRunning, true);
+    }
+
+    public void StopAnimation()
+    {
+        if(animator != null)
+            animator.SetBool(IsRunning, false);
+    }
 
     private void Move() // Движение по вычисленному пути до игрока. Состояние - Moving
     {
         //player = FindObjectOfType<Player>();
-
+        StartAnimation();
         aiPath.maxSpeed = speed;
 
         //destinationSetter.target = player.transform;
         GetComponent<AIPath>().canMove = true;
-    }
-
-    public void Pause()
-    {
-        Debug.Log("Enemy Paused");
-        GetComponent<AIPath>().canMove = false;
-        
     }
 
     public Transform GetTransform()
@@ -181,5 +191,27 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     public State GetState()
     {
         return state;
+    }
+
+    public void SaveState()
+    {
+        savedState = new EnemySavedState(state, destinationSetter.target, transform.position);
+    }
+
+    public void RestoreState()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void Pause()
+    {
+        aiPath.canMove = false;
+        StopAnimation();
+    }
+
+    public void Resume()
+    {
+        aiPath.canMove = true;
+        StartAnimation();
     }
 }

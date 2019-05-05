@@ -9,6 +9,7 @@ public class HexagonsGenerator : MonoBehaviour
     [SerializeField] private int _wallsForDelete;
 
     [SerializeField] private Hexagon _startHexagon;
+    
 
     public delegate void HexagonEvents();
     public event HexagonEvents MapIsCreate;
@@ -23,12 +24,54 @@ public class HexagonsGenerator : MonoBehaviour
         GenerateHexagons(_mapSize);
         FindNeighbors();
         CloseMap();
-        ClearWalls(_wallsForDelete);
-        DestroyAllExcessWalls();
-        ActivateColliders();
+        //DestroyAllExcessWalls();
+        //DisableAllWalls();
+        //ClearWalls(_wallsForDelete);
+        //ActivateColliders();
 
+        InitializeHexArray();
         MapIsCreate();
         Debug.Log("Map is created");
+    }
+    
+    public void InitializeHexArray()
+    {
+        hexagonsArraylist = new LinkedList<GameObject>(GameObject.FindGameObjectsWithTag("Hexagon"));
+    }
+    
+    [SerializeField] [ShowOnly]
+    private LinkedList<GameObject> hexagonsArraylist;
+    public GameObject GetHexagonByPoint(Vector3 point)
+    {
+        
+        float distanceX = float.MaxValue;
+        GameObject hexagon = null;
+        
+        
+        foreach (GameObject hex in hexagonsArraylist)
+        {
+            float distance = Vector3.Distance(hex.transform.position, point);
+
+            if (distance < hex.GetComponent<Hexagon>().InternalRadius) //if position is inside internal radius of the hex
+            {
+                //insert hex to start of the list to cache it
+                hexagonsArraylist.Remove(hex);//insert hex to start of the list to cache it
+                hexagonsArraylist.AddLast(hex);
+                return hex;
+            }
+            
+            if (distanceX > distance)
+            {
+                distanceX = distance;
+                hexagon = hex;
+            }
+        }
+
+        //insert hex to start of the list to cache it
+        hexagonsArraylist.Remove(hexagon);
+        hexagonsArraylist.AddLast(hexagon);
+
+        return hexagon;
     }
 
     private void CloseMap()
@@ -38,6 +81,20 @@ public class HexagonsGenerator : MonoBehaviour
         {
             hexObject.GetComponent<Hexagon>().ActivateBorderWalls();
         }
+    }
+
+    public void DisableAllWalls()
+    {
+        var walls = GetWallsWithoutBorder();
+        foreach(Wall wall in walls)
+        {
+            wall.Disable();
+        }
+    }
+
+    private IEnumerable<Wall> GetWallsWithoutBorder()
+    {
+        return FindObjectsOfType<Wall>().Where(h => !h.IsBorder());
     }
 
     private void ActivateColliders()
@@ -144,7 +201,7 @@ public class HexagonsGenerator : MonoBehaviour
         }
     }
 
-    private void DestroyAllExcessWalls()
+    public void DestroyAllExcessWalls()
     {
         var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
         foreach (GameObject hexObject in _hexObjects)
