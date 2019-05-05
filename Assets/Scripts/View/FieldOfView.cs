@@ -31,7 +31,8 @@ public class FieldOfView : MonoBehaviour
 	
 	private Light _spotLight;
 	private MeshFilter _viewMeshFilter;
-	private Mesh _viewMesh; //Vision mesh
+    [HideInInspector]
+	public Mesh _viewMesh; //Vision mesh
 	
 	private float _currentChangingTime;
 	private Energy _energy;
@@ -63,7 +64,7 @@ public class FieldOfView : MonoBehaviour
 		_viewMeshFilter = GetComponent<MeshFilter>();
 		_viewMesh = new Mesh {name = "View Mesh"};
 		_viewMeshFilter.mesh = _viewMesh;
-		_energy =  GetComponentInParent<Energy>();
+		_energy =  GetComponentInParent<Energy>();        
 
 		_enemyManager = EnemyManager.Instance;
 		_lampModes = Player.Instance.transform.GetChild(0).GetComponent<Lamp>()._lampModes;
@@ -155,34 +156,46 @@ public class FieldOfView : MonoBehaviour
 		return visibleEnemies;
 	}
 
-	private void DrawFieldOfView(float viewRadius, float viewAngle) //drawing the mesh representing field of view
+    [HideInInspector]
+    public Vector3[] vertices { get; private set; }
+    [HideInInspector]
+    public int[] triangles { get; private set; }
+    [HideInInspector]
+    public Color[] colors { get; private set; }
+    private void DrawFieldOfView(float viewRadius, float viewAngle) //drawing the mesh representing field of view
 	{
 		List<Vector3> viewPoints = new List<Vector3>();
 		GetViewPoints(viewPoints, -transform.eulerAngles.z, viewRadius, viewAngle); //get view points
 		
 		
-		int vertexCount = viewPoints.Count + 1; //number of vertices for drawing mesh
-		Vector3[] vertices = new Vector3[vertexCount]; //all vertex 
-		int[] triangles = new int[(vertexCount-2)*3]; //numbers of vertex for each triangle in the mash in one row
-	
-		vertices[0] = Vector2.zero; //since the mash is players child
+		int vertexCount = viewPoints.Count; //number of vertices for drawing mesh
+		vertices = new Vector3[vertexCount * 2]; //all vertex 
+		triangles = new int[(vertexCount-1)*6]; //numbers of vertex for each triangle in the mash in one row
+	    colors = new Color[vertexCount * 2];                
 		for (int i = 0; i < vertexCount - 1; i++)
-		{ 
-			vertices[i + 1] = transform.InverseTransformPoint(viewPoints[i]);
+        {
+            vertices[i] = Vector2.zero;
+			vertices[i + vertexCount] = transform.InverseTransformPoint(viewPoints[i]);
+            var c = Math.Min(1, Math.Min(i, vertexCount - i - 2) / _meshResolution / 20);
+            colors[i] = new Color(0, 0, 0, Mathf.Pow(1 -c, 2));
+            colors[i + vertexCount] = new Color(0, 0,0 , Mathf.Pow(1 - c, 2));
 
-			if (i < vertexCount - 2)
+            if (i < vertexCount - 2)
 			{
-				triangles [i * 3] = 0; 
-				triangles [i * 3 + 1] = i + 1;
-				triangles [i * 3 + 2] = i + 2;
-			}
+				triangles [i * 6 + 0] = i; 
+				triangles [i * 6 + 1] = i + vertexCount;
+				triangles [i * 6 + 2] = i + vertexCount + 1;
+                triangles [i * 6 + 3] = i;
+                triangles [i * 6 + 4] = i + vertexCount + 1;
+                triangles [i * 6 + 5] = i + 1;
+            }
 		}
 	
 		_viewMesh.Clear();
 		_viewMesh.vertices = vertices;
 		_viewMesh.triangles = triangles;
-		_viewMesh.RecalculateNormals();
-	}
+        _viewMesh.colors = colors;
+    }
 
 	private void GetViewPoints(List<Vector3> viewPoints, float directionAngle, float viewRadius, float viewAngle) //add in list all view point
 	{

@@ -35,7 +35,7 @@ Shader "Custom/ScreenFog"
         Cull Off
         Lighting Off
         ZWrite Off
-        Blend SrcAlpha DstAlpha
+        Blend SrcAlpha One
 
         CGPROGRAM
         #pragma surface surf Lambert vertex:vert nofog nolightmap nodynlightmap keepalpha noinstancing
@@ -73,8 +73,8 @@ Shader "Custom/ScreenFog"
 			float _PI2 = 3.14159265359f * 2;
 
 
-			float d1 = sin(IN.uv_MainTex * 15 * float2(0.2352f, 0.654323f) + float2(_Time.y, _Time.y) * _NoiseTimeMult * -0.4564f);
-			float d2 = cos(IN.uv_MainTex * 15 * float2(0.63243f, 0.324235f) + float2(_Time.y, _Time.y) * _NoiseTimeMult * 0.516f);
+			float d1 = pow(sin(IN.uv_MainTex.x * 15 * float2(0.4352f, 0.654323f) + float2(_Time.y, _Time.y) * _NoiseTimeMult) * 0.5f + 0.5f, 0.5f) - 0.5f;
+			float d2 = pow(cos(IN.uv_MainTex.y * 15 * float2(0.63243f, 0.524235f) + float2(_Time.y, _Time.y) * _NoiseTimeMult) * 0.5f + 0.5f, 0.5f) - 0.5f;
 			float4 maskColor = tex2D(_NoiseTex, (IN.uv_MainTex) *_NoiseTex_ST.xy + float2(d1, d2) * _NoiseMult).rgba;
 			
 			float angle = (10 + maskColor.r * 5 + _Time.y * _FogTimeMult) % _PI2;
@@ -84,10 +84,10 @@ Shader "Custom/ScreenFog"
 
 			float c1 =  pow(tex2D(_FogTex, (IN.uv_MainTex ) * _FogTex_ST + delta * _FogMult).a, 1);
 			float c2 = pow(tex2D(_DetailTex, (IN.uv_MainTex ) * _DetailTex_ST + delta2 * _DetailMult).a, 1);
-			float vingete = (1 - pow(sqrt(IN.pos.x * IN.pos.x + IN.pos.y * IN.pos.y), 3));
+			float vingete = (pow(sqrt(IN.pos.x * IN.pos.x + IN.pos.y * IN.pos.y), 0.5f));
 			o.Alpha = (c1 + c2) * 0.1f * vingete;
 			o.Albedo = vingete * c2 * float3(0, 1, 0.8);
-			o.Emission = float3(1, 1, 1);
+			o.Emission = float3(1, 1, 1);//float3(float2(d1, d2) * _NoiseMult, 0);//
 			
 
 			/*o.Alpha = 1;
