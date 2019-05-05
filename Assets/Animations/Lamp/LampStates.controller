@@ -14,37 +14,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ChangeDown
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: HasChanged
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: EnergyLvl
     m_Type: 1
     m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: GotDamage
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AfterDamageEnded
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -71,8 +71,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentModeNum: 1
-  _energyCost: 0.1
+  _energyCost: 0.001
   _costDelay: 2
+  _isBlinkingOnCost: 1
+  _blinkDuration: 1
+  _periods:
+  - end: 0.1
+    mult: 10
+  - end: 0.2
+    mult: 0
+  - end: 0.3
+    mult: 10
+  - end: 0.4
+    mult: 0
+  _fadingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.4
+      value: 150
+      inSlope: -2498.1357
+      outSlope: -2498.1357
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.44477832
+      value: 38.137688
+      inSlope: -554.7186
+      outSlope: -554.7186
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1417873
+    - serializedVersion: 3
+      time: 0.59188634
+      value: 5.610091
+      inSlope: -40.44064
+      outSlope: -40.44064
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.10384151
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: -11.296097
+      outSlope: -11.296097
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _stateSound: {fileID: 0}
 --- !u!114 &114056289427197252
 MonoBehaviour:
@@ -137,6 +190,15 @@ MonoBehaviour:
   _currentModeNum: 4
   _energyCost: 0
   _costDelay: 0
+  _isBlinkingOnCost: 0
+  _blinkDuration: 0
+  _periods: []
+  _fadingCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _stateSound: {fileID: 0}
 --- !u!114 &114184198633205248
 MonoBehaviour:
@@ -333,6 +395,15 @@ MonoBehaviour:
   _currentModeNum: 0
   _energyCost: 0
   _costDelay: 0
+  _isBlinkingOnCost: 0
+  _blinkDuration: 0
+  _periods: []
+  _fadingCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _stateSound: {fileID: 0}
 --- !u!114 &114459572511931418
 MonoBehaviour:
@@ -349,6 +420,15 @@ MonoBehaviour:
   _currentModeNum: 3
   _energyCost: 0.06
   _costDelay: 0
+  _isBlinkingOnCost: 0
+  _blinkDuration: 0
+  _periods: []
+  _fadingCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _stateSound: {fileID: 0}
 --- !u!114 &114460005481644892
 MonoBehaviour:
@@ -530,6 +610,15 @@ MonoBehaviour:
   _currentModeNum: 2
   _energyCost: 0
   _costDelay: 0
+  _isBlinkingOnCost: 0
+  _blinkDuration: 0
+  _periods: []
+  _fadingCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _stateSound: {fileID: 0}
 --- !u!114 &114704295414827030
 MonoBehaviour:

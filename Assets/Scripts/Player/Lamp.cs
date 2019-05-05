@@ -47,6 +47,48 @@ public class Lamp : MonoBehaviour
         _lampsMeshRenderers[1].material = _normalViewMat;
     }
     
+    public void BlinkLight(AnimationCurve curve, float duration, List<Period> periods)
+    {
+        StartCoroutine(Blinking(curve, duration, periods));
+    }
+    
+    private IEnumerator Blinking(AnimationCurve curve, float duration,List<Period> periods)
+    {
+        float timePast = 0;
+        while (timePast < duration)
+        {
+            var curMultiplier = BlinkingMath(curve, timePast / duration, periods);
+            
+            _fieldOfViews[0]._currentIntensityMult = curMultiplier;
+            _fieldOfViews[1]._currentIntensityMult = curMultiplier;
+            timePast += Time.deltaTime;
+            yield return null;
+        }
+        _fieldOfViews[0]._currentIntensityMult = 1;
+        _fieldOfViews[1]._currentIntensityMult = 1;
+    }
+
+    private float BlinkingMath(AnimationCurve fadingCurve, float t, List<Period> periods)
+    {
+        foreach (var period in periods)
+        {
+            if (t < period.end)
+            {
+                return period.mult;
+            }
+        }
+
+        return fadingCurve.Evaluate(t);
+    }
+    
+    [Serializable]
+    public struct Period
+    {   
+        [UnityEngine.Range(0,1)]
+        public float end;
+        public float mult;
+    }
+    
     [Serializable]
     public struct LampMode
     {
@@ -60,9 +102,9 @@ public class Lamp : MonoBehaviour
     {
         public float viewRadius;
         public float spotLightRadius;
-        [Range(0, 360)]
+        [UnityEngine.Range(0, 360)]
         public float viewAngle;
-        [Range(0, 360)]
+        [UnityEngine.Range(0, 360)]
         public float spotLightAngle;
         public float intensity;
         public float lightHeight;
