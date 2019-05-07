@@ -151,6 +151,7 @@ MonoBehaviour:
       m_NumAlphaKeys: 3
     m_ColorMin: {r: 0, g: 0, b: 0, a: 0}
     m_ColorMax: {r: 0, g: 0, b: 0, a: 0}
+  CollapseTime: 0.5
 --- !u!198 &1155060327697218125
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4773,7 +4774,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: e57dd5921f9ebd746a417bc1781b5f6c, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0

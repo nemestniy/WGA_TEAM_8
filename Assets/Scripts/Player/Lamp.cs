@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Lamp : MonoBehaviour
@@ -20,7 +21,7 @@ public class Lamp : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _lampsMeshRenderers = new List<MeshRenderer>(gameObject.GetComponentsInChildren<MeshRenderer>());
+        _lampsMeshRenderers = gameObject.GetComponentsInChildren<FieldOfView>().Select(a => a.gameObject.GetComponent<MeshRenderer>()).ToList();
         _fieldOfViews = new List<FieldOfView>(GetComponentsInChildren<FieldOfView>());
     }
 
