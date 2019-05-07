@@ -86,7 +86,7 @@ Shader "Custom/ScreenFog"
 			float c2 = pow(tex2D(_DetailTex, (IN.uv_MainTex ) * _DetailTex_ST + delta2 * _DetailMult).a, 1);
 			float vingete = (pow(sqrt(IN.pos.x * IN.pos.x + IN.pos.y * IN.pos.y), 0.5f));
 			o.Alpha = (c1 + c2) * 0.1f * vingete;
-			o.Albedo = vingete * c2 * float3(0, 1, 0.8);
+			o.Albedo = vingete * c2 * float3(0, 0.2, 0.16);
 			o.Emission = float3(1, 1, 1);//float3(float2(d1, d2) * _NoiseMult, 0);//
 			
 

@@ -20,7 +20,10 @@ public class StepsSound : MonoBehaviour
     private AudioSource _audioSource;
     private MapManager _mapManager;
     private System.Random rnd;
-        
+
+    public Footprint LeftFootprint;
+    public Footprint RightFootprint;
+    private bool _left;
     private void Awake()
     {
         _mapManager = MapManager.Instance;
@@ -28,10 +31,17 @@ public class StepsSound : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayStep()
+    public void PlayStep(int leg)
     {
         float vol = Random.Range (volLowRange, volHighRange);
         _audioSource.PlayOneShot(GetStepFromBiom(_stepsRock,_stepsWater, _stepsSand), vol);
+
+        var foot = leg == 0 ? LeftFootprint : RightFootprint;
+        if (foot != null)
+        {
+            foot.Emit();
+            Debug.LogWarning($"Leg:{leg}");
+        }
     }
 
     private AudioClip GetStepFromBiom(List<AudioClip> stepsRock, List<AudioClip> stepsWater, List<AudioClip> stepsSand)

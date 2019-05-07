@@ -1,12 +1,13 @@
 ﻿// Unity built-in shader source. Copyright (c) 2016 Unity Technologies. MIT license (see license.txt)
 
-Shader "Custom/VisionAndLightDetective"
+Shader "Particles/Detective Unlit"
 {
 	Properties
 	{
 		_MainTex("Sprite Texture", 2D) = "white" {}
 		_Color("Tint", Color) = (1,1,1,1)
-		_EmissionMultiply("Emission", Float) = 1
+		_Mask("Stencil visibility", Int) = 1
+		_EmissionMultiply("Emission mult", Float) = 1
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 		[HideInInspector] _RendererColor("RendererColor", Color) = (1,1,1,1)
 		[HideInInspector] _Flip("Flip", Vector) = (1,1,1,1)
@@ -30,10 +31,10 @@ Shader "Custom/VisionAndLightDetective"
 			ZWrite Off
 			Blend One OneMinusSrcAlpha
 
-			/*Stencil {
-				Ref 2
+			Stencil {
+				Ref[_Mask]
 				Comp equal
-			}*/
+			}
 
 			CGPROGRAM
 			#pragma surface surf Lambert vertex:vert nofog nolightmap nodynlightmap keepalpha noinstancing

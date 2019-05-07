@@ -6,6 +6,7 @@ Shader "Particles/Detective Surface"
 	{
 		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
 		_Color("Tint", Color) = (1,1,1,1)
+		_Mask("Stencil visibility", Int) = 1
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 		[HideInInspector] _RendererColor("RendererColor", Color) = (1,1,1,1)
 		[HideInInspector] _Flip("Flip", Vector) = (1,1,1,1)
@@ -29,8 +30,8 @@ Shader "Particles/Detective Surface"
 			Blend One OneMinusSrcAlpha
 
 			Stencil {
-				Ref 2
-				Comp equal
+				Ref [_Mask]
+				Comp lEqual
 			}
 
 			CGPROGRAM
@@ -60,7 +61,7 @@ Shader "Particles/Detective Surface"
 			void surf(Input IN, inout SurfaceOutput o)
 			{
 				fixed4 c = SampleSpriteTexture(IN.uv_MainTex) * IN.color;
-				o.Albedo = c.rgb * c.a;
+				o.Albedo = c.rgb;
 				o.Alpha = c.a;
 			}
 			ENDCG

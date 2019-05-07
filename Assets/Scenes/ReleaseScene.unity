@@ -204,11 +204,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4175369692355482, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.6
+      value: 94
       objectReference: {fileID: 0}
     - target: {fileID: 4175369692355482, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.3
+      value: -28.1
       objectReference: {fileID: 0}
     - target: {fileID: 4175369692355482, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
       propertyPath: m_LocalPosition.z
@@ -245,6 +245,11 @@ PrefabInstance:
     - target: {fileID: 4175369692355482, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _constantEnergy
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
@@ -284,33 +289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909b83bed17a30f4a9eae768f7194629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &594860998 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8914237606444993381, guid: 8b70fcb166b58014a9478b08650564dc,
-    type: 3}
-  m_PrefabInstance: {fileID: 1844319208}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &594861009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 594860998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25f71f9ad60cd6a42a219f2ee160ade6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stepsRock:
-  - {fileID: 8300000, guid: 57d922400b4f72d4d92484f46da57de2, type: 3}
-  - {fileID: 8300000, guid: 7523404eb0640414095b11d2db24e2fc, type: 3}
-  - {fileID: 8300000, guid: 8cf8f9589bda2474b9b882de268c64b1, type: 3}
-  - {fileID: 8300000, guid: 28563d2aa39bf214c9d7c6a73ca99d9c, type: 3}
-  _stepsWater: []
-  _stepsSand: []
-  volLowRange: 0.5
-  volHighRange: 1
 --- !u!1001 &628825914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1106,7 +1084,25 @@ PrefabInstance:
     - target: {fileID: 6894313050959425599, guid: 8b70fcb166b58014a9478b08650564dc,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0.5
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6894313050959425599, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462112169, guid: 8b70fcb166b58014a9478b08650564dc, type: 3}
+      propertyPath: _stepsRock.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1462112169, guid: 8b70fcb166b58014a9478b08650564dc, type: 3}
+      propertyPath: _stepsRock.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8cf8f9589bda2474b9b882de268c64b1, type: 3}
+    - target: {fileID: 4673215093437309123, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8914237606444993383, guid: 8b70fcb166b58014a9478b08650564dc, type: 3}
