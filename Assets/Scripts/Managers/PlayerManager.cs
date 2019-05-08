@@ -11,7 +11,8 @@ public class PlayerManager : MonoBehaviour, Manager
     private bool _isPaused = true;
     private Transform _startTransform;
     public int CurrentLampMode { get; private set; }
-    
+
+    public Player Player => _player;
 
     public static PlayerManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }

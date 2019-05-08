@@ -17,8 +17,6 @@ public class Energy : MonoBehaviour
 
     private bool _isOnMinEnergy;
     private List<EnergyAffecter> _energyAffecters = new List<EnergyAffecter>();
-    
-
 
     public float CurrentEnergyLvl => _currentEnergy / _maxEnergy;
     
