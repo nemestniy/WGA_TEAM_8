@@ -151,20 +151,23 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         path.Scan();
 
-        foreach (IEnemy enemy in enemies)
+        if (enemies != null)
         {
-            path.Scan();
-            switch (enemy.GetEnemyType())
+            foreach (IEnemy enemy in enemies)
             {
-                case EnemyType.DeepWaterer:
-                    enemy.GetDestinationSetter().target = Player.Instance.transform;
-                    enemy.SetState(State.Moving);
-                    break;
+                path.Scan();
+                switch (enemy.GetEnemyType())
+                {
+                    case EnemyType.DeepWaterer:
+                        enemy.GetDestinationSetter().target = Player.Instance.transform;
+                        enemy.SetState(State.Moving);
+                        break;
 
-                case EnemyType.Statue:
-                    enemy.SetState(State.Waiting);
-                    break;
-            }
+                    case EnemyType.Statue:
+                        enemy.SetState(State.Waiting);
+                        break;
+                }
+            } 
         }
         IsLoaded = true;
     }

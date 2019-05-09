@@ -9,9 +9,10 @@ public class PlayerManager : MonoBehaviour, Manager
     private Animator _playerLampStates;
     private KeyController _keyController;
     private bool _isPaused = true;
+    
     private Transform _startTransform;
     public int CurrentLampMode { get; private set; }
-    
+    public bool playerCanMove = false;
 
     public static PlayerManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
@@ -30,9 +31,11 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         if (_isPaused || _player == null)
             return;
-        
+        if (playerCanMove)
+        {
             UpdatePlayerMovement();
             UpdateLightMode();
+        }
     }
 
     private void UpdatePlayerMovement()
