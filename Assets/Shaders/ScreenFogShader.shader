@@ -14,6 +14,7 @@ Shader "Custom/ScreenFog"
 		_FogMult("Fog offset multiplier", Float) = 1
 		_DetailTimeMult("Detail animation speed multiplier", Float) = 1
 		_DetailMult("Detail offset multiplier", Float) = 1
+		_CreepyMult("Madness presence", Float) = 0
         [MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
         [HideInInspector] _Flip ("Flip", Vector) = (1,1,1,1)
@@ -47,6 +48,7 @@ Shader "Custom/ScreenFog"
 		float4 _NoiseTex_ST, _FogTex_ST, _DetailTex_ST;
 		float _NoiseMult, _FogMult, _DetailMult;
 		float _NoiseTimeMult, _FogTimeMult, _DetailTimeMult;
+		float _CreepyMult;
         struct Input
         {
 			float4 pos ;
@@ -79,15 +81,15 @@ Shader "Custom/ScreenFog"
 			
 			float angle = (10 + maskColor.r * 5 + _Time.y * _FogTimeMult) % _PI2;
 			float angle2 = (10 + maskColor.g * 5 + _Time.y * _DetailTimeMult) % _PI2;
-			float2 delta = (10 + maskColor.b) * (cos(angle), sin(angle));
-			float2 delta2 = (10 + maskColor.a) * (cos(angle), sin(angle2));
+			float2 delta = (10 + maskColor.b) * (cos(angle), sin(angle)) * (1 + 10 * pow(_CreepyMult, 3));
+			float2 delta2 = (10 + maskColor.a) * (cos(angle), sin(angle2)) * (1 + 10 * pow(_CreepyMult, 3));
 
-			float c1 =  pow(tex2D(_FogTex, (IN.uv_MainTex ) * _FogTex_ST + delta * _FogMult).a, 1);
-			float c2 = pow(tex2D(_DetailTex, (IN.uv_MainTex ) * _DetailTex_ST + delta2 * _DetailMult).a, 1);
+			float c1 =  pow(tex2D(_FogTex, (IN.uv_MainTex ) * _FogTex_ST * (1 + 3 * pow(_CreepyMult, 4)) + delta * _FogMult).a, 1);
+			float c2 = pow(tex2D(_DetailTex, (IN.uv_MainTex ) * _DetailTex_ST * (1 + 3 * pow(_CreepyMult, 4)) + delta2 * _DetailMult).a, 1);
 			float vingete = (pow(sqrt(IN.pos.x * IN.pos.x + IN.pos.y * IN.pos.y), 0.5f));
-			o.Alpha = (c1 + c2) * 0.1f * vingete;
+			o.Alpha = (c1 + c2) * 0.1f * vingete * (1 + 1 * _CreepyMult);
 			o.Albedo = vingete * c2 * float3(0, 0.2, 0.16);
-			o.Emission = float3(1, 1, 1);//float3(float2(d1, d2) * _NoiseMult, 0);//
+			o.Emission = float3(1 + _CreepyMult, 1 - _CreepyMult, 1 - _CreepyMult);//float3(float2(d1, d2) * _NoiseMult, 0);//
 			
 
 			/*o.Alpha = 1;

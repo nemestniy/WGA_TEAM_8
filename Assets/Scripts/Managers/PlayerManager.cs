@@ -14,6 +14,8 @@ public class PlayerManager : MonoBehaviour, Manager
     public int CurrentLampMode { get; private set; }
     public bool playerCanMove = false;
 
+    public Player Player => _player;
+
     public static PlayerManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
 

@@ -36,8 +36,8 @@ public class Footprint : MonoBehaviour
         if (ps != null)
         {
             var main = ps.main;
-            main.startRotation = -this.transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
-            ps.Emit(1);
+            main.startRotation = -(this.transform.rotation.eulerAngles.z + Random.Range(-5, 5)) * Mathf.Deg2Rad ;            
+            ps.Emit(terrain == BackgroundController.Biome.Water ? 5 : 1);
         }
     }
 }
