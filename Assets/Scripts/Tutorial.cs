@@ -13,6 +13,7 @@ public class Tutorial : MonoBehaviour
     public GameObject daughter;
     public float daughterSpeed;
     public GameObject[] wayPoints;
+    public GameObject ghostStone;
 
     public GameObject canvas;
     public GameObject textBox;
@@ -58,11 +59,11 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[1].transform));// Слайд 2: дочь идет от точки 1 к точке 2
 
-        StartCoroutine(Dialogue("...разряженный фонарь! Отец!", Character.Daughter, 2f));
+        StartCoroutine(Dialogue("...разряженный фонарь! Отец!", Character.Daughter, 2f)); 
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[1]));//Слайд 3: Ожидание игрока у точки 1
 
-        StartCoroutine(Dialogue("Я вижу впереди слабый свет. Возможно, там колодец. Идем, заправим фонарь.", Character.Father));
+        StartCoroutine(Dialogue("Я вижу впереди слабый свет. Возможно, там колодец. Идем, заправим фонарь.", Character.Father, 3f));
 
         //yield return StartCoroutine(FatherSays());//Слайд 3: Герой произносит: Я вижу впереди слабый свет. Возможно, там колодец. Идем, заправим фонарь
 
@@ -78,11 +79,33 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(Dialogue("Потухнет, но не скоро.", Character.Father, 2f));
 
-        PlayerManager.Instance.playerCanMove = true;
+        UnfreezePlayer();
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[3].transform));
 
-        yield return StartCoroutine(MoveDaughterTo(wayPoints[4].transform));
+        yield return StartCoroutine(Dialogue("По - моему, здесь только что был проход...Откуда здесь стена ? ", Character.Daughter, 2f));
+
+        yield return StartCoroutine(WaitForPlayer(wayPoints[3]));
+
+        FreezePlayer();
+
+        yield return StartCoroutine(Dialogue("Люди не способны целиком воспринять город Древних. Кажется, что Р'льех меняется, и особенно - в темноте, где разум теряет все ориентиры. Будь осторожна.", Character.Father, 6f));
+
+        UnfreezePlayer();
+
+        StartCoroutine(MoveDaughterTo(wayPoints[4].transform));
+
+        yield return StartCoroutine(Dialogue("Отец, а что это на фонаре...рычаг?", Character.Daughter, 2f));
+
+        yield return StartCoroutine(Dialogue("Да. Сейчас покажу. Мне кажется, я кое-что заметил на той стене в глубине.", Character.Father, 3f));
+
+        yield return StartCoroutine(WaitForPlayer(wayPoints[4]));
+
+        yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. *Цвет фонаря* спектр отпугивает существ, живущих во тьме, *Цвет фонаря* же - позволяет увидеть сокрытое.", Character.Father, 6f));
+
+        yield return StartCoroutine(Dialogue("Ого, что это значит?", Character.Daughter, 2f));
+
+        yield return StartCoroutine(Dialogue("Жаждущих прозреть настигнет тьма.....Нам пора возвращаться.", Character.Father, 3f));
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[5].transform));
 
@@ -92,8 +115,9 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator ReloadLamp()
     {
-        PlayerManager.Instance.playerCanMove = false;
+        FreezePlayer();
         //Анимация наполнения фонаря и тд и тп
+        ghostStone.active = true;
         yield return new WaitForSeconds(1f);
         
     }
@@ -164,5 +188,15 @@ public class Tutorial : MonoBehaviour
             yield return null;
         }
         
+    }
+
+    public void FreezePlayer()
+    {
+        PlayerManager.Instance.playerCanMove = false;
+    }
+
+    public void UnfreezePlayer()
+    {
+        PlayerManager.Instance.playerCanMove = true;
     }
 }
