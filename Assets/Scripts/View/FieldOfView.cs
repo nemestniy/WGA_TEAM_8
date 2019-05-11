@@ -43,11 +43,11 @@ public class FieldOfView : MonoBehaviour
 	private int _prevMode;
 	
 	private float _changingState = 1; //[0,1] shows how close mode to it's final state; 0 - start to change mode, 1 - not changing
-	
 
-	private int _currentMode;
-	
-    private EnemyManager _enemyManager;
+
+	public int СurrentMode { private set; get; }
+
+	private EnemyManager _enemyManager;
 
 	//light values
     [HideInInspector] public float _currentViewRadius;
@@ -79,14 +79,14 @@ public class FieldOfView : MonoBehaviour
 		{
 			ComputeCurrentLightValues(_energy.CurrentEnergyLvl,
 				_lampModes[_prevMode].mainLight,
-				_lampModes[_currentMode].mainLight,
+				_lampModes[СurrentMode].mainLight,
 				_changingState);
 		}
 		else
 		{
 			ComputeCurrentLightValues(_energy.CurrentEnergyLvl,
 				_lampModes[_prevMode].backLight,
-				_lampModes[_currentMode].backLight,
+				_lampModes[СurrentMode].backLight,
 				_changingState);
 		}
 		
@@ -119,7 +119,7 @@ public class FieldOfView : MonoBehaviour
 
     public void SetLightMode(int newMode, int prevMode, float changingState)
 	{
-		_currentMode = newMode;
+		СurrentMode = newMode;
 		_prevMode = prevMode;
 		_changingState = changingState;
 	}
