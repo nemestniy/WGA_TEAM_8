@@ -35,9 +35,9 @@ public class BackgroundController : MonoBehaviour
 
         var pixColor = biomeTexture.GetPixel((int) (x * biomeTexture.width), (int) (y * biomeTexture.height));
         
-        var rockDist = ((Vector4)((pixColor - rockColor))).magnitude;
-        var sandDist = ((Vector4)((pixColor - sandColor))).magnitude;
-        var watrDist = ((Vector4)((pixColor - watrColor))).magnitude;
+        var rockDist = ((Vector4)((pixColor - rockColor))).sqrMagnitude;
+        var sandDist = ((Vector4)((pixColor - sandColor))).sqrMagnitude;
+        var watrDist = ((Vector4)((pixColor - watrColor))).sqrMagnitude;
 
         if (rockDist < sandDist && rockDist < watrDist) return Biome.Rocky;
         if (sandDist < watrDist) return Biome.Sandy;
