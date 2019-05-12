@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour, Manager
         EnemyDeepWaterer.OnTrigger += OnDeathByEnemy;
         EnemyStatue.OnTrigger += OnDeathByEnemy;
         Energy.OnRanoutOfEnergy += OnDeathByRanoutOfEnergy;
+        ExitTrigger.OnExit += Exit;
     }
 
     public GameManager() : base()
@@ -131,6 +132,11 @@ public class GameManager : MonoBehaviour, Manager
         _enemyManager = EnemyManager.Instance;
         _mapManager = MapManager.Instance;
         _audioManager = AudioManager.Instance;
+    }
+
+    private void Exit()
+    {
+        Debug.Log("We've found exit!");
     }
 }
 
