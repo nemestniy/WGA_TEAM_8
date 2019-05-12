@@ -998,100 +998,20 @@ MonoBehaviour:
   _lampEnergy: {fileID: 5894203408845879875}
   _lampModes:
   - name: Base
-    mainLight:
-      viewRadius: 20
-      spotLightRadius: 20
-      viewAngle: 90
-      spotLightAngle: 90
-      intensity: 70
-      lightHeight: -1
-      coordinateY: 0
-      lightColor: {r: 1, g: 1, b: 1, a: 0}
-    backLight:
-      viewRadius: 4
-      spotLightRadius: 5.5
-      viewAngle: 90
-      spotLightAngle: 90
-      intensity: 40
-      lightHeight: -1
-      coordinateY: 2.2
-      lightColor: {r: 1, g: 1, b: 1, a: 0}
+    mainLight: {fileID: 11400000, guid: a3983c6d366c13940aabc6bc984ba5b8, type: 2}
+    backLight: {fileID: 11400000, guid: 5b8482040dec9fe49ad49dc09085b893, type: 2}
   - name: Combat
-    mainLight:
-      viewRadius: 30
-      spotLightRadius: 30
-      viewAngle: 25
-      spotLightAngle: 25
-      intensity: 800
-      lightHeight: 0
-      coordinateY: 0.7
-      lightColor: {r: 0.5176471, g: 0.10196079, b: 0, a: 0}
-    backLight:
-      viewRadius: 2
-      spotLightRadius: 10
-      viewAngle: 90
-      spotLightAngle: 90
-      intensity: 40
-      lightHeight: -0.07
-      coordinateY: 2
-      lightColor: {r: 0.5176471, g: 0.10196079, b: 0, a: 0}
+    mainLight: {fileID: 11400000, guid: 91488305a5209be4b83570f41f6cd921, type: 2}
+    backLight: {fileID: 11400000, guid: 871d5c804caf80c49ab6f555333aad3d, type: 2}
   - name: Detective
-    mainLight:
-      viewRadius: 10
-      spotLightRadius: 14
-      viewAngle: 120
-      spotLightAngle: 120
-      intensity: 20
-      lightHeight: -1
-      coordinateY: 0
-      lightColor: {r: 0.58431375, g: 0.9803922, b: 0.3921569, a: 0}
-    backLight:
-      viewRadius: 2
-      spotLightRadius: 3.8
-      viewAngle: 120
-      spotLightAngle: 120
-      intensity: 40
-      lightHeight: -1
-      coordinateY: 2
-      lightColor: {r: 0.58431375, g: 0.9803922, b: 0.3921569, a: 0}
+    mainLight: {fileID: 11400000, guid: ec49fbdd832d7e14cb41f4f0b2fc68e4, type: 2}
+    backLight: {fileID: 11400000, guid: 4fb20f1549fbba049a44e1528628c0f2, type: 2}
   - name: PreDeath
-    mainLight:
-      viewRadius: 20
-      spotLightRadius: 20
-      viewAngle: 90
-      spotLightAngle: 90
-      intensity: 70
-      lightHeight: -1
-      coordinateY: 0
-      lightColor: {r: 1, g: 1, b: 1, a: 0}
-    backLight:
-      viewRadius: 4
-      spotLightRadius: 5.5
-      viewAngle: 90
-      spotLightAngle: 90
-      intensity: 40
-      lightHeight: -1
-      coordinateY: 2
-      lightColor: {r: 1, g: 1, b: 1, a: 0}
+    mainLight: {fileID: 11400000, guid: a3983c6d366c13940aabc6bc984ba5b8, type: 2}
+    backLight: {fileID: 11400000, guid: 5b8482040dec9fe49ad49dc09085b893, type: 2}
   - name: AfterDamage
-    mainLight:
-      viewRadius: 0
-      spotLightRadius: 0
-      viewAngle: 0
-      spotLightAngle: 0
-      intensity: 0
-      lightHeight: 0
-      coordinateY: 0
-      lightColor: {r: 0, g: 0, b: 0, a: 0}
-    backLight:
-      viewRadius: 0
-      spotLightRadius: 0
-      viewAngle: 0
-      spotLightAngle: 0
-      intensity: 0
-      lightHeight: 0
-      coordinateY: 2
-      lightColor: {r: 0, g: 0, b: 0, a: 0}
+    mainLight: {fileID: 11400000, guid: e24b515c5b1a06c43b9ddc5e52a03820, type: 2}
+    backLight: {fileID: 11400000, guid: 37673e750f859a347a19b583b1b300cd, type: 2}
   _isFrying: 0
 --- !u!82 &1942047866
 AudioSource:
@@ -5828,7 +5748,7 @@ ParticleSystem:
 --- !u!199 &4468554447866362417
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -10526,7 +10446,7 @@ ParticleSystem:
 --- !u!199 &7359475709744717098
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -15290,7 +15210,7 @@ ParticleSystem:
 --- !u!199 &3954737443406625918
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -20006,7 +19926,7 @@ ParticleSystem:
 --- !u!199 &3442081522003012490
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

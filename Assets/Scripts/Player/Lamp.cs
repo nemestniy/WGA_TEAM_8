@@ -94,22 +94,22 @@ public class Lamp : MonoBehaviour
     public struct LampMode
     {
         public string name;
-        public LightMode mainLight;
-        public LightMode backLight;
+        public LampModeParametrs mainLight;
+        public LampModeParametrs backLight;
     }
     
-    [Serializable]
-    public struct LightMode
-    {
-        public float viewRadius;
-        public float spotLightRadius;
-        [UnityEngine.Range(0, 360)]
-        public float viewAngle;
-        [UnityEngine.Range(0, 360)]
-        public float spotLightAngle;
-        public float intensity;
-        public float lightHeight;
-        public float coordinateY;
-        public Color lightColor;
-    }
+//    [Serializable]
+//    public struct LightMode
+//    {
+//        public float viewRadius;
+//        public float spotLightRadius;
+//        [UnityEngine.Range(0, 360)]
+//        public float viewAngle;
+//        [UnityEngine.Range(0, 360)]
+//        public float spotLightAngle;
+//        public float intensity;
+//        public float lightHeight;
+//        public float coordinateY;
+//        public Color lightColor;
+//    }
 }
