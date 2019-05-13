@@ -14,8 +14,11 @@ public class Tutorial : MonoBehaviour
     public float daughterSpeed;
     public GameObject[] wayPoints;
     public GameObject ghostStone;
+    public GameObject lamp;
+    public GameObject hiddenText;
 
     public GameObject canvas;
+    public GameObject cameraCell;
     public GameObject textBox;
 
 
@@ -101,7 +104,15 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[4]));
 
+        lamp.active = true;
+
+
+
         yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. *Цвет фонаря* спектр отпугивает существ, живущих во тьме, *Цвет фонаря* же - позволяет увидеть сокрытое.", Character.Father, 6f));
+
+        yield return StartCoroutine(WaitForPlayersAction());
+
+        yield return StartCoroutine(ShowHiddenText());
 
         yield return StartCoroutine(Dialogue("Ого, что это значит?", Character.Daughter, 2f));
 
@@ -120,6 +131,32 @@ public class Tutorial : MonoBehaviour
         ghostStone.active = true;
         yield return new WaitForSeconds(1f);
         
+    }
+
+    IEnumerator ShowHiddenText()
+    {
+        Color hiddenTextColor = hiddenText.GetComponent<SpriteRenderer>().color;
+        float aColor = hiddenTextColor.a;
+        do {
+            yield return new WaitForSeconds(0.8f);
+            hiddenTextColor = hiddenText.GetComponent<SpriteRenderer>().color;
+            aColor++;
+            hiddenText.GetComponent<SpriteRenderer>().color = new Color(hiddenTextColor.r, hiddenTextColor.g, hiddenTextColor.b, aColor);
+        }
+        while (aColor < 255);
+    }
+
+    IEnumerator WaitForPlayersAction()
+    {
+        cameraCell.active = true;
+        cameraCell.transform.position = mainCamera.transform.position;
+        mainCamera.GetComponent<CameraController>().enabled = false;
+        while (lamp.GetComponentInChildren<FieldOfView>().СurrentMode != 2)
+        {
+            yield return null;
+        }
+        mainCamera.GetComponent<CameraController>().enabled = true;
+        cameraCell.active = false;
     }
 
     IEnumerator Dialogue(string text, Character character)
