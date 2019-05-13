@@ -15,15 +15,15 @@ EditorBuildSettings:
     path: Assets/Scenes/MishaTestScene.unity
     guid: ed78219480b48764081b7052b9985655
   - enabled: 0
-    path: Assets/Scenes/ReleaseScene.unity
-    guid: 4c440926612048341be2fdda80acf3f1
-  - enabled: 0
     path: Assets/Scenes/LevelManager.unity
     guid: fa95626bd9ec16e4a81568886b627d30
+  - enabled: 0
+    path: Assets/Scenes/TutorialTestScene.unity
+    guid: 278de1513dc634541b82da5bfa69fabe
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 111c7dff3cf056843916a0e6c3687a92
   - enabled: 1
-    path: Assets/Scenes/TutorialTestScene.unity
-    guid: 278de1513dc634541b82da5bfa69fabe
+    path: Assets/Scenes/ReleaseScene.unity
+    guid: 4c440926612048341be2fdda80acf3f1
   m_configObjects: {}

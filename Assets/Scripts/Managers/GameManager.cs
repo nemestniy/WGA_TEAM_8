@@ -4,33 +4,18 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour, Manager
 {
-//    [Header("Managers:")]
-//    [SerializeField]
-    private PlayerManager _playerManager;
-//    [SerializeField]
-    private EnemyManager _enemyManager;
-//    [SerializeField]
-    private MapManager _mapManager;
-//    [SerializeField]
-    private AudioManager _audioManager;
-    
-    [Header("Cutscenes:")]
-    [SerializeField]
-    private Cutscene _startCutscene;
-    [SerializeField]
-    private Cutscene _screemerCutscene;
-    [SerializeField]
-    private Cutscene _deathCutscene;
-    [SerializeField]
-    private Cutscene _winCutscene;
-
-    [Header("")]
     [SerializeField]
     private float _energyDeathDelay = 4;
-
+    
+    private PlayerManager _playerManager;
+    private EnemyManager _enemyManager;
+    private MapManager _mapManager;
+    private AudioManager _audioManager;
+    private CutscenesManager _cutscenesManager;
     
     public float DistanceToClosestEnemy => _enemyManager.DistanceToClosestEnemy; //returns -1 if there are no enemy in enemy list
     public BackgroundController.Biome CurrentBiome => _mapManager.Background.GetBiomeByPosition(Player.Instance.transform.position);
@@ -66,35 +51,38 @@ public class GameManager : MonoBehaviour, Manager
     private void Start()
     {
         ConnectManagers();
-        
         _mapManager.StartManager();
-        StartCoroutine(_startCutscene.Show( new Action(StartManager))); //show method gets delegate what to do after showing
-        
+        StartCoroutine(_cutscenesManager.Show("Start", new Action(StartManager)));//show method gets delegate what to do after showing
         IsLoaded = true;
     }
 
     private void OnWin()
     {
         PauseManager();
-        StartCoroutine(_winCutscene.Show(new Action(StartManager)));
+        StartCoroutine(_cutscenesManager.Show("Win", new Action(FinishGame)));
     }
 
     private void OnDeathByEnemy()
     {
         PauseManager();
-        StartCoroutine(_screemerCutscene.Show(new Action(ShowDeathCutsceen)));
+        StartCoroutine(_cutscenesManager.Show("Screemer", new Action(ShowDeathCutscene)));
     }
 
     private void OnDeathByRanoutOfEnergy()
     {
         PauseManager();
-        StartCoroutine(CallWithDelay(_energyDeathDelay, new Action(ShowDeathCutsceen)));
+        StartCoroutine(CallWithDelay(_energyDeathDelay, new Action(ShowDeathCutscene)));
     }
 
-    private void ShowDeathCutsceen()
+    private void ShowDeathCutscene()
     {
         PauseManager();
-        StartCoroutine(_deathCutscene.Show(new Action(StartManager)));
+        StartCoroutine(_cutscenesManager.Show("Death", new Action(FinishGame)));
+    }
+
+    private void FinishGame()
+    {
+        SceneManager.LoadScene(0);
     }
 
 
@@ -132,11 +120,23 @@ public class GameManager : MonoBehaviour, Manager
         _enemyManager = EnemyManager.Instance;
         _mapManager = MapManager.Instance;
         _audioManager = AudioManager.Instance;
+        _cutscenesManager = CutscenesManager.Instance;
     }
 
     private void Exit()
     {
         Debug.Log("We've found exit!");
+        FinishGame();
+    }
+
+    private void OnDestroy()
+    {
+        Well.OnTrigger -= OnWin;
+        Enemy.OnTrigger -= OnDeathByEnemy;
+        EnemyDeepWaterer.OnTrigger -= OnDeathByEnemy;
+        EnemyStatue.OnTrigger -= OnDeathByEnemy;
+        Energy.OnRanoutOfEnergy -= OnDeathByRanoutOfEnergy;
+        ExitTrigger.OnExit -= Exit;
     }
 }
 

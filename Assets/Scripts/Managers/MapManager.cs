@@ -54,4 +54,9 @@ public class MapManager : MonoBehaviour, Manager
 
     public void PauseManager(){}
     public void ResumeManager(){}
+
+    private void OnDestroy()
+    {
+        _hexagonsGenerator.MapIsCreate -= _hexagonsGenerator_MapIsCreate;
+    }
 }

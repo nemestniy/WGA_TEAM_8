@@ -186,6 +186,11 @@ public class EnvironmentLight : MonoBehaviour
 		return (int)(Math.Log(layerMask.value) / Math.Log(2)); //layerMask.value returns number of layer in power of 2 (11^2=2048) so we use log2 to do vice versa
 	}
 
+	private void OnDestroy()
+	{
+		Hexagon.OnWallsChange -= RedrawView;
+	}
+
 	private struct ViewCastInfo //information about casting a view ray
 	{
 		public bool hit;

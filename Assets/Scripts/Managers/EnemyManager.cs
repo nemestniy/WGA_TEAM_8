@@ -51,7 +51,7 @@ public class EnemyManager : MonoBehaviour, Manager
     
     private void Start()
     {
-        //hexagonsGenerator.MapIsCreate += OnMapCreated;
+        //hexagonsGenerator.MapIsCreate += OnMapCreated; //если разкомментируешь эту строчку, не забудь разкомментить отписывание в OnDestroy
         enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
         enemyStatues = new List<EnemyStatue>(FindObjectsOfType<EnemyStatue>());
         enemies = new List<IEnemy>();
@@ -212,6 +212,11 @@ public class EnemyManager : MonoBehaviour, Manager
             }
         }
         
+    }
+
+    private void OnDestroy()
+    {
+        //hexagonsGenerator.MapIsCreate -= OnMapCreated;
     }
 }
 

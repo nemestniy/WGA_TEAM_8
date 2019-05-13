@@ -131,5 +131,14 @@ public class GameManagerTrial : MonoBehaviour, Manager
         _enemyManager = EnemyManager.Instance;
         _audioManager = AudioManager.Instance;
     }
+
+    private void OnDestroy()
+    {
+        Well.OnTrigger -= OnWin;
+        Enemy.OnTrigger -= OnDeathByEnemy;
+        EnemyDeepWaterer.OnTrigger -= OnDeathByEnemy;
+        EnemyStatue.OnTrigger -= OnDeathByEnemy;
+        Energy.OnRanoutOfEnergy -= OnDeathByRanoutOfEnergy;
+    }
 }
 

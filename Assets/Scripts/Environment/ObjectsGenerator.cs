@@ -99,4 +99,9 @@ public class ObjectsGenerator : MonoBehaviour
 //            
 //        }
     }
+
+    private void OnDestroy()
+    {
+        _hexagonsGenerator.MapIsCreate -= GenerateObjects;
+    }
 }

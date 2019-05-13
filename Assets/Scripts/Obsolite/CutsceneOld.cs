@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Cutscene : MonoBehaviour
+public class CutsceneOld : MonoBehaviour
 {
     
     [SerializeField]
     private List<Frame> _frames;
+
         
     private AudioSource _audioSource;
     private GameObject _imageGO;
@@ -46,15 +47,15 @@ public class Cutscene : MonoBehaviour
         whatToDoNext?.Invoke();
     }
 
-    
-    [System.Serializable]
-    struct Frame
-    {
-        [SerializeField]
-        public Sprite image;
-        [SerializeField]
-        public float secondsToChange;
-        [SerializeField]
-        public bool canChangeWithClick;
-    }
+//    
+//    [System.Serializable]
+//    struct Frame
+//    {
+//        [SerializeField]
+//        public Sprite image;
+//        [SerializeField]
+//        public float secondsToChange;
+//        [SerializeField]
+//        public bool canChangeWithClick;
+//    }
 }

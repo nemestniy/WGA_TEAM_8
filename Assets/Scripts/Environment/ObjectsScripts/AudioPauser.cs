@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 public class AudioPauser : MonoBehaviour
 {
@@ -6,10 +7,14 @@ public class AudioPauser : MonoBehaviour
     private AudioClip _sound;
 
     private AudioSource _audioSource;
-    
-    public void Start()
+
+    private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+    }
+
+    public void Start()
+    {
         _audioSource.clip = _sound;
         
         AudioManager.OnAudioStart += StartSound;
@@ -34,5 +39,12 @@ public class AudioPauser : MonoBehaviour
     private void ResumeSound()
     {
         _audioSource.UnPause();
+    }
+
+    private void OnDestroy()
+    {
+        AudioManager.OnAudioStart -= StartSound;
+        AudioManager.OnAudioPause -= PauseSound;
+        AudioManager.OnAudioResume -= ResumeSound;
     }
 }

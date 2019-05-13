@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d0801895fdc294ea295a2e549a3608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _energyCost: 0.1
+  _energyCost: 0.5
   _costDelay: 2
 --- !u!114 &114605633345996290
 MonoBehaviour:
@@ -806,6 +806,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _energyCost: 0
   _costDelay: 0.06
+--- !u!114 &114796926105114480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89d0801895fdc294ea295a2e549a3608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _energyCost: 0.06
+  _costDelay: 0
 --- !u!114 &114810778645213500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1835,6 +1849,7 @@ AnimatorState:
   - {fileID: 1101523209712755656}
   m_StateMachineBehaviours:
   - {fileID: 114459572511931418}
+  - {fileID: 114796926105114480}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

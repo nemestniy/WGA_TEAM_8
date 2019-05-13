@@ -427,3 +427,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sound: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
+  _audioSource: {fileID: 1117744471}
