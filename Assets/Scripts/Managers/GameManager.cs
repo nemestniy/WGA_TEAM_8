@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -125,9 +122,25 @@ public class GameManager : MonoBehaviour, Manager
 
     private void Exit()
     {
-        Debug.Log("We've found exit!");
-        FinishGame();
+        StartCoroutine(_cutscenesManager.Show("BossFight", new Action(ShowChoiceCutscene)));
+//        FinishGame();
     }
+
+    private void ShowChoiceCutscene()
+    {
+        StartCoroutine(_cutscenesManager.Show("Choice", null));
+    }
+
+    public void Run()
+    {
+        StartCoroutine(_cutscenesManager.Show("Run", new Action(FinishGame)));
+    }
+
+    public void Kill()
+    {
+        StartCoroutine(_cutscenesManager.Show("Kill", new Action(FinishGame)));
+    }
+    
 
     private void OnDestroy()
     {

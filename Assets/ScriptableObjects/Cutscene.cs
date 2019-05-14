@@ -6,6 +6,7 @@ public class Cutscene : ScriptableObject
 {
     public string cutsceneName;
     public AudioClip sound;
+    public GameObject additionalUI;
     public List<Frame> frames;
 }
 
