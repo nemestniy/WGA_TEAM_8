@@ -251,6 +251,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e24b515c5b1a06c43b9ddc5e52a03820,
         type: 2}
+    - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _constantEnergy
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19fbb88713593b540ab908288fd03a98, type: 3}
 --- !u!1001 &628825914
@@ -594,6 +599,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ExitTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2732498010247159759, guid: bdd4743fb7ef6aa4585eaf4c9dfb9e0c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2732498010247159757, guid: bdd4743fb7ef6aa4585eaf4c9dfb9e0c,
         type: 3}
@@ -1243,6 +1253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyStatue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6965660601277113687, guid: cd14b69cf3cb48f45acde3acb046e4da,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7566847481749640101, guid: cd14b69cf3cb48f45acde3acb046e4da,
         type: 3}

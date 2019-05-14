@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: CombatBack
   m_EditorClassIdentifier: 
   viewRadius: 2
-  spotLightRadius: 10
+  spotLightRadius: 5.39
   viewAngle: 90
   spotLightAngle: 90
   intensity: 40
-  lightHeight: -0.07
-  coordinateY: 2
-  lightColor: {r: 0.5176471, g: 0.10196079, b: 0, a: 0}
+  lightHeight: -0.1
+  coordinateY: 1.9
+  lightColor: {r: 0.6886792, g: 0.40550923, b: 0.3475881, a: 0}

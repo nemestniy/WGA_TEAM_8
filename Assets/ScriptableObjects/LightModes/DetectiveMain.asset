@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ef70b42b41c2748aa0b2cb3f17c436, type: 3}
   m_Name: DetectiveMain
   m_EditorClassIdentifier: 
-  viewRadius: 10
-  spotLightRadius: 14
+  viewRadius: 13.5
+  spotLightRadius: 34.7
   viewAngle: 120
   spotLightAngle: 120
-  intensity: 20
+  intensity: 8.87
   lightHeight: -1
   coordinateY: 0
-  lightColor: {r: 0.58431375, g: 0.9803922, b: 0.3921569, a: 0}
+  lightColor: {r: 0.2588235, g: 1, b: 0.70499605, a: 0}

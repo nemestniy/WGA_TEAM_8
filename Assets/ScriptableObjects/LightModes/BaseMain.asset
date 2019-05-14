@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: BaseMain
   m_EditorClassIdentifier: 
   viewRadius: 20
-  spotLightRadius: 20
+  spotLightRadius: 125.3
   viewAngle: 90
   spotLightAngle: 90
-  intensity: 70
+  intensity: 7.4
   lightHeight: -1
   coordinateY: 0
   lightColor: {r: 1, g: 1, b: 1, a: 0}
