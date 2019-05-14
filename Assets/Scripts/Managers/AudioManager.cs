@@ -18,17 +18,19 @@ public class AudioManager : MonoBehaviour, Manager
     private AudioSource _audioSource;
     public bool Paused{ get; private set; }
 
-    public static AudioManager Instance { get; private set; }
     public bool IsLoaded { get; private set; }
     
     public static event Action OnAudioStart;
     public static event Action OnAudioPause;
     public static event Action OnAudioResume;
-    
+
+    #region Singletone
+    public static AudioManager Instance { get; private set; }
     public AudioManager() : base()
     {
         Instance = this;
     }
+    #endregion
     
     private void Awake()
     {

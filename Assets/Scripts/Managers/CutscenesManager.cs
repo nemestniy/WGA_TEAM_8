@@ -6,21 +6,20 @@ using UnityEngine.UI;
 
 public class CutscenesManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<Cutscene> _cutsceens;
-    
     private AudioSource _audioSource;
     private GameObject _imageGO;
     private Image _image;
-    private Cutscene _currentCutscene;
-//    private bool _isInterrupted;
     private GameObject addUI = null;
-    
+    private Animator _gameProcessAnimator;
+    private static readonly int Next = Animator.StringToHash("Next");
+
+    #region Singletone
     public static CutscenesManager Instance { get; private set; }
     public CutscenesManager() : base()
     {
         Instance = this;
     }
+    #endregion
     
     private void Awake()
     {
@@ -28,48 +27,48 @@ public class CutscenesManager : MonoBehaviour
         _image = _imageGO.GetComponent<Image>();
         _audioSource = GetComponent<AudioSource>();
     }
-    
-    public IEnumerator Show(string cutsceneName, Action whatToDoNext)
+
+    private void Start()//TODO: совместить GameManager и CutsceneManager
+    {
+        _gameProcessAnimator = GameManager.Instance.GetComponent<Animator>();
+    }
+
+    public IEnumerator Show(Cutscene cutscene)
     {
         if(addUI != null) Destroy(addUI);
         
-        _currentCutscene = _cutsceens.Find(c => c.cutsceneName.Equals(cutsceneName)); //looking for the desired cutscene
-        _audioSource.clip = _currentCutscene.sound;
+        _audioSource.clip = cutscene.sound;
         _imageGO.SetActive(true);
         _audioSource.Play();
         
-        if (_currentCutscene.additionalUI)
+        if (cutscene.additionalUI)
         {
-            addUI =  Instantiate(_currentCutscene.additionalUI);
+            addUI =  Instantiate(cutscene.additionalUI);
         }
         
-        foreach (var frame in _currentCutscene.frames)
+        foreach (var frame in cutscene.frames)
         {
             float timeLeft = frame.secondsToChange;
             _image.sprite = frame.image;
             
-            while (!((frame.canChangeWithClick && Input.GetKey(KeyCode.Mouse0))|| timeLeft < 0)/* && !_isInterrupted*/)
+            while (!((frame.canChangeWithClick && Input.GetKey(KeyCode.Mouse0))|| timeLeft < 0))
             {
                 timeLeft -= Time.deltaTime;
                 yield return null;
             }
-            
-//            if(_isInterrupted)
-//                break;
         }
-
-//        _isInterrupted = false;
-        
-        if(addUI != null) Destroy(addUI);
         _imageGO.SetActive(false);
         _audioSource.Stop();
 
-        whatToDoNext?.Invoke();
-    }
 
-//    public void InterruptShow()
-//    {
-//        _isInterrupted = true;
-//    }
+        if (addUI != null)
+        {
+            Destroy(addUI);
+        }
+        else
+        {
+            _gameProcessAnimator.SetTrigger(Next);
+        }
+    }
 }
 

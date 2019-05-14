@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,7 @@ public class Well : MonoBehaviour
     [SerializeField]
     private float _energyContains = 50;
     
-    public delegate void OnTriggerAction();
-    public static event OnTriggerAction OnTrigger;
+    public static event Action OnTrigger;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

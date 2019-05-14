@@ -7,23 +7,10 @@ using UnityEngine;
 
 public class GameManagerTrial : MonoBehaviour, Manager
 {
-    //    [Header("Managers:")]
-    //    [SerializeField]
     private PlayerManager _playerManager;
-    //    [SerializeField]
     private EnemyManager _enemyManager;
-    //    [SerializeField]
     private AudioManager _audioManager;
 
-    /*[Header("Cutscenes:")]
-    [SerializeField]
-    private Cutscene _startCutscene;
-    [SerializeField]
-    private Cutscene _screemerCutscene;
-    [SerializeField]
-    private Cutscene _deathCutscene;
-    [SerializeField]
-    private Cutscene _winCutscene;*/
 
     [Header("")]
     [SerializeField]
@@ -41,9 +28,14 @@ public class GameManagerTrial : MonoBehaviour, Manager
     //    public Zone CurrentZone =>;
     //    public HexType CurrentHexType =>;
 
-
+    #region Singletone
     public static GameManagerTrial Instance { get; private set; }
-
+    public GameManagerTrial() : base()
+    {
+        Instance = this;
+    }
+    #endregion
+    
     public bool IsLoaded { get; private set; }
 
     private void Awake()
@@ -55,10 +47,7 @@ public class GameManagerTrial : MonoBehaviour, Manager
         Energy.OnRanoutOfEnergy += OnDeathByRanoutOfEnergy;
     }
 
-    public GameManagerTrial() : base()
-    {
-        Instance = this;
-    }
+    
 
     private void Start()
     {
