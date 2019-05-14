@@ -16,7 +16,7 @@ MonoBehaviour:
   spotLightRadius: 30
   viewAngle: 25
   spotLightAngle: 25
-  intensity: 800
+  intensity: 275.6
   lightHeight: 0
   coordinateY: 0.7
-  lightColor: {r: 0.5176471, g: 0.10196079, b: 0, a: 0}
+  lightColor: {r: 0.8207547, g: 0.30133054, b: 0.19744569, a: 1}
