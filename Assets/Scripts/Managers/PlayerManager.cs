@@ -15,14 +15,15 @@ public class PlayerManager : MonoBehaviour, Manager
     public bool playerCanMove = false;
 
     public Player Player => _player;
-
-    public static PlayerManager Instance { get; private set; }
+    
     public bool IsLoaded { get; private set; }
-
+    #region Singletone
+    public static PlayerManager Instance { get; private set; }
     public PlayerManager() : base()
     {
         Instance = this;
     }
+    #endregion
 
     private void Awake()
     {

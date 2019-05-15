@@ -19,6 +19,14 @@ public class EnemyManager : MonoBehaviour, Manager
     public List<Transform> visibleEnemiesList;
 
     private int framecount = 0;
+    
+    #region Singletone
+    public static EnemyManager Instance { get; private set; }
+    public EnemyManager() : base()
+    {
+        Instance = this;
+    }
+    #endregion
 
     public float DistanceToClosestEnemy
     {
@@ -41,13 +49,10 @@ public class EnemyManager : MonoBehaviour, Manager
     }
     
     
-    public static EnemyManager Instance { get; private set; }
-    public bool IsLoaded { get; private set; }
     
-    public EnemyManager() : base()
-    {
-        Instance = this;
-    }
+    public bool IsLoaded { get; private set; }
+
+    
     
     private void Start()
     {
