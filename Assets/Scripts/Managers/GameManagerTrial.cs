@@ -8,11 +8,11 @@ using UnityEngine;
 public class GameManagerTrial : MonoBehaviour, Manager
 {
     //    [Header("Managers:")]
-    //    [SerializeField]
+        [SerializeField]
     private PlayerManager _playerManager;
-    //    [SerializeField]
+        [SerializeField]
     private EnemyManager _enemyManager;
-    //    [SerializeField]
+        [SerializeField]
     private AudioManager _audioManager;
 
     /*[Header("Cutscenes:")]
@@ -66,6 +66,8 @@ public class GameManagerTrial : MonoBehaviour, Manager
 
         StartManager();
 
+        _enemyManager.enabled = false;
+
         IsLoaded = true;
     }
 
@@ -115,7 +117,7 @@ public class GameManagerTrial : MonoBehaviour, Manager
     {
         _audioManager.ResumeManager();
         _playerManager.ResumeManager();
-        //      _enemyManager.ResumeEnemies();
+        _enemyManager.ResumeManager();
     }
 
     private IEnumerator CallWithDelay(float delay, Action method)

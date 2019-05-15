@@ -44,8 +44,8 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     public void Start()
     {
         player = Player.Instance;
-        destinationSetter = GetComponent<Pathfinding.AIDestinationSetter>();
-        aiPath = GetComponent<Pathfinding.AIPath>();
+        destinationSetter = GetComponent<AIDestinationSetter>();
+        aiPath = GetComponent<AIPath>();
         inLight = false;
         escapePointCreated = false;
         maneurPointCreated = false;
@@ -62,7 +62,11 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
                 //
                 break;
             case State.Escaping:
-                Escape();
+                if(Application.loadedLevelName == "TutorialTestScene")
+                {
+                    Escape(Tutorial.Instance.escapeObject);
+                }else
+                    Escape();
                 break;
             case State.Maneuring:
                 Maneur();
@@ -109,6 +113,13 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
             }
         }
         
+    }
+
+    public void Escape(GameObject escapeObject) // Сбежать в ужасе. Состояние - Escaping
+    {
+        destinationSetter.target = escapeObject.transform;
+        aiPath.maxSpeed = 20f;
+        escapePointCreated = true;
     }
 
     private void Maneur() // Маневрирование(уклонение) от луча. Состояние - Frying
