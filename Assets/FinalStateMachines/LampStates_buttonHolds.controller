@@ -14,31 +14,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: EnergyLvl
     m_Type: 1
     m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: GotDamage
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: AfterDamageEnded
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: ButtonState
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -147,8 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8225688c2d1e43479ec5f89a05ab751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BotModeNum: 0
-  _TopModeNum: 1
+  _botModeNum: 0
+  _topModeNum: 1
+  _mouseButtonState: 1
   _timeToChange: 1
 --- !u!114 &114131005679249240
 MonoBehaviour:
@@ -318,8 +319,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8225688c2d1e43479ec5f89a05ab751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BotModeNum: 0
-  _TopModeNum: 2
+  _botModeNum: 0
+  _topModeNum: 2
+  _mouseButtonState: 2
   _timeToChange: 1
 --- !u!114 &114398952659296750
 MonoBehaviour:
@@ -912,9 +914,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: HasChanged
     m_EventTreshold: 0
-  - m_ConditionMode: 6
+  - m_ConditionMode: 7
     m_ConditionEvent: ButtonState
-    m_EventTreshold: 0
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102887325710474122}
   m_Solo: 0
@@ -1037,9 +1039,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
+  - m_ConditionMode: 7
     m_ConditionEvent: ButtonState
-    m_EventTreshold: 0
+    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102619180540404442}
   m_Solo: 0
@@ -1087,9 +1089,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
+  - m_ConditionMode: 7
     m_ConditionEvent: ButtonState
-    m_EventTreshold: 0
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102766129988663924}
   m_Solo: 0
@@ -1262,9 +1264,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: HasChanged
     m_EventTreshold: 0
-  - m_ConditionMode: 6
+  - m_ConditionMode: 7
     m_ConditionEvent: ButtonState
-    m_EventTreshold: 0
+    m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102887325710474122}
   m_Solo: 0
@@ -1887,7 +1889,7 @@ AnimatorStateMachine:
     m_Position: {x: 768, y: 936, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102313543486282248}
-    m_Position: {x: 540, y: 384, z: 0}
+    m_Position: {x: 528, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102924989343686120}
     m_Position: {x: 708, y: -36, z: 0}
@@ -1905,7 +1907,7 @@ AnimatorStateMachine:
     m_Position: {x: 336, y: 648, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102012549999939980}
-    m_Position: {x: 228, y: 384, z: 0}
+    m_Position: {x: 228, y: 360, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102076808539373344}
     m_Position: {x: -588, y: 492, z: 0}
