@@ -45,6 +45,19 @@ public class KeyController : MoveController
         return WheelMovment.None;
     }
 
+    public MoseButtonStates GetButtonState()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            return MoseButtonStates.LeftDown;
+        }
+        if (Input.GetMouseButton(1))
+        {
+            return MoseButtonStates.RightDown;
+        }
+        return MoseButtonStates.Released;
+    }
+
     public int GetLightMode(bool isPreDeath)
     {
         if (isPreDeath)
@@ -161,5 +174,12 @@ public class KeyController : MoveController
         None,
         Up,
         Down
+    }
+    
+    public enum MoseButtonStates
+    {
+        Released,
+        LeftDown,
+        RightDown
     }
 }

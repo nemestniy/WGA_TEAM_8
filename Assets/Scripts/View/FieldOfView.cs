@@ -104,7 +104,7 @@ public class FieldOfView : MonoBehaviour
         _enemyManager.visibleEnemiesList = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
     }
 
-    private void ComputeCurrentLightValues(float energyLvl, Lamp.LightMode prevMode, Lamp.LightMode currentMode, float changingState)
+    private void ComputeCurrentLightValues(float energyLvl, LampModeParametrs prevMode, LampModeParametrs currentMode, float changingState)
 	{
 		//computing current values of player's lamp, affecting radius by current energy level
 		_currentViewRadius = energyLvl * Mathf.Lerp(prevMode.viewRadius, currentMode.viewRadius, changingState);

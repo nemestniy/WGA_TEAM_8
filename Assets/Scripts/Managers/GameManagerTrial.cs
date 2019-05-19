@@ -8,22 +8,13 @@ using UnityEngine;
 public class GameManagerTrial : MonoBehaviour, Manager
 {
     //    [Header("Managers:")]
-    //    [SerializeField]
+        [SerializeField]
     private PlayerManager _playerManager;
-    //    [SerializeField]
+        [SerializeField]
     private EnemyManager _enemyManager;
-    //    [SerializeField]
+        [SerializeField]
     private AudioManager _audioManager;
 
-    /*[Header("Cutscenes:")]
-    [SerializeField]
-    private Cutscene _startCutscene;
-    [SerializeField]
-    private Cutscene _screemerCutscene;
-    [SerializeField]
-    private Cutscene _deathCutscene;
-    [SerializeField]
-    private Cutscene _winCutscene;*/
 
     [Header("")]
     [SerializeField]
@@ -41,9 +32,14 @@ public class GameManagerTrial : MonoBehaviour, Manager
     //    public Zone CurrentZone =>;
     //    public HexType CurrentHexType =>;
 
-
+    #region Singletone
     public static GameManagerTrial Instance { get; private set; }
-
+    public GameManagerTrial() : base()
+    {
+        Instance = this;
+    }
+    #endregion
+    
     public bool IsLoaded { get; private set; }
 
     private void Awake()
@@ -55,16 +51,15 @@ public class GameManagerTrial : MonoBehaviour, Manager
         Energy.OnRanoutOfEnergy += OnDeathByRanoutOfEnergy;
     }
 
-    public GameManagerTrial() : base()
-    {
-        Instance = this;
-    }
+    
 
     private void Start()
     {
         ConnectManagers();
 
         StartManager();
+
+        _enemyManager.enabled = false;
 
         IsLoaded = true;
     }
@@ -115,7 +110,7 @@ public class GameManagerTrial : MonoBehaviour, Manager
     {
         _audioManager.ResumeManager();
         _playerManager.ResumeManager();
-        //      _enemyManager.ResumeEnemies();
+        _enemyManager.ResumeManager();
     }
 
     private IEnumerator CallWithDelay(float delay, Action method)
@@ -130,6 +125,15 @@ public class GameManagerTrial : MonoBehaviour, Manager
         _playerManager = PlayerManager.Instance;
         _enemyManager = EnemyManager.Instance;
         _audioManager = AudioManager.Instance;
+    }
+
+    private void OnDestroy()
+    {
+        Well.OnTrigger -= OnWin;
+        Enemy.OnTrigger -= OnDeathByEnemy;
+        EnemyDeepWaterer.OnTrigger -= OnDeathByEnemy;
+        EnemyStatue.OnTrigger -= OnDeathByEnemy;
+        Energy.OnRanoutOfEnergy -= OnDeathByRanoutOfEnergy;
     }
 }
 

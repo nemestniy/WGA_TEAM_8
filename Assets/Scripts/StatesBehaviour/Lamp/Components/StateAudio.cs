@@ -42,4 +42,11 @@ public class StateAudio : StateMachineBehaviour
     {
         _lampsAudioSource.UnPause();
     }
+
+    private void OnDestroy()
+    {
+        AudioManager.OnAudioStart -= StartSound;
+        AudioManager.OnAudioPause -= PauseSound;
+        AudioManager.OnAudioResume -= ResumeSound;
+    }
 }

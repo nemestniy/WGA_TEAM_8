@@ -14,15 +14,27 @@ public class Tutorial : MonoBehaviour
     public float daughterSpeed;
     public GameObject[] wayPoints;
     public GameObject ghostStone;
+    public GameObject lamp;
+    public GameObject hiddenText;
+    public GameObject enemy;
+    public GameObject escapeObject;
 
     public GameObject canvas;
+    public GameObject cameraCell;
     public GameObject textBox;
+
+    public static Tutorial Instance { get; private set; }
 
 
     private AIDestinationSetter daughterAIDestinationSetter;
 
     [SerializeField] private bool isDaughterMoving;
-    // Start is called before the first frame update
+
+    public Tutorial() : base()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         daughterAIDestinationSetter = daughter.GetComponent<AIDestinationSetter>();
@@ -101,16 +113,45 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[4]));
 
+        lamp.active = true;
+
         yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. *Цвет фонаря* спектр отпугивает существ, живущих во тьме, *Цвет фонаря* же - позволяет увидеть сокрытое.", Character.Father, 6f));
+
+        yield return StartCoroutine(WaitForPlayersAction());
+
+        yield return StartCoroutine(ShowHiddenText());
 
         yield return StartCoroutine(Dialogue("Ого, что это значит?", Character.Daughter, 2f));
 
         yield return StartCoroutine(Dialogue("Жаждущих прозреть настигнет тьма.....Нам пора возвращаться.", Character.Father, 3f));
 
+        yield return StartCoroutine(ShowEnemy());
+
         yield return StartCoroutine(MoveDaughterTo(wayPoints[5].transform));
+
+        StartCoroutine(Dialogue("Ты слышал? Что-то в реке.", Character.Daughter, 2f));
+
+        yield return StartCoroutine(WaitForPlayer(wayPoints[5]));
+
+        StartCoroutine(Dialogue("Отойди от воды! Оно боится *красного* спектра.", Character.Father, 3f));
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[6].transform));
 
+        yield return new WaitForSeconds(5f);
+
+        enemy.GetComponent<AIDestinationSetter>().target = player.transform;
+
+        enemy.GetComponent<IEnemy>().SetState(State.Moving);
+
+    }
+
+    IEnumerator ShowEnemy()
+    {
+        enemy.active = true;
+        EnemyManager.Instance.enabled = true;
+        //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Waiting);
+        yield return new WaitForSeconds(5f);
+        //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Moving);
     }
 
     IEnumerator ReloadLamp()
@@ -122,12 +163,43 @@ public class Tutorial : MonoBehaviour
         
     }
 
+    IEnumerator ShowHiddenText()
+    {
+        Debug.Log("ShowHiddenText()");
+        Color hiddenTextColor = hiddenText.GetComponent<SpriteRenderer>().color;
+        float aColor = hiddenTextColor.a;
+        do {
+            yield return new WaitForSeconds(0.4f);
+            hiddenTextColor = hiddenText.GetComponent<SpriteRenderer>().color;
+            aColor = aColor + 0.05f;
+            hiddenText.GetComponent<SpriteRenderer>().color = new Color(hiddenTextColor.r, hiddenTextColor.g, hiddenTextColor.b, aColor);
+            Debug.Log("aColor = " + aColor);
+        }
+        while (aColor < 1);
+        Debug.Log("ShowHiddenText(+)");
+    }
+
+    IEnumerator WaitForPlayersAction()
+    {
+        cameraCell.active = true;
+        cameraCell.transform.position = mainCamera.transform.position;
+        mainCamera.GetComponent<CameraController>().enabled = false;
+        while (lamp.GetComponentInChildren<FieldOfView>().СurrentMode != 2)
+        {
+            yield return null;
+        }
+        mainCamera.GetComponent<CameraController>().enabled = true;
+        cameraCell.active = false;
+    }
+
     IEnumerator Dialogue(string text, Character character)
     {
+        Debug.Log("Dialogue");
         canvas.active = true;
         textBox.GetComponent<Text>().text = character + ": " + text;
         yield return null;
         //Добавить произношение реплики героем
+        Debug.Log("Dialogue +");
     }
 
     IEnumerator Dialogue(string text, Character character, float delay)
@@ -193,6 +265,7 @@ public class Tutorial : MonoBehaviour
     public void FreezePlayer()
     {
         PlayerManager.Instance.playerCanMove = false;
+        
     }
 
     public void UnfreezePlayer()

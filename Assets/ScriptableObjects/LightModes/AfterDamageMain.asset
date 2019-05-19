@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ef70b42b41c2748aa0b2cb3f17c436, type: 3}
+  m_Name: AfterDamageMain
+  m_EditorClassIdentifier: 
+  viewRadius: 0
+  spotLightRadius: 0
+  viewAngle: 0
+  spotLightAngle: 0
+  intensity: 0
+  lightHeight: 0
+  coordinateY: 0
+  lightColor: {r: 0, g: 0, b: 0, a: 0}
