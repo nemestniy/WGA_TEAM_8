@@ -165,3 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Background: {fileID: 0}
+  _exitTrigger: {fileID: 2732498010247159759, guid: bdd4743fb7ef6aa4585eaf4c9dfb9e0c,
+    type: 3}

@@ -17,6 +17,9 @@ public class MapManager : MonoBehaviour, Manager
     private ObjectsGenerator _objectsGenerator;
     private Player _player;
 
+    [SerializeField]
+    private GameObject _exitTrigger;
+
     
     public bool IsLoaded { get; private set; }
     #region Singletone
@@ -73,7 +76,9 @@ public class MapManager : MonoBehaviour, Manager
         {
             var walls = _hexagonsGenerator.GetClosingMapWalls().Where(h => h.GetZone() == zone);
             int wallCount = Random.Range(0, walls.Count());
-            walls.ElementAt(wallCount).Disable();
+            var wall = walls.ElementAt(wallCount);
+            Instantiate(_exitTrigger, wall.transform.position, Quaternion.identity);
+            wall.Disable();
         }
     }
 }
