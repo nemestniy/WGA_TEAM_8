@@ -175,8 +175,9 @@ GameObject:
   - component: {fileID: 1117744471}
   - component: {fileID: 1117744472}
   - component: {fileID: 2108399041246249368}
+  - component: {fileID: 3257736397142474537}
   m_Layer: 0
-  m_Name: Well
+  m_Name: anyb_m_Well
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -427,3 +428,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sound: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
+--- !u!114 &3257736397142474537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192543149050041623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 368401c78b0df964181e58e0b981d716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxCountInDungeon: 1
+  MinCountInDungeon: 1
+  SpawnProbMultiplier: 1
