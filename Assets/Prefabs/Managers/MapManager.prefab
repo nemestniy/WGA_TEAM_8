@@ -153,7 +153,8 @@ MonoBehaviour:
   _attemptsNumber: 5
   _well: {fileID: 192543149050041623, guid: 472ce6639233e5e478ee37aa7d58bd88, type: 3}
   _dynamicShadowOffset: 0.4
-  PlaceholderPrefab: {fileID: 0}
+  PlaceholderPrefab: {fileID: 7942143294659975782, guid: 90f7c35c677b1f944ba0484978ef8950,
+    type: 3}
 --- !u!114 &8439119579644481271
 MonoBehaviour:
   m_ObjectHideFlags: 0
