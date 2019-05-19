@@ -25,6 +25,7 @@ public class Hexagon : MonoBehaviour
 
 
     private bool isVisited;
+    private bool isVisable;
 
     private List<Transform> freeNeigbours = null;
 
@@ -480,8 +481,14 @@ public class Hexagon : MonoBehaviour
         return _walls;
     }
 
-    public void ActivateBorderWalls()
+    public IEnumerable<Wall> GetActiveWalls()
     {
+        return GetWalls().Where(h => h != null & !h.IsBorder());
+    }
+
+    public List<Wall> ActivateBorderWalls()
+    {
+        var walls = new List<Wall>();
         if (_walls != null)
         {
             foreach (Wall wall in _walls)
@@ -490,10 +497,12 @@ public class Hexagon : MonoBehaviour
                 if (neighbor == null)
                 {
                     wall.SetBorder();
+                    walls.Add(wall);
                 }
 
             }
         }
+        return walls;
     }
 
     //---------------Часть Лехи

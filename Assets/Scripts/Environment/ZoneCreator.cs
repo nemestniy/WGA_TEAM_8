@@ -37,7 +37,12 @@ public class ZoneCreator : MonoBehaviour
         for(int i = 0; i < zoneCount; i++)
         {
             Color newColor = new Color(Random.value, Random.value, Random.value, 1);
-            Zone newZone = new Zone(newColor);
+            int madnessDegree = 0;
+            if (i > 0)
+                madnessDegree++;
+            if (i == zoneCount - 1)
+                madnessDegree = zoneCount * 2;
+            Zone newZone = new Zone(newColor, madnessDegree);
 
             GenerateZone(GetRandomEdgeHex(hexObjects), newZone);
         }
@@ -47,7 +52,7 @@ public class ZoneCreator : MonoBehaviour
 
         _hexagonsGenerator.DestroyAllExcessWalls();
         _hexagonsGenerator.DisableAllWalls();
-
+        //_hexagonsGenerator.ActivateColliders();
         ActivateRandomWalls();
     }
 
@@ -78,7 +83,6 @@ public class ZoneCreator : MonoBehaviour
                             else
                             {
                                 wall.SetBorder();
-                                //wall.ChangeColor(zone.GetColor());
                                 borderWalls.Add(wall);
                             }
                         }
@@ -255,20 +259,7 @@ public class ZoneCreator : MonoBehaviour
     {
         foreach(Zone zone in _zones)
         {
-            var hexas = GetInternalHexas(zone);
-            foreach(Hexagon hex in hexas)
-            {
-                var walls = hex.GetWalls();
-                foreach (Wall wall in walls)
-                {
-                    if (wall != null && !wall.IsActive())
-                    {
-                        wall.Enable();
-                        break;
-                    }
-                }
-                
-            }
+            zone.GenerateWalls();  
         }
     }
 

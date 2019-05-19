@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -10,11 +11,13 @@ public class Zone
     private List<Hexagon> hexagons;
 
     private Color color;
+    private int _madnessDegree;
 
-    public Zone(Color color)
+    public Zone(Color color, int madnessDegree)
     {
         ZoneGuid = Guid.NewGuid();
         this.color = color;
+        _madnessDegree = madnessDegree;
         hexagons = new List<Hexagon>();
     }
 
@@ -36,6 +39,62 @@ public class Zone
     public List<Hexagon> GetHexagons()
     {
         return hexagons;
+    }
+
+    public IEnumerable<Hexagon> GetInternalHexas()
+    {
+        var borderHexes = GetHexagons().Where(h => h.ReturnNeighborsHex().All(n => n.GetZone() == this));
+        return borderHexes;
+    }
+
+    public void GenerateWalls()
+    {
+        var hexas = GetInternalHexas();
+        foreach (Hexagon hex in hexas)
+        {
+            var walls = hex.GetWalls();
+            foreach (Wall wall in walls)
+            {
+                if (wall != null && !wall.IsActive())
+                {
+                    wall.Enable();
+                    break;
+                }
+            }
+
+        }
+    }
+
+    public void ChangeWalls()
+    {
+        Player player = Player.Instance;
+        var hexas = GetInternalHexas();
+        for(int j = 0; j < hexas.Count(); j++) {
+            var hexRandomCount = UnityEngine.Random.Range(0, hexas.Count());
+            var hex = hexas.ElementAt(hexRandomCount);
+            if (hex == player.GetCurrentHexagon())
+                continue;
+            var walls = hex.GetActiveWalls();
+            for (int i = 0; i < walls.Count(); i++)
+            {
+                var wallRandomCount = UnityEngine.Random.Range(0, walls.Count());
+                var wall = walls.ElementAt(wallRandomCount);
+                if (wall.IsActive())
+                {
+                    wall.Disable();
+                    _madnessDegree--;
+                }
+                else
+                {
+                    wall.Enable();
+                    _madnessDegree--;
+                }
+                if (_madnessDegree <= 0)
+                    break;
+            }
+            if (_madnessDegree <= 0)
+                break;
+        }
     }
 
     public Color GetColor()
