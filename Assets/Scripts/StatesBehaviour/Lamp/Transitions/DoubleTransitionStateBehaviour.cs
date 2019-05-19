@@ -5,9 +5,12 @@ using UnityEngine;
 public class DoubleTransitionStateBehaviour : StateMachineBehaviour
 {
     [SerializeField]
-    private int _BotModeNum;
+    private int _botModeNum;
     [SerializeField]
-    private int _TopModeNum;
+    private int _topModeNum;
+
+    [SerializeField]
+    private int _mouseButtonState;
     
     [SerializeField]
     private float _timeToChange = 1;
@@ -30,7 +33,7 @@ public class DoubleTransitionStateBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        if (animator.GetInteger(ButtonState) != 0)
+        if (animator.GetInteger(ButtonState) == _mouseButtonState)
         {
             if (_currentTime < _timeToChange)
             {
@@ -40,7 +43,7 @@ public class DoubleTransitionStateBehaviour : StateMachineBehaviour
             {
                 animator.SetTrigger(HasChanged);
             }
-            Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(_TopModeNum, _BotModeNum,_currentTime / _timeToChange);
+            Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(_topModeNum, _botModeNum,_currentTime / _timeToChange);
         }
         else
         {
@@ -52,7 +55,7 @@ public class DoubleTransitionStateBehaviour : StateMachineBehaviour
             {
                 animator.SetTrigger(HasChanged);
             }
-            Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(_TopModeNum, _BotModeNum,_currentTime / _timeToChange);
+            Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(_topModeNum, _botModeNum,_currentTime / _timeToChange);
         }
     }
 }
