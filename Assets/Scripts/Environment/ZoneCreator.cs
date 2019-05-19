@@ -21,6 +21,11 @@ public class ZoneCreator : MonoBehaviour
         Random.InitState(RandomSeed);
     }
 
+    public List<Zone> GetZones()
+    {
+        return _zones;
+    }
+
     public void CreateZones()
     {
         var Hexagons = GameObject.FindGameObjectsWithTag("Hexagon");
