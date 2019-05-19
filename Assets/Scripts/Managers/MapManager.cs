@@ -14,6 +14,7 @@ public class MapManager : MonoBehaviour, Manager
     private HexagonsGenerator _hexagonsGenerator;
     private ZoneCreator _zoneCreator;
     private ObjectsGenerator _objectsGenerator;
+    private Player _player;
 
     
     public bool IsLoaded { get; private set; }
@@ -62,5 +63,10 @@ public class MapManager : MonoBehaviour, Manager
     private void OnDestroy()
     {
         _hexagonsGenerator.MapIsCreate -= _hexagonsGenerator_MapIsCreate;
+    }
+
+    public void MakeMapPass()
+    {
+        _hexagonsGenerator.MakeMapPass();
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PLayingBehaviour : StateMachineBehaviour
 {
     private Animator _animator;
+    private GameManager _gameManager;
     private static readonly int DieByEnemy = Animator.StringToHash("DieByEnemy");
     private static readonly int DieByRunOutOfEnergy = Animator.StringToHash("DieByRunOutOfEnergy");
     private static readonly int GoToExit = Animator.StringToHash("GoToExit");
@@ -13,7 +14,7 @@ public class PLayingBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _animator = animator;
-        
+        _gameManager = animator.GetComponent<GameManager>();
         Enemy.OnTrigger += OnDeathByEnemy;
         EnemyDeepWaterer.OnTrigger += OnDeathByEnemy;
         EnemyStatue.OnTrigger += OnDeathByEnemy;
@@ -33,6 +34,7 @@ public class PLayingBehaviour : StateMachineBehaviour
 
     private void OnFindWell()
     {
+        _gameManager.GetMapManager().MakeMapPass();
         _animator.SetTrigger(FindWell);
     }
 

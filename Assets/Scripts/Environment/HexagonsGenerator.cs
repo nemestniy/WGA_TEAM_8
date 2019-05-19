@@ -14,6 +14,8 @@ public class HexagonsGenerator : MonoBehaviour
     public delegate void HexagonEvents();
     public event HexagonEvents MapIsCreate;
 
+    private List<Wall> _closingMapWalls = new List<Wall>();
+
 //    void Start()
 //    {
 //        GenerateMap();
@@ -33,7 +35,7 @@ public class HexagonsGenerator : MonoBehaviour
         MapIsCreate();
         Debug.Log("Map is created");
     }
-    
+
     public void InitializeHexArray()
     {
         hexagonsArraylist = new LinkedList<GameObject>(GameObject.FindGameObjectsWithTag("Hexagon"));
@@ -79,8 +81,17 @@ public class HexagonsGenerator : MonoBehaviour
         var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
         foreach (GameObject hexObject in _hexObjects)
         {
-            hexObject.GetComponent<Hexagon>().ActivateBorderWalls();
+            var walls = hexObject.GetComponent<Hexagon>().ActivateBorderWalls();
+            if (walls.Count >= 1)
+                foreach (Wall wall in walls)
+                    _closingMapWalls.Add(wall);
         }
+    }
+
+    public void MakeMapPass()
+    {
+        int wallCount = Random.Range(0, _closingMapWalls.Count - 1);
+        _closingMapWalls[wallCount].Disable();
     }
 
     public void DisableAllWalls()
@@ -97,7 +108,7 @@ public class HexagonsGenerator : MonoBehaviour
         return FindObjectsOfType<Wall>().Where(h => !h.IsBorder());
     }
 
-    private void ActivateColliders()
+    public void ActivateColliders()
     {
         var _hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
         foreach (GameObject hexObject in _hexObjects)

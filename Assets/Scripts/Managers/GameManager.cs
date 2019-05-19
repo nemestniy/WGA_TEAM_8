@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour, Manager
         _audioManager = AudioManager.Instance;
     }
 
+    public MapManager GetMapManager()
+    {
+        return _mapManager;
+    }
+
     public void StartManager()
     {
         _audioManager.StartManager();
