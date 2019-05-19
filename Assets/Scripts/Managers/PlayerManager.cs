@@ -57,16 +57,32 @@ public class PlayerManager : MonoBehaviour, Manager
     
     private static readonly int ChangeUp = Animator.StringToHash("ChangeUp");
     private static readonly int ChangeDown = Animator.StringToHash("ChangeDown");
+    private static readonly int ButtonState = Animator.StringToHash("ButtonState");
 
     private void UpdateLightMode()
     {
-        switch (_keyController.GetWheelMovment())
+//        switch (_keyController.GetWheelMovment()) //switching by mouse movement
+//        {
+//            case KeyController.WheelMovment.Up:
+//                _playerLampStates.SetTrigger(ChangeUp);
+//                break;
+//            case KeyController.WheelMovment.Down:
+//                _playerLampStates.SetTrigger(ChangeDown);
+//                break;
+//        }
+
+        switch (_keyController.GetButtonState()) //switching by mouse buttons hold
         {
-            case KeyController.WheelMovment.Up:
-                _playerLampStates.SetTrigger(ChangeUp);
+            case KeyController.MoseButtonStates.Released:
+                _playerLampStates.SetInteger(ButtonState, 0); //0 means mouse buttons are released
                 break;
-            case KeyController.WheelMovment.Down:
-                _playerLampStates.SetTrigger(ChangeDown);
+            
+            case KeyController.MoseButtonStates.LeftDown:
+                _playerLampStates.SetInteger(ButtonState, 1); //1 means mouse left button is down
+                break;
+            
+            case KeyController.MoseButtonStates.RightDown:
+                _playerLampStates.SetInteger(ButtonState, 2); //2 means mouse rigth button is down
                 break;
         }
     }
