@@ -85,6 +85,11 @@ public class Player: MonoBehaviour {
         return _currentHexagon.gameObject;
     }
 
+    public Zone GetCurrentZone()
+    {
+        return _currentHexagon.GetZone();
+    }
+
     public void StartAnimation()
     {
         if(_animator != null)
