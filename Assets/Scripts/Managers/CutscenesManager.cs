@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class CutscenesManager : MonoBehaviour
 {
     private AudioSource _audioSource;
+    private VideoPlayer _videoPlayer;
     private GameObject _imageGO;
     private Image _image;
     private GameObject addUI = null;
@@ -26,6 +28,7 @@ public class CutscenesManager : MonoBehaviour
         _imageGO = transform.GetChild(0).gameObject;
         _image = _imageGO.GetComponent<Image>();
         _audioSource = GetComponent<AudioSource>();
+        _videoPlayer = GetComponent<VideoPlayer>();
     }
 
     private void Start()
@@ -33,7 +36,14 @@ public class CutscenesManager : MonoBehaviour
         _gameProcessAnimator = GameManager.Instance.GetComponent<Animator>();
     }
 
-    public IEnumerator Show(Cutscene cutscene)
+    public void ShowVideo(VideoClip video)
+    {
+        _videoPlayer.clip = video;
+        _videoPlayer.Play();
+        _videoPlayer.loopPointReached += GoToNextGameState;
+    }
+
+    public IEnumerator ShowFrames(Cutscene cutscene)
     {
         if(addUI != null) Destroy(addUI);
         
@@ -69,6 +79,12 @@ public class CutscenesManager : MonoBehaviour
         {
             _gameProcessAnimator.SetTrigger(Next);
         }
+    }
+
+    private void GoToNextGameState(VideoPlayer vp)
+    {
+        vp.clip = null;
+        _gameProcessAnimator.SetTrigger(Next);
     }
 }
 

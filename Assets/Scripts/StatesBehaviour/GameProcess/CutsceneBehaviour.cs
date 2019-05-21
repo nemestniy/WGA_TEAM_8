@@ -11,9 +11,16 @@ public class CutsceneBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _gameManager = animator.GetComponent<GameManager>();
-        
         _gameManager.PauseManager();
-        _gameManager.CallCoroutine(CutscenesManager.Instance.Show(_cutscene));
+
+        if (_cutscene.isVideo)
+        {
+            CutscenesManager.Instance.ShowVideo(_cutscene.video);
+        }
+        else
+        {
+            _gameManager.CallCoroutine(CutscenesManager.Instance.ShowFrames(_cutscene));
+        }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

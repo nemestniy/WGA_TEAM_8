@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33877140b79d0aa468826fe6b404cade, type: 3}
   m_Name: DeathCutscene
   m_EditorClassIdentifier: 
-  cutsceneName: Death
+  isVideo: 1
+  video: {fileID: 32900000, guid: b81673bb146897743a46a335992b5351, type: 3}
   sound: {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
+  additionalUI: {fileID: 0}
   frames:
   - image: {fileID: 21300000, guid: 7ea715679046205478c6c63256168125, type: 3}
     secondsToChange: Infinity

@@ -67,13 +67,13 @@ public class GameManagerTrial : MonoBehaviour, Manager
     private void OnWin()
     {
         PauseManager();
-        //StartCoroutine(_winCutscene.Show(new Action(StartManager)));
+        //StartCoroutine(_winCutscene.ShowFrames(new Action(StartManager)));
     }
 
     private void OnDeathByEnemy()
     {
         PauseManager();
-        //StartCoroutine(_screemerCutscene.Show(new Action(ShowDeathCutsceen)));
+        //StartCoroutine(_screemerCutscene.ShowFrames(new Action(ShowDeathCutsceen)));
     }
 
     private void OnDeathByRanoutOfEnergy()
@@ -85,7 +85,7 @@ public class GameManagerTrial : MonoBehaviour, Manager
     private void ShowDeathCutsceen()
     {
         PauseManager();
-        //StartCoroutine(_deathCutscene.Show(new Action(StartManager)));
+        //StartCoroutine(_deathCutscene.ShowFrames(new Action(StartManager)));
     }
 
 
