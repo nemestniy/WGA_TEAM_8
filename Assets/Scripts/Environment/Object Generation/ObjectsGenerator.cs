@@ -149,26 +149,14 @@ public class ObjectsGenerator : MonoBehaviour
         var hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
         foreach (GameObject hexObject in hexObjects)
         {
-
-//            for (int i = 0; i < _objects.Length; i++) {
-//                hexObject.GetComponent<Hexagon>().GenerateObjects(_distanceBetweenObjects, _attemptsNumber, _objects[i]);
-//            }
-            hexObject.GetComponent<Hexagon>().FillHexagon();
-            //_listObjects.AddRange(hexObject.GetComponent<Hexagon>().Objects.Select(a => a.GetComponent<ObjectPlaceholder>()));
+            hexObject.GetComponent<Hexagon>().FillHexagon();            
         }
-
-        //_listObjects.Shuffle();        
+             
         foreach (var objectPlaceholder in _listObjects)
         {
             objectPlaceholder.Compile();
         }
 
-        //int randomHexagonNumber = Random.Range(0, hexObjects.Length);
-        //_well = hexObjects[randomHexagonNumber].GetComponent<Hexagon>().GenerateWell(_well);
-//        for(int i = 0; i < _countWell; i++)
-//        {
-//            
-//        }
     }
 }
 
