@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8025887273741828603}
   - component: {fileID: 8025887273741828602}
   - component: {fileID: 6063081077066409189}
+  - component: {fileID: 4692776316914317575}
   m_Layer: 10
   m_Name: rock_s_obt_5
   m_TagString: Untagged
@@ -170,6 +171,21 @@ PolygonCollider2D:
       - {x: 0.53999996, y: -1.9}
       - {x: 0.59, y: -1.88}
       - {x: 0.75, y: -1.81}
+--- !u!114 &4692776316914317575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8025887273741828601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e08c6cbe2fe1f245bd11be1faa25537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxCountInDungeon: 1000
+  MinCountInDungeon: 0
+  SpawnProbMultiplier: 1
 --- !u!1 &8025887274378968298
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6140702759236303850}
   - component: {fileID: 2440168245033412775}
   - component: {fileID: 688777257478678708}
+  - component: {fileID: 2934757095441080754}
   m_Layer: 10
   m_Name: watr_m_obt_1
   m_TagString: Untagged
@@ -190,6 +191,21 @@ PolygonCollider2D:
       - {x: 0.96999997, y: -2.7}
       - {x: 1.18, y: -2.6599998}
       - {x: 1.28, y: -2.6399999}
+--- !u!114 &2934757095441080754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6035733686024325641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e08c6cbe2fe1f245bd11be1faa25537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxCountInDungeon: 1000
+  MinCountInDungeon: 0
+  SpawnProbMultiplier: 1
 --- !u!1 &8734717249555090974
 GameObject:
   m_ObjectHideFlags: 0

@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 1193628528}
   - component: {fileID: 1193628529}
   - component: {fileID: 333811449}
+  - component: {fileID: 991491648070550624}
   m_Layer: 0
   m_Name: watr_m_light_source_1
   m_TagString: Untagged
@@ -179,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _changeValue: 25
-  _blockEnergyChanges: 1
+  _timeToAffect: 1
   _reloadingTime: Infinity
 --- !u!58 &333811449
 CircleCollider2D:
@@ -197,6 +198,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.39
+--- !u!114 &991491648070550624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6485290365033192986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e08c6cbe2fe1f245bd11be1faa25537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxCountInDungeon: 3
+  MinCountInDungeon: 1
+  SpawnProbMultiplier: 0.1
 --- !u!1001 &1948798514640018666
 PrefabInstance:
   m_ObjectHideFlags: 0

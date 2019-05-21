@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -15,6 +16,9 @@ public class MapManager : MonoBehaviour, Manager
     private ZoneCreator _zoneCreator;
     private ObjectsGenerator _objectsGenerator;
     private Player _player;
+
+    [SerializeField]
+    private GameObject _exitTrigger;
 
     
     public bool IsLoaded { get; private set; }
@@ -67,6 +71,14 @@ public class MapManager : MonoBehaviour, Manager
 
     public void MakeMapPass()
     {
-        _hexagonsGenerator.MakeMapPass();
+        var zones = _zoneCreator.GetZones();
+        foreach(Zone zone in zones)
+        {
+            var walls = _hexagonsGenerator.GetClosingMapWalls().Where(h => h.GetZone() == zone);
+            int wallCount = Random.Range(0, walls.Count());
+            var wall = walls.ElementAt(wallCount);
+            Instantiate(_exitTrigger, wall.transform.position, Quaternion.identity);
+            wall.Disable();
+        }
     }
 }

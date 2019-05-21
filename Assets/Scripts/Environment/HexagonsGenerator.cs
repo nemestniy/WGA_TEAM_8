@@ -88,10 +88,9 @@ public class HexagonsGenerator : MonoBehaviour
         }
     }
 
-    public void MakeMapPass()
+    public List<Wall> GetClosingMapWalls()
     {
-        int wallCount = Random.Range(0, _closingMapWalls.Count - 1);
-        _closingMapWalls[wallCount].Disable();
+        return _closingMapWalls;
     }
 
     public void DisableAllWalls()

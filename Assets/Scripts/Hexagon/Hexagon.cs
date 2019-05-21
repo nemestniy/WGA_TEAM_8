@@ -416,12 +416,12 @@ public class Hexagon : MonoBehaviour
     {
         Vector3 pos = obj.transform.position - this.transform.position;
         Vector3 res = Vector3.zero;
-        var sizeMod = ObjectsGenerator.sizePrefix.ToList().IndexOf(obj.name.Substring(5, 2)) + 1;
+        var sizeMod = obj.GetComponent<ObjectPlaceholder>().Size + 1;
         foreach (var o in Objects.Where(o => o != obj))
         {
             var l = (obj.transform.position - o.transform.position);
             var distMod = (o.transform.position - this.transform.position).magnitude / ExternalRadius;
-            res += l / l.sqrMagnitude;
+            res += l / (l.sqrMagnitude + 0.0000000000001f);
         }
 
 //        Debug.Log(res);
@@ -433,7 +433,7 @@ public class Hexagon : MonoBehaviour
     {
         try
         {
-            var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
+            var obj = ObjectsGenerator.Instance.SpawnPlaceholderObject(this, size,
                 transform.position /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * ExternalRadius * 0.1f)*/);
             obj.transform.SetParent(this.transform);
             Objects.Add(obj);
@@ -450,7 +450,7 @@ public class Hexagon : MonoBehaviour
             var v1 = UnityEngine.Random.onUnitSphere * ExternalRadius * 0.4f;
             v1.z = 0;
             v1.Normalize();
-            var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
+            var obj = ObjectsGenerator.Instance.SpawnPlaceholderObject(this, size,
                 transform.position + v1 /*+ (Vector3)(UnityEngine.Random.insideUnitCircle * ExternalRadius * 0.1f)*/);
             obj.transform.SetParent(this.transform);
             Objects.Add(obj);
@@ -464,7 +464,7 @@ public class Hexagon : MonoBehaviour
     {
         try
         {
-            var obj = ObjectsGenerator.Instance.SpawnObjectForPlace(size,
+            var obj = ObjectsGenerator.Instance.SpawnPlaceholderObject(this, size,
                 transform.position + (Vector3) (UnityEngine.Random.insideUnitCircle * ExternalRadius * 0.65f));
             obj.transform.SetParent(this.transform);
             Objects.Add(obj);

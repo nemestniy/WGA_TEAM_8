@@ -1093,6 +1093,15 @@ PrefabInstance:
       propertyPath: _well
       value: 
       objectReference: {fileID: 1074609760}
+    - target: {fileID: 1489312119, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: PlaceholderPrefab
+      value: 
+      objectReference: {fileID: 7942143294659975782, guid: 90f7c35c677b1f944ba0484978ef8950,
+        type: 3}
+    - target: {fileID: 1343849818, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
 --- !u!114 &2106164595 stripped

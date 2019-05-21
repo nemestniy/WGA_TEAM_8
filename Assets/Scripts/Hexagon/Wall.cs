@@ -87,6 +87,11 @@ public class Wall : MonoBehaviour
         return transform.parent.GetComponent<Hexagon>();
     }
 
+    public Zone GetZone()
+    {
+        return GetHexagon().GetZone();
+    }
+
     public Hexagon GetHexagonNeighbor()
     {
         return GetHexagon().GetWallNeighbor(this);
