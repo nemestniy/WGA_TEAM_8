@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33877140b79d0aa468826fe6b404cade, type: 3}
   m_Name: ScreemerCutscene
   m_EditorClassIdentifier: 
-  cutsceneName: Screemer
+  isVideo: 1
+  video: {fileID: 32900000, guid: 48fb761e92af4c746a4fce30a6dde1db, type: 3}
   sound: {fileID: 8300000, guid: 723c89e21ffcbba42b1116c3ad9e8680, type: 3}
+  additionalUI: {fileID: 0}
   frames:
   - image: {fileID: 21300000, guid: 1ab782273fd18c54c923550e9d2792d1, type: 3}
     secondsToChange: 3.5

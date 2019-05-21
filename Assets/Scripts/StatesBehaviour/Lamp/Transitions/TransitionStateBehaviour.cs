@@ -14,9 +14,11 @@ public class TransitionStateBehaviour : StateMachineBehaviour
     
     private float _currentTime;
     private static readonly int HasChanged = Animator.StringToHash("HasChanged");
+    private Lamp _playersLamp;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _playersLamp = Player.Instance.transform.GetChild(0).GetComponent<Lamp>();
         _currentTime = 0;
     }
 
@@ -30,6 +32,6 @@ public class TransitionStateBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger(HasChanged);
         }
-        Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(_nextModeNum, _prevModeNum,_currentTime / _timeToChange); 
+        _playersLamp.SetLightMode(_nextModeNum, _prevModeNum,_currentTime / _timeToChange);
     }
 }

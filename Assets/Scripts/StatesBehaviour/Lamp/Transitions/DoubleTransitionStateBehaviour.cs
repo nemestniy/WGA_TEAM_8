@@ -18,9 +18,11 @@ public class DoubleTransitionStateBehaviour : StateMachineBehaviour
     private float _currentTime;
     private static readonly int HasChanged = Animator.StringToHash("HasChanged");
     private static readonly int ButtonState = Animator.StringToHash("ButtonState");
+    private Lamp _playersLamp;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _playersLamp = Player.Instance.transform.GetChild(0).GetComponent<Lamp>();
         if (animator.GetInteger(ButtonState) == 0)
         {
             _currentTime = _timeToChange;
@@ -43,7 +45,6 @@ public class DoubleTransitionStateBehaviour : StateMachineBehaviour
             {
                 animator.SetTrigger(HasChanged);
             }
-            Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(_topModeNum, _botModeNum,_currentTime / _timeToChange);
         }
         else
         {
@@ -55,7 +56,7 @@ public class DoubleTransitionStateBehaviour : StateMachineBehaviour
             {
                 animator.SetTrigger(HasChanged);
             }
-            Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetLightMode(_topModeNum, _botModeNum,_currentTime / _timeToChange);
         }
+        _playersLamp.SetLightMode(_topModeNum, _botModeNum,_currentTime / _timeToChange);
     }
 }

@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour, Manager
 {
     private Player _player;
     private Animator _playerLampStates;
-    private KeyController _keyController;
+    private KeyManager _keyManager;
     private bool _isPaused = true;
     
     private Transform _startTransform;
@@ -43,7 +43,7 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void UpdatePlayerMovement()
     {
-        Vector2 velocity = _keyController.GetVelocity();
+        Vector2 velocity = _keyManager.GetVelocity();
     
         if (velocity == Vector2.zero)
             _player.StopAnimation();
@@ -51,7 +51,7 @@ public class PlayerManager : MonoBehaviour, Manager
             _player.StartAnimation();
 
         _player.SetVelocity(velocity);
-        _player.SetAngle(_keyController.GetAngle());
+        _player.SetAngle(_keyManager.GetAngle());
     }
     
     
@@ -61,27 +61,27 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void UpdateLightMode()
     {
-//        switch (_keyController.GetWheelMovment()) //switching by mouse movement
+//        switch (_keyManager.GetWheelMovment()) //switching by mouse movement
 //        {
-//            case KeyController.WheelMovment.Up:
+//            case KeyManager.WheelMovment.Up:
 //                _playerLampStates.SetTrigger(ChangeUp);
 //                break;
-//            case KeyController.WheelMovment.Down:
+//            case KeyManager.WheelMovment.Down:
 //                _playerLampStates.SetTrigger(ChangeDown);
 //                break;
 //        }
 
-        switch (_keyController.GetButtonState()) //switching by mouse buttons hold
+        switch (_keyManager.GetButtonState()) //switching by mouse buttons hold
         {
-            case KeyController.MoseButtonStates.Released:
+            case KeyManager.MoseButtonStates.Released:
                 _playerLampStates.SetInteger(ButtonState, 0); //0 means mouse buttons are released
                 break;
             
-            case KeyController.MoseButtonStates.LeftDown:
+            case KeyManager.MoseButtonStates.LeftDown:
                 _playerLampStates.SetInteger(ButtonState, 1); //1 means mouse left button is down
                 break;
             
-            case KeyController.MoseButtonStates.RightDown:
+            case KeyManager.MoseButtonStates.RightDown:
                 _playerLampStates.SetInteger(ButtonState, 2); //2 means mouse rigth button is down
                 break;
         }
@@ -89,11 +89,11 @@ public class PlayerManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        _keyController = GetComponent<KeyController>();
+        _keyManager = KeyManager.Instance;
         _player = Player.Instance;
         IsLoaded = true;
         _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
-        
+        _player.transform.GetChild(0).GetComponent<Lamp>().StartUpdatingVisCol();
         _isPaused = false;
     }
     

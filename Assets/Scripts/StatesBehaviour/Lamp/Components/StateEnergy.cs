@@ -12,10 +12,12 @@ public class StateEnergy : StateMachineBehaviour
     
     private float _timePast = 0;
     private Energy _playersEnergy;
+    private Lamp _playersLamp;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _playersEnergy = Player.Instance.GetComponent<Energy>();
+        _playersLamp = Player.Instance.transform.GetChild(0).GetComponent<Lamp>();
         _timePast = 0;
     }
 
@@ -33,11 +35,5 @@ public class StateEnergy : StateMachineBehaviour
         {
             _timePast += Time.deltaTime;
         }
-    }
-
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        
     }
 }

@@ -9,8 +9,6 @@ public class FieldOfView : MonoBehaviour
 {
 	[SerializeField]
 	private bool _isMain; //true for main light and false for back light
-	[SerializeField]
-	private float _changingDuration = 1;
 	
 	[Header("")]
 	[SerializeField]
@@ -60,6 +58,8 @@ public class FieldOfView : MonoBehaviour
 	[HideInInspector] public float _currentCoordinateY;
 	[HideInInspector] public Color _currentLightColor;
 
+	private PolygonCollider2D _visionCollider;
+	
 	private void Start()
 	{
 		_spotLight = GetComponentInChildren<Light>();
@@ -70,8 +70,9 @@ public class FieldOfView : MonoBehaviour
 
 		_enemyManager = EnemyManager.Instance;
 		_lampModes = Player.Instance.transform.GetChild(0).GetComponent<Lamp>()._lampModes;
-	}
 
+		_visionCollider = GetComponent<PolygonCollider2D>();
+	}
 	
 	private void LateUpdate()
 	{
@@ -115,6 +116,9 @@ public class FieldOfView : MonoBehaviour
 		_currentLightHeight = Mathf.Lerp(prevMode.lightHeight, currentMode.lightHeight, changingState);
 		_currentLightColor = Color.Lerp(prevMode.lightColor, currentMode.lightColor, changingState);
 		_currentCoordinateY = Mathf.Lerp(prevMode.coordinateY, currentMode.coordinateY, changingState);
+		
+		if(_updatingVisColHasStarted)//TODO: исправить костыль
+			UpdateVisionCollider();
 	}
 
     public void SetLightMode(int newMode, int prevMode, float changingState)
@@ -123,6 +127,25 @@ public class FieldOfView : MonoBehaviour
 		_prevMode = prevMode;
 		_changingState = changingState;
 	}
+
+    private bool _updatingVisColHasStarted;
+    public void StartUpdatingVisCol()
+    {
+	    _updatingVisColHasStarted = true;
+    }
+    
+    private void UpdateVisionCollider()
+    {
+	    float range = _currentViewRadius + _edgeOffset;
+	    float angle = _currentViewAngle;
+	    angle = DegreeToRadian(angle);
+	    
+	    Vector2[] points = new Vector2[3];
+	    points[0] = Vector2.zero;
+	    points[1] = new Vector2(range * Mathf.Tan(angle / 2), range);
+	    points[2] = new Vector2(-1 * range * Mathf.Tan(angle / 2), range);
+	    _visionCollider.points = points;
+    }
 	
 	private void DrawSpotLight(float radius, float angel, float intensity, float height, Color color)
 	{
@@ -175,7 +198,7 @@ public class FieldOfView : MonoBehaviour
         {
             
 			vertices[i + vertexCount] = transform.InverseTransformPoint(viewPoints[i]);
-            vertices[i] = SkipRadius * vertices[i + vertexCount].normalized;
+			vertices[i] = SkipRadius * vertices[i + vertexCount].normalized;
             var c = Math.Min(1, Math.Min(i, vertexCount - i - 2) / _meshResolution / 20);
             colors[i] = new Color(0, 0, 0, Mathf.Pow(1 -c, 2));
             colors[i + vertexCount] = new Color(0, 0,0 , vertices[i + vertexCount].magnitude / viewRadius);
@@ -185,9 +208,9 @@ public class FieldOfView : MonoBehaviour
 				triangles [i * 6 + 0] = i; 
 				triangles [i * 6 + 1] = i + vertexCount;
 				triangles [i * 6 + 2] = i + vertexCount + 1;
-                triangles [i * 6 + 3] = i;
-                triangles [i * 6 + 4] = i + vertexCount + 1;
-                triangles [i * 6 + 5] = i + 1;
+            	triangles [i * 6 + 3] = i;
+            	triangles [i * 6 + 4] = i + vertexCount + 1;
+            	triangles [i * 6 + 5] = i + 1;
             }
 		}
 	
@@ -199,7 +222,6 @@ public class FieldOfView : MonoBehaviour
 
 	private void GetViewPoints(List<Vector3> viewPoints, float directionAngle, float viewRadius, float viewAngle) //add in list all view point
 	{
-		
 		ViewCastInfo oldViewCast = new ViewCastInfo();
 
 		int stepCount = Mathf.RoundToInt(viewAngle * _meshResolution);
@@ -337,5 +359,10 @@ public class FieldOfView : MonoBehaviour
 			this.pointA = pointA;
 			this.pointB = pointB;
 		}
+	}
+	
+	private float DegreeToRadian(double angle)
+	{
+		return (float)(Math.PI * angle / 180.0);
 	}
 }
