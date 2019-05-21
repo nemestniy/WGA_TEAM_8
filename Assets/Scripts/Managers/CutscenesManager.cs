@@ -28,7 +28,7 @@ public class CutscenesManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void Start()//TODO: совместить GameManager и CutsceneManager
+    private void Start()
     {
         _gameProcessAnimator = GameManager.Instance.GetComponent<Animator>();
     }

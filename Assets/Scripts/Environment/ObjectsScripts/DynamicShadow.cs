@@ -8,7 +8,6 @@ public class DynamicShadow : MonoBehaviour
     private GameObject _shadow;
     private Player _player;
     Transform _transform;
-    
 
     private void Start()
     {
@@ -19,6 +18,7 @@ public class DynamicShadow : MonoBehaviour
 
     private void LateUpdate()
     {
-        _transform.localPosition = _dynamicShadowOffset * (_transform.parent.position - _player.transform.position).normalized;
+        var position = _transform.parent.position;
+        _transform.position = position + _dynamicShadowOffset * (position - _player.transform.position).normalized;
     }
 }

@@ -13,6 +13,8 @@ public class Lamp : MonoBehaviour
     [SerializeField] public List<LampMode> _lampModes;
     
     private List<FieldOfView> _fieldOfViews;
+    private List<Collider2D> _visionColliders = new List<Collider2D>(2);
+    
     private List<MeshRenderer> _lampsMeshRenderers;
     private Animator _animator;
     [HideInInspector] public bool _isFrying; //to frighten enemy
@@ -23,6 +25,8 @@ public class Lamp : MonoBehaviour
         _animator = GetComponent<Animator>();
         _lampsMeshRenderers = gameObject.GetComponentsInChildren<FieldOfView>().Select(a => a.gameObject.GetComponent<MeshRenderer>()).ToList();
         _fieldOfViews = new List<FieldOfView>(GetComponentsInChildren<FieldOfView>());
+        _visionColliders.Add(_fieldOfViews[0].GetComponent<Collider2D>());
+        _visionColliders.Add(_fieldOfViews[1].GetComponent<Collider2D>());
     }
 
     private void Update()
@@ -35,6 +39,19 @@ public class Lamp : MonoBehaviour
         _fieldOfViews[0].SetLightMode(newMode, prevMode, changingState);
         _fieldOfViews[1].SetLightMode(newMode, prevMode, changingState);
     }
+
+    public void StartUpdatingVisCol()
+    {
+        _fieldOfViews[0].StartUpdatingVisCol();
+        _fieldOfViews[1].StartUpdatingVisCol();
+    }
+
+    public bool IsVisible(Collider2D collider)
+    {
+        return _visionColliders[0].IsTouching(collider) ||
+               _visionColliders[1].IsTouching(collider);
+    }
+    
 
     public void SetDetectiveMaterial()
     {
