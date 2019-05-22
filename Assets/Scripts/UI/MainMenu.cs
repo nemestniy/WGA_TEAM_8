@@ -8,12 +8,12 @@ public class MainMenu : MonoBehaviour
     
     public void PlayButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("ReleaseScene");
     }
     
     public void PlayTutorButton()
     {
-//        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("TutorialTestScene");
     }
     
     public void QuitButton()
