@@ -55,7 +55,14 @@ public class Tutorial : MonoBehaviour
     {
         if (_keyManager.GetPauseButton())
         {
-            UIManager.Instance.ShowPauseMenu();
+            if (!UIManager.Instance.transform.GetChild(0).gameObject.activeSelf)
+            {
+                UIManager.Instance.ShowPauseMenu();
+            }
+            else
+            {
+                UIManager.Instance.HidePauseMenu();
+            }
         }
     }
 
