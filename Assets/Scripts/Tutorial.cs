@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -18,10 +19,13 @@ public class Tutorial : MonoBehaviour
     public GameObject hiddenText;
     public GameObject enemy;
     public GameObject escapeObject;
+    public GameObject exit;
 
     public GameObject canvas;
     public GameObject cameraCell;
     public GameObject textBox;
+
+    public Cutscene startCutscene;
 
     public static Tutorial Instance { get; private set; }
 
@@ -147,14 +151,22 @@ public class Tutorial : MonoBehaviour
 
         enemy.GetComponent<IEnemy>().SetState(State.Moving);
 
-        yield return StartCoroutine(ShowExitCutscene());
+        exit.active = true;
+
+        StartCoroutine(MoveDaughterTo(exit.transform));
+
+        yield return StartCoroutine(WaitForPlayer(exit));
+
+        SceneManager.LoadScene("ReleaseScene");
+        //
 
     }
 
     IEnumerator ShowStartCutscene()
     {
+        StartCoroutine(CutscenesManager.Instance.ShowFrames(startCutscene));
+        yield return null;
 
-        yield return new WaitForSeconds(3f);
     }
 
     IEnumerator ShowExitCutscene()

@@ -106,7 +106,7 @@ public class GameManagerTrial : MonoBehaviour, Manager
         _enemyManager.PauseManager();
 
         tutorial.daughter.GetComponent<Pathfinding.AIPath>().canMove = false;
-        tutorial.daughter.GetComponent<Animation>().Stop();
+        tutorial.daughter.GetComponent<Animator>().Play("Entry");
     }
 
     public void ResumeManager()
@@ -116,7 +116,7 @@ public class GameManagerTrial : MonoBehaviour, Manager
         _enemyManager.ResumeManager();
 
         tutorial.daughter.GetComponent<Pathfinding.AIPath>().canMove = true;
-        tutorial.daughter.GetComponent<Animation>().Play();
+        tutorial.daughter.GetComponent<Animator>().Play("Walk Animation");
 
     }
 
