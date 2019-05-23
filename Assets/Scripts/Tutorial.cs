@@ -264,7 +264,7 @@ public class Tutorial : MonoBehaviour
             
         }
         mainCamera.GetComponent<CameraController>().enabled = true;
-        PlayerManager.Instance.playerCanMove = true;
+        PlayerManager.Instance.ResumeManager();
     }
 
     IEnumerator WaitForPlayer(GameObject waypoint)
@@ -278,12 +278,12 @@ public class Tutorial : MonoBehaviour
 
     public void FreezePlayer()
     {
-        PlayerManager.Instance.playerCanMove = false;
+        PlayerManager.Instance.PauseManager();
         
     }
 
     public void UnfreezePlayer()
     {
-        PlayerManager.Instance.playerCanMove = true;
+        PlayerManager.Instance.ResumeManager();
     }
 }
