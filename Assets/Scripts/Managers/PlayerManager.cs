@@ -34,10 +34,19 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         if (_isPaused || _player == null)
             return;
+        
+        UpdateLightMode();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_isPaused || _player == null)
+            return;
+        
         if (playerCanMove)
         {
             UpdatePlayerMovement();
-            UpdateLightMode();
+            
         }
     }
 

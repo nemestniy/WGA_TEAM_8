@@ -298,6 +298,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5.5
+  _rotationSpeed: 180
+  _angelOffset: 2
   _normalAnimationSpeed: 5.5
 --- !u!114 &5894203408845879875
 MonoBehaviour:
