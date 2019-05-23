@@ -2715,6 +2715,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
+        type: 3}
+      propertyPath: _constantEnergy
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4300761013367422325, guid: 19fbb88713593b540ab908288fd03a98,
         type: 3}
       propertyPath: m_IsActive
@@ -4010,7 +4015,7 @@ PrefabInstance:
     - target: {fileID: 1115000359694885184, guid: 3f62bda4115a9dc408062fcbe33c5636,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3444433701815544656, guid: 3f62bda4115a9dc408062fcbe33c5636,
         type: 3}

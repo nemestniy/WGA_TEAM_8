@@ -54,6 +54,7 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator TellStory()
     {
+        yield return StartCoroutine(ShowStartCutscene());
         
         yield return StartCoroutine(MoveDaughterTo(wayPoints[0].transform));// Слайд 1: дочь идет от точки 1 к точке 2
 
@@ -143,12 +144,25 @@ public class Tutorial : MonoBehaviour
 
         enemy.GetComponent<IEnemy>().SetState(State.Moving);
 
+        yield return StartCoroutine(ShowExitCutscene());
+
+    }
+
+    IEnumerator ShowStartCutscene()
+    {
+
+        yield return null;
+    }
+
+    IEnumerator ShowExitCutscene()
+    {
+
+        yield return null;
     }
 
     IEnumerator ShowEnemy()
     {
         enemy.active = true;
-        EnemyManager.Instance.enabled = true;
         //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Waiting);
         yield return new WaitForSeconds(5f);
         //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Moving);

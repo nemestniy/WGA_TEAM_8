@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour, Manager
     
     private Transform _startTransform;
     public int CurrentLampMode { get; private set; }
-    public bool playerCanMove = false;
 
     public Player Player => _player;
     
@@ -42,12 +41,10 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         if (_isPaused || _player == null)
             return;
+         
+        UpdatePlayerMovement();
         
-        if (playerCanMove)
-        {
-            UpdatePlayerMovement();
-            
-        }
+        
     }
 
     private void UpdatePlayerMovement()

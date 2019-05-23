@@ -158,6 +158,7 @@ public class FieldOfView : MonoBehaviour
 	
 	private List<Transform> FindVisibleEnemies(float viewRadius, float viewAngle)
 	{
+        Debug.Log("FindVisibleEnemies");
 		List<Transform> visibleEnemies = new List<Transform>();
 		Collider2D[] enemiesInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, _enemyMask); //find all enemies in our view radius
 		foreach (var enemyInView in enemiesInViewRadius)

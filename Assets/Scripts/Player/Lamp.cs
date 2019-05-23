@@ -20,6 +20,8 @@ public class Lamp : MonoBehaviour
     [HideInInspector] public bool _isFrying; //to frighten enemy
     private static readonly int EnergyLvl = Animator.StringToHash("EnergyLvl");
 
+    
+
     private void Start()
     {
         _animator = GetComponent<Animator>();

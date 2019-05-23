@@ -59,8 +59,6 @@ public class GameManagerTrial : MonoBehaviour, Manager
 
         StartManager();
 
-        _enemyManager.enabled = false;
-
         IsLoaded = true;
     }
 
