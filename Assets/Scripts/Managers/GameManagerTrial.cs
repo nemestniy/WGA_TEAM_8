@@ -15,6 +15,8 @@ public class GameManagerTrial : MonoBehaviour, Manager
         [SerializeField]
     private AudioManager _audioManager;
 
+    public Tutorial tutorial;
+
 
     [Header("")]
     [SerializeField]
@@ -102,6 +104,9 @@ public class GameManagerTrial : MonoBehaviour, Manager
         _audioManager.PauseManager();
         _playerManager.PauseManager();
         _enemyManager.PauseManager();
+
+        tutorial.daughter.GetComponent<Pathfinding.AIPath>().canMove = false;
+        tutorial.daughter.GetComponent<Animation>().Stop();
     }
 
     public void ResumeManager()
@@ -109,6 +114,10 @@ public class GameManagerTrial : MonoBehaviour, Manager
         _audioManager.ResumeManager();
         _playerManager.ResumeManager();
         _enemyManager.ResumeManager();
+
+        tutorial.daughter.GetComponent<Pathfinding.AIPath>().canMove = true;
+        tutorial.daughter.GetComponent<Animation>().Play();
+
     }
 
     private IEnumerator CallWithDelay(float delay, Action method)

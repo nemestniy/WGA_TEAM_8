@@ -123,8 +123,8 @@ public class Tutorial : MonoBehaviour
         yield return StartCoroutine(Dialogue("Да. Сейчас покажу. Мне кажется, я кое-что заметил на той стене в глубине.", Character.Father, 3f));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[4]));
-
-        lamp.active = true;
+        
+        player.GetComponent<Energy>().SetEnergy(100);
 
         yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. *Цвет фонаря* спектр отпугивает существ, живущих во тьме, *Цвет фонаря* же - позволяет увидеть сокрытое.", Character.Father, 6f));
 
@@ -161,7 +161,7 @@ public class Tutorial : MonoBehaviour
     IEnumerator ShowStartCutscene()
     {
 
-        yield return null;
+        yield return new WaitForSeconds(3f);
     }
 
     IEnumerator ShowExitCutscene()
