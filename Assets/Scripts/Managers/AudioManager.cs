@@ -90,7 +90,7 @@ public class AudioManager : MonoBehaviour, Manager
         IsLoaded = true;
         Paused = false;
         OnAudioStart?.Invoke();
-        //_coreSoundtrackManager.PlayAll();
+        _coreSoundtrackManager.PlayAll();
     }
 
     public void PauseManager()

@@ -36,8 +36,15 @@ public class Lamp : MonoBehaviour
 
     public void SetLightMode(int newMode, int prevMode, float changingState)
     {
-        _fieldOfViews[0].SetLightMode(newMode, prevMode, changingState);
-        _fieldOfViews[1].SetLightMode(newMode, prevMode, changingState);
+        try
+        {
+            _fieldOfViews[0].SetLightMode(newMode, prevMode, changingState);
+            _fieldOfViews[1].SetLightMode(newMode, prevMode, changingState);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Почини костыль");
+        }
     }
 
     public void StartUpdatingVisCol()

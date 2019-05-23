@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,7 +22,15 @@ public class UIManager : MonoBehaviour
 
     public void ShowPauseMenu()
     {
-        GameManager.Instance.PauseManager();
+        if (SceneManager.GetActiveScene().name == "TutorialTestScene")//TODO:кастыыыыыль
+        {
+            GameManagerTrial.Instance.PauseManager();
+        }
+        else
+        {
+            GameManager.Instance.PauseManager();
+        }
+        
         _pauseMenu.SetActive(true);
     }
 

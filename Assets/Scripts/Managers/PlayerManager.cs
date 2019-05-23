@@ -43,8 +43,6 @@ public class PlayerManager : MonoBehaviour, Manager
             return;
          
         UpdatePlayerMovement();
-        
-        
     }
 
     private void UpdatePlayerMovement()
@@ -105,6 +103,7 @@ public class PlayerManager : MonoBehaviour, Manager
     
     public void PauseManager()
     {
+        _player.GetComponent<Rigidbody2D>().angularVelocity = 0;
         _isPaused = true;
     }
 

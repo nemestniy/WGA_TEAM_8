@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-
-    [SerializeField] private bool isTutor;
     public static event Action OnExit;
     
     public void GoToMainMenuButton()
@@ -20,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     
     public void SkipLvlButton()
     {
-        if (isTutor)
+        if (SceneManager.GetActiveScene().name == "TutorialTestScene")
         {
             SceneManager.LoadScene("ReleaseScene");
         }
