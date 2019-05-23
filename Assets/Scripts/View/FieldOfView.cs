@@ -102,7 +102,9 @@ public class FieldOfView : MonoBehaviour
 
     private void UpdateEnemiesVisibleEnemies()
     {
+        Debug.Log("UpdateVisibleEnemies");
         _enemyManager.visibleEnemiesList = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
+        Debug.Log("Visible enemies - " + _enemyManager.visibleEnemiesList.Count);
     }
 
     private void ComputeCurrentLightValues(float energyLvl, LampModeParametrs prevMode, LampModeParametrs currentMode, float changingState)
@@ -158,9 +160,10 @@ public class FieldOfView : MonoBehaviour
 	
 	private List<Transform> FindVisibleEnemies(float viewRadius, float viewAngle)
 	{
-        Debug.Log("FindVisibleEnemies");
+        
 		List<Transform> visibleEnemies = new List<Transform>();
 		Collider2D[] enemiesInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, _enemyMask); //find all enemies in our view radius
+        
 		foreach (var enemyInView in enemiesInViewRadius)
 		{
 			Transform enemy = enemyInView.transform;
