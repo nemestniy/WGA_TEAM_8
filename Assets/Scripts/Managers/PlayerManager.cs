@@ -101,6 +101,7 @@ public class PlayerManager : MonoBehaviour, Manager
         _keyManager = KeyManager.Instance;
         _player = Player.Instance;
         IsLoaded = true;
+        _player.transform.GetChild(0).GetComponent<Lamp>().StartUpdatingVisCol();
         _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
         _isPaused = false;
     }

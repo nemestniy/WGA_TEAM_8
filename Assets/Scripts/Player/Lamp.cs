@@ -20,7 +20,7 @@ public class Lamp : MonoBehaviour
     [HideInInspector] public bool _isFrying; //to frighten enemy
     private static readonly int EnergyLvl = Animator.StringToHash("EnergyLvl");
 
-    private void Start()
+    private void Awake()
     {
         _animator = GetComponent<Animator>();
         _lampsMeshRenderers = gameObject.GetComponentsInChildren<FieldOfView>().Select(a => a.gameObject.GetComponent<MeshRenderer>()).ToList();
@@ -40,7 +40,7 @@ public class Lamp : MonoBehaviour
         _fieldOfViews[1].SetLightMode(newMode, prevMode, changingState);
     }
 
-    private void OnEnable()
+    public void StartUpdatingVisCol()
     {
         _fieldOfViews[0].StartUpdatingVisCol();
         _fieldOfViews[1].StartUpdatingVisCol();
