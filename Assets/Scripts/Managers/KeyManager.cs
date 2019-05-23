@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class KeyManager : MoveController
 {
-    [SerializeField] private float _accuracy = 100;
-
     #region Singletone
     public static KeyManager Instance { get; private set; }
     public KeyManager() : base()
@@ -13,6 +11,9 @@ public class KeyManager : MoveController
         Instance = this;
     }
     #endregion
+
+    private Camera _mainCam;
+    private Player _player;
     
     public override Vector2 GetVelocity()
     {
@@ -26,11 +27,19 @@ public class KeyManager : MoveController
         return direction;
     }
 
+    private void Start()
+    {
+        _mainCam = Camera.main;
+        _player = Player.Instance;
+    }
+
     public override float GetAngle()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.transform.position;
-        float angle = Vector2.Angle(Vector2.up, mousePosition.normalized * _accuracy);
-        if (Input.mousePosition.x > Screen.width / 2)
+        Transform playerTransform = _player.transform;
+        Vector2 mousePosition = (_mainCam.ScreenToWorldPoint(Input.mousePosition) - playerTransform.position).normalized;
+        float angle = Vector2.Angle(playerTransform.up, mousePosition);
+        
+        if(Vector2.Angle(playerTransform.right, mousePosition) > 90) //find out where is cursor, on the right or on the left
             angle *= -1;
         return angle;
     }

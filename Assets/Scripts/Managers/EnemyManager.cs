@@ -19,6 +19,7 @@ public class EnemyManager : MonoBehaviour, Manager
     public List<Transform> visibleEnemiesList;
 
     private int framecount = 0;
+    public float timeToEnemyEscape;
     
     #region Singletone
     public static EnemyManager Instance { get; private set; }
@@ -64,7 +65,8 @@ public class EnemyManager : MonoBehaviour, Manager
         enemies.AddRange(FindObjectsOfType<EnemyStatue>());
 
         _player = Player.Instance;
-        hexagonsGenerator = MapManager.Instance.GetComponent<HexagonsGenerator>();
+        if(MapManager.Instance != null)
+            hexagonsGenerator = MapManager.Instance.GetComponent<HexagonsGenerator>();
     }
 
     /*private void OnMapCreated()
@@ -98,8 +100,10 @@ public class EnemyManager : MonoBehaviour, Manager
             {
                 if (_player.transform.GetChild(0).GetComponent<Lamp>()._isFrying)
                 {
-                    if (Time.time - deepWaterer.time > 3.0f)
+                    Debug.Log("Frying time - "+ (Time.time - deepWaterer.time));
+                    if (Time.time - deepWaterer.time > timeToEnemyEscape)
                     {
+                        
                         deepWaterer.SetState(State.Escaping);
                     }
                     else
@@ -203,10 +207,12 @@ public class EnemyManager : MonoBehaviour, Manager
 
     private void UpdateEnemiesState()
     {
+        Debug.Log("UpdateEnemiesState");
         
         foreach (Transform enemy in visibleEnemiesList)
         {
             enemy.gameObject.GetComponent<IEnemy>().SetOnLight();
+            Debug.Log(enemy.gameObject.name + " is on light");
         }
 
         foreach (IEnemy enemy in enemies)

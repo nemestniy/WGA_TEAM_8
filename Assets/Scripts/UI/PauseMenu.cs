@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
     
     public void GoToMainMenuButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
     
     public void QuitButton()
@@ -18,7 +18,15 @@ public class PauseMenu : MonoBehaviour
     
     public void SkipLvlButton()
     {
-        OnExit?.Invoke();
+        if (SceneManager.GetActiveScene().name == "TutorialTestScene")
+        {
+            SceneManager.LoadScene("ReleaseScene");
+        }
+        else
+        {
+            OnExit?.Invoke();
+        }
+        
     }
     
     public void RestartLvlButton()

@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour, Manager
     
     private Transform _startTransform;
     public int CurrentLampMode { get; private set; }
-    public bool playerCanMove = false;
 
     public Player Player => _player;
     
@@ -34,11 +33,16 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         if (_isPaused || _player == null)
             return;
-        if (playerCanMove)
-        {
-            UpdatePlayerMovement();
-            UpdateLightMode();
-        }
+        
+        UpdateLightMode();
+    }
+
+    private void FixedUpdate()
+    {
+        if (_isPaused || _player == null)
+            return;
+         
+        UpdatePlayerMovement();
     }
 
     private void UpdatePlayerMovement()
@@ -92,13 +96,14 @@ public class PlayerManager : MonoBehaviour, Manager
         _keyManager = KeyManager.Instance;
         _player = Player.Instance;
         IsLoaded = true;
-        _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
         _player.transform.GetChild(0).GetComponent<Lamp>().StartUpdatingVisCol();
+        _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
         _isPaused = false;
     }
     
     public void PauseManager()
     {
+        _player.GetComponent<Rigidbody2D>().angularVelocity = 0;
         _isPaused = true;
     }
 

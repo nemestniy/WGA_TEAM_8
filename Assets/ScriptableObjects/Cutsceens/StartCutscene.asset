@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33877140b79d0aa468826fe6b404cade, type: 3}
   m_Name: StartCutscene
   m_EditorClassIdentifier: 
-  isVideo: 1
+  isVideo: 0
   video: {fileID: 32900000, guid: f6257a6b9068b2f4fb74fe3bcc8e6da6, type: 3}
   sound: {fileID: 8300000, guid: 88deada9dcb5eae4bb571219d0c2e31e, type: 3}
   additionalUI: {fileID: 0}

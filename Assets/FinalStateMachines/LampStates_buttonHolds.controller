@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d0801895fdc294ea295a2e549a3608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _energyCost: 0.5
+  _energyCost: 0.15
   _costDelay: 2
 --- !u!114 &114605693504798332
 MonoBehaviour:

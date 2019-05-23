@@ -83,5 +83,10 @@ public class Energy : MonoBehaviour
             this.timeLeft = timeToAffect;
         }
     }
+
+    public void SetEnergy(float energy)
+    {
+        _currentEnergy = energy;
+    }
 }
 

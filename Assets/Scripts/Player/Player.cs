@@ -8,6 +8,11 @@ public class Player: MonoBehaviour {
 
     [SerializeField]
     private float _speed;
+    [SerializeField]
+    private float _rotationSpeed; //degrees per fixed update
+
+    [SerializeField]
+    private float _angelOffset;
     
     [SerializeField]
     private float _normalAnimationSpeed;
@@ -38,7 +43,16 @@ public class Player: MonoBehaviour {
 
     public void SetAngle(float angle)
     {
-        transform.eulerAngles = new Vector3(0, 0, angle);
+        int angelDirection = 0;
+        if (angle < -_angelOffset)
+        {
+            angelDirection = 1;
+        }
+        else if (angle > _angelOffset)
+        {
+            angelDirection = -1;
+        }
+        _rigidbody.angularVelocity = angelDirection * _rotationSpeed;
     }
 
     private void OnTriggerStay2D(Collider2D collision)

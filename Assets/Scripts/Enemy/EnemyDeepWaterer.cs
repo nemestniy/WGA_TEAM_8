@@ -165,7 +165,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         StartAnimation();
         aiPath.maxSpeed = speed;
 
-        //destinationSetter.target = player.transform;
+        destinationSetter.target = player.transform;
         GetComponent<AIPath>().canMove = true;
     }
 

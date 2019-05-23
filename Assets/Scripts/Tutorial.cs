@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Pathfinding;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -18,15 +19,19 @@ public class Tutorial : MonoBehaviour
     public GameObject hiddenText;
     public GameObject enemy;
     public GameObject escapeObject;
+    public GameObject exit;
 
     public GameObject canvas;
     public GameObject cameraCell;
     public GameObject textBox;
 
+    public Cutscene startCutscene;
+
     public static Tutorial Instance { get; private set; }
 
 
     private AIDestinationSetter daughterAIDestinationSetter;
+    private KeyManager _keyManager;
 
     [SerializeField] private bool isDaughterMoving;
 
@@ -42,18 +47,28 @@ public class Tutorial : MonoBehaviour
         daughter.GetComponent<AIPath>().maxSpeed = daughterSpeed;
         astarPath.GetComponent<AstarPath>().Scan();
         StartCoroutine(TellStory());
-        
+        _keyManager = KeyManager.Instance;
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (_keyManager.GetPauseButton())
+        {
+            if (!UIManager.Instance.transform.GetChild(0).gameObject.activeSelf)
+            {
+                UIManager.Instance.ShowPauseMenu();
+            }
+            else
+            {
+                UIManager.Instance.HidePauseMenu();
+            }
+        }
     }
 
     IEnumerator TellStory()
     {
+        yield return StartCoroutine(ShowStartCutscene());
         
         yield return StartCoroutine(MoveDaughterTo(wayPoints[0].transform));// Слайд 1: дочь идет от точки 1 к точке 2
 
@@ -112,8 +127,8 @@ public class Tutorial : MonoBehaviour
         yield return StartCoroutine(Dialogue("Да. Сейчас покажу. Мне кажется, я кое-что заметил на той стене в глубине.", Character.Father, 3f));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[4]));
-
-        lamp.active = true;
+        
+        player.GetComponent<Energy>().SetEnergy(100);
 
         yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. *Цвет фонаря* спектр отпугивает существ, живущих во тьме, *Цвет фонаря* же - позволяет увидеть сокрытое.", Character.Father, 6f));
 
@@ -143,12 +158,33 @@ public class Tutorial : MonoBehaviour
 
         enemy.GetComponent<IEnemy>().SetState(State.Moving);
 
+        exit.active = true;
+
+        StartCoroutine(MoveDaughterTo(exit.transform));
+
+        yield return StartCoroutine(WaitForPlayer(exit));
+
+        SceneManager.LoadScene("ReleaseScene");
+        //
+
+    }
+
+    IEnumerator ShowStartCutscene()
+    {
+        StartCoroutine(CutscenesManager.Instance.ShowFrames(startCutscene));
+        yield return null;
+
+    }
+
+    IEnumerator ShowExitCutscene()
+    {
+
+        yield return null;
     }
 
     IEnumerator ShowEnemy()
     {
         enemy.active = true;
-        EnemyManager.Instance.enabled = true;
         //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Waiting);
         yield return new WaitForSeconds(5f);
         //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Moving);
@@ -250,7 +286,7 @@ public class Tutorial : MonoBehaviour
             
         }
         mainCamera.GetComponent<CameraController>().enabled = true;
-        PlayerManager.Instance.playerCanMove = true;
+        PlayerManager.Instance.ResumeManager();
     }
 
     IEnumerator WaitForPlayer(GameObject waypoint)
@@ -264,12 +300,12 @@ public class Tutorial : MonoBehaviour
 
     public void FreezePlayer()
     {
-        PlayerManager.Instance.playerCanMove = false;
+        PlayerManager.Instance.PauseManager();
         
     }
 
     public void UnfreezePlayer()
     {
-        PlayerManager.Instance.playerCanMove = true;
+        PlayerManager.Instance.ResumeManager();
     }
 }
