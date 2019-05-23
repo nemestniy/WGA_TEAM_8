@@ -16,7 +16,7 @@ public class EnergyAffecter : MonoBehaviour
 
     private void Update()
     {
-        if (_isReloading)
+        if (_isReloading && _reloadingTime >= 0)
         {
             if (_timePast < _reloadingTime)
             {
