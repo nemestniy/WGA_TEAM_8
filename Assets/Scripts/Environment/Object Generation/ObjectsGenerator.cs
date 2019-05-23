@@ -15,17 +15,10 @@ public class ObjectsGeneratorEditor : Editor
     {
         if (GUILayout.Button("Load Objects"))
         {
-            var list = Directory.GetFiles($"{Application.dataPath}/Prefabs/Environment/Furniture/", "*.prefab", SearchOption.AllDirectories).Select(a => a.Replace(Application.dataPath, "Assets"));
-
-            var objList = new List<ObjectPrefabInfo>();
-            foreach (var asset in list)
-            {
-                var obj = AssetDatabase.LoadAssetAtPath<ObjectPrefabInfo>(asset);
-                if (obj != null) objList.Add(obj);
-            }
+            
 
             var tgt = ((ObjectsGenerator) target);
-            tgt._objectPrefabs = objList./*Select(a => a.GetComponent<ObjectPrefabInfo>()).*/ToArray();
+            tgt.LoadObjects();
 
 
         }
@@ -37,6 +30,27 @@ public class ObjectsGeneratorEditor : Editor
 
 public class ObjectsGenerator : MonoBehaviour
 {
+
+    private void Start()    
+    {
+        LoadObjects();
+    }
+
+    public void LoadObjects()
+    {
+        var list = Directory.GetFiles($"{Application.dataPath}/Prefabs/Environment/Furniture/", "*.prefab", SearchOption.AllDirectories).Select(a => a.Replace(Application.dataPath, "Assets"));
+        //list = list.Union(Directory
+        //    .GetFiles($"{Application.dataPath}/Prefabs/Environment/Enemies/", "*.prefab",
+        //        SearchOption.AllDirectories).Select(a => a.Replace(Application.dataPath, "Assets"))).ToList();
+        var objList = new List<ObjectPrefabInfo>();
+        foreach (var asset in list)
+        {
+            var obj = AssetDatabase.LoadAssetAtPath<ObjectPrefabInfo>(asset);
+            if (obj != null) objList.Add(obj);
+        }
+        _objectPrefabs = objList.ToArray();
+    }
+
     [Header("Furniture parametrs:")]   
 
     [SerializeField] public ObjectPrefabInfo[] _objectPrefabs;
