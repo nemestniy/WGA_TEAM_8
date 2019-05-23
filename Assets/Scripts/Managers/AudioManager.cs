@@ -11,9 +11,9 @@ public class AudioManager : MonoBehaviour, Manager
     private List<AudioClip> _backgroundMusic;
 
     [SerializeField] private List<SoundEventPair> _soundEvents;
-//    [SerializeField] private List<SoundStatePair> _soundStates;
+    //    [SerializeField] private List<SoundStatePair> _soundStates;
 
-    
+    private CoreSoundtrack _coreSoundtrackManager;
     
     private AudioSource _audioSource;
     public bool Paused{ get; private set; }
@@ -31,7 +31,12 @@ public class AudioManager : MonoBehaviour, Manager
         Instance = this;
     }
     #endregion
-    
+
+    void Start()
+    {
+        _coreSoundtrackManager = GetComponent<CoreSoundtrack>();
+    }
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -73,7 +78,6 @@ public class AudioManager : MonoBehaviour, Manager
                     {
                         timePassed += Time.deltaTime;
                     }
-
                     yield return null;
                 }
             }
@@ -86,6 +90,7 @@ public class AudioManager : MonoBehaviour, Manager
         IsLoaded = true;
         Paused = false;
         OnAudioStart?.Invoke();
+        _coreSoundtrackManager.PlayAll();
     }
 
     public void PauseManager()
@@ -93,6 +98,7 @@ public class AudioManager : MonoBehaviour, Manager
         _audioSource.Pause();
         Paused = true;
         OnAudioPause?.Invoke();
+        _coreSoundtrackManager.Mute();
     }
     
     public void ResumeManager()
@@ -100,6 +106,7 @@ public class AudioManager : MonoBehaviour, Manager
         _audioSource.UnPause();
         Paused = false;
         OnAudioResume?.Invoke();
+        _coreSoundtrackManager.Resume();
     }
     
     [Serializable]

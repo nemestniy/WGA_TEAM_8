@@ -2,24 +2,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoreSoundtrackManager : MonoBehaviour
+public class CoreSoundtrack : MonoBehaviour
 {
+    private bool muteGroup;
 
-    public bool muteGroup;
+    [SerializeField]
+    private AudioSource[] mainClips;
 
-    public AudioSource[] mainClips;
+    [SerializeField]
+    private AudioSource[] zoneClips;
 
-    public AudioSource[] zoneClips;
+    [SerializeField]
+    private AudioSource[] energyClips;
 
-    public AudioSource[] energyClips;
+    [SerializeField]
+    private AudioSource[] drumClips;
 
-    public AudioSource[] drumClips;
+    private GameManager _gm;
+    /*
+    #region Singletone
+    public static CoreSoundtrack Instance { get; private set; }
+    public CoreSoundtrack() : base()
+    {
+        Instance = this;
+    }
+    #endregion
+    */
+    void Start()
+    {
+        _gm = GameManager.Instance;
+    }
 
-    public GameManager gm;
-
+    public void PlayAll()
+    {
+        foreach (AudioSource ass in mainClips)
+        {
+            //OffSource(ass);
+            ass.Play();
+        }
+        foreach (AudioSource ass in zoneClips)
+        {
+            //OffSource(ass);
+            ass.Play();
+        }
+        foreach (AudioSource ass in energyClips)
+        {
+            //OffSource(ass);
+            ass.Play();
+        }
+        foreach (AudioSource ass in drumClips)
+        {
+            //OffSource(ass);
+            ass.Play();
+        }
+    }
 
     // Вызывай метод, чтобы отключить кор саундтрек во время катсцен или еще когда надо
-    public void AllMute()
+    public void Mute()
     {
         foreach (AudioSource ass in mainClips)
         {
@@ -45,7 +84,7 @@ public class CoreSoundtrackManager : MonoBehaviour
     }
 
     // Вызывай метод, чтобы снова включить кор саундтрек
-    public void AllStart()
+    public void Resume()
     {
         muteGroup = false;
     }
@@ -62,11 +101,6 @@ public class CoreSoundtrackManager : MonoBehaviour
         if (ass.mute == false) StartCoroutine(FadeDown(ass));
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     IEnumerator FadeUp(AudioSource ass)
     {
@@ -105,11 +139,11 @@ public class CoreSoundtrackManager : MonoBehaviour
 
             if (test == false)
             {
-                AllMute();
+                Mute();
             }
             else if (test == true)
             {
-                AllStart();
+                Resume();
             }
             
         } 
@@ -143,7 +177,7 @@ public class CoreSoundtrackManager : MonoBehaviour
             }
 
 
-            if (gm.LampEnergyLvl > 0.80)
+            if (_gm.LampEnergyLvl > 0.80)
             {
                 OffSource(energyClips[0]);
                 OffSource(energyClips[1]);
@@ -151,72 +185,72 @@ public class CoreSoundtrackManager : MonoBehaviour
                 OffSource(energyClips[3]);
             }
 
-            if (gm.LampEnergyLvl < 0.80)
+            if (_gm.LampEnergyLvl < 0.80)
             {
                 OnSource(energyClips[0]);
             }
 
-            if (gm.LampEnergyLvl < 0.60)
+            if (_gm.LampEnergyLvl < 0.60)
             {
                 OnSource(energyClips[1]);
             }
-            if (gm.LampEnergyLvl > 0.60)
+            if (_gm.LampEnergyLvl > 0.60)
             {
                 OffSource(energyClips[1]);
             }
 
-            if (gm.LampEnergyLvl < 0.40)
+            if (_gm.LampEnergyLvl < 0.40)
             {
                 OnSource(energyClips[2]);
             }
-            if (gm.LampEnergyLvl > 0.40)
+            if (_gm.LampEnergyLvl > 0.40)
             {
                 OffSource(energyClips[2]);
             }
 
-            if (gm.LampEnergyLvl < 0.20)
+            if (_gm.LampEnergyLvl < 0.20)
             {
                 OnSource(energyClips[3]);
             }
-            if (gm.LampEnergyLvl > 0.20)
+            if (_gm.LampEnergyLvl > 0.20)
             {
                 OffSource(energyClips[3]);
             }
 
-            if (gm.DistanceToClosestEnemy > 35)
+            if (_gm.DistanceToClosestEnemy > 35)
             {
                 OffSource(drumClips[0]);
                 OffSource(drumClips[1]);
                 OffSource(drumClips[2]);
             }
 
-            if (gm.DistanceToClosestEnemy < 35)
+            if (_gm.DistanceToClosestEnemy < 35)
             {
                 OnSource(drumClips[0]);
             }
-            if (gm.DistanceToClosestEnemy > 25)
+            if (_gm.DistanceToClosestEnemy > 25)
             {
                 OffSource(drumClips[1]);
             }
-            if (gm.DistanceToClosestEnemy < 25)
+            if (_gm.DistanceToClosestEnemy < 25)
             {
                 OnSource(drumClips[1]);
             }
-            if (gm.DistanceToClosestEnemy > 15)
+            if (_gm.DistanceToClosestEnemy > 15)
             {
                 OffSource(drumClips[2]);
             }
-            if (gm.DistanceToClosestEnemy < 15)
+            if (_gm.DistanceToClosestEnemy < 15)
             {
                 OnSource(drumClips[2]);
             }
 
 
-            if (gm.DistanceToWell > 20)
+            if (_gm.DistanceToWell > 20)
             {
                 OffSource(mainClips[4]);
             }
-            if (gm.DistanceToWell < 20)
+            if (_gm.DistanceToWell < 20)
             {
                 OnSource(mainClips[4]);
             }
