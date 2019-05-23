@@ -36,7 +36,14 @@ public class UIManager : MonoBehaviour
 
     public void HidePauseMenu()
     {
-        GameManager.Instance.ResumeManager();
+        if (SceneManager.GetActiveScene().name == "TutorialTestScene")//TODO:кастыыыыыль
+        {
+            GameManagerTrial.Instance.ResumeManager();
+        }
+        else
+        {
+            GameManager.Instance.ResumeManager();
+        }
         _pauseMenu.SetActive(false);
     }
 }
