@@ -27,6 +27,7 @@ public class Tutorial : MonoBehaviour
 
 
     private AIDestinationSetter daughterAIDestinationSetter;
+    private KeyManager _keyManager;
 
     [SerializeField] private bool isDaughterMoving;
 
@@ -42,14 +43,16 @@ public class Tutorial : MonoBehaviour
         daughter.GetComponent<AIPath>().maxSpeed = daughterSpeed;
         astarPath.GetComponent<AstarPath>().Scan();
         StartCoroutine(TellStory());
-        
+        _keyManager = KeyManager.Instance;
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (_keyManager.GetPauseButton())
+        {
+            UIManager.Instance.ShowPauseMenu();
+        }
     }
 
     IEnumerator TellStory()

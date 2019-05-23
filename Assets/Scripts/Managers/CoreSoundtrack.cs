@@ -35,51 +35,78 @@ public class CoreSoundtrack : MonoBehaviour
 
     public void PlayAll()
     {
-        foreach (AudioSource ass in mainClips)
+        if (mainClips != null)
         {
-            //OffSource(ass);
-            ass.Play();
+            foreach (AudioSource ass in mainClips)
+            {
+                //OffSource(ass);
+                ass.Play();
+            }
         }
-        foreach (AudioSource ass in zoneClips)
+
+        if (zoneClips != null)
         {
-            //OffSource(ass);
-            ass.Play();
+            foreach (AudioSource ass in zoneClips)
+            {
+                //OffSource(ass);
+                ass.Play();
+            }
         }
-        foreach (AudioSource ass in energyClips)
+
+        if (energyClips != null)
         {
-            //OffSource(ass);
-            ass.Play();
+            foreach (AudioSource ass in energyClips)
+            {
+                //OffSource(ass);
+                ass.Play();
+            }
         }
-        foreach (AudioSource ass in drumClips)
+
+        if (drumClips != null)
         {
-            //OffSource(ass);
-            ass.Play();
+            foreach (AudioSource ass in drumClips)
+            {
+                //OffSource(ass);
+                ass.Play();
+            }
         }
     }
 
     // Вызывай метод, чтобы отключить кор саундтрек во время катсцен или еще когда надо
     public void Mute()
     {
-        foreach (AudioSource ass in mainClips)
+        if (mainClips != null)
         {
-            //OffSource(ass);
-            ass.mute = true;
+            foreach (AudioSource ass in mainClips)
+            {
+                ass.mute = true;
+            }
         }
-        foreach (AudioSource ass in zoneClips)
+
+        if (zoneClips != null)
         {
-            //OffSource(ass);
-            ass.mute = true;
+            foreach (AudioSource ass in zoneClips)
+            {
+                ass.mute = true;
+            }
         }
-        foreach (AudioSource ass in energyClips)
+
+        if (energyClips != null)
         {
-            //OffSource(ass);
-            ass.mute = true;
+            foreach (AudioSource ass in energyClips)
+            {
+                ass.mute = true;
+            }
         }
-        foreach (AudioSource ass in drumClips)
+
+        if (drumClips != null)
         {
-            //OffSource(ass);
-            ass.mute = true;
+            foreach (AudioSource ass in drumClips)
+            {
+                ass.mute = true;
+            }
         }
+        
         muteGroup = true;
     }
 
