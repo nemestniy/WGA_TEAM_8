@@ -40,11 +40,12 @@ public class Lamp : MonoBehaviour
         _fieldOfViews[1].SetLightMode(newMode, prevMode, changingState);
     }
 
-    public void StartUpdatingVisCol()
+    private void OnEnable()
     {
         _fieldOfViews[0].StartUpdatingVisCol();
         _fieldOfViews[1].StartUpdatingVisCol();
     }
+    
 
     public bool IsVisible(Collider2D collider)
     {

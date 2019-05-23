@@ -93,7 +93,6 @@ public class PlayerManager : MonoBehaviour, Manager
         _player = Player.Instance;
         IsLoaded = true;
         _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
-        _player.transform.GetChild(0).GetComponent<Lamp>().StartUpdatingVisCol();
         _isPaused = false;
     }
     
