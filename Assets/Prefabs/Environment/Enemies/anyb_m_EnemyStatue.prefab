@@ -16,9 +16,9 @@ GameObject:
   - component: {fileID: 2623790793542243185}
   - component: {fileID: 6557098984084748790}
   - component: {fileID: 4466822110935536795}
-  - component: {fileID: 7751331237111887631}
+  - component: {fileID: 6547316336686316685}
   m_Layer: 9
-  m_Name: EnemyStatue
+  m_Name: anyb_m_EnemyStatue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a2b12a6d94ffb8488d2d0579a8759fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   path: {fileID: 0}
   state: 0
   speed: 0
@@ -223,7 +222,7 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
---- !u!114 &7751331237111887631
+--- !u!114 &6547316336686316685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,9 +231,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6965660601277113687}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e08c6cbe2fe1f245bd11be1faa25537, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d999e43bdb4a604db5096d6487b7006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxCountInDungeon: 1
   MinCountInDungeon: 1
   SpawnProbMultiplier: 1
+  ZoneMask: 255

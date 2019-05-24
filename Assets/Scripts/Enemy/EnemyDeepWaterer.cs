@@ -5,7 +5,7 @@ using Pathfinding;
 
 public class EnemyDeepWaterer : MonoBehaviour, IEnemy
 {
-    public Player player;
+    public Player player => Player.Instance;
     public AstarPath path;
 
     [SerializeField] [ShowOnly] private State state;
@@ -43,7 +43,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
 
     public void Start()
     {
-        player = Player.Instance;
+        //player = Player.Instance;
         destinationSetter = GetComponent<AIDestinationSetter>();
         aiPath = GetComponent<AIPath>();
         inLight = false;

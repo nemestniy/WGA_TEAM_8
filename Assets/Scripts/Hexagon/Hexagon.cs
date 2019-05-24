@@ -29,6 +29,9 @@ public class Hexagon : MonoBehaviour
 
     private List<Transform> freeNeigbours = null;
 
+    [HideInInspector]
+    public List<GameObject> ChildObjects => this.GetComponentsInChildren<ObjectPrefabInfo>().Select(a => a.gameObject).ToList();
+
     //public delegate void OnWallsChangeAction(); - Нафиг нам этот делегат, если есть стандартный Action мы не используем аргументов;
 
     public static event Action OnWallsChange;

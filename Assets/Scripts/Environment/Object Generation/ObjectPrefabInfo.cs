@@ -7,7 +7,7 @@ public class ObjectPrefabInfo : MonoBehaviour
     public int MaxCountInDungeon = 1000;    
     public int MinCountInDungeon = 0;   
     public float SpawnProbMultiplier = 1;
-
+    public byte ZoneMask = 255;
 
     public virtual bool Check(BackgroundController.Biome biome, int size, Hexagon owner)
     {

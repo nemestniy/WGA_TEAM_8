@@ -176,8 +176,9 @@ GameObject:
   - component: {fileID: 1016308930}
   - component: {fileID: 398690655}
   - component: {fileID: 676225781}
+  - component: {fileID: 6816318365152495963}
   m_Layer: 8
-  m_Name: Player_cultist
+  m_Name: anyb_m_Player_cultist
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,6 +461,22 @@ MonoBehaviour:
   volHighRange: 1
   LeftFootprint: {fileID: 552987758460695198}
   RightFootprint: {fileID: 3818407883583324700}
+--- !u!114 &6816318365152495963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759250699673190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d999e43bdb4a604db5096d6487b7006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxCountInDungeon: 1
+  MinCountInDungeon: 1
+  SpawnProbMultiplier: 1
+  ZoneMask: 255
 --- !u!1 &455787303813005530
 GameObject:
   m_ObjectHideFlags: 0
@@ -5810,7 +5827,7 @@ ParticleSystem:
 --- !u!199 &4468554447866362417
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -10508,7 +10525,7 @@ ParticleSystem:
 --- !u!199 &7359475709744717098
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -15272,7 +15289,7 @@ ParticleSystem:
 --- !u!199 &3954737443406625918
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -19988,7 +20005,7 @@ ParticleSystem:
 --- !u!199 &3442081522003012490
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

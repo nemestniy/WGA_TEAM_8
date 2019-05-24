@@ -28343,7 +28343,7 @@ GameObject:
   - component: {fileID: 1462112169}
   - component: {fileID: 1773624129}
   - component: {fileID: 1773624128}
-  - component: {fileID: 2659629743852016132}
+  - component: {fileID: 5396521959433714107}
   m_Layer: 9
   m_Name: anyb_m_EnemyDeepWaterer
   m_TagString: Untagged
@@ -28464,7 +28464,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72173cc56043cbe4ca5a38069b775200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   path: {fileID: 0}
   state: 2
   speed: 3
@@ -28725,7 +28724,7 @@ MonoBehaviour:
   _changeValue: -60
   _timeToAffect: 0
   _reloadingTime: 3
---- !u!114 &2659629743852016132
+--- !u!114 &5396521959433714107
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28734,9 +28733,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8914237606444993381}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e08c6cbe2fe1f245bd11be1faa25537, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d999e43bdb4a604db5096d6487b7006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   MaxCountInDungeon: 1
   MinCountInDungeon: 1
   SpawnProbMultiplier: 1
+  ZoneMask: 255
