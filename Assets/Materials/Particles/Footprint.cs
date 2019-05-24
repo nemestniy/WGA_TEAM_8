@@ -23,7 +23,7 @@ public class Footprint : MonoBehaviour
 
     public void Emit()
     {
-        var terrain = MapManager.Instance.Background.GetBiomeByPosition(transform.position);
+        var terrain = BackgroundController.Instance.GetBiomeByPosition(transform.position);
         ParticleSystem ps;
         switch (terrain)
         {

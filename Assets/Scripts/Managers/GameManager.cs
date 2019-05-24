@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour, Manager
     private static readonly int Next = Animator.StringToHash("Next");
 
     public float DistanceToClosestEnemy => _enemyManager.DistanceToClosestEnemy; //returns -1 if there are no enemy in enemy list
-    public BackgroundController.Biome CurrentBiome => _mapManager.Background.GetBiomeByPosition(Player.Instance.transform.position);
+    public BackgroundController.Biome CurrentBiome => BackgroundController.Instance.GetBiomeByPosition(Player.Instance.transform.position);
     public float LampEnergyLvl => Player.Instance.GetComponent<Energy>().CurrentEnergyLvl;
     public int CurrentLampMode => _playerManager.CurrentLampMode;
     public float DistanceToWell => _mapManager.GetComponent<ObjectsGenerator>().DistanceToWell; //returns -1 if there are no well

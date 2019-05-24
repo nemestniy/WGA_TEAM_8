@@ -107,7 +107,7 @@ public class ObjectsGenerator : MonoBehaviour
 
     public GameObject GetPrefabForStats(int size, Hexagon owner, Vector3 position)
     {
-        var biome = MapManager.Instance.Background.GetBiomeByPosition(position);        
+        var biome = BackgroundController.Instance.GetBiomeByPosition(position);        
         var l = _objectPrefabs.Where(a => a?.Check(biome, size, owner) ?? false).ToList();
         if (l.Count == 0)
             Debug.LogError($"Nothing to gen at {biome} of size {size}");

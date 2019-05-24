@@ -7,6 +7,14 @@ public class BackgroundController : MonoBehaviour
     //private Texture2D backgroundTexture;
     public Texture2D biomeTexture;
 
+    private static BackgroundController _instance;
+    public static BackgroundController Instance => _instance;
+
+    private void Start()
+    {
+        _instance = this;
+    }
+
     public enum Biome
     {
         Water,

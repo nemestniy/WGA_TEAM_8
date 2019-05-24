@@ -46,7 +46,7 @@ public class StepsSound : MonoBehaviour
 
     private AudioClip GetStepFromBiom(List<AudioClip> stepsRock, List<AudioClip> stepsWater, List<AudioClip> stepsSand)
     {
-        switch (_mapManager.Background.GetBiomeByPosition(transform.position))
+        switch (BackgroundController.Instance.GetBiomeByPosition(transform.position))
         {
             case BackgroundController.Biome.Water:
                 return GetRandomSound(stepsWater);
