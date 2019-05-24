@@ -57,8 +57,14 @@ public class EnemyManager : MonoBehaviour, Manager
     
     private void Start()
     {
-        hexagonsGenerator.MapIsCreate += OnMapCreated; //если разкомментируешь эту строчку, не забудь разкомментить отписывание в OnDestroy
-
+        if (hexagonsGenerator == null)
+        {
+            OnMapCreated();
+        }
+        else
+        {
+            hexagonsGenerator.MapIsCreate += OnMapCreated; //если разкомментируешь эту строчку, не забудь разкомментить отписывание в OnDestroy
+        }
     }
 
     private void OnMapCreated()
