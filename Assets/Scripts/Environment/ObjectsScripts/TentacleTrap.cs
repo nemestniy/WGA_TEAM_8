@@ -10,6 +10,7 @@ public class TentacleTrap : MonoBehaviour
     private Collider2D _collider;
     private Animator _animator;
     private bool isAlive = true;
+    [SerializeField] private SpriteRenderer _mandala;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,7 @@ public class TentacleTrap : MonoBehaviour
             _animator.SetBool(attackHash, true);
             isAlive = false;
             other.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
+            _mandala.color = new Color(0, 0, 0, 0);
         }
     }
 }
