@@ -86,7 +86,7 @@ public class MapManager : MonoBehaviour, Manager
             var wall = walls.ElementAt(wallCount);
             var wallPosition = wall.GetPosition();
             var generatePosition = new Vector3(wallPosition.x, wallPosition.y, _exitTrigger.transform.position.z);
-            Instantiate(_exitTrigger, wall.transform.position, Quaternion.identity);
+            Instantiate(_exitTrigger, generatePosition, Quaternion.identity);
             wall.Disable();
         }
     }
