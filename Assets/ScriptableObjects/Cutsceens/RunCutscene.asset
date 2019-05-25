@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33877140b79d0aa468826fe6b404cade, type: 3}
   m_Name: RunCutscene
   m_EditorClassIdentifier: 
-  cutsceneName: Run
+  isVideo: 0
+  video: {fileID: 0}
   sound: {fileID: 8300000, guid: 1dc46871ffffad54e99e4763667f8077, type: 3}
   additionalUI: {fileID: 0}
   frames:
-  - image: {fileID: 21300000, guid: 2fc9bb2e3c6795a49a8f1878768d32cf, type: 3}
+  - image: {fileID: 21300000, guid: 110b054a169cd5240a80ad7b266384e0, type: 3}
     secondsToChange: Infinity
     canChangeWithClick: 1

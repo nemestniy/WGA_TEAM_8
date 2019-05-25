@@ -36,9 +36,8 @@ public class ObjectPrefabInfo : MonoBehaviour
     public virtual bool Check(BackgroundController.Biome biome, int size, Hexagon owner)
     {
         var name = gameObject.name;
-        return ((name.Substring(0, 5).Equals(ObjectsGenerator.biomePrefix[(int) biome]) ||
-                 name.Substring(0, 5).Equals(ObjectsGenerator.anyBPrefix)) &&
-                name.Substring(5, 2).Equals(ObjectsGenerator.sizePrefix[size - 1])) &&
+        return (name.Substring(0, 5).Equals(ObjectsGenerator.biomePrefix[(int) biome]) || name.Substring(0, 5).Equals(ObjectsGenerator.anyBPrefix)) &&
+                (name.Substring(5, 2).Equals(ObjectsGenerator.sizePrefix[size - 1]) || name.Substring(5, 2).Equals(ObjectsGenerator.anySPrefix)) &&
                ObjectsGenerator.Instance.GetCountInDungeon(name) < MaxCountInDungeon &&
                (owner.GetZone().Type & ZoneMask) != 0;
 

@@ -7,8 +7,6 @@ public class CopyViewMesh : MonoBehaviour
     private MeshFilter _viewMeshFilter;
     private Mesh _viewMesh;
 
-    public int DegResolution = 1;
-    public float MaskingDistanceDeg = 5;
 
     private float _innerRingDistance = 0.05f;
     private float _midRingRelativeDistance = 0.75f;
@@ -46,6 +44,11 @@ public class CopyViewMesh : MonoBehaviour
         //{
         //    vertices[(int)i] = new Vector3(Mathf.Sin(Mathf.Deg2Rad * angle), Mathf.Cos(Mathf.Deg2Rad * angle));
         //}
+        
+    }
+
+    public void UpdateMesh()
+    {
         var parent = GetComponentInParent<FieldOfView>();
         _viewMesh.Clear();
         _viewMesh.vertices = parent.vertices;

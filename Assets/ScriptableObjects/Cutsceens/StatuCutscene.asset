@@ -16,4 +16,7 @@ MonoBehaviour:
   video: {fileID: 0}
   sound: {fileID: 0}
   additionalUI: {fileID: 0}
-  frames: []
+  frames:
+  - image: {fileID: 21300000, guid: f877ea25769513f4887b42cbd727d15c, type: 3}
+    secondsToChange: 0
+    canChangeWithClick: 0

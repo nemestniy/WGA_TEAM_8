@@ -33,7 +33,9 @@ public class HexagonsGenerator : MonoBehaviour
         //ActivateColliders();
 
         InitializeHexArray();
+        Debug.Log("Hex array is created");
         HexagonsIsCreate?.Invoke();
+        Debug.Log("Objects are created");
         MapIsCreate?.Invoke();
         Debug.Log("Map is created");
     }

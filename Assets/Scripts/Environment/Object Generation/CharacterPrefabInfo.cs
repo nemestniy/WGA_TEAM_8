@@ -7,6 +7,8 @@ public class CharacterPrefabInfo : ObjectPrefabInfo
 {
     public override bool Check(BackgroundController.Biome biome, int size, Hexagon owner)
     {
-        return base.Check(biome, size, owner) && owner.ChildObjects.All(a => a.GetComponent<CharacterPrefabInfo>() == null);
+        //return base.Check(biome, size, owner) && owner.ChildObjects.All(a => a.GetComponent<CharacterPrefabInfo>() == null);
+        return ObjectsGenerator.Instance.GetCountInDungeon(name) < MaxCountInDungeon &&
+               (owner.GetZone().Type & ZoneMask) != 0;
     }
 }
