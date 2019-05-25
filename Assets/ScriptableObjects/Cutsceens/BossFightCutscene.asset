@@ -29,3 +29,6 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: bbfc899d11275b44fa67f5e7a32d7485, type: 3}
     secondsToChange: 4
     canChangeWithClick: 1
+  - image: {fileID: 21300000, guid: 2a5b0bfd9175e21428148387bf017104, type: 3}
+    secondsToChange: 2.5
+    canChangeWithClick: 1
