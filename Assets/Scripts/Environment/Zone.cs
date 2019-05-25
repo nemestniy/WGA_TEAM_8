@@ -15,8 +15,7 @@ public class Zone
 
     [Flags]
     public enum ZoneType
-    {
-        NotSet = 0,
+    {        
         Starting = 1,
         Madness = 2,
         DeepOnes = 4,
@@ -36,8 +35,9 @@ public class Zone
     {
         ZoneGuid = Guid.NewGuid();
         Type = lastType;
+        Debug.LogError(Type);
         lastType = (ZoneType)((int)lastType * 2);
-        if ((int)lastType > (0 << zoneCount))
+        if ((int)lastType >= (1 << zoneCount - 1))
         {
             lastType = ZoneType.Starting;
         }
