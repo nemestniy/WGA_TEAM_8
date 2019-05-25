@@ -6,6 +6,8 @@ public class Player: MonoBehaviour {
     public delegate void PlayerEvents();
     public event PlayerEvents CurrentHexagonChanged;
 
+    public Zone CurrentZone;
+
     [SerializeField]
     private float _speed;
     [SerializeField]
@@ -55,7 +57,7 @@ public class Player: MonoBehaviour {
         _rigidbody.angularVelocity = angelDirection * _rotationSpeed;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Hexagon"))
         {
@@ -89,6 +91,7 @@ public class Player: MonoBehaviour {
         {
             _currentHexagon = hexagon;
             CurrentHexagonChanged?.Invoke();
+            CurrentZone = hexagon.GetZone();
         }
     }
 
