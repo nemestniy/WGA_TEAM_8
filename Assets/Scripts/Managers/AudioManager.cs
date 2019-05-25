@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour, Manager
 {
@@ -34,7 +35,10 @@ public class AudioManager : MonoBehaviour, Manager
 
     void Start()
     {
-        _coreSoundtrackManager = GetComponent<CoreSoundtrack>();
+        if (SceneManager.GetActiveScene().name == "ReleaseScene")
+        {
+            _coreSoundtrackManager = GetComponent<CoreSoundtrack>();
+        }
     }
 
     private void Awake()
@@ -90,7 +94,8 @@ public class AudioManager : MonoBehaviour, Manager
         IsLoaded = true;
         Paused = false;
         OnAudioStart?.Invoke();
-        _coreSoundtrackManager.PlayAll();
+        if (SceneManager.GetActiveScene().name == "ReleaseScene")
+            _coreSoundtrackManager.PlayAll();
     }
 
     public void PauseManager()

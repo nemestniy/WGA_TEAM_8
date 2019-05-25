@@ -113,7 +113,7 @@ public class EnemyManager : MonoBehaviour, Manager
                     Debug.Log("Frying time - "+ (Time.time - deepWaterer.time));
                     if (Time.time - deepWaterer.time > timeToEnemyEscape)
                     {
-                        
+                        AudioManager.Instance.TriggerSoundEvent("Sucsessfully fried");  
                         deepWaterer.SetState(State.Escaping);
                     }
                     else

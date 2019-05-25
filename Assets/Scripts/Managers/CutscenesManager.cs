@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -33,7 +34,8 @@ public class CutscenesManager : MonoBehaviour
 
     private void Start()
     {
-        _gameProcessAnimator = GameManager.Instance.GetComponent<Animator>();
+        if(SceneManager.GetActiveScene().name == "ReleaseScene")//TODO:КАСТЫЫЫЫЫЫЫль
+            _gameProcessAnimator = GameManager.Instance.GetComponent<Animator>();
     }
 
     public void ShowVideo(VideoClip video)
@@ -71,13 +73,16 @@ public class CutscenesManager : MonoBehaviour
         _audioSource.Stop();
 
 
-        if (addUI != null)
+        if (SceneManager.GetActiveScene().name == "ReleaseScene") //TODO:КАСТЫЫЫЫЫЫЫль
         {
-            Destroy(addUI);
-        }
-        else
-        {
-            _gameProcessAnimator.SetTrigger(Next);
+            if (addUI != null)
+            {
+                Destroy(addUI);
+            }
+            else
+            {
+                _gameProcessAnimator.SetTrigger(Next);
+            }
         }
     }
 
