@@ -95,6 +95,7 @@ public class ObjectsGenerator : MonoBehaviour
     private const string smallPrefix = "s_";
     private const string mediumPrefix = "m_";
     private const string largePrefix = "l_";
+    public const string anySPrefix = "a_";
     [HideInInspector]
     public static readonly string[] sizePrefix = { smallPrefix, mediumPrefix, largePrefix};
 

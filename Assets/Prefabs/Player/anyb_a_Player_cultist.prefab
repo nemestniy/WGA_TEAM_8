@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 676225781}
   - component: {fileID: 6816318365152495963}
   m_Layer: 8
-  m_Name: anyb_m_Player_cultist
+  m_Name: anyb_a_Player_cultist
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,7 +476,7 @@ MonoBehaviour:
   MaxCountInDungeon: 1
   MinCountInDungeon: 1
   SpawnProbMultiplier: 1
-  ZoneMask: 1
+  ZoneMask: 17
 --- !u!1 &455787303813005530
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,8 +567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176ff02de10c2b34ea56235c173bb669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DegResolution: 1
-  MaskingDistanceDeg: 5
 --- !u!1 &1428875428254133807
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,8 +954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 176ff02de10c2b34ea56235c173bb669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DegResolution: 1
-  MaskingDistanceDeg: 5
 --- !u!1 &4218199289314999579
 GameObject:
   m_ObjectHideFlags: 0

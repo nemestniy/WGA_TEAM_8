@@ -35,7 +35,7 @@ public class Zone
     {
         ZoneGuid = Guid.NewGuid();
         Type = lastType;
-        Debug.LogError(Type);
+        //Debug.LogError(Type);
         lastType = (ZoneType)((int)lastType * 2);
         if ((int)lastType >= (1 << zoneCount - 1))
         {

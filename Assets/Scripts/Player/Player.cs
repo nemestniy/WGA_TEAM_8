@@ -63,7 +63,7 @@ public class Player: MonoBehaviour {
         }
         else
         {
-            _currentHexagon = null;
+            s_currentHexagon = null;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
