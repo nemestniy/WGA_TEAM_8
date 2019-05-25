@@ -447,12 +447,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 472ce6639233e5e478ee37aa7d58bd88, type: 3}
---- !u!1 &1074609760 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 192543149050041623, guid: 472ce6639233e5e478ee37aa7d58bd88,
-    type: 3}
-  m_PrefabInstance: {fileID: 1074609759}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1092983634 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7008755521091062686, guid: 229d8ebd91f195d4e9484c991633fee5,
@@ -564,24 +558,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48ccd207394cf274792f409da9145f85, type: 3}
---- !u!1 &1394890847 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3366866218263729250, guid: 48ccd207394cf274792f409da9145f85,
-    type: 3}
-  m_PrefabInstance: {fileID: 1394890846}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1394890848
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1394890847}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb0d36515eb4ae4da1721fb90751ea1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1559370203 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4610830379287213671, guid: f45a84f6b432f374a86a4b34cf1f37da,
@@ -937,10 +913,6 @@ PrefabInstance:
       propertyPath: path
       value: 
       objectReference: {fileID: 2106164595}
-    - target: {fileID: 1489312119, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _well
-      value: 
-      objectReference: {fileID: 1074609760}
     - target: {fileID: 988068237, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: m_TargetCamera
       value: 
@@ -949,80 +921,15 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4958237195479054178, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
-        type: 3}
-      propertyPath: _startHexagon
-      value: 
-      objectReference: {fileID: 1559370203}
     - target: {fileID: 29113840063418310, guid: 92adbad5cf4bc1c4cad3cafc9481a49a,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[1].gameEvent
-      value: DW attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[1].audioEvent.sound
+    - target: {fileID: 1136329571, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _startHexagon
       value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[1].audioEvent.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[2].gameEvent
-      value: Sucsessfully fried
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[2].audioEvent.sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[2].audioEvent.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[3].gameEvent
-      value: Tentacle attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[3].audioEvent.sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[3].audioEvent.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[4].gameEvent
-      value: Tentacle attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[4].audioEvent.sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[4].audioEvent.volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[5].gameEvent
-      value: Tentacle attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[5].audioEvent.sound
-      value: 
-      objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
-    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
-      propertyPath: _soundEvents.Array.data[5].audioEvent.volume
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1559370203}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
 --- !u!114 &2106164595 stripped

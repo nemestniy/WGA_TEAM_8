@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 
 public class EnemyManager : MonoBehaviour, Manager
@@ -68,11 +68,23 @@ public class EnemyManager : MonoBehaviour, Manager
         }
     }
 
+    [SerializeField] 
+    private EnemyDeepWaterer _enemyDeepWaterer;
+    
     private void OnMapCreated()
     {
         Debug.Log("onMapCreate");
-
-        enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
+        if (SceneManager.GetActiveScene().name == "TutorialTestScene")//TODO:КасТЫЫЫЫЫЛЬ
+        {
+            enemyDeepWaterers = new List<EnemyDeepWaterer>();
+            enemyDeepWaterers.Add(_enemyDeepWaterer);
+        }
+        else
+        {
+            enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
+        }
+        
+        
         enemyStatues = new List<EnemyStatue>(FindObjectsOfType<EnemyStatue>());
         enemies = new List<IEnemy>();
         enemies.AddRange(FindObjectsOfType<EnemyDeepWaterer>());
