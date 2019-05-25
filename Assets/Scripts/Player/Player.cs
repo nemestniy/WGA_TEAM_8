@@ -77,7 +77,7 @@ public class Player: MonoBehaviour {
 
     private void SetLastHexagon(Hexagon hexagon)
     {
-        if (_lastHexagon == null || !_lastHexagon.NeighborContains(_currentHexagon.transform))
+        if (_lastHexagon == null || _currentHexagon && !_lastHexagon.NeighborContains(_currentHexagon.transform))
         {
             _lastHexagon = hexagon;
         }
@@ -128,7 +128,7 @@ public class Player: MonoBehaviour {
     public void Update()
     {
         _animator.speed = _speed / _normalAnimationSpeed;
-//        Debug.Log(GameManager.Instance.MapManager.Background.GetBiomeByPosition(gameObject.transform.position));
+        Debug.LogWarning(BackgroundController.Instance.GetBiomeByPosition(gameObject.transform.position));
     }
 }
 
