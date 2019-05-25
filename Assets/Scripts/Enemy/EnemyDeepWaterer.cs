@@ -30,7 +30,9 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     public bool inLight;
     [HideInInspector] public bool escapePointCreated;
     [HideInInspector] public bool maneurPointCreated;
-    
+
+    [SerializeField]
+    private bool _isDeadly;
     
     private Animator animator;
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
@@ -87,7 +89,11 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             other.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
-//            OnTrigger?.Invoke();
+            AudioManager.Instance.TriggerSoundEvent("Energy consumed");
+            if (_isDeadly)
+            {
+                OnTrigger?.Invoke();
+            }
         }
     }
 
