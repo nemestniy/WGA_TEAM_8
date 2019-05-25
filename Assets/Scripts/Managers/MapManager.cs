@@ -39,7 +39,13 @@ public class MapManager : MonoBehaviour, Manager
         _objectsGenerator = GetComponent<ObjectsGenerator>();
         Background = FindObjectOfType<BackgroundController>();
 
+        _hexagonsGenerator.HexagonsIsCreate += _hexagonsGenerator_HexagonsIsCreate;
         _hexagonsGenerator.MapIsCreate += _hexagonsGenerator_MapIsCreate;
+    }
+
+    private void _hexagonsGenerator_HexagonsIsCreate()
+    {
+        _zoneCreator.CreateZones();
     }
 
     private void _player_CurrentHexagonChanged()
@@ -54,7 +60,6 @@ public class MapManager : MonoBehaviour, Manager
 
     private void _hexagonsGenerator_MapIsCreate()
     {
-       _zoneCreator.CreateZones();
         _player = Player.Instance;
         _player.CurrentHexagonChanged += _player_CurrentHexagonChanged;
     }
