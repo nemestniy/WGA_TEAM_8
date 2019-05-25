@@ -8,8 +8,7 @@ public class Zone
 {
     public int HexCount = 0;
     public Guid ZoneGuid { get; private set; }
-    private List<Hexagon> hexagons;
-    [EnumFlags]
+    private List<Hexagon> hexagons;    
     public ZoneType Type;    
     public static ZoneType lastType = ZoneType.Starting;
 

@@ -209,6 +209,11 @@ PrefabInstance:
       propertyPath: aiPath
       value: 
       objectReference: {fileID: 1858011049}
+    - target: {fileID: 516967047146483248, guid: 8b70fcb166b58014a9478b08650564dc,
+        type: 3}
+      propertyPath: _isDeadly
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1773624128, guid: 8b70fcb166b58014a9478b08650564dc, type: 3}
       propertyPath: _changeValue
       value: -100
@@ -913,6 +918,7 @@ MonoBehaviour:
   _audioManager: {fileID: 119354002}
   tutorial: {fileID: 430752650}
   _energyDeathDelay: 4
+  _screemerCutsceen: {fileID: 11400000, guid: ba98ef43b83eb6143a2174290ca4d9c0, type: 2}
 --- !u!4 &430752649
 Transform:
   m_ObjectHideFlags: 0
@@ -3160,12 +3166,12 @@ PrefabInstance:
     - target: {fileID: 4300761013367422325, guid: 19fbb88713593b540ab908288fd03a98,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4300761013367422325, guid: 19fbb88713593b540ab908288fd03a98,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4300761013367422325, guid: 19fbb88713593b540ab908288fd03a98,
         type: 3}
@@ -3249,7 +3255,7 @@ PrefabInstance:
     - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
         type: 3}
       propertyPath: _constantEnergy
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5894203408845879875, guid: 19fbb88713593b540ab908288fd03a98,
         type: 3}
