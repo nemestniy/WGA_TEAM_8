@@ -72,7 +72,6 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
                 {
                     Escape(); 
                 }
-                AudioManager.Instance.TriggerSoundEvent("Sucsessfully fried");  
                 break;
             case State.Maneuring:
                 Maneur();
