@@ -86,8 +86,8 @@ Shader "Custom/ScreenFog"
 			float2 delta = (10 + maskColor.b) * (cos(angle), sin(angle)) * (1 + 10 * pow(_CreepyMult, 3));
 			float2 delta2 = (10 + maskColor.a) * (cos(angle), sin(angle2)) * (1 + 10 * pow(_CreepyMult, 3));
 
-			float c1 =  pow(tex2D(_FogTex, (IN.uv_MainTex ) * _FogTex_ST * (1 + 3 * pow(_CreepyMult, 4)) + delta * _FogMult).a, 1);
-			float c2 = pow(tex2D(_DetailTex, (IN.uv_MainTex ) * _DetailTex_ST * (1 + 3 * pow(_CreepyMult, 4)) + delta2 * _DetailMult).a, 1);
+			float c1 =  pow(tex2D(_FogTex, (IN.uv_MainTex ) * _FogTex_ST * (1 + 3 * pow(_CreepyMult, 3)) + delta * _FogMult).a, 1);
+			float c2 = pow(tex2D(_DetailTex, (IN.uv_MainTex ) * _DetailTex_ST * (1 + 3 * pow(_CreepyMult, 3)) + delta2 * _DetailMult).a, 1);
 			float vingete = (pow(sqrt(IN.pos.x * IN.pos.x + IN.pos.y * IN.pos.y), 0.5f));
 			o.Alpha = (c1 + c2) * 0.1f * vingete * (1 + 1 * _CreepyMult);
 			o.Albedo = vingete * c2 * _LightColor;
