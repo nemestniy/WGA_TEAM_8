@@ -67,8 +67,12 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
                 if(Application.loadedLevelName == "TutorialTestScene")
                 {
                     Escape(Tutorial.Instance.escapeObject);
-                }else
-                    Escape();
+                }
+                else
+                {
+                    Escape(); 
+                }
+                AudioManager.Instance.TriggerSoundEvent("Sucsessfully fried");  
                 break;
             case State.Maneuring:
                 Maneur();
