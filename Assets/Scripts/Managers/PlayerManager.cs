@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, Manager
 {
-    private Player _player;
+    private Player _player => Player.Instance;
     private Animator _playerLampStates;
     private KeyManager _keyManager;
     private bool _isPaused = true;
@@ -94,7 +94,7 @@ public class PlayerManager : MonoBehaviour, Manager
     public void StartManager()
     {
         _keyManager = KeyManager.Instance;
-        _player = Player.Instance;
+        //_player = Player.Instance;
         IsLoaded = true;
         _player.transform.GetChild(0).GetComponent<Lamp>().StartUpdatingVisCol();
         _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();

@@ -13,7 +13,7 @@ public class KeyManager : MoveController
     #endregion
 
     private Camera _mainCam;
-    private Player _player;
+    private Player _player => Player.Instance;
     
     public override Vector2 GetVelocity()
     {
@@ -28,9 +28,8 @@ public class KeyManager : MoveController
     }
 
     private void Start()
-    {
-        _mainCam = Camera.main;
-        _player = Player.Instance;
+    {        
+        _mainCam = Camera.main;        
     }
 
     public override float GetAngle()

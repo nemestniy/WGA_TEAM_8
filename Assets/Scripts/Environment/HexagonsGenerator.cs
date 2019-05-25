@@ -12,6 +12,7 @@ public class HexagonsGenerator : MonoBehaviour
     
 
     public delegate void HexagonEvents();
+    public event HexagonEvents HexagonsIsCreate;
     public event HexagonEvents MapIsCreate;
 
     private List<Wall> _closingMapWalls = new List<Wall>();
@@ -32,7 +33,8 @@ public class HexagonsGenerator : MonoBehaviour
         //ActivateColliders();
 
         InitializeHexArray();
-        MapIsCreate();
+        HexagonsIsCreate?.Invoke();
+        MapIsCreate?.Invoke();
         Debug.Log("Map is created");
     }
 

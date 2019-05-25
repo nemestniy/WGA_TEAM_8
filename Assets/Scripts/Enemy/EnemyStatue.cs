@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class EnemyStatue : MonoBehaviour, IEnemy
 {
-    public Player player;
+    public Player player => Player.Instance;
     public AstarPath path;
     [SerializeField] [ShowOnly] private State state;
     private EnemySavedState savedState;
@@ -39,7 +39,7 @@ public class EnemyStatue : MonoBehaviour, IEnemy
 
     public void Start()
     {
-        player = Player.Instance;
+        //player = Player.Instance;
         destinationSetter = GetComponent<AIDestinationSetter>();
         aiPath = GetComponent<AIPath>();
         inLight = false;

@@ -15,17 +15,10 @@ public class ObjectsGeneratorEditor : Editor
     {
         if (GUILayout.Button("Load Objects"))
         {
-            var list = Directory.GetFiles($"{Application.dataPath}/Prefabs/Environment/Furniture/", "*.prefab", SearchOption.AllDirectories).Select(a => a.Replace(Application.dataPath, "Assets"));
-
-            var objList = new List<ObjectPrefabInfo>();
-            foreach (var asset in list)
-            {
-                var obj = AssetDatabase.LoadAssetAtPath<ObjectPrefabInfo>(asset);
-                if (obj != null) objList.Add(obj);
-            }
+            
 
             var tgt = ((ObjectsGenerator) target);
-            tgt._objectPrefabs = objList./*Select(a => a.GetComponent<ObjectPrefabInfo>()).*/ToArray();
+            tgt.LoadObjects();
 
 
         }
@@ -37,6 +30,30 @@ public class ObjectsGeneratorEditor : Editor
 
 public class ObjectsGenerator : MonoBehaviour
 {
+
+    private void Start()    
+    {
+        LoadObjects();
+    }
+
+    public void LoadObjects()
+    {
+        var list = Directory.GetFiles($"{Application.dataPath}/Prefabs/Environment/Furniture/", "*.prefab", SearchOption.AllDirectories).Select(a => a.Replace(Application.dataPath, "Assets"));
+        list = list.Union(Directory
+            .GetFiles($"{Application.dataPath}/Prefabs/Environment/Enemies/", "*.prefab",
+                SearchOption.AllDirectories).Select(a => a.Replace(Application.dataPath, "Assets"))).ToList();
+        list = list.Union(Directory
+            .GetFiles($"{Application.dataPath}/Prefabs/Player/", "*.prefab",
+                SearchOption.AllDirectories).Select(a => a.Replace(Application.dataPath, "Assets"))).ToList();
+        var objList = new List<ObjectPrefabInfo>();
+        foreach (var asset in list)
+        {
+            var obj = AssetDatabase.LoadAssetAtPath<ObjectPrefabInfo>(asset);
+            if (obj != null) objList.Add(obj);
+        }
+        _objectPrefabs = objList.ToArray();
+    }
+
     [Header("Furniture parametrs:")]   
 
     [SerializeField] public ObjectPrefabInfo[] _objectPrefabs;
@@ -71,7 +88,7 @@ public class ObjectsGenerator : MonoBehaviour
     private void Awake()
     {
         _hexagonsGenerator = GetComponent<HexagonsGenerator>();
-        _hexagonsGenerator.MapIsCreate += GenerateObjects;
+        _hexagonsGenerator.HexagonsIsCreate += GenerateObjects;
         _instance = this;
     }
 
@@ -90,7 +107,7 @@ public class ObjectsGenerator : MonoBehaviour
 
     public GameObject GetPrefabForStats(int size, Hexagon owner, Vector3 position)
     {
-        var biome = MapManager.Instance.Background.GetBiomeByPosition(position);        
+        var biome = BackgroundController.Instance.GetBiomeByPosition(position);        
         var l = _objectPrefabs.Where(a => a?.Check(biome, size, owner) ?? false).ToList();
         if (l.Count == 0)
             Debug.LogError($"Nothing to gen at {biome} of size {size}");
@@ -149,26 +166,14 @@ public class ObjectsGenerator : MonoBehaviour
         var hexObjects = GameObject.FindGameObjectsWithTag("Hexagon");
         foreach (GameObject hexObject in hexObjects)
         {
-
-//            for (int i = 0; i < _objects.Length; i++) {
-//                hexObject.GetComponent<Hexagon>().GenerateObjects(_distanceBetweenObjects, _attemptsNumber, _objects[i]);
-//            }
-            hexObject.GetComponent<Hexagon>().FillHexagon();
-            //_listObjects.AddRange(hexObject.GetComponent<Hexagon>().Objects.Select(a => a.GetComponent<ObjectPlaceholder>()));
+            hexObject.GetComponent<Hexagon>().FillHexagon();            
         }
-
-        //_listObjects.Shuffle();        
+             
         foreach (var objectPlaceholder in _listObjects)
         {
             objectPlaceholder.Compile();
         }
 
-        //int randomHexagonNumber = Random.Range(0, hexObjects.Length);
-        //_well = hexObjects[randomHexagonNumber].GetComponent<Hexagon>().GenerateWell(_well);
-//        for(int i = 0; i < _countWell; i++)
-//        {
-//            
-//        }
     }
 }
 

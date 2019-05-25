@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour, Manager
 {
-    public Player _player;
+    public Player _player => Player.Instance;
     public AstarPath path;
 
     [SerializeField] [ShowOnly] private List<IEnemy> enemies;
@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         get
         {
-            if (enemies.Count == 0)
+            if (!IsLoaded || enemies.Count == 0)
                 return -1; //in case of error
             
             float minDist = Vector2.Distance(enemies[0].GetTransform().position, Player.Instance.transform.position);
@@ -57,21 +57,30 @@ public class EnemyManager : MonoBehaviour, Manager
     
     private void Start()
     {
-        //hexagonsGenerator.MapIsCreate += OnMapCreated; //если разкомментируешь эту строчку, не забудь разкомментить отписывание в OnDestroy
+        if (hexagonsGenerator == null)
+        {
+            OnMapCreated();
+        }
+        else
+        {
+            hexagonsGenerator.MapIsCreate += OnMapCreated; //если разкомментируешь эту строчку, не забудь разкомментить отписывание в OnDestroy
+        }
+    }
+
+    private void OnMapCreated()
+    {
+        Debug.Log("onMapCreate");
+
         enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
         enemyStatues = new List<EnemyStatue>(FindObjectsOfType<EnemyStatue>());
         enemies = new List<IEnemy>();
         enemies.AddRange(FindObjectsOfType<EnemyDeepWaterer>());
         enemies.AddRange(FindObjectsOfType<EnemyStatue>());
 
-        _player = Player.Instance;
-        if(MapManager.Instance != null)
+        //_player = Player.Instance;
+        if (MapManager.Instance != null)
             hexagonsGenerator = MapManager.Instance.GetComponent<HexagonsGenerator>();
-    }
 
-    /*private void OnMapCreated()
-    {
-        Debug.Log("onMapCreate");
         path.Scan();
         foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
         {
@@ -82,10 +91,11 @@ public class EnemyManager : MonoBehaviour, Manager
 
         IsLoaded = true;
 
-    }*/
+    }
 
     void Update()
     {
+        if (!IsLoaded) return;
         foreach (EnemyDeepWaterer deepWaterer in enemyDeepWaterers)
         {
             if (deepWaterer.GetDestinationSetter().target != null && Vector2.Distance(deepWaterer.transform.position, deepWaterer.GetDestinationSetter().target.position) < 0.5f)
@@ -227,7 +237,7 @@ public class EnemyManager : MonoBehaviour, Manager
 
     private void OnDestroy()
     {
-        //hexagonsGenerator.MapIsCreate -= OnMapCreated;
+        hexagonsGenerator.MapIsCreate -= OnMapCreated;
     }
 }
 

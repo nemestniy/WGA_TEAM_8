@@ -77,8 +77,8 @@ Shader "Custom/ScreenFog"
 			float _PI2 = 3.14159265359f * 2;
 
 
-			float d1 = pow(sin(IN.uv_MainTex.x * 15 * float2(0.4352f, 0.654323f) + float2(_Time.y, _Time.y) * _NoiseTimeMult) * 0.5f + 0.5f, 0.5f) - 0.5f;
-			float d2 = pow(cos(IN.uv_MainTex.y * 15 * float2(0.63243f, 0.524235f) + float2(_Time.y, _Time.y) * _NoiseTimeMult) * 0.5f + 0.5f, 0.5f) - 0.5f;
+			float d1 = pow(2, sin(IN.uv_MainTex.x * 15 * float2(0.4352f, 0.654323f) + float2(_Time.y, _Time.y) * _NoiseTimeMult) * 0.5f + 0.5f);
+			float d2 = pow(2, cos(IN.uv_MainTex.y * 15 * float2(0.63243f, 0.524235f) + float2(_Time.y, _Time.y) * _NoiseTimeMult) * 0.5f + 0.5f);
 			float4 maskColor = tex2D(_NoiseTex, (IN.uv_MainTex) *_NoiseTex_ST.xy + float2(d1, d2) * _NoiseMult).rgba;
 			
 			float angle = (10 + maskColor.r * 5 + _Time.y * _FogTimeMult) % _PI2;

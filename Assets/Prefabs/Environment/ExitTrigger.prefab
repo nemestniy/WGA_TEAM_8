@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2732498010247159757}
   - component: {fileID: 2732498010247159756}
   - component: {fileID: 2732498010247159754}
+  - component: {fileID: 6712515371062143454}
   m_Layer: 0
   m_Name: ExitTrigger
   m_TagString: Untagged
@@ -60,3 +61,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7406df147ad4dc14786915f00488ec8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!108 &6712515371062143454
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2732498010247159759}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 0, g: 0.17905897, b: 0.5176471, a: 1}
+  m_Intensity: 16.46
+  m_Range: 19.78
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0

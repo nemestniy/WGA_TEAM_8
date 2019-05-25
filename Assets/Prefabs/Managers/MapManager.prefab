@@ -149,6 +149,8 @@ MonoBehaviour:
   - {fileID: 6470963666675558703, guid: 4703b60c56b32c04c8cc27597995de0c, type: 3}
   - {fileID: 8489248344448244814, guid: 657e66473fa2c1749ab65aa3bc917a46, type: 3}
   - {fileID: 4978660230051015276, guid: f9c711eee0c8bfa419ff7a5ac872a9e3, type: 3}
+  - {fileID: 7751331237111887631, guid: cd14b69cf3cb48f45acde3acb046e4da, type: 3}
+  - {fileID: 1054117540163440302, guid: 51d83201218c38f498ae65e75d30afc4, type: 3}
   _distanceBetweenObjects: 2
   _attemptsNumber: 5
   _well: {fileID: 192543149050041623, guid: 472ce6639233e5e478ee37aa7d58bd88, type: 3}
