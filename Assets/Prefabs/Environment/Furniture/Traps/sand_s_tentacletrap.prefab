@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4709800456570076531}
   - component: {fileID: 7737025644166891291}
   m_Layer: 0
-  m_Name: anyb_s_tentacletrap
+  m_Name: sand_s_tentacletrap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2712ee23dbc2a9946bd73982c35fc7ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _changeValue: 15
+  _changeValue: -15
   _timeToAffect: 0.15
   _reloadingTime: -1
 --- !u!114 &7737025644166891291

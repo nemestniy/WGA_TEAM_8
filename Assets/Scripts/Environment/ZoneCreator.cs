@@ -5,8 +5,8 @@ using System.Linq;
 public class ZoneCreator : MonoBehaviour
 {
     public int MaxZoneSize = 12;
-    [Range(0, 10000)]
-    public int RandomSeed = 1000;
+    //[Range(0, 10000)]
+    //public int RandomSeed = 1000;
 
     private HexagonsGenerator _hexagonsGenerator;
 
@@ -18,7 +18,7 @@ public class ZoneCreator : MonoBehaviour
     private void Awake()
     {
         _hexagonsGenerator = GetComponent<HexagonsGenerator>();
-        Random.InitState(RandomSeed);
+        //Random.InitState(RandomSeed);
     }
 
     public List<Zone> GetZones()
@@ -47,7 +47,7 @@ public class ZoneCreator : MonoBehaviour
                 madnessDegree++;
             if (i == zoneCount - 1)
                 madnessDegree = zoneCount * 2;
-            Zone newZone = new Zone(newColor, madnessDegree);
+            Zone newZone = new Zone(newColor, zoneCount);
 
             GenerateZone(GetRandomEdgeHex(hexObjects), newZone);
         }

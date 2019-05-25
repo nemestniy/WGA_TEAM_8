@@ -476,7 +476,7 @@ MonoBehaviour:
   MaxCountInDungeon: 1
   MinCountInDungeon: 1
   SpawnProbMultiplier: 1
-  ZoneMask: 255
+  ZoneMask: 1
 --- !u!1 &455787303813005530
 GameObject:
   m_ObjectHideFlags: 0
