@@ -5,7 +5,7 @@ public class Wall : MonoBehaviour
 {
     private PolygonCollider2D _collider;
     private bool _isActive;
-    private bool _isBorder;
+    public bool _isBorder;
 
     public Transform underWall;
 
