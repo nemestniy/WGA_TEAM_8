@@ -47,7 +47,7 @@ public class ZoneCreator : MonoBehaviour
                 madnessDegree++;
             if (i == zoneCount - 1)
                 madnessDegree = zoneCount * 2;
-            Zone newZone = new Zone(newColor, madnessDegree);
+            Zone newZone = new Zone(newColor, zoneCount);
 
             GenerateZone(GetRandomEdgeHex(hexObjects), newZone);
         }

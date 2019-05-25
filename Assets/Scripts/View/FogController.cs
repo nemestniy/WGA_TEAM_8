@@ -17,6 +17,15 @@ public class FogController : MonoBehaviour
     void Update()
     {
         _playerEnergy = PlayerManager.Instance?.Player?.GetComponent<Energy>();
-        GetComponent<Renderer>().material.SetFloat("_CreepyMult", Mathf.Pow(1 - _playerEnergy?.CurrentEnergyLvl ?? 1, 1));
+        if ((Player.Instance.GetCurrentZone().Type & Zone.ZoneType.Madness) != 0)
+        {
+            GetComponent<Renderer>().material
+                .SetFloat("_CreepyMult", Mathf.Pow(1.5f - _playerEnergy?.CurrentEnergyLvl ?? 1, 1));
+        }
+        else
+        {
+            GetComponent<Renderer>().material
+                .SetFloat("_CreepyMult", Mathf.Pow(1 - _playerEnergy?.CurrentEnergyLvl ?? 1, 1));
+        }
     }
 }

@@ -9,6 +9,20 @@ public class Zone
     public int HexCount = 0;
     public Guid ZoneGuid { get; private set; }
     private List<Hexagon> hexagons;
+    [EnumFlags]
+    public ZoneType Type;    
+    public static ZoneType lastType = ZoneType.Starting;
+
+    [Flags]
+    public enum ZoneType
+    {
+        NotSet = 0,
+        Starting = 1,
+        Madness = 2,
+        DeepOnes = 4,
+        Statues = 8,
+        All = 255,
+    }
 
     private Color color;
     private int _madnessDegree;
@@ -18,11 +32,22 @@ public class Zone
         return _madnessDegree;
     }
 
-    public Zone(Color color, int madnessDegree)
+    public Zone(Color color, int zoneCount)
     {
         ZoneGuid = Guid.NewGuid();
+        Type = lastType;
+        lastType = (ZoneType)((int)lastType * 2);
+        if ((int)lastType > (0 << zoneCount))
+        {
+            lastType = ZoneType.Starting;
+        }
         this.color = color;
-        _madnessDegree = madnessDegree;
+        switch (Type)
+        {
+            case ZoneType.Starting: _madnessDegree = 0; break;
+            case ZoneType.Madness: _madnessDegree = zoneCount * 2; break;
+            default: _madnessDegree = 1; break;
+        }
         hexagons = new List<Hexagon>();
     }
 
