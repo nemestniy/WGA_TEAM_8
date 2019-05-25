@@ -78,10 +78,10 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator TellStory()
     {
-        yield return StartCoroutine(ShowStartCutscene());
+        //yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
-        yield return new WaitForSeconds(48f);
+        //yield return new WaitForSeconds(48f);
 
         StartCoroutine(Dialogue("...и я так ждала этого. Теперь я тоже в рядах культа!", Character.Daughter, 3f, assDoughter, clipDoughter[0]));
 
