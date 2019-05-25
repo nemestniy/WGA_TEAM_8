@@ -95,7 +95,7 @@ public class Player: MonoBehaviour {
 
     public Lamp GetLamp()
     {
-        return GetComponent<Lamp>();
+        return GetComponentInChildren<Lamp>();
     }
 
     public bool IsVisible(Collider2D collider)
