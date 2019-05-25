@@ -27,6 +27,11 @@ public class Zone
     private Color color;
     private int _madnessDegree;
 
+    public int GetMadnessDegree()
+    {
+        return _madnessDegree;
+    }
+
     public Zone(Color color, int zoneCount)
     {
         ZoneGuid = Guid.NewGuid();
