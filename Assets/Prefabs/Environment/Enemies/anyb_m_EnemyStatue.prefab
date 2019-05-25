@@ -237,4 +237,4 @@ MonoBehaviour:
   MaxCountInDungeon: 1
   MinCountInDungeon: 1
   SpawnProbMultiplier: 1
-  ZoneMask: 255
+  ZoneMask: 8
