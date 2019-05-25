@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVideo: 0
   video: {fileID: 0}
-  sound: {fileID: 8300000, guid: e7c4dc04d450afc4fa99a1ef10b2cf1c, type: 3}
+  sound: {fileID: 8300000, guid: 3a14155098e05e648bb5212e2619dc50, type: 3}
   additionalUI: {fileID: 0}
   frames:
   - image: {fileID: 21300000, guid: 2a5b0bfd9175e21428148387bf017104, type: 3}
-    secondsToChange: 10
+    secondsToChange: 15.5
     canChangeWithClick: 0
   - image: {fileID: 21300000, guid: ac3e0fe54ac9f5f4ea009b1369db7deb, type: 3}
-    secondsToChange: 22
+    secondsToChange: 23.5
     canChangeWithClick: 0
   - image: {fileID: 21300000, guid: 1501f1f734d24604eb66c9e17b0882db, type: 3}
     secondsToChange: 10

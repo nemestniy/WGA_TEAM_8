@@ -81,7 +81,7 @@ public class Tutorial : MonoBehaviour
         yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
-        yield return new WaitForSeconds(40f);
+        yield return new WaitForSeconds(48f);
 
         StartCoroutine(Dialogue("...и я так ждала этого. Теперь я тоже в рядах культа!", Character.Daughter, 3f, assDoughter, clipDoughter[0]));
 
