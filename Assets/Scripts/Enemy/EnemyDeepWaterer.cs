@@ -89,7 +89,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             other.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
-            AudioManager.Instance.TriggerSoundEvent("Energy consumed");
+            AudioManager.Instance.TriggerSoundEvent("DW attack");
             if (_isDeadly)
             {
                 OnTrigger?.Invoke();
