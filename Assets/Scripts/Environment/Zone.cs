@@ -67,35 +67,38 @@ public class Zone
 
     public void ChangeWalls()
     {
+        int madness = 0;
         Player player = Player.Instance;
         var hexas = GetInternalHexas();
-        for(int j = 0; j < hexas.Count(); j++) {
-            var hexRandomCount = UnityEngine.Random.Range(0, hexas.Count());
-            var hex = hexas.ElementAt(hexRandomCount);
+        for(int i = 0; i < hexas.Count(); i++)
+        {
+            var hexNumber = UnityEngine.Random.Range(0, hexas.Count());
+            var hex = hexas.ElementAt(hexNumber);
+
             if (hex == player.GetCurrentHexagon() || player.IsVisible(hex.GetComponent<Collider2D>()))
                 continue;
+
             var walls = hex.GetActiveWalls();
-            for (int i = 0; i < walls.Count(); i++)
+            foreach (Wall wall in walls)
             {
-                var wallRandomCount = UnityEngine.Random.Range(0, walls.Count());
-                var wall = walls.ElementAt(wallRandomCount);
                 if (!wall.IsBorder())
                 {
                     if (wall.IsActive())
                     {
                         wall.Disable();
-                        _madnessDegree--;
+                        madness++;
                     }
                     else
                     {
                         wall.Enable();
-                        _madnessDegree--;
+                        madness++;
                     }
                 }
-                if (_madnessDegree <= 0)
+                if (madness >= _madnessDegree) 
                     break;
             }
-            if (_madnessDegree <= 0)
+            
+            if (madness >= _madnessDegree)
                 break;
         }
     }
