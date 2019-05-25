@@ -186,7 +186,6 @@ public class Tutorial : MonoBehaviour
         yield return StartCoroutine(WaitForPlayer(exit));
 
         SceneManager.LoadScene("ReleaseScene");
-        //
 
     }
 
