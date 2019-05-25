@@ -40,6 +40,13 @@ public class MapManager : MonoBehaviour, Manager
         Background = FindObjectOfType<BackgroundController>();
 
         _hexagonsGenerator.MapIsCreate += _hexagonsGenerator_MapIsCreate;
+        _player.CurrentHexagonChanged += _player_CurrentHexagonChanged;
+    }
+
+    private void _player_CurrentHexagonChanged()
+    {
+        var zone = _player.GetCurrentZone();
+        zone.ChangeWalls();
     }
 
     private void _hexagonsGenerator_MapIsCreate()
@@ -79,7 +86,7 @@ public class MapManager : MonoBehaviour, Manager
             var wall = walls.ElementAt(wallCount);
             var wallPosition = wall.GetPosition();
             var generatePosition = new Vector3(wallPosition.x, wallPosition.y, _exitTrigger.transform.position.z);
-            Instantiate(_exitTrigger, wall.transform.position, Quaternion.identity);
+            Instantiate(_exitTrigger, generatePosition, Quaternion.identity);
             wall.Disable();
         }
     }

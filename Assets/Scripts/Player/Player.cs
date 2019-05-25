@@ -93,6 +93,16 @@ public class Player: MonoBehaviour {
         }
     }
 
+    public Lamp GetLamp()
+    {
+        return GetComponentInChildren<Lamp>();
+    }
+
+    public bool IsVisible(Collider2D collider)
+    {
+        return GetLamp().IsVisible(collider);
+    }
+
 
     public GameObject GetCurrentHexagon()
     {

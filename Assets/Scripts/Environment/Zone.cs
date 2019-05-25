@@ -72,22 +72,25 @@ public class Zone
         for(int j = 0; j < hexas.Count(); j++) {
             var hexRandomCount = UnityEngine.Random.Range(0, hexas.Count());
             var hex = hexas.ElementAt(hexRandomCount);
-            if (hex == player.GetCurrentHexagon())
+            if (hex == player.GetCurrentHexagon() || player.IsVisible(hex.GetComponent<Collider2D>()))
                 continue;
             var walls = hex.GetActiveWalls();
             for (int i = 0; i < walls.Count(); i++)
             {
                 var wallRandomCount = UnityEngine.Random.Range(0, walls.Count());
                 var wall = walls.ElementAt(wallRandomCount);
-                if (wall.IsActive())
+                if (!wall.IsBorder())
                 {
-                    wall.Disable();
-                    _madnessDegree--;
-                }
-                else
-                {
-                    wall.Enable();
-                    _madnessDegree--;
+                    if (wall.IsActive())
+                    {
+                        wall.Disable();
+                        _madnessDegree--;
+                    }
+                    else
+                    {
+                        wall.Enable();
+                        _madnessDegree--;
+                    }
                 }
                 if (_madnessDegree <= 0)
                     break;
