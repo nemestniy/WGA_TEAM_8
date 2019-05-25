@@ -42,6 +42,8 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     {
         animator = GetComponent<Animator>();
     }
+    
+    
 
     public void Start()
     {
@@ -51,6 +53,8 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         inLight = false;
         escapePointCreated = false;
         maneurPointCreated = false;
+
+        state = State.Waiting;
     }
 
     private void Update()
