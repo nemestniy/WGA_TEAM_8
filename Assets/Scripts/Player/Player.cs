@@ -79,7 +79,6 @@ public class Player: MonoBehaviour {
     {
         if (_lastHexagon == null || _currentHexagon && !_lastHexagon.NeighborContains(_currentHexagon.transform))
         {
-            if(_lastHexagon != null && _lastHexagon != _currentHexagon) _lastHexagon.ChangeWall();
             _lastHexagon = hexagon;
         }
     }

@@ -913,6 +913,70 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[1].gameEvent
+      value: DW attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[1].audioEvent.sound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[1].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[2].gameEvent
+      value: Sucsessfully fried
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[2].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[2].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[3].gameEvent
+      value: Tentacle attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[3].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[3].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[4].gameEvent
+      value: Tentacle attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[4].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[4].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[5].gameEvent
+      value: Tentacle attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[5].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 78898a3ee35390441b0c99571ed8b841, type: 3}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[5].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
 --- !u!114 &2106164595 stripped

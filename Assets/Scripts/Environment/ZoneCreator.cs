@@ -57,8 +57,9 @@ public class ZoneCreator : MonoBehaviour
 
         _hexagonsGenerator.DestroyAllExcessWalls();
         _hexagonsGenerator.DisableAllWalls();
-        _hexagonsGenerator.ActivateColliders();
         ActivateRandomWalls();
+
+        _hexagonsGenerator.ActivateColliders();
     }
 
     private void GenerateWalls()

@@ -18,6 +18,7 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public List<Transform> visibleEnemiesList;
 
+    private bool _wasFried;
     private int framecount = 0;
     public float timeToEnemyEscape;
     
@@ -104,6 +105,7 @@ public class EnemyManager : MonoBehaviour, Manager
                 deepWaterer.escapePointCreated = false;
                 deepWaterer.maneurPointCreated = false;
                 deepWaterer.aiPath.maxSpeed = deepWaterer.speed;
+                _wasFried = false;
             }
 
             if (deepWaterer.inLight)
@@ -113,7 +115,11 @@ public class EnemyManager : MonoBehaviour, Manager
                     Debug.Log("Frying time - "+ (Time.time - deepWaterer.time));
                     if (Time.time - deepWaterer.time > timeToEnemyEscape)
                     {
-                        
+                        if (!_wasFried)
+                        {
+                            AudioManager.Instance.TriggerSoundEvent("Sucsessfully fried");
+                            _wasFried = true;
+                        }
                         deepWaterer.SetState(State.Escaping);
                     }
                     else

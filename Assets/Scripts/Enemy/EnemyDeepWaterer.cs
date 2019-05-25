@@ -67,8 +67,11 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
                 if(Application.loadedLevelName == "TutorialTestScene")
                 {
                     Escape(Tutorial.Instance.escapeObject);
-                }else
-                    Escape();
+                }
+                else
+                {
+                    Escape(); 
+                }
                 break;
             case State.Maneuring:
                 Maneur();

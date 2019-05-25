@@ -33,6 +33,7 @@ public class TentacleTrap : MonoBehaviour
             isAlive = false;
             other.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
             _mandala.color = new Color(0, 0, 0, 0);
+            AudioManager.Instance.TriggerSoundEvent("Tentacle attack");
         }
     }
 }
