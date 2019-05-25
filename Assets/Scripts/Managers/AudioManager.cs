@@ -112,7 +112,8 @@ public class AudioManager : MonoBehaviour, Manager
         _audioSource.UnPause();
         Paused = false;
         OnAudioResume?.Invoke();
-        _coreSoundtrackManager.Resume();
+        if(_coreSoundtrackManager != null)//TODO:КАСТЫЫЫЛЬ
+            _coreSoundtrackManager.Resume();
     }
     
     [Serializable]

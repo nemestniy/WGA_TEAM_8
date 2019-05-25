@@ -27,7 +27,11 @@ public class ObjectPrefabInfo : MonoBehaviour
     public int MaxCountInDungeon = 1000;    
     public int MinCountInDungeon = 0;   
     public float SpawnProbMultiplier = 1;
+#if UNITY_EDITOR
     [EnumFlags] public Zone.ZoneType ZoneMask = Zone.ZoneType.All;
+#else
+    public Zone.ZoneType ZoneMask = Zone.ZoneType.All;
+#endif
 
     public virtual bool Check(BackgroundController.Biome biome, int size, Hexagon owner)
     {

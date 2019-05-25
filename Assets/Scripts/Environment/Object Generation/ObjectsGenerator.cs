@@ -15,8 +15,7 @@ public class ObjectsGeneratorEditor : Editor
     {
         if (GUILayout.Button("Load Objects"))
         {
-            
-
+           
             var tgt = ((ObjectsGenerator) target);
             tgt.LoadObjects();
 
@@ -33,9 +32,10 @@ public class ObjectsGenerator : MonoBehaviour
 
     private void Start()    
     {
-        LoadObjects();
+        //LoadObjects();
     }
 
+#if UNITY_EDITOR
     public void LoadObjects()
     {
         var list = Directory.GetFiles($"{Application.dataPath}/Prefabs/Environment/Furniture/", "*.prefab", SearchOption.AllDirectories).Select(a => a.Replace(Application.dataPath, "Assets"));
@@ -53,7 +53,7 @@ public class ObjectsGenerator : MonoBehaviour
         }
         _objectPrefabs = objList.ToArray();
     }
-
+#endif
     [Header("Furniture parametrs:")]   
 
     [SerializeField] public ObjectPrefabInfo[] _objectPrefabs;
