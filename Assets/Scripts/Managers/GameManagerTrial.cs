@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerTrial : MonoBehaviour, Manager
 {
@@ -21,6 +22,8 @@ public class GameManagerTrial : MonoBehaviour, Manager
     [Header("")]
     [SerializeField]
     private float _energyDeathDelay = 4;
+
+    [SerializeField] private Cutscene _screemerCutsceen;
 
 
     public float DistanceToClosestEnemy => _enemyManager.DistanceToClosestEnemy; //returns -1 if there are no enemy in enemy list
@@ -73,7 +76,14 @@ public class GameManagerTrial : MonoBehaviour, Manager
     private void OnDeathByEnemy()
     {
         PauseManager();
+        StartCoroutine(CutscenesManager.Instance.ShowFrames(_screemerCutsceen));
+        StartCoroutine(CallWithDelay(_screemerCutsceen.frames[0].secondsToChange, new Action(LoadMenu)));
         //StartCoroutine(_screemerCutscene.ShowFrames(new Action(ShowDeathCutsceen)));
+    }
+
+    private void LoadMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void OnDeathByRanoutOfEnergy()
