@@ -77,6 +77,8 @@ public class MapManager : MonoBehaviour, Manager
             var walls = _hexagonsGenerator.GetClosingMapWalls().Where(h => h.GetZone() == zone);
             int wallCount = Random.Range(0, walls.Count());
             var wall = walls.ElementAt(wallCount);
+            var wallPosition = wall.GetPosition();
+            var generatePosition = new Vector3(wallPosition.x, wallPosition.y, _exitTrigger.transform.position.z);
             Instantiate(_exitTrigger, wall.transform.position, Quaternion.identity);
             wall.Disable();
         }
