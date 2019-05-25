@@ -81,6 +81,8 @@ public class Tutorial : MonoBehaviour
         yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
+        yield return new WaitForSeconds(40f);
+
         StartCoroutine(Dialogue("...и я так ждала этого. Теперь я тоже в рядах культа!", Character.Daughter, 3f, assDoughter, clipDoughter[0]));
 
 
@@ -127,7 +129,7 @@ public class Tutorial : MonoBehaviour
 
         UnfreezePlayer();
 
-        yield return StartCoroutine(Dialogue("По - моему, здесь только что был проход...Откуда здесь стена ? ", Character.Daughter, 2f, assDoughter, clipDoughter[6]));
+        yield return StartCoroutine(Dialogue("По - моему, здесь только что был проход...Откуда здесь стена ? ", Character.Daughter, 2.8f, assDoughter, clipDoughter[6]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[3]));
 

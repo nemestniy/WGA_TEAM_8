@@ -12,10 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33877140b79d0aa468826fe6b404cade, type: 3}
   m_Name: BossFightCutscene
   m_EditorClassIdentifier: 
-  cutsceneName: BossFight
-  sound: {fileID: 8300000, guid: 723c89e21ffcbba42b1116c3ad9e8680, type: 3}
+  isVideo: 0
+  video: {fileID: 0}
+  sound: {fileID: 8300000, guid: d4f0f11ab01fb3947963bfb80b35bb6b, type: 3}
   additionalUI: {fileID: 0}
   frames:
-  - image: {fileID: 21300000, guid: 5c3c2a1821eb1b043889e1d6059b798f, type: 3}
+  - image: {fileID: 21300000, guid: c311b6ab3be110d4ba6d26718a07f257, type: 3}
+    secondsToChange: 12
+    canChangeWithClick: 1
+  - image: {fileID: 21300000, guid: fd0f9129356134c44a2a77628cf26c73, type: 3}
+    secondsToChange: 10.5
+    canChangeWithClick: 1
+  - image: {fileID: 21300000, guid: af7d029e6010ac3439e7ea6b9b73dad6, type: 3}
     secondsToChange: 3.5
+    canChangeWithClick: 1
+  - image: {fileID: 21300000, guid: bbfc899d11275b44fa67f5e7a32d7485, type: 3}
+    secondsToChange: 4
     canChangeWithClick: 1
