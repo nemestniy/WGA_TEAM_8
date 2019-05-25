@@ -298,6 +298,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cad8be9ee0dbd4498145ab11ec008f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentZone:
+    HexCount: 0
+    Type: 0
   _speed: 5.5
   _rotationSpeed: 180
   _angelOffset: 2
@@ -476,7 +479,7 @@ MonoBehaviour:
   MaxCountInDungeon: 1
   MinCountInDungeon: 1
   SpawnProbMultiplier: 1
-  ZoneMask: 17
+  ZoneMask: 1
 --- !u!1 &455787303813005530
 GameObject:
   m_ObjectHideFlags: 0
