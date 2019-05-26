@@ -30,6 +30,12 @@ public class EnemyManager : MonoBehaviour, Manager
     }
     #endregion
 
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "TutorialTestScene")
+            path = GetComponentInChildren<AstarPath>();
+    }
+
     public float DistanceToClosestEnemy
     {
         get
@@ -217,6 +223,9 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+        if (path == null)
+            path = FindObjectOfType<AstarPath>();
+
         path.Scan();
 
         if (enemies != null)
