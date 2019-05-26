@@ -548,9 +548,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _authorsPlane: {fileID: 1608043601}
   clickCore: {fileID: 8300000, guid: 3b34da1a51b8f98488030774fe60070e, type: 3}
-  clickQuit: {fileID: 8300000, guid: a7a362f93a3515745b8cf041e9d377d1, type: 3}
+  clickQuit: {fileID: 8300000, guid: 8e7b2325d24d1354eb7370cbab59fbfa, type: 3}
+  clickQuitFake: {fileID: 8300000, guid: a7a362f93a3515745b8cf041e9d377d1, type: 3}
   _buttonsView: {fileID: 32831417}
   isVisibleMenu: 1
+  isPlayerTryExit: 0
 --- !u!82 &451365956
 AudioSource:
   m_ObjectHideFlags: 0
