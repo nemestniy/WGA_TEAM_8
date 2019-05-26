@@ -24,6 +24,9 @@ public class PlayingBehaviour : StateMachineBehaviour
         Energy.OnRanoutOfEnergy += OnDeathByRanoutOfEnergy;
         ExitTrigger.OnExit += Exit;
         Well.OnTrigger += OnFindWell;
+        
+        UIManager.Instance.ShowPauseMenu();//TODO:КАСТЫЫЫЫЛЬ
+        UIManager.Instance.HidePauseMenu();
     }
 
     private void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
