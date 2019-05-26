@@ -41,9 +41,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6, g: 0.99215686, b: 1, a: 1}
   m_Intensity: 5
-  m_Range: 20
+  m_Range: 15
   m_SpotAngle: 160
   m_CookieSize: 10
   m_Shadows:
@@ -213,6 +213,7 @@ MonoBehaviour:
   MaxCountInDungeon: 3
   MinCountInDungeon: 1
   SpawnProbMultiplier: 0.1
+  ZoneMask: 255
 --- !u!1001 &1948798514640018666
 PrefabInstance:
   m_ObjectHideFlags: 0
