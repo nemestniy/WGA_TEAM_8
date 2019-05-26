@@ -548,9 +548,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _authorsPlane: {fileID: 1608043601}
   clickCore: {fileID: 8300000, guid: 3b34da1a51b8f98488030774fe60070e, type: 3}
-  clickQuit: {fileID: 8300000, guid: a7a362f93a3515745b8cf041e9d377d1, type: 3}
+  clickQuit: {fileID: 8300000, guid: 8e7b2325d24d1354eb7370cbab59fbfa, type: 3}
+  clickQuitFake: {fileID: 8300000, guid: a7a362f93a3515745b8cf041e9d377d1, type: 3}
   _buttonsView: {fileID: 32831417}
   isVisibleMenu: 1
+  isPlayerTryExit: 0
 --- !u!82 &451365956
 AudioSource:
   m_ObjectHideFlags: 0
@@ -766,7 +768,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.8640003}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -72.09485, y: -210.40417}
+  m_AnchoredPosition: {x: -106, y: -216}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563268585
@@ -946,7 +948,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.8640003}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -129.09485, y: -361.40417}
+  m_AnchoredPosition: {x: -172, y: -353}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &737067553
@@ -1444,7 +1446,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1608043602
 RectTransform:
   m_ObjectHideFlags: 0
