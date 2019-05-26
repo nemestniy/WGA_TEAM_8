@@ -124,8 +124,11 @@ public class EnemyManager : MonoBehaviour, Manager
         foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
         {
             enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.Instance.transform;
-            enemy.SetState(State.Moving);
             
+            if (SceneManager.GetActiveScene().name != "TutorialTestScene")//TODO:КасТЫЫЫЫЫЛЬ
+            {
+                enemy.SetState(State.Moving);
+            }
         }
     }
 

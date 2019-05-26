@@ -215,8 +215,11 @@ public class FieldOfView : MonoBehaviour
 		_viewMesh.vertices = vertices;
 		_viewMesh.triangles = triangles;
         _viewMesh.colors = colors;
-
-        GetComponentInChildren<CopyViewMesh>().UpdateMesh();
+        
+        try//TODO:КАСТЫЫЫЛЬ
+        {
+	        GetComponentInChildren<CopyViewMesh>().UpdateMesh();
+        }catch(Exception e){}
     }
 
 	private void GetViewPoints(List<Vector3> viewPoints, float directionAngle, float viewRadius, float viewAngle) //add in list all view point
