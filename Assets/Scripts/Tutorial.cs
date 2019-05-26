@@ -106,7 +106,7 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[1].transform));// Слайд 2: дочь идет от точки 1 к точке 2
 
-        StartCoroutine(Dialogue("...разряженный фонарь! Отец!", Character.Daughter, 2f, assDoughter, clipDoughter[2])); 
+        StartCoroutine(Dialogue("...разряженный фонарь! Отец!", Character.Daughter, 2f, assDoughter, clipDoughter[2]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[1]));//Слайд 3: Ожидание игрока у точки 1
 
@@ -126,7 +126,7 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(Dialogue("Потухнет, но не скоро.", Character.Father, 2f, assFather, clipFather[3]));
 
-        
+
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[3].transform));
 
@@ -153,7 +153,7 @@ public class Tutorial : MonoBehaviour
         yield return StartCoroutine(Dialogue("Да. Сейчас покажу. Мне кажется, я кое-что заметил на той стене в глубине.", Character.Father, 5f, assFather, clipFather[5]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[4]));
-        
+
 //        player.GetComponent<Energy>().SetEnergy(100);
 
         yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. Красный спектр отпугивает существ, живущих во тьме, зелёный же - позволяет увидеть сокрытое.", Character.Father, 6f, assFather, clipFather[6]));
@@ -234,13 +234,13 @@ public class Tutorial : MonoBehaviour
     IEnumerator ReloadLamp()
     {
         FreezePlayer();
-        
-        
+
+
         //Анимация наполнения фонаря и тд и тп
         ghostStone.active = true;
 
         StartCoroutine(StoneOn());
-        
+
         wellLight.GetComponent<Light>().intensity += 75;
 
         yield return new WaitForSeconds(1f);
@@ -340,7 +340,7 @@ public class Tutorial : MonoBehaviour
             mainCamera.transform.position = Vector2.MoveTowards(mainCamera.transform.position, player.transform.position, flowCameraSpeed * Time.deltaTime);
             mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, mainCamera.transform.position.y, -10f);
             yield return null;
-            
+
         }
         mainCamera.GetComponent<CameraController>().enabled = true;
         PlayerManager.Instance.ResumeManager();
@@ -352,13 +352,13 @@ public class Tutorial : MonoBehaviour
         {
             yield return null;
         }
-        
+
     }
 
     public void FreezePlayer()
     {
         PlayerManager.Instance.PauseManager();
-        
+
     }
 
     public void UnfreezePlayer()
