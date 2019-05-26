@@ -81,10 +81,10 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator TellStory()
     {
-//        yield return StartCoroutine(ShowStartCutscene());
+        yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
-//        yield return new WaitForSeconds(48f);
+        yield return new WaitForSeconds(48f);
 
         soundtrack.Play();
 
