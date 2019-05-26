@@ -50,10 +50,13 @@ public class CopyViewMesh : MonoBehaviour
     public void UpdateMesh()
     {
         var parent = GetComponentInParent<FieldOfView>();
-        _viewMesh.Clear();
-        _viewMesh.vertices = parent.vertices;
-        _viewMesh.triangles = parent.triangles;
-        _viewMesh.colors = parent.colors;
-        _viewMeshFilter.mesh = _viewMesh;
+        if (_viewMesh != null)
+        {
+            _viewMesh.Clear();
+            _viewMesh.vertices = parent.vertices;
+            _viewMesh.triangles = parent.triangles;
+            _viewMesh.colors = parent.colors;
+            _viewMeshFilter.mesh = _viewMesh;
+        }
     }
 }

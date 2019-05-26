@@ -412,7 +412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxCountInDungeon: 1000
   MinCountInDungeon: 1
-  SpawnProbMultiplier: 0.1
+  SpawnProbMultiplier: 40
+  ZoneMask: 8
 --- !u!1 &5805731527816428178
 GameObject:
   m_ObjectHideFlags: 0
