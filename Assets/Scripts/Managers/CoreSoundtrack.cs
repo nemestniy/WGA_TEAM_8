@@ -203,6 +203,11 @@ public class CoreSoundtrack : MonoBehaviour
                 OnSource(mainClips[4]);
             }
 
+            if (timer > 3600)
+            {
+                OnSource(mainClips[4]);
+            }
+
 
             if (_gm.LampEnergyLvl > 0.80)
             {
@@ -244,35 +249,35 @@ public class CoreSoundtrack : MonoBehaviour
                 OffSource(energyClips[3]);
             }
 
-            if (_gm.DistanceToClosestEnemy > 35)
+            if (_gm.DistanceToClosestEnemy > 45)
             {
                 OffSource(drumClips[0]);
                 OffSource(drumClips[1]);
                 OffSource(drumClips[2]);
             }
 
-            if (_gm.DistanceToClosestEnemy < 35)
+            if (_gm.DistanceToClosestEnemy < 45)
             {
                 OnSource(drumClips[0]);
             }
-            if (_gm.DistanceToClosestEnemy > 25)
+            if (_gm.DistanceToClosestEnemy > 35)
             {
                 OffSource(drumClips[1]);
             }
-            if (_gm.DistanceToClosestEnemy < 25)
+            if (_gm.DistanceToClosestEnemy < 35)
             {
                 OnSource(drumClips[1]);
             }
-            if (_gm.DistanceToClosestEnemy > 15)
+            if (_gm.DistanceToClosestEnemy > 20)
             {
                 OffSource(drumClips[2]);
             }
-            if (_gm.DistanceToClosestEnemy < 15)
+            if (_gm.DistanceToClosestEnemy < 20)
             {
                 OnSource(drumClips[2]);
             }
 
-
+            /*
             if (_gm.DistanceToWell > 20)
             {
                 OffSource(mainClips[4]);
@@ -281,6 +286,7 @@ public class CoreSoundtrack : MonoBehaviour
             {
                 OnSource(mainClips[4]);
             }
+            */
         }  
     }
 }
