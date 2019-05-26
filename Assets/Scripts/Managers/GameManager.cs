@@ -14,7 +14,17 @@ public class GameManager : MonoBehaviour, Manager
 
     public float DistanceToClosestEnemy => _enemyManager.DistanceToClosestEnemy; //returns -1 if there are no enemy in enemy list
     public BackgroundController.Biome CurrentBiome => BackgroundController.Instance.GetBiomeByPosition(Player.Instance.transform.position);
-    public float LampEnergyLvl => Player.Instance.GetComponent<Energy>().CurrentEnergyLvl;
+    public float LampEnergyLvl
+    {
+        get
+        {
+            if(Player.Instance.GetComponent<Energy>().CurrentEnergyLvl != null)
+                return Player.Instance.GetComponent<Energy>().CurrentEnergyLvl;
+
+            return 1;//TODO:КАСТЫЫЫЛЬ
+        }
+    }
+
     public int CurrentLampMode => _playerManager.CurrentLampMode;
     public float DistanceToWell => _mapManager.GetComponent<ObjectsGenerator>().DistanceToWell; //returns -1 if there are no well
     public bool IsPlayerMoving =>
@@ -66,7 +76,7 @@ public class GameManager : MonoBehaviour, Manager
     {
         _audioManager.ResumeManager();
         _playerManager.ResumeManager();
-      _enemyManager.ResumeManager();
+        _enemyManager.ResumeManager();
     }
 
     public void CallCoroutine(IEnumerator cd)
