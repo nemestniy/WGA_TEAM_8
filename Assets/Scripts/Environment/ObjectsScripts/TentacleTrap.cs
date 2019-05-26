@@ -30,10 +30,18 @@ public class TentacleTrap : MonoBehaviour
         if (isAlive && other.gameObject.layer == LayerMask.NameToLayer("Player") )
         {
             _animator.SetBool(attackHash, true);
-            isAlive = false;
-            other.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
-            _mandala.color = new Color(0, 0, 0, 0);
-            AudioManager.Instance.TriggerSoundEvent("Tentacle attack");
+            Invoke("DamagePlayer", 0.5f);
+
         }
+    }
+
+    public void DamagePlayer()
+    {        
+        
+        isAlive = false;
+        Player.Instance.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
+        _mandala.color = new Color(0, 0, 0, 0);
+        _mandala.GetComponent<ParticleSystem>().Stop();
+        AudioManager.Instance.TriggerSoundEvent("Tentacle attack");
     }
 }
