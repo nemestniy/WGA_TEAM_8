@@ -113,7 +113,7 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         if (!escapePointCreated)
         {
             float r = UnityEngine.Random.Range(50f, 100f);
-            float alpha = UnityEngine.Random.Range(0, 359) * Mathf.PI / 180;
+            float alpha = Vector2.Angle(transform.position, player.transform.position);
 
             float X = player.transform.position.x - (Mathf.Sin(alpha) * r);
             float Y = player.transform.position.y + (Mathf.Cos(alpha) * r);
