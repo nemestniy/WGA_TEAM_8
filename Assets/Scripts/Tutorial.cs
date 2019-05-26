@@ -8,12 +8,15 @@ using UnityEngine.SceneManagement;
 public class Tutorial : MonoBehaviour
 {
     // AUDIO
+    public AudioSource soundtrack;
 
     public AudioSource assDoughter;
     public AudioSource assFather;
 
     public AudioClip[] clipDoughter;
     public AudioClip[] clipFather;
+
+    public GameObject loadingCanvas;
 
     public GameObject wellLight;
 
@@ -82,6 +85,8 @@ public class Tutorial : MonoBehaviour
         FreezePlayer();
 
         //yield return new WaitForSeconds(48f);
+
+        soundtrack.Play();
 
         StartCoroutine(Dialogue("...и я так ждала этого. Теперь я тоже в рядах культа!", Character.Daughter, 3f, assDoughter, clipDoughter[0]));
 
@@ -169,15 +174,21 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[5]));
 
-        StartCoroutine(Dialogue("Отойди от воды! Оно боится *красного* спектра.", Character.Father, 3f, assFather, clipFather[8]));
+        StartCoroutine(Dialogue("Отойди от воды! Оно боится красного спектра!", Character.Father, 3f, assFather, clipFather[8]));
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[6].transform));
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         enemy.GetComponent<AIDestinationSetter>().target = player.transform;
 
         enemy.GetComponent<IEnemy>().SetState(State.Moving);
+
+        yield return new WaitForSeconds(3f);
+
+        StartCoroutine(Dialogue("Что это за тварь?!", Character.Daughter, 2f, assDoughter, clipDoughter[11]));
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(Dialogue("Тебе предстоит еще многое узнать. Позже я всё тебе расскажу, сейчас меня ждет Старейшина.", Character.Father, 3.5f, assFather, clipFather[9]));
 
         exit.active = true;
 
@@ -206,7 +217,7 @@ public class Tutorial : MonoBehaviour
     {
         enemy.active = true;
         //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Waiting);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Moving);
     }
 
@@ -240,7 +251,7 @@ public class Tutorial : MonoBehaviour
         Color hiddenTextColor = hiddenText.GetComponent<SpriteRenderer>().color;
         float aColor = hiddenTextColor.a;
         do {
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.2f);
             hiddenTextColor = hiddenText.GetComponent<SpriteRenderer>().color;
             aColor = aColor + 0.05f;
             hiddenText.GetComponent<SpriteRenderer>().color = new Color(hiddenTextColor.r, hiddenTextColor.g, hiddenTextColor.b, aColor);
