@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Lamp : MonoBehaviour
 {
@@ -31,7 +32,8 @@ public class Lamp : MonoBehaviour
 
     private void Update()
     {
-        _animator.SetFloat(EnergyLvl, _lampEnergy.CurrentEnergyLvl);
+        if (SceneManager.GetActiveScene().name != "TutorialTestScene") //TODO:КСТЫЫЫЛЬ
+            _animator.SetFloat(EnergyLvl, _lampEnergy.CurrentEnergyLvl);
     }
 
     public void SetLightMode(int newMode, int prevMode, float changingState)
