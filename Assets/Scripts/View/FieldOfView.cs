@@ -119,8 +119,7 @@ public class FieldOfView : MonoBehaviour
 		_currentLightColor = Color.Lerp(prevMode.lightColor, currentMode.lightColor, changingState);
 		_currentCoordinateY = Mathf.Lerp(prevMode.coordinateY, currentMode.coordinateY, changingState);
 		
-		if(_updatingVisColHasStarted)//TODO: исправить костыль
-			UpdateVisionCollider();
+		UpdateVisionCollider();
 	}
 
     public void SetLightMode(int newMode, int prevMode, float changingState)
@@ -129,12 +128,6 @@ public class FieldOfView : MonoBehaviour
 		_prevMode = prevMode;
 		_changingState = changingState;
 	}
-
-    private bool _updatingVisColHasStarted;
-    public void StartUpdatingVisCol()
-    {
-	    _updatingVisColHasStarted = true;
-    }
     
     private void UpdateVisionCollider()
     {
@@ -222,8 +215,11 @@ public class FieldOfView : MonoBehaviour
 		_viewMesh.vertices = vertices;
 		_viewMesh.triangles = triangles;
         _viewMesh.colors = colors;
-
-        GetComponentInChildren<CopyViewMesh>().UpdateMesh();
+        
+        try//TODO:КАСТЫЫЫЛЬ
+        {
+	        GetComponentInChildren<CopyViewMesh>().UpdateMesh();
+        }catch(Exception e){}
     }
 
 	private void GetViewPoints(List<Vector3> viewPoints, float directionAngle, float viewRadius, float viewAngle) //add in list all view point

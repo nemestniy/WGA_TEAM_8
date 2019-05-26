@@ -106,8 +106,39 @@ public class EnemyManager : MonoBehaviour, Manager
 
     }
 
+    private void InitEnemies()
+    {
+        if (SceneManager.GetActiveScene().name == "TutorialTestScene")//TODO:КасТЫЫЫЫЫЛЬ
+        {
+            enemyDeepWaterers = new List<EnemyDeepWaterer>();
+            enemyDeepWaterers.Add(_enemyDeepWaterer);
+        }
+        else
+        {
+            enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
+        }
+        enemyStatues = new List<EnemyStatue>(FindObjectsOfType<EnemyStatue>());
+        enemies = new List<IEnemy>();
+        enemies.AddRange(FindObjectsOfType<EnemyDeepWaterer>());
+        enemies.AddRange(FindObjectsOfType<EnemyStatue>());
+        foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
+        {
+            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.Instance.transform;
+            
+            if (SceneManager.GetActiveScene().name != "TutorialTestScene")//TODO:КасТЫЫЫЫЫЛЬ
+            {
+                enemy.SetState(State.Moving);
+            }
+        }
+    }
+
     void Update()
     {
+        if (enemies.Count == 0)//TODO:КАСТЫЫЫЛЬ
+        {
+            InitEnemies();
+        }
+        
         if (!IsLoaded) return;
         foreach (EnemyDeepWaterer deepWaterer in enemyDeepWaterers)
         {

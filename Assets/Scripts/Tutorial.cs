@@ -149,7 +149,7 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[4]));
         
-        player.GetComponent<Energy>().SetEnergy(100);
+//        player.GetComponent<Energy>().SetEnergy(100);
 
         yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. *Цвет фонаря* спектр отпугивает существ, живущих во тьме, *Цвет фонаря* же - позволяет увидеть сокрытое.", Character.Father, 6f, assFather, clipFather[6]));
 
@@ -216,10 +216,10 @@ public class Tutorial : MonoBehaviour
         //Анимация наполнения фонаря и тд и тп
         ghostStone.active = true;
 
-        wellLight.GetComponent<Light>().intensity += 25;
+        wellLight.GetComponent<Light>().intensity += 75;
 
         yield return new WaitForSeconds(1f);
-        
+        player.GetComponent<Energy>().SetEnergy(100);
     }
 
     IEnumerator ShowHiddenText()
