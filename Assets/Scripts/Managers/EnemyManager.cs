@@ -30,6 +30,11 @@ public class EnemyManager : MonoBehaviour, Manager
     }
     #endregion
 
+    private void Awake()
+    {
+        path = GetComponentInChildren<AstarPath>();
+    }
+
     public float DistanceToClosestEnemy
     {
         get
