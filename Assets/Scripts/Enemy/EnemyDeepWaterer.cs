@@ -112,13 +112,14 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     {
         if (!escapePointCreated)
         {
-            float r = UnityEngine.Random.Range(50f, 100f);
-            float alpha = Vector2.Angle(transform.position, player.transform.position);
+            float r = UnityEngine.Random.Range(50f, 70f);
 
-            float X = player.transform.position.x - (Mathf.Sin(alpha) * r);
-            float Y = player.transform.position.y + (Mathf.Cos(alpha) * r);
+            float Y = 2 * transform.position.y - player.transform.position.y;
+            float X = 2 * transform.position.x - player.transform.position.x;
 
-            GraphNode escapePoint = AstarPath.active.GetNearest(new Vector2(X, Y)).node;
+            var direction = new Vector2(X, Y).normalized;
+
+            GraphNode escapePoint = AstarPath.active.GetNearest(direction * r).node;
 
             if (escapePoint.Walkable)
             {
@@ -143,13 +144,13 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     {
         if(!maneurPointCreated)// Доделать проверку на свободное место для маневра
         {
-            float r = Vector2.Distance(player.transform.position, transform.position) - 5f;
+            float r = UnityEngine.Random.Range(5f, 10f);
             float side = UnityEngine.Random.Range(-10, 10) > 0 ? -1 : 1;
             Debug.LogWarning("side = " + side);
             float alpha = (player.transform.eulerAngles.z + maneurAngle * side) * Mathf.PI / 180;
 
-            float X = player.transform.position.x - (Mathf.Sin(alpha) * r);
-            float Y = player.transform.position.y + (Mathf.Cos(alpha) * r);
+            float Y = player.transform.position.y - (Mathf.Sin(alpha) * r);
+            float X = player.transform.position.x + (Mathf.Cos(alpha) * r);
 
             GraphNode maneurPoint = AstarPath.active.GetNearest(new Vector2(X, Y)).node;
 

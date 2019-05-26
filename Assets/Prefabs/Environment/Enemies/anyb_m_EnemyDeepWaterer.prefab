@@ -4639,7 +4639,7 @@ ParticleSystem:
 --- !u!199 &1164112037295610993
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9337,7 +9337,7 @@ ParticleSystem:
 --- !u!199 &4210126175591676546
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -14053,7 +14053,7 @@ ParticleSystem:
 --- !u!199 &5443975787602891490
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -18751,7 +18751,7 @@ ParticleSystem:
 --- !u!199 &2368599325559829753
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -23449,7 +23449,7 @@ ParticleSystem:
 --- !u!199 &8977112066036839432
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -28263,7 +28263,7 @@ ParticleSystem:
 --- !u!199 &6795508016508012033
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -28468,7 +28468,7 @@ MonoBehaviour:
   state: 2
   speed: 3
   _normalAnimationSpeed: 0
-  maneurAngle: 20
+  maneurAngle: -35
   speedIncreaseCoefficient: 3
   distanceToPlayer: 0
   eventHorizon: 10
