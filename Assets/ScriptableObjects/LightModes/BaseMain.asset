@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ef70b42b41c2748aa0b2cb3f17c436, type: 3}
   m_Name: BaseMain
   m_EditorClassIdentifier: 
-  viewRadius: 20
+  viewRadius: 40
   spotLightRadius: 125.3
   viewAngle: 90
   spotLightAngle: 90
