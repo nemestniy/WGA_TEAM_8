@@ -245,6 +245,10 @@ public class ZoneCreator : MonoBehaviour
         for (int i = 0; i < MaxZoneSize;)
         {
             var neighborHexesWitoutZone = ReturnFreeHexNeighbors(lastHex).ToList();
+
+            if (neighborHexesWitoutZone == null)
+                neighborHexesWitoutZone = ReturnFreeHexNeighbors(lastHex).ToList();
+
             if (i + neighborHexesWitoutZone.Count > MaxZoneSize)
             {
                 for (var h = 0; h < MaxZoneSize - i; h++)
@@ -272,7 +276,9 @@ public class ZoneCreator : MonoBehaviour
 
     private IEnumerable<Hexagon> ReturnFreeHexNeighbors(Hexagon hex)
     {
-        return _generatedHexagons.Where(h => h != null && h.ReturnNeighbors() != null && h.ReturnNeighbors().Contains(hex.transform) && h.GetZone() == null);
+        if(hex != null) 
+            return _generatedHexagons.Where(h => h != null && h.ReturnNeighbors() != null && h.ReturnNeighbors().Contains(hex.transform) && h.GetZone() == null);
+        return null;
     }
 
     private Hexagon GetRandomHexagonNearAnyZone(IEnumerable<Hexagon> hexagons)
@@ -283,8 +289,8 @@ public class ZoneCreator : MonoBehaviour
     private Hexagon GetRandomEdgeHex(IEnumerable<Hexagon> hexagons)
     {
         var edgeHexagons = hexagons.Where(h => h.ReturnNeighbors().Count < 6 && h.GetZone() == null).ToArray();
-        
-        return (edgeHexagons.Length > 0) ? edgeHexagons[Random.Range(0, edgeHexagons.Length - 1)] : null;
+
+        return edgeHexagons[Random.Range(0, edgeHexagons.Length - 1)];
     } 
 
     private Hexagon GetRandomEdgeHexNearAnyZone(IEnumerable<Hexagon> hexagons)

@@ -20,7 +20,7 @@ public class Player: MonoBehaviour {
     private float _normalAnimationSpeed;
 
     private Rigidbody2D _rigidbody;
-    private Hexagon _currentHexagon;
+    public Hexagon _currentHexagon;
     private Hexagon _lastHexagon;
     private Animator _animator;
     private static readonly int PlayerGo = Animator.StringToHash("PlayerGo");
@@ -57,27 +57,7 @@ public class Player: MonoBehaviour {
         _rigidbody.angularVelocity = angelDirection * _rotationSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Hexagon"))
-        {
-            SetCurrentHexagon(collision.gameObject.GetComponent<Hexagon>());
-        }
-        else
-        {
-            _currentHexagon = null;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Hexagon"))
-        {
-            SetLastHexagon(collision.gameObject.GetComponent<Hexagon>());
-            Debug.Log("triger exit");
-        }
-    }
-
-    private void SetLastHexagon(Hexagon hexagon)
+    public void SetLastHexagon(Hexagon hexagon)
     {
         if (_lastHexagon == null || _currentHexagon && !_lastHexagon.NeighborContains(_currentHexagon.transform))
         {
@@ -85,7 +65,7 @@ public class Player: MonoBehaviour {
         }
     }
 
-    private void SetCurrentHexagon(Hexagon hexagon)
+    public void SetCurrentHexagon(Hexagon hexagon)
     {
         if (_currentHexagon != hexagon)
         {

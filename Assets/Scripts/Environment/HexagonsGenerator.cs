@@ -34,9 +34,9 @@ public class HexagonsGenerator : MonoBehaviour
 
         InitializeHexArray();
         Debug.Log("Hex array is created");
-        HexagonsIsCreate?.Invoke();
+        HexagonsIsCreate();
         Debug.Log("Objects are created");
-        MapIsCreate?.Invoke();
+        MapIsCreate();
         Debug.Log("Map is created");
     }
 
