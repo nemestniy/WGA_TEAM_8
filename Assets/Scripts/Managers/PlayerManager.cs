@@ -115,12 +115,15 @@ public class PlayerManager : MonoBehaviour, Manager
     
     public void PauseManager()
     {
-        _player.GetComponent<Rigidbody2D>().angularVelocity = 0;
+        _player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         _isPaused = true;
+        _player.StopAnimation();
     }
 
     public void ResumeManager()
     {
+        _player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         _isPaused = false;
+        _player.StartAnimation();
     }
 }
