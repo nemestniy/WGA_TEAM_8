@@ -19,7 +19,7 @@ public class ZoneCreator : MonoBehaviour
     {
         _hexagonsGenerator = GetComponent<HexagonsGenerator>();
         //Random.InitState(-1646750695);
-        Debug.LogError(Random.seed);
+//        Debug.LogError(Random.seed);
     }
 
     public List<Zone> GetZones()
