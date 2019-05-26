@@ -83,6 +83,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _LightingEnabled: 1
+    - _Mask: 2
     - _Metallic: 0
     - _Mode: 2
     - _OcclusionStrength: 1

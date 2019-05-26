@@ -40,8 +40,11 @@ public class Lamp : MonoBehaviour
     {
         try
         {
-            _fieldOfViews[0].SetLightMode(newMode, prevMode, changingState);
-            _fieldOfViews[1].SetLightMode(newMode, prevMode, changingState);
+            if (_fieldOfViews != null)
+            {
+                _fieldOfViews[0].SetLightMode(newMode, prevMode, changingState);
+                _fieldOfViews[1].SetLightMode(newMode, prevMode, changingState);
+            }
         }
         catch (Exception e)
         {

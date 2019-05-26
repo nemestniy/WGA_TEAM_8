@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4709800456570076529}
   - component: {fileID: 7737025644166891291}
   m_Layer: 0
-  m_Name: anyb_m_tentacletrap_dead
+  m_Name: sand_s_tentacletrap_dead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,5 +131,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxCountInDungeon: 1000
   MinCountInDungeon: 0
-  SpawnProbMultiplier: 16
+  SpawnProbMultiplier: 4
   ZoneMask: 255
