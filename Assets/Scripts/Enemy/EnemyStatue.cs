@@ -21,12 +21,6 @@ public class EnemyStatue : MonoBehaviour, IEnemy
 
     public float time;
     public bool inLight;
-
-    
-    
-
-    
-
     public delegate void OnTriggerAction();
     public static event OnTriggerAction OnTrigger;
 
@@ -57,13 +51,10 @@ public class EnemyStatue : MonoBehaviour, IEnemy
                 GetComponent<AIPath>().canMove = true;
                 break;
             case State.Hunting:
-                
                 break;
             case State.Escaping:
-                
                 break;
             case State.Maneuring:
-                
                 break;
         }
         distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);

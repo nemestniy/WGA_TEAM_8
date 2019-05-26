@@ -58,7 +58,7 @@ public class KeyManager : MoveController
         return WheelMovment.None;
     }
 
-    public MoseButtonStates GetButtonState()
+    public override MoseButtonStates GetButtonState()
     {
         if (Input.GetMouseButton(0))
         {
@@ -71,7 +71,7 @@ public class KeyManager : MoveController
         return MoseButtonStates.Released;
     }
 
-    public bool GetPauseButton()
+    public override bool GetPauseButton()
     {
         return Input.GetKeyDown(KeyCode.Escape);
     }
@@ -83,10 +83,5 @@ public class KeyManager : MoveController
         Down
     }
     
-    public enum MoseButtonStates
-    {
-        Released,
-        LeftDown,
-        RightDown
-    }
+    
 }

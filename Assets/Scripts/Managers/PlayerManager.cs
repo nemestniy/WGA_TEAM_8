@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, Manager
 {
-    private Player _player => Player.Instance;
+    private Player _player
+    {
+        get { return Player.Instance; }
+        set { _player = value; }
+    }
+
     private Animator _playerLampStates;
-    private KeyManager _keyManager;
+    private MoveController _keyManager;
     private bool _isPaused = true;
     
     private Transform _startTransform;
@@ -26,6 +31,7 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void Awake()
     {
+        _keyManager = GetComponent<MoveController>();
         _isPaused = true;
     }
 
@@ -47,6 +53,10 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void UpdatePlayerMovement()
     {
+        if (!_player.gameObject.activeInHierarchy)
+            _player = FindObjectOfType<Player>();
+        
+        
         Vector2 velocity = _keyManager.GetVelocity();
     
         if (velocity == Vector2.zero)
@@ -75,6 +85,9 @@ public class PlayerManager : MonoBehaviour, Manager
 //                break;
 //        }
 
+        if (!_player.gameObject.activeInHierarchy)
+            _player = FindObjectOfType<Player>();
+        
         switch (_keyManager.GetButtonState()) //switching by mouse buttons hold
         {
             case KeyManager.MoseButtonStates.Released:
@@ -96,7 +109,6 @@ public class PlayerManager : MonoBehaviour, Manager
         _keyManager = KeyManager.Instance;
         //_player = Player.Instance;
         IsLoaded = true;
-        _player.transform.GetChild(0).GetComponent<Lamp>().StartUpdatingVisCol();
         _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
         _isPaused = false;
     }

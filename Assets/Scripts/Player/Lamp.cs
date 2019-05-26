@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Lamp : MonoBehaviour
 {
@@ -24,14 +25,15 @@ public class Lamp : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _lampsMeshRenderers = gameObject.GetComponentsInChildren<FieldOfView>().Select(a => a.gameObject.GetComponent<MeshRenderer>()).ToList();
-//        _fieldOfViews = new List<FieldOfView>(GetComponentsInChildren<FieldOfView>());
-//        _visionColliders.Add(_fieldOfViews[0].GetComponent<Collider2D>());
-//        _visionColliders.Add(_fieldOfViews[1].GetComponent<Collider2D>());
+        _fieldOfViews = new List<FieldOfView>(GetComponentsInChildren<FieldOfView>());
+        _visionColliders.Add(_fieldOfViews[0].GetComponent<Collider2D>());
+        _visionColliders.Add(_fieldOfViews[1].GetComponent<Collider2D>());
     }
 
     private void Update()
     {
-        _animator.SetFloat(EnergyLvl, _lampEnergy.CurrentEnergyLvl);
+        if (SceneManager.GetActiveScene().name != "TutorialTestScene") //TODO:КСТЫЫЫЛЬ
+            _animator.SetFloat(EnergyLvl, _lampEnergy.CurrentEnergyLvl);
     }
 
     public void SetLightMode(int newMode, int prevMode, float changingState)
@@ -46,19 +48,9 @@ public class Lamp : MonoBehaviour
         }
         catch (Exception e)
         {
-            Debug.Log("Почини костыль");
+            Debug.Log("Почини костыль");//TODO:КАСТТТЫЫЫЫЛЬ
         }
     }
-
-    public void StartUpdatingVisCol()
-    {
-        _fieldOfViews = new List<FieldOfView>(GetComponentsInChildren<FieldOfView>());
-        _visionColliders.Add(_fieldOfViews[0].GetComponent<Collider2D>());
-        _visionColliders.Add(_fieldOfViews[1].GetComponent<Collider2D>());
-        _fieldOfViews[0].StartUpdatingVisCol();
-        _fieldOfViews[1].StartUpdatingVisCol();
-    }
-    
 
     public bool IsVisible(Collider2D collider)
     {

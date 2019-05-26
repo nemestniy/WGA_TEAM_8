@@ -30,6 +30,12 @@ public class EnemyManager : MonoBehaviour, Manager
     }
     #endregion
 
+    private void Awake()
+    {
+        if (SceneManager.GetActiveScene().name == "TutorialTestScene")
+            path = GetComponentInChildren<AstarPath>();
+    }
+
     public float DistanceToClosestEnemy
     {
         get
@@ -106,8 +112,34 @@ public class EnemyManager : MonoBehaviour, Manager
 
     }
 
+    private void InitEnemies()
+    {
+        if (SceneManager.GetActiveScene().name == "TutorialTestScene")//TODO:КасТЫЫЫЫЫЛЬ
+        {
+            enemyDeepWaterers = new List<EnemyDeepWaterer>();
+            enemyDeepWaterers.Add(_enemyDeepWaterer);
+        }
+        else
+        {
+            enemyDeepWaterers = new List<EnemyDeepWaterer>(FindObjectsOfType<EnemyDeepWaterer>());
+        }
+        enemyStatues = new List<EnemyStatue>(FindObjectsOfType<EnemyStatue>());
+        enemies = new List<IEnemy>();
+        enemies.AddRange(FindObjectsOfType<EnemyDeepWaterer>());
+        enemies.AddRange(FindObjectsOfType<EnemyStatue>());
+        foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
+        {
+            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.Instance.transform;
+        }
+    }
+
     void Update()
     {
+        if (enemies.Count == 0)//TODO:КАСТЫЫЫЛЬ
+        {
+            InitEnemies();
+        }
+        
         if (!IsLoaded) return;
         foreach (EnemyDeepWaterer deepWaterer in enemyDeepWaterers)
         {
@@ -160,7 +192,6 @@ public class EnemyManager : MonoBehaviour, Manager
             {
                 GameObject statueHex = hexagonsGenerator.GetHexagonByPoint(statue.transform.position);
                 GameObject playerHex = hexagonsGenerator.GetHexagonByPoint(_player.transform.position);
-//                Debug.Log("playerHex" + playerHex);
                 if (statueHex == playerHex && statueHex != null && playerHex != null)
                 {
                     statue.GetDestinationSetter().target = _player.transform;
@@ -186,6 +217,9 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+        if (path == null)
+            path = FindObjectOfType<AstarPath>();
+
         path.Scan();
 
         if (enemies != null)
@@ -211,6 +245,9 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void PauseManager()
     {
+        if(enemies == null)
+            return;
+        
         foreach (IEnemy enemy in enemies)
         {
             enemy.Pause();
@@ -219,6 +256,9 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void ResumeManager()
     {
+        if(enemies == null)
+            return;
+        
         foreach (IEnemy enemy in enemies)
         {
             enemy.Resume();
@@ -255,7 +295,8 @@ public class EnemyManager : MonoBehaviour, Manager
 
     private void OnDestroy()
     {
-        hexagonsGenerator.MapIsCreate -= OnMapCreated;
+        if(hexagonsGenerator)
+            hexagonsGenerator.MapIsCreate -= OnMapCreated;
     }
 }
 

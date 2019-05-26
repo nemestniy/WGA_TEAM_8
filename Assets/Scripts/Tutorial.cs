@@ -8,12 +8,15 @@ using UnityEngine.SceneManagement;
 public class Tutorial : MonoBehaviour
 {
     // AUDIO
+    public AudioSource soundtrack;
 
     public AudioSource assDoughter;
     public AudioSource assFather;
 
     public AudioClip[] clipDoughter;
     public AudioClip[] clipFather;
+
+    public GameObject loadingCanvas;
 
     public GameObject wellLight;
 
@@ -78,10 +81,12 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator TellStory()
     {
-        //yield return StartCoroutine(ShowStartCutscene());
+        yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
-        //yield return new WaitForSeconds(48f);
+        yield return new WaitForSeconds(48f);
+
+        soundtrack.Play();
 
         StartCoroutine(Dialogue("...и я так ждала этого. Теперь я тоже в рядах культа!", Character.Daughter, 3f, assDoughter, clipDoughter[0]));
 
@@ -91,11 +96,11 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(MoveFatherTo(wayPoints[7].transform));// Слайд 2: герой идет к точке 1
 
-        yield return StartCoroutine(Dialogue("Да, дочь моя (уставшим голосом без энтузиазма)", Character.Father, 2f, assFather, clipFather[0]));
+        yield return StartCoroutine(Dialogue("Да, дочь моя.", Character.Father, 2f, assFather, clipFather[0]));
 
         //yield return new WaitForSeconds(2f);
 
-        StartCoroutine(Dialogue("Старейшина был со мной очень добр (пытается зажечь фонарь*ЩЕЛК*) и вручил... (*ЩЕЛК* напряжение и нарастающее раздражение) ", Character.Daughter, 1, assDoughter, clipDoughter[1]));
+        StartCoroutine(Dialogue("Старейшина был со мной очень добр ... и вручил...", Character.Daughter, 1, assDoughter, clipDoughter[1]));
 
         StartCoroutine(SoftCameraFlow());// Плавное движение камеры к герою и передача управления игроку
 
@@ -149,9 +154,9 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[4]));
         
-        player.GetComponent<Energy>().SetEnergy(100);
+//        player.GetComponent<Energy>().SetEnergy(100);
 
-        yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. *Цвет фонаря* спектр отпугивает существ, живущих во тьме, *Цвет фонаря* же - позволяет увидеть сокрытое.", Character.Father, 6f, assFather, clipFather[6]));
+        yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. Красный спектр отпугивает существ, живущих во тьме, зелёный же - позволяет увидеть сокрытое.", Character.Father, 6f, assFather, clipFather[6]));
 
         yield return StartCoroutine(WaitForPlayersAction());
 
@@ -169,15 +174,21 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[5]));
 
-        StartCoroutine(Dialogue("Отойди от воды! Оно боится *красного* спектра.", Character.Father, 3f, assFather, clipFather[8]));
+        StartCoroutine(Dialogue("Отойди от воды! Оно боится красного спектра!", Character.Father, 3f, assFather, clipFather[8]));
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[6].transform));
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
 
         enemy.GetComponent<AIDestinationSetter>().target = player.transform;
 
         enemy.GetComponent<IEnemy>().SetState(State.Moving);
+
+        yield return new WaitForSeconds(3f);
+
+        StartCoroutine(Dialogue("Что это за тварь?!", Character.Daughter, 2f, assDoughter, clipDoughter[11]));
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(Dialogue("Тебе предстоит еще многое узнать. Позже я всё тебе расскажу, сейчас меня ждет Старейшина.", Character.Father, 3.5f, assFather, clipFather[9]));
 
         exit.active = true;
 
@@ -206,20 +217,34 @@ public class Tutorial : MonoBehaviour
     {
         enemy.active = true;
         //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Waiting);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Moving);
+    }
+
+
+    IEnumerator StoneOn()
+    {
+        for (int i = 0; i < 255; i++)
+        {
+            ghostStone.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, ghostStone.GetComponent<SpriteRenderer>().color.a + 0.01f);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     IEnumerator ReloadLamp()
     {
         FreezePlayer();
+        
+        
         //Анимация наполнения фонаря и тд и тп
         ghostStone.active = true;
 
-        wellLight.GetComponent<Light>().intensity += 25;
+        StartCoroutine(StoneOn());
+        
+        wellLight.GetComponent<Light>().intensity += 75;
 
         yield return new WaitForSeconds(1f);
-        
+        player.GetComponent<Energy>().SetEnergy(100);
     }
 
     IEnumerator ShowHiddenText()
@@ -228,7 +253,7 @@ public class Tutorial : MonoBehaviour
         Color hiddenTextColor = hiddenText.GetComponent<SpriteRenderer>().color;
         float aColor = hiddenTextColor.a;
         do {
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(0.2f);
             hiddenTextColor = hiddenText.GetComponent<SpriteRenderer>().color;
             aColor = aColor + 0.05f;
             hiddenText.GetComponent<SpriteRenderer>().color = new Color(hiddenTextColor.r, hiddenTextColor.g, hiddenTextColor.b, aColor);

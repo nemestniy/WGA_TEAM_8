@@ -80,6 +80,10 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
             case State.Maneuring:
                 Maneur();
                 break;
+            case State.Waiting:
+                GetComponent<AIPath>().canMove = false;
+                StopAnimation();
+                break;
         }
         distanceToPlayer = Vector2.Distance(player.transform.position, transform.position);
         
@@ -229,13 +233,15 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
 
     public void Pause()
     {
-        aiPath.canMove = false;
+//        aiPath.canMove = false;
+        state = State.Waiting;
         StopAnimation();
     }
 
     public void Resume()
     {
-        aiPath.canMove = true;
+//        aiPath.canMove = true;
+        state = State.Moving;
         StartAnimation();
     }
 }
