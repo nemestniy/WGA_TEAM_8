@@ -111,7 +111,8 @@ public class GameManagerTrial : MonoBehaviour, Manager
 
     public void PauseManager()
     {
-        _audioManager.PauseManager();
+        if (_audioManager != null)
+            _audioManager.PauseManager();
         _playerManager.PauseManager();
         _enemyManager.PauseManager();
 
