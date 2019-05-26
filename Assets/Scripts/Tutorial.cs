@@ -200,6 +200,18 @@ public class Tutorial : MonoBehaviour
 
     }
 
+    private string CharToRus(Character character)
+    {
+        if (character == Character.Father)
+        {
+            return "Отец";
+        }
+        else
+        {
+            return "Дочь";
+        }
+    }
+
     IEnumerator ShowStartCutscene()
     {
         StartCoroutine(CutscenesManager.Instance.ShowFrames(startCutscene));
@@ -280,7 +292,7 @@ public class Tutorial : MonoBehaviour
     {
         Debug.Log("Dialogue");
         canvas.active = true;
-        textBox.GetComponent<Text>().text = character + ": " + text;
+        textBox.GetComponent<Text>().text = CharToRus(character) + ": " + text;
         yield return null;
         //Добавить произношение реплики героем
         Debug.Log("Dialogue +");
