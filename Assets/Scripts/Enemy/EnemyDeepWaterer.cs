@@ -106,6 +106,9 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
                 OnTrigger?.Invoke();
             }
         }
+
+        if (other.transform.tag == "Player")
+            state = State.Escaping;
     }
 
     public void Escape() // Сбежать в ужасе. Состояние - Escaping
@@ -114,8 +117,8 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
         {
             float r = UnityEngine.Random.Range(50f, 70f);
 
-            float Y = 2 * transform.position.y - player.transform.position.y;
-            float X = 2 * transform.position.x - player.transform.position.x;
+            float Y = transform.position.y - player.transform.position.y;
+            float X = transform.position.x - player.transform.position.x;
 
             var direction = new Vector2(X, Y).normalized;
 
