@@ -105,7 +105,8 @@ public class AudioManager : MonoBehaviour, Manager
 
     public void PauseManager()
     {
-        _audioSource.Pause();
+        if(_audioSource != null)//TODO:КАСТЫЫЫЛЬ
+            _audioSource.Pause();
         Paused = true;
         OnAudioPause?.Invoke();
         if(_coreSoundtrackManager != null)

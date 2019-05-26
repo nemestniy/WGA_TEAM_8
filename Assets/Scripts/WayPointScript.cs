@@ -27,4 +27,24 @@ public class WayPointScript : MonoBehaviour
         else
             isTriggered = false;
     }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            isTriggered = true;
+        }
+        else
+            isTriggered = false;
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            isTriggered = true;
+        }
+        else
+            isTriggered = false;
+    }
 }
