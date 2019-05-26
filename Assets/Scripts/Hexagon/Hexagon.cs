@@ -234,6 +234,18 @@ public class Hexagon : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            collision.GetComponent<Player>().SetCurrentHexagon(this);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            collision.GetComponent<Player>().SetLastHexagon(this);
+    }
+
     public void GenerateObjects(float distance, int attempts, GameObject furnitureObject)
     {
         bool check;

@@ -96,6 +96,7 @@ public class Zone
 
     public void ChangeWalls()
     {
+        Debug.Log("ChangeWalls");
         int madness = 0;
         Player player = Player.Instance;
         var hexas = GetInternalHexas();
