@@ -939,7 +939,7 @@ PrefabInstance:
     - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
       propertyPath: _soundEvents.Array.data[0].audioEvent.sound
       value: 
-      objectReference: {fileID: 8300000, guid: ee5ce99d485010243b82b3821b59db54, type: 3}
+      objectReference: {fileID: 8300000, guid: 6ec83e0482b207b4bb79303326009b4f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
 --- !u!114 &2106164595 stripped
