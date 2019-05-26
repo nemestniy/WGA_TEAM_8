@@ -18,8 +18,6 @@ public class ZoneCreator : MonoBehaviour
     private void Awake()
     {
         _hexagonsGenerator = GetComponent<HexagonsGenerator>();
-        //Random.InitState(-1646750695);
-//        Debug.LogError(Random.seed);
     }
 
     public List<Zone> GetZones()
@@ -49,6 +47,7 @@ public class ZoneCreator : MonoBehaviour
             if (i == zoneCount - 1)
                 madnessDegree = zoneCount * 2;
             Zone newZone = new Zone(newColor, zoneCount);
+
 
             GenerateZone(GetRandomEdgeHex(hexObjects), newZone);
         }
@@ -244,6 +243,9 @@ public class ZoneCreator : MonoBehaviour
 
         for (int i = 0; i < MaxZoneSize;)
         {
+            if (lastHex == null)
+                break;
+
             var neighborHexesWitoutZone = ReturnFreeHexNeighbors(lastHex).ToList();
 
             if (neighborHexesWitoutZone == null)
