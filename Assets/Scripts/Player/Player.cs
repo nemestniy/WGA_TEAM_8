@@ -40,6 +40,10 @@ public class Player: MonoBehaviour {
 
     public void SetVelocity(Vector2 direction)
     {
+        if (_rigidbody == null)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
         _rigidbody.velocity = direction * _speed;
     }
 

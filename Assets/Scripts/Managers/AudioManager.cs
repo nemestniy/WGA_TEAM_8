@@ -35,9 +35,16 @@ public class AudioManager : MonoBehaviour, Manager
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == "ReleaseScene")
+        if (SceneManager.GetActiveScene().name == "ReleaseScene")//TODO:КАСТЫЫЫЫЫЛБ
         {
             _coreSoundtrackManager = GetComponent<CoreSoundtrack>();
+        }
+        else
+        {
+            StartCoroutine(PlayBackgroundMusic(_backgroundMusic));
+            IsLoaded = true;
+            Paused = false;
+            OnAudioStart?.Invoke();
         }
     }
 
@@ -90,12 +97,10 @@ public class AudioManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        StartCoroutine(PlayBackgroundMusic(_backgroundMusic));
-        IsLoaded = true;
-        Paused = false;
-        OnAudioStart?.Invoke();
         if (SceneManager.GetActiveScene().name == "ReleaseScene")
+        {
             _coreSoundtrackManager.PlayAll();
+        }
     }
 
     public void PauseManager()
