@@ -130,11 +130,6 @@ public class EnemyManager : MonoBehaviour, Manager
         foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
         {
             enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.Instance.transform;
-            
-            if (SceneManager.GetActiveScene().name != "TutorialTestScene")//TODO:КасТЫЫЫЫЫЛЬ
-            {
-                enemy.SetState(State.Moving);
-            }
         }
     }
 
@@ -197,7 +192,6 @@ public class EnemyManager : MonoBehaviour, Manager
             {
                 GameObject statueHex = hexagonsGenerator.GetHexagonByPoint(statue.transform.position);
                 GameObject playerHex = hexagonsGenerator.GetHexagonByPoint(_player.transform.position);
-//                Debug.Log("playerHex" + playerHex);
                 if (statueHex == playerHex && statueHex != null && playerHex != null)
                 {
                     statue.GetDestinationSetter().target = _player.transform;
@@ -301,7 +295,8 @@ public class EnemyManager : MonoBehaviour, Manager
 
     private void OnDestroy()
     {
-        hexagonsGenerator.MapIsCreate -= OnMapCreated;
+        if(hexagonsGenerator)
+            hexagonsGenerator.MapIsCreate -= OnMapCreated;
     }
 }
 
