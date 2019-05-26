@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &246771652870845350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 246771652870845352}
+  - component: {fileID: 246771652870845353}
+  - component: {fileID: 246771652870845355}
+  m_Layer: 0
+  m_Name: GameManagerTrial
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &246771652870845352
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246771652870845350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.474375, y: -16.60469, z: -0.5390625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &246771652870845353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246771652870845350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b83d1ec963691546a01e8c065f9a4f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerManager: {fileID: 0}
+  _enemyManager: {fileID: 0}
+  _audioManager: {fileID: 0}
+  tutorial: {fileID: 246771652870845355}
+  _energyDeathDelay: 4
+  _screemerCutsceen: {fileID: 11400000, guid: ba98ef43b83eb6143a2174290ca4d9c0, type: 2}
+--- !u!114 &246771652870845355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246771652870845350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2261ea972c35b5a4db35006c4fda0015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assDoughter: {fileID: 0}
+  assFather: {fileID: 0}
+  clipDoughter:
+  - {fileID: 8300000, guid: e790aaa8a00cadc4bbca3f1c32666b13, type: 3}
+  - {fileID: 8300000, guid: b7f6d46442c26824690299a730a2c2aa, type: 3}
+  - {fileID: 8300000, guid: fb1bbb0df11e71f4a88fd5dcce71be42, type: 3}
+  - {fileID: 8300000, guid: 0fd348f41f38ce74dbca599fb4494f8b, type: 3}
+  - {fileID: 8300000, guid: f7588300b2903664985bc43b200f21a0, type: 3}
+  - {fileID: 8300000, guid: 5a9356e5aed5ab04da96528f9211f702, type: 3}
+  - {fileID: 8300000, guid: 4bfee32d8b35eb741ab099397db2e735, type: 3}
+  - {fileID: 8300000, guid: 6ca9cdd7463e83f48ae0d8a0a278486b, type: 3}
+  - {fileID: 8300000, guid: d2ec397450345e447bd89b51f3cc1ab5, type: 3}
+  - {fileID: 8300000, guid: 8fde790fa6c77e7429a82701821e4ea8, type: 3}
+  - {fileID: 8300000, guid: 96a2198ed62e2bd49968a3a54895b6a9, type: 3}
+  - {fileID: 8300000, guid: 52b96b9c106c87643a0d5343c9cd7141, type: 3}
+  clipFather:
+  - {fileID: 8300000, guid: 78b0774e7e1a0cc478e9b65934c7ca5c, type: 3}
+  - {fileID: 8300000, guid: 79ba59c0cd667b74d85ffa6a14c40277, type: 3}
+  - {fileID: 8300000, guid: db9f881b839a64f428e272aee4fd0ec5, type: 3}
+  - {fileID: 8300000, guid: a2475082d0018f9428c14bc61862b394, type: 3}
+  - {fileID: 8300000, guid: 651b1a5a490c6684a8b70d6cdca85927, type: 3}
+  - {fileID: 8300000, guid: 1f84fa7a3ab6c2e459ba9d5639ce0063, type: 3}
+  - {fileID: 8300000, guid: b561df9a8a10d4849bdaf89a0358c86b, type: 3}
+  - {fileID: 8300000, guid: 2dab8a3f3f72dfb45a57babac46e9821, type: 3}
+  - {fileID: 8300000, guid: d77c67db272db294ca056b80c687ed7e, type: 3}
+  - {fileID: 8300000, guid: bfdb271d1fd90c04b99bef33a7f10bec, type: 3}
+  wellLight: {fileID: 0}
+  astarPath: {fileID: 0}
+  mainCamera: {fileID: 0}
+  flowCameraSpeed: 4
+  player: {fileID: 0}
+  daughter: {fileID: 0}
+  daughterSpeed: 5
+  wayPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ghostStone: {fileID: 0}
+  lamp: {fileID: 0}
+  hiddenText: {fileID: 0}
+  enemy: {fileID: 0}
+  escapeObject: {fileID: 0}
+  exit: {fileID: 0}
+  canvas: {fileID: 0}
+  cameraCell: {fileID: 0}
+  textBox: {fileID: 0}
+  startCutscene: {fileID: 11400000, guid: cdbb34680ce32d74cab5948e1dbdcf7c, type: 2}
+  isDaughterMoving: 0
