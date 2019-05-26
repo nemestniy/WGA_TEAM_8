@@ -213,6 +213,8 @@ public class Tutorial : MonoBehaviour
     IEnumerator ReloadLamp()
     {
         FreezePlayer();
+        
+        
         //Анимация наполнения фонаря и тд и тп
         ghostStone.active = true;
 
