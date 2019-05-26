@@ -272,7 +272,9 @@ public class ZoneCreator : MonoBehaviour
 
     private IEnumerable<Hexagon> ReturnFreeHexNeighbors(Hexagon hex)
     {
-        return _generatedHexagons.Where(h => h != null && h.ReturnNeighbors() != null && h.ReturnNeighbors().Contains(hex.transform) && h.GetZone() == null);
+        if(hex != null) 
+            return _generatedHexagons.Where(h => h != null && h.ReturnNeighbors() != null && h.ReturnNeighbors().Contains(hex.transform) && h.GetZone() == null);
+        return null;
     }
 
     private Hexagon GetRandomHexagonNearAnyZone(IEnumerable<Hexagon> hexagons)
