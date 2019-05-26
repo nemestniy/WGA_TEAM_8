@@ -24,23 +24,27 @@ public class StateAudio : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _lampsAudioSource.Stop();
+        if(_lampsAudioSource)//TODO:КАСТЫЫЫЛЬ
+            _lampsAudioSource.Stop();
     }
     
     private void StartSound()
     {
-        _lampsAudioSource.Play();
+        if(_lampsAudioSource)//TODO:КАСТЫЫЫЛЬ
+            _lampsAudioSource.Play();
     }
     
 
     private void PauseSound()
     {
-        _lampsAudioSource.Pause();
+        if(_lampsAudioSource)//TODO:КАСТЫЫЫЛЬ
+            _lampsAudioSource.Pause();
     }
 
     private void ResumeSound()
     {
-        _lampsAudioSource.UnPause();
+        if(_lampsAudioSource)//TODO:КАСТЫЫЫЛЬ
+            _lampsAudioSource.UnPause();
     }
 
     private void OnDestroy()

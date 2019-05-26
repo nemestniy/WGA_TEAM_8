@@ -96,11 +96,11 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(MoveFatherTo(wayPoints[7].transform));// Слайд 2: герой идет к точке 1
 
-        yield return StartCoroutine(Dialogue("Да, дочь моя (уставшим голосом без энтузиазма)", Character.Father, 2f, assFather, clipFather[0]));
+        yield return StartCoroutine(Dialogue("Да, дочь моя.", Character.Father, 2f, assFather, clipFather[0]));
 
         //yield return new WaitForSeconds(2f);
 
-        StartCoroutine(Dialogue("Старейшина был со мной очень добр (пытается зажечь фонарь*ЩЕЛК*) и вручил... (*ЩЕЛК* напряжение и нарастающее раздражение) ", Character.Daughter, 1, assDoughter, clipDoughter[1]));
+        StartCoroutine(Dialogue("Старейшина был со мной очень добр ... и вручил...", Character.Daughter, 1, assDoughter, clipDoughter[1]));
 
         StartCoroutine(SoftCameraFlow());// Плавное движение камеры к герою и передача управления игроку
 
@@ -156,7 +156,7 @@ public class Tutorial : MonoBehaviour
         
 //        player.GetComponent<Energy>().SetEnergy(100);
 
-        yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. *Цвет фонаря* спектр отпугивает существ, живущих во тьме, *Цвет фонаря* же - позволяет увидеть сокрытое.", Character.Father, 6f, assFather, clipFather[6]));
+        yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. Красный спектр отпугивает существ, живущих во тьме, зелёный же - позволяет увидеть сокрытое.", Character.Father, 6f, assFather, clipFather[6]));
 
         yield return StartCoroutine(WaitForPlayersAction());
 
