@@ -18,8 +18,6 @@ public class ZoneCreator : MonoBehaviour
     private void Awake()
     {
         _hexagonsGenerator = GetComponent<HexagonsGenerator>();
-        //Random.InitState(-1646750695);
-
     }
 
     public List<Zone> GetZones()

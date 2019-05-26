@@ -251,6 +251,9 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void PauseManager()
     {
+        if(enemies == null)
+            return;
+        
         foreach (IEnemy enemy in enemies)
         {
             enemy.Pause();
@@ -259,6 +262,9 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void ResumeManager()
     {
+        if(enemies == null)
+            return;
+        
         foreach (IEnemy enemy in enemies)
         {
             enemy.Resume();

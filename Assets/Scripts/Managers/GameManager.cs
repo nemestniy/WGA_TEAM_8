@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour, Manager
     {
         _audioManager.ResumeManager();
         _playerManager.ResumeManager();
-//      _enemyManager.ResumeEnemies();
+      _enemyManager.ResumeManager();
     }
 
     public void CallCoroutine(IEnumerator cd)

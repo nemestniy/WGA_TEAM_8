@@ -210,12 +210,24 @@ public class Tutorial : MonoBehaviour
         //enemy.GetComponent<EnemyDeepWaterer>().SetState(State.Moving);
     }
 
+
+    IEnumerator StoneOn()
+    {
+        for (int i = 0; i < 255; i++)
+        {
+            ghostStone.GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, ghostStone.GetComponent<SpriteRenderer>().color.a + 0.01f);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
     IEnumerator ReloadLamp()
     {
         FreezePlayer();
         //Анимация наполнения фонаря и тд и тп
         ghostStone.active = true;
 
+        StartCoroutine(StoneOn());
+        
         wellLight.GetComponent<Light>().intensity += 75;
 
         yield return new WaitForSeconds(1f);
