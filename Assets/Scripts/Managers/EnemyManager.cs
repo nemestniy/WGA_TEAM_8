@@ -223,6 +223,9 @@ public class EnemyManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
+        if (path == null)
+            path = FindObjectOfType<AstarPath>();
+
         path.Scan();
 
         if (enemies != null)

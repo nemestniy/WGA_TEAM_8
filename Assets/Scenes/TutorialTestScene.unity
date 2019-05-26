@@ -2852,9 +2852,64 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
         type: 3}
+      propertyPath: _soundEvents.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
       propertyPath: _backgroundMusic.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 36bf1b51894682e47861811471d39a17, type: 3}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[0].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6ec83e0482b207b4bb79303326009b4f, type: 3}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[1].gameEvent
+      value: DW attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[1].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 723c89e21ffcbba42b1116c3ad9e8680, type: 3}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[1].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[2].gameEvent
+      value: Sucsessfully fried
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[2].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: adc5155923a21f14d8d822ca0a1d7d7d, type: 3}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[2].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[3].gameEvent
+      value: Tentacle attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[3].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: a3244005edbb9f6449b2710c8a02dd9e, type: 3}
+    - target: {fileID: 6194711786919796890, guid: f2c1aa2cc96674b459efed5d0172db17,
+        type: 3}
+      propertyPath: _soundEvents.Array.data[3].audioEvent.volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6194711786919796889, guid: f2c1aa2cc96674b459efed5d0172db17,
         type: 3}
       propertyPath: Mute
