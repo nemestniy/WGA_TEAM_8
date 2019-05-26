@@ -585,7 +585,7 @@ PrefabInstance:
     - target: {fileID: 2732498010247159759, guid: bdd4743fb7ef6aa4585eaf4c9dfb9e0c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2732498010247159757, guid: bdd4743fb7ef6aa4585eaf4c9dfb9e0c,
         type: 3}
@@ -956,6 +956,30 @@ PrefabInstance:
       propertyPath: _startHexagon
       value: 
       objectReference: {fileID: 1559370203}
+    - target: {fileID: 1837030590, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030590, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[3].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: a3244005edbb9f6449b2710c8a02dd9e, type: 3}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[1].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: 723c89e21ffcbba42b1116c3ad9e8680, type: 3}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[2].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: adc5155923a21f14d8d822ca0a1d7d7d, type: 3}
+    - target: {fileID: 1837030589, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
+      propertyPath: _soundEvents.Array.data[0].audioEvent.sound
+      value: 
+      objectReference: {fileID: 8300000, guid: ee5ce99d485010243b82b3821b59db54, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92adbad5cf4bc1c4cad3cafc9481a49a, type: 3}
 --- !u!114 &2106164595 stripped

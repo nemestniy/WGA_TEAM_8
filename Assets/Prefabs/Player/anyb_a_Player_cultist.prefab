@@ -459,7 +459,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b9bcb1c1b2378414e8d9b4833659721b, type: 3}
   - {fileID: 8300000, guid: a84af45de6bb4e545b6a9208622d811b, type: 3}
   _stepsSand:
-  - {fileID: 8300000, guid: 57d922400b4f72d4d92484f46da57de2, type: 3}
+  - {fileID: 8300000, guid: b2650d97add10b44fb65ea251621c108, type: 3}
+  - {fileID: 8300000, guid: 8a86d7af4469b9946a2ec9c46ae84f3a, type: 3}
+  - {fileID: 8300000, guid: 30dbbfe706bbaa44db169ade436fc735, type: 3}
+  - {fileID: 8300000, guid: 3e8386122afa31c4c8cb17abb32eb383, type: 3}
   volLowRange: 0.5
   volHighRange: 1
   LeftFootprint: {fileID: 552987758460695198}
@@ -5826,7 +5829,7 @@ ParticleSystem:
 --- !u!199 &4468554447866362417
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -10524,7 +10527,7 @@ ParticleSystem:
 --- !u!199 &7359475709744717098
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -15288,7 +15291,7 @@ ParticleSystem:
 --- !u!199 &3954737443406625918
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -20004,7 +20007,7 @@ ParticleSystem:
 --- !u!199 &3442081522003012490
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}

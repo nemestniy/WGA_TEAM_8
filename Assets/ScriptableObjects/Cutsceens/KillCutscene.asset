@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVideo: 0
   video: {fileID: 0}
-  sound: {fileID: 8300000, guid: ffb0fb60bb5b47c46a9e99887ab3ebd2, type: 3}
+  sound: {fileID: 8300000, guid: 042e26aeab3155946b2148d14786ae0e, type: 3}
   additionalUI: {fileID: 0}
   frames:
   - image: {fileID: 21300000, guid: 2a5b0bfd9175e21428148387bf017104, type: 3}
-    secondsToChange: 2
+    secondsToChange: 5.3
     canChangeWithClick: 1
   - image: {fileID: 21300000, guid: 2e79a53b9d642e3469c3502c89f69e46, type: 3}
-    secondsToChange: 2
+    secondsToChange: 3.2
     canChangeWithClick: 1
   - image: {fileID: 21300000, guid: 0355a6c5404b85c42a2d63ba251e15ce, type: 3}
-    secondsToChange: 2
+    secondsToChange: 5
     canChangeWithClick: 1
   - image: {fileID: 21300000, guid: 54f372a2416bc3e44a15ea73d372a0f4, type: 3}
-    secondsToChange: 2
+    secondsToChange: 12
     canChangeWithClick: 1

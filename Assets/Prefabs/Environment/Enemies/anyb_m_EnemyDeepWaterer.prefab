@@ -4639,7 +4639,7 @@ ParticleSystem:
 --- !u!199 &1164112037295610993
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9337,7 +9337,7 @@ ParticleSystem:
 --- !u!199 &4210126175591676546
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -14053,7 +14053,7 @@ ParticleSystem:
 --- !u!199 &5443975787602891490
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -18751,7 +18751,7 @@ ParticleSystem:
 --- !u!199 &2368599325559829753
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -23449,7 +23449,7 @@ ParticleSystem:
 --- !u!199 &8977112066036839432
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -28263,7 +28263,7 @@ ParticleSystem:
 --- !u!199 &6795508016508012033
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -28685,11 +28685,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stepsRock:
-  - {fileID: 8300000, guid: 8cf8f9589bda2474b9b882de268c64b1, type: 3}
+  - {fileID: 8300000, guid: 2d0386a6cbd855e4ab31fd22b5de5e91, type: 3}
   _stepsWater:
-  - {fileID: 8300000, guid: 7523404eb0640414095b11d2db24e2fc, type: 3}
+  - {fileID: 8300000, guid: 1b4f014a759bbf24ca0d8cae1143921a, type: 3}
+  - {fileID: 8300000, guid: e15de9586bf4a124fa3aaf744c96d1df, type: 3}
   _stepsSand:
-  - {fileID: 8300000, guid: 57d922400b4f72d4d92484f46da57de2, type: 3}
+  - {fileID: 8300000, guid: 20b77bd7cc98b624cbf1fc1d54cfb9b7, type: 3}
+  - {fileID: 8300000, guid: 36cc8946d87038f4b8cc74ef86e464b3, type: 3}
   volLowRange: 0.5
   volHighRange: 1
   LeftFootprint: {fileID: 9142887781652912570}
