@@ -117,10 +117,12 @@ public class PlayerManager : MonoBehaviour, Manager
     {
         _player.GetComponent<Rigidbody2D>().angularVelocity = 0;
         _isPaused = true;
+        _player.StopAnimation();
     }
 
     public void ResumeManager()
     {
         _isPaused = false;
+        _player.StartAnimation();
     }
 }
