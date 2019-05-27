@@ -190,22 +190,22 @@ public class CoreSoundtrack : MonoBehaviour
                 OffSource(mainClips[3]);
             }
 
-            if (timer > 800)
+            if (timer > 1500)
             {
                 OnSource(mainClips[2]);
             }
 
-            if (timer > 1600)
+            if (timer > 3000)
             {
                 OnSource(mainClips[3]);
             }
 
-            if (timer > 2400)
+            if (timer > 6000)
             {
                 OnSource(mainClips[4]);
             }
 
-            if (timer > 3600)
+            if (timer > 12000)
             {
                 OnSource(mainClips[4]);
             }
