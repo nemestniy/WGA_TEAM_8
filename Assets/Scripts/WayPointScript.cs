@@ -26,7 +26,7 @@ public class WayPointScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            isTriggered = true;
+            isTriggered = false;
         }
     }
 }

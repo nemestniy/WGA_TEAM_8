@@ -81,10 +81,10 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator TellStory()
     {
-        yield return StartCoroutine(ShowStartCutscene());
+        //yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
-        yield return new WaitForSeconds(48f);
+        //yield return new WaitForSeconds(48f);
 
         soundtrack.Play();
 
@@ -133,8 +133,8 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         UnfreezePlayer();
-
-        yield return StartCoroutine(Dialogue("По - моему, здесь только что был проход...Откуда здесь стена ? ", Character.Daughter, 2.8f, assDoughter, clipDoughter[6]));
+        //!!! 2,8
+        yield return StartCoroutine(Dialogue("По - моему, здесь только что был проход...Откуда здесь стена ? ", Character.Daughter, 1.8f, assDoughter, clipDoughter[6]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[3]));
 
@@ -143,8 +143,8 @@ public class Tutorial : MonoBehaviour
         yield return StartCoroutine(Dialogue("Люди не способны целиком воспринять город Древних. Кажется, что Р'льех меняется, и особенно - в темноте, где разум теряет все ориентиры. Будь осторожна.", Character.Father, 11f, assFather, clipFather[4]));
 
         StartCoroutine(MoveDaughterTo(wayPoints[4].transform));
-
-        yield return new WaitForSeconds(3.5f);
+        // 3.5
+        yield return new WaitForSeconds(2f);
 
         UnfreezePlayer();
 
