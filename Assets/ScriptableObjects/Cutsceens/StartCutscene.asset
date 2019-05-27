@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVideo: 0
   video: {fileID: 32900000, guid: f6257a6b9068b2f4fb74fe3bcc8e6da6, type: 3}
-  sound: {fileID: 8300000, guid: 41dd452531fbad0408fd8073078054c0, type: 3}
+  sound: {fileID: 8300000, guid: fd2f4d7ddb2f09b409bedfb3dca119cc, type: 3}
   additionalUI: {fileID: 0}
   frames:
   - image: {fileID: 21300000, guid: 4dec4e902d2265a4da03e745b4e30595, type: 3}
