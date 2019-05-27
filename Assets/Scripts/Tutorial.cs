@@ -216,7 +216,6 @@ public class Tutorial : MonoBehaviour
     {
         StartCoroutine(CutscenesManager.Instance.ShowFrames(startCutscene));
         yield return null;
-
     }
 
     IEnumerator ShowExitCutscene()
