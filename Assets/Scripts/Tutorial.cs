@@ -158,7 +158,7 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. Красный спектр отпугивает существ, живущих во тьме, зелёный же - позволяет увидеть сокрытое.", Character.Father, 6f, assFather, clipFather[6]));
 
-//        yield return StartCoroutine(WaitForPlayersAction());
+        yield return StartCoroutine(WaitForPlayersAction());
 
         yield return StartCoroutine(ShowHiddenText());
 
