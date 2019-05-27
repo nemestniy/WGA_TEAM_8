@@ -38,6 +38,8 @@ public class EnemyDeepWaterer : MonoBehaviour, IEnemy
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
     private static readonly int GotDamage = Animator.StringToHash("GotDamage");
 
+    public bool wasAwaken;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();

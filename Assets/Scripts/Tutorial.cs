@@ -81,10 +81,10 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator TellStory()
     {
-        yield return StartCoroutine(ShowStartCutscene());
+//        yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
-        yield return new WaitForSeconds(48f);
+//        yield return new WaitForSeconds(48f);
 
         soundtrack.Play();
 
@@ -178,10 +178,11 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[6].transform));
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         enemy.GetComponent<AIDestinationSetter>().target = player.transform;
 
+        enemy.GetComponent<EnemyDeepWaterer>().wasAwaken = true;
         enemy.GetComponent<IEnemy>().SetState(State.Moving);
 
         yield return new WaitForSeconds(3f);

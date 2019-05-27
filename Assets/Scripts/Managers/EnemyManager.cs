@@ -164,7 +164,17 @@ public class EnemyManager : MonoBehaviour, Manager
                             AudioManager.Instance.TriggerSoundEvent("Sucsessfully fried");
                             _wasFried = true;
                         }
-                        deepWaterer.SetState(State.Escaping);
+
+                        if (SceneManager.GetActiveScene().name == "TutorialTestScene")//TODO:КАСТЫЫЫЫЛЬ
+                        {
+                            if(deepWaterer.wasAwaken)
+                                deepWaterer.SetState(State.Escaping);
+                        }
+                        else
+                        {
+                            deepWaterer.SetState(State.Escaping);
+                        }
+                        
                     }
                     else
                     {
