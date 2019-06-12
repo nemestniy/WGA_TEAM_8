@@ -218,7 +218,7 @@ public class FieldOfView : MonoBehaviour
         
         try//TODO:КАСТЫЫЫЛЬ
         {
-	        GetComponentInChildren<CopyViewMesh>().UpdateMesh();
+	        GetComponentInChildren<CopyViewMesh>()?.UpdateMesh();
         }catch(Exception e){}
     }
 

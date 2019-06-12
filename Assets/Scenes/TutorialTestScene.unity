@@ -718,6 +718,16 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.73
       objectReference: {fileID: 0}
+    - target: {fileID: 2117000226971529407, guid: bdc5c76a8df51994c91921f64a926069,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1931575056}
+    - target: {fileID: 2117000226971529407, guid: bdc5c76a8df51994c91921f64a926069,
+        type: 3}
+      propertyPath: textBox
+      value: 
+      objectReference: {fileID: 943105028}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdc5c76a8df51994c91921f64a926069, type: 3}
 --- !u!1 &342952123
@@ -1752,7 +1762,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -5176,7 +5186,7 @@ Canvas:
   m_GameObject: {fileID: 1931575056}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 1331485105}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -5186,7 +5196,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 1674430781
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1931575060
 RectTransform:

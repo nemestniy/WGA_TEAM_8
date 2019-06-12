@@ -19,7 +19,36 @@ MonoBehaviour:
   frames:
   - image: {fileID: 21300000, guid: 4dec4e902d2265a4da03e745b4e30595, type: 3}
     secondsToChange: 26
-    canChangeWithClick: 1
+    canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: Are you seeking for me, Elder?
+      Speaker: 0
+      Delay: 2.8
+    - Subtitles: The great Cthulhu spoke to me. He needs your daughter.
+      Speaker: 2
+      Delay: 4.7
+    - Subtitles: What? Why her?!
+      Speaker: 0
+      Delay: 1.85
+    - Subtitles: This is the will of our God!
+      Speaker: 2
+      Delay: 2.6
+    - Subtitles: I want to see her !!
+      Speaker: 0
+      Delay: 1.5
+    - Subtitles: 'Everything is predetermined, she is already on her way to the crypt. '
+      Speaker: 2
+      Delay: 3
+    - Subtitles: 'You will stay here and accept this sacrifice. '
+      Speaker: 2
+      Delay: 3
   - image: {fileID: 21300000, guid: f34206c07fb969a4592806d965af2911, type: 3}
     secondsToChange: 20
-    canChangeWithClick: 1
+    canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: This should not have happened. I must find you, I must save you.
+      Speaker: 0
+      Delay: 9
+    - Subtitles: ' We will find a way out.'
+      Speaker: 0
+      Delay: 5

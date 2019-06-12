@@ -19,16 +19,52 @@ MonoBehaviour:
   frames:
   - image: {fileID: 21300000, guid: c311b6ab3be110d4ba6d26718a07f257, type: 3}
     secondsToChange: 13.5
-    canChangeWithClick: 1
+    canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: '... it is a great honor to be a sacred victim! '
+      Speaker: 2
+      Delay: 4.8
+    - Subtitles: Cthulhu chosed you!
+      Speaker: 2
+      Delay: 2.5
+    - Subtitles: Take the dagger and sprinkle the altar with your young and fresh
+        blood!
+      Speaker: 2
+      Delay: 5
+    - Subtitles: 'I am Ready. '
+      Speaker: 1
+      Delay: 1.3
   - image: {fileID: 21300000, guid: fd0f9129356134c44a2a77628cf26c73, type: 3}
     secondsToChange: 11.5
-    canChangeWithClick: 1
+    canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: No ... She should take your place.
+      Speaker: 3
+      Delay: 5
+    - Subtitles: 'But ... Great God! '
+      Speaker: 2
+      Delay: 2
+    - Subtitles: 'I have been loyal to you all these years! '
+      Speaker: 2
+      Delay: 3.5
+    - Subtitles: SHE! MUST! become a victim!!!
+      Speaker: 2
+      Delay: 1
   - image: {fileID: 21300000, guid: af7d029e6010ac3439e7ea6b9b73dad6, type: 3}
     secondsToChange: 2.5
-    canChangeWithClick: 1
+    canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: SHE! MUST! become a victim!!!
+      Speaker: 2
+      Delay: 2.5
   - image: {fileID: 21300000, guid: bbfc899d11275b44fa67f5e7a32d7485, type: 3}
     secondsToChange: 1.5
-    canChangeWithClick: 1
+    canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: Get away from her!
+      Speaker: 0
+      Delay: 1.5
   - image: {fileID: 21300000, guid: 2a5b0bfd9175e21428148387bf017104, type: 3}
     secondsToChange: 5.5
     canChangeWithClick: 1
+    Subtitles: []
