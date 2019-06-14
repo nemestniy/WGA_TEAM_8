@@ -34,9 +34,10 @@ public class Tutorial : MonoBehaviour
     public GameObject escapeObject;
     public GameObject exit;
 
-    public GameObject canvas;
-    public GameObject cameraCell;
+    public GameObject canvas;    
     public GameObject textBox;
+
+    public GameObject cameraCell;
 
     public Cutscene startCutscene;
 
@@ -81,14 +82,15 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator TellStory()
     {
-//        yield return StartCoroutine(ShowStartCutscene());
+        yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
-//        yield return new WaitForSeconds(48f);
+       yield return new WaitForSeconds(48f);
 
         soundtrack.Play();
 
-        StartCoroutine(Dialogue("...и я так ждала этого. Теперь я тоже в рядах культа!", Character.Daughter, 3f, assDoughter, clipDoughter[0]));
+        //StartCoroutine(Dialogue("...и я так ждала этого. Теперь я тоже в рядах культа!", Character.Daughter, 3f, assDoughter, clipDoughter[0]));
+        StartCoroutine(Dialogue("... and I was waiting for it so long. Now I am in the ranks of the cult too!", Character.Daughter, 3f, assDoughter, clipDoughter[0]));
 
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[0].transform));// Слайд 1: дочь идет от точки 1 к точке 2
@@ -96,21 +98,23 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(MoveFatherTo(wayPoints[7].transform));// Слайд 2: герой идет к точке 1
 
-        yield return StartCoroutine(Dialogue("Да, дочь моя.", Character.Father, 2f, assFather, clipFather[0]));
+        //yield return StartCoroutine(Dialogue("Да, дочь моя.", Character.Father, 2f, assFather, clipFather[0]));
+        yield return StartCoroutine(Dialogue("[tired] Yes, my child.", Character.Father, 2f, assFather, clipFather[0]));
 
         //yield return new WaitForSeconds(2f);
 
-        StartCoroutine(Dialogue("Старейшина был со мной очень добр ... и вручил...", Character.Daughter, 1, assDoughter, clipDoughter[1]));
+        //StartCoroutine(Dialogue("Старейшина был со мной очень добр ... и вручил...", Character.Daughter, 1, assDoughter, clipDoughter[1]));
+        StartCoroutine(Dialogue("The Elder was very kind to me [click] and gave me ...", Character.Daughter, 1, assDoughter, clipDoughter[1]));
 
         StartCoroutine(SoftCameraFlow());// Плавное движение камеры к герою и передача управления игроку
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[1].transform));// Слайд 2: дочь идет от точки 1 к точке 2
 
-        StartCoroutine(Dialogue("...разряженный фонарь! Отец!", Character.Daughter, 2f, assDoughter, clipDoughter[2]));
+        StartCoroutine(Dialogue("[click] a discharged lantern! Father!", Character.Daughter, 2f, assDoughter, clipDoughter[2]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[1]));//Слайд 3: Ожидание игрока у точки 1
 
-        StartCoroutine(Dialogue("Я вижу впереди слабый свет. Возможно, там колодец. Идем, заправим фонарь.", Character.Father, 3f, assFather, clipFather[1]));
+        StartCoroutine(Dialogue("I see a faint light ahead. Perhaps there is a well. Come, let's fill the lantern.", Character.Father, 3f, assFather, clipFather[1]));
 
         //yield return StartCoroutine(FatherSays());//Слайд 3: Герой произносит: Я вижу впереди слабый свет. Возможно, там колодец. Идем, заправим фонарь
 
@@ -120,11 +124,11 @@ public class Tutorial : MonoBehaviour
 
         yield return StartCoroutine(ReloadLamp());//Слайд 4: Заполяем с дочуркой фонарь
 
-        yield return StartCoroutine(Dialogue("Всё, готово, дочь моя. Заметь, колодец стал светить ярче.", Character.Father, 3f, assFather, clipFather[2]));
+        yield return StartCoroutine(Dialogue("All done, my daughter. Look, the well began to shine brighter.", Character.Father, 3f, assFather, clipFather[2]));
 
-        yield return StartCoroutine(Dialogue("Он теперь не потухнет?", Character.Daughter, 2f, assDoughter, clipDoughter[5]));
+        yield return StartCoroutine(Dialogue("Won't it go out?", Character.Daughter, 2f, assDoughter, clipDoughter[5]));
 
-        yield return StartCoroutine(Dialogue("Потухнет, но не скоро.", Character.Father, 2f, assFather, clipFather[3]));
+        yield return StartCoroutine(Dialogue("Not so soon.", Character.Father, 2f, assFather, clipFather[3]));
 
 
 
@@ -134,13 +138,13 @@ public class Tutorial : MonoBehaviour
 
         UnfreezePlayer();
         //!!! 2,8
-        yield return StartCoroutine(Dialogue("По - моему, здесь только что был проход...Откуда здесь стена ? ", Character.Daughter, 1.8f, assDoughter, clipDoughter[6]));
+        yield return StartCoroutine(Dialogue("I think I saw a passage here just now... Where did this wall came from? ", Character.Daughter, 1.8f, assDoughter, clipDoughter[6]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[3]));
 
         FreezePlayer();
 
-        yield return StartCoroutine(Dialogue("Люди не способны целиком воспринять город Древних. Кажется, что Р'льех меняется, и особенно - в темноте, где разум теряет все ориентиры. Будь осторожна.", Character.Father, 11f, assFather, clipFather[4]));
+        yield return StartCoroutine(Dialogue("People are not able to fully perceive the city of the Great Old Ones. It seems that R'lyeh changes itself, and more so in the dark, where the mind loses all the landmarks. Be careful.", Character.Father, 11f, assFather, clipFather[4]));
 
         StartCoroutine(MoveDaughterTo(wayPoints[4].transform));
         // 3.5
@@ -148,33 +152,33 @@ public class Tutorial : MonoBehaviour
 
         UnfreezePlayer();
 
-        yield return StartCoroutine(Dialogue("Отец, а что это на фонаре...рычаг?", Character.Daughter, 4f, assDoughter, clipDoughter[7]));
+        yield return StartCoroutine(Dialogue("Father, and what is on the lantern ... a lever?", Character.Daughter, 4f, assDoughter, clipDoughter[7]));
 
-        yield return StartCoroutine(Dialogue("Да. Сейчас покажу. Мне кажется, я кое-что заметил на той стене в глубине.", Character.Father, 5f, assFather, clipFather[5]));
+        yield return StartCoroutine(Dialogue("Yes. I'll show you now. I think I noticed something on that wall in the depths.", Character.Father, 5f, assFather, clipFather[5]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[4]));
 
 //        player.GetComponent<Energy>().SetEnergy(100);
 
-        yield return StartCoroutine(Dialogue("Линзы в твоем фонаре обладают особыми свойствами. Красный спектр отпугивает существ, живущих во тьме, зелёный же - позволяет увидеть сокрытое.", Character.Father, 6f, assFather, clipFather[6]));
+        yield return StartCoroutine(Dialogue("The lenses in your lantern have special properties. The red spectrum scares away creatures that live in darkness, while the green one allows one to see hidden things.", Character.Father, 6f, assFather, clipFather[6]));
 
         yield return StartCoroutine(WaitForPlayersAction());
 
         yield return StartCoroutine(ShowHiddenText());
 
-        yield return StartCoroutine(Dialogue("Ого, что это значит?", Character.Daughter, 2f, assDoughter, clipDoughter[9]));
+        yield return StartCoroutine(Dialogue("Wow, what does that mean?", Character.Daughter, 2f, assDoughter, clipDoughter[9]));
 
-        yield return StartCoroutine(Dialogue("Жаждущих прозреть настигнет тьма.....Нам пора возвращаться.", Character.Father, 3f, assFather, clipFather[7]));
+        yield return StartCoroutine(Dialogue("Darkness will overtake those who wish to behold..... We have to go back.", Character.Father, 3f, assFather, clipFather[7]));
 
         yield return StartCoroutine(ShowEnemy());
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[5].transform));
 
-        StartCoroutine(Dialogue("Ты слышал? Что-то в реке.", Character.Daughter, 2f, assDoughter, clipDoughter[10]));
+        StartCoroutine(Dialogue("Did you hear? There is something in the river.", Character.Daughter, 2f, assDoughter, clipDoughter[10]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[5]));
 
-        StartCoroutine(Dialogue("Отойди от воды! Оно боится красного спектра!", Character.Father, 3f, assFather, clipFather[8]));
+        StartCoroutine(Dialogue("Away, now! It fears the red spectrum.", Character.Father, 3f, assFather, clipFather[8]));
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[6].transform));
 
@@ -187,9 +191,9 @@ public class Tutorial : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        StartCoroutine(Dialogue("Что это за тварь?!", Character.Daughter, 2f, assDoughter, clipDoughter[11]));
+        StartCoroutine(Dialogue("What foul beast is it?!", Character.Daughter, 2f, assDoughter, clipDoughter[11]));
         yield return new WaitForSeconds(2f);
-        StartCoroutine(Dialogue("Тебе предстоит еще многое узнать. Позже я всё тебе расскажу, сейчас меня ждет Старейшина.", Character.Father, 3.5f, assFather, clipFather[9]));
+        StartCoroutine(Dialogue("You still have a lot to learn. Later I'll tell you everything, but now the Elder is waiting for me.", Character.Father, 3.5f, assFather, clipFather[9]));
 
         exit.active = true;
 
@@ -205,11 +209,11 @@ public class Tutorial : MonoBehaviour
     {
         if (character == Character.Father)
         {
-            return "Отец";
+            return "Father";
         }
         else
         {
-            return "Дочь";
+            return "Daughter";
         }
     }
 
@@ -298,6 +302,8 @@ public class Tutorial : MonoBehaviour
         Debug.Log("Dialogue +");
     }
 
+    
+
     IEnumerator Dialogue(string text, Character character, float delay)
     {
         canvas.active = true;
@@ -310,7 +316,7 @@ public class Tutorial : MonoBehaviour
     {
         canvas.active = true;
         StartCoroutine(Dialogue(text, character));
-        ass.PlayOneShot(clip);
+        ass?.PlayOneShot(clip);
         yield return new WaitForSeconds(delay);
         canvas.active = false;
     }

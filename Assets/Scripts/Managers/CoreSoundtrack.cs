@@ -177,33 +177,35 @@ public class CoreSoundtrack : MonoBehaviour
 
         if (!muteGroup)
         {
+            OnSource(mainClips[0]);
+            OnSource(mainClips[1]);
+
             timer++;
 
             if (timer < 10)
             {
-                OnSource(mainClips[0]);
-                OnSource(mainClips[1]);
+                
 
                 OffSource(mainClips[2]);
                 OffSource(mainClips[3]);
             }
 
-            if (timer > 800)
+            if (timer > 1500)
             {
                 OnSource(mainClips[2]);
             }
 
-            if (timer > 1600)
+            if (timer > 3000)
             {
                 OnSource(mainClips[3]);
             }
 
-            if (timer > 2400)
+            if (timer > 6000)
             {
                 OnSource(mainClips[4]);
             }
 
-            if (timer > 3600)
+            if (timer > 12000)
             {
                 OnSource(mainClips[4]);
             }
@@ -260,19 +262,19 @@ public class CoreSoundtrack : MonoBehaviour
             {
                 OnSource(drumClips[0]);
             }
-            if (_gm.DistanceToClosestEnemy > 35)
+            if (_gm.DistanceToClosestEnemy > 30)
             {
                 OffSource(drumClips[1]);
             }
-            if (_gm.DistanceToClosestEnemy < 35)
+            if (_gm.DistanceToClosestEnemy < 30)
             {
                 OnSource(drumClips[1]);
             }
-            if (_gm.DistanceToClosestEnemy > 20)
+            if (_gm.DistanceToClosestEnemy > 15)
             {
                 OffSource(drumClips[2]);
             }
-            if (_gm.DistanceToClosestEnemy < 20)
+            if (_gm.DistanceToClosestEnemy < 15)
             {
                 OnSource(drumClips[2]);
             }

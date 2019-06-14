@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -10,6 +11,15 @@ public class Cutscene : ScriptableObject
     public AudioClip sound;
     public GameObject additionalUI;
     public List<Frame> frames;
+
+}
+
+[System.Serializable]
+public struct SubtitleInfo
+{
+    public string Subtitles;
+    public Character Speaker;
+    public float Delay;
 }
 
 [System.Serializable]
@@ -18,4 +28,5 @@ public struct Frame
     public Sprite image;
     public float secondsToChange;
     public bool canChangeWithClick;
+    public SubtitleInfo[] Subtitles;
 }

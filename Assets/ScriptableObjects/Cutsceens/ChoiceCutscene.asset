@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVideo: 0
   video: {fileID: 0}
-  sound: {fileID: 8300000, guid: c03d593166293f94c90e55e1e718fd04, type: 3}
+  sound: {fileID: 8300000, guid: e177ee310d2d6bb428f8a6c0bbe23c9f, type: 3}
   additionalUI: {fileID: 4447066172516070281, guid: e9280d5a602051643b5bd0b0e3892e34,
     type: 3}
   frames:
   - image: {fileID: 21300000, guid: d0a42ac5c4efbf44f887b630024b4d1b, type: 3}
     secondsToChange: Infinity
     canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: Test
+      Speaker: 0
+      Delay: 1243252

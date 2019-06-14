@@ -14,15 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVideo: 0
   video: {fileID: 0}
-  sound: {fileID: 8300000, guid: 3a14155098e05e648bb5212e2619dc50, type: 3}
+  sound: {fileID: 8300000, guid: 7f4af309e2c7e724e8deca815a51db7d, type: 3}
   additionalUI: {fileID: 0}
   frames:
   - image: {fileID: 21300000, guid: f1b113cc80cfb184b92b46133741860b, type: 3}
     secondsToChange: 15.5
     canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: 'For the long time our cult has been worshiping the Old Gods: powerful
+        creatures who came to Earth in prehistoric times.'
+      Speaker: 0
+      Delay: 15.5
   - image: {fileID: 21300000, guid: ac3e0fe54ac9f5f4ea009b1369db7deb, type: 3}
     secondsToChange: 23.5
     canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: The Elder of the cult told us about the underwater city in which
+        the Great Old One sleeps. When the stars will take right placesin the sky,
+        the city rises, and Cthulhu awakens from his long sleep.
+      Speaker: 0
+      Delay: 23.5
   - image: {fileID: 21300000, guid: 1501f1f734d24604eb66c9e17b0882db, type: 3}
     secondsToChange: 10
     canChangeWithClick: 0
+    Subtitles:
+    - Subtitles: 'One day the Elder of the cult reported about visions from the Great
+        Cthulhu: the city of R''lyeh will soon rise above the ocean surface. We have
+        to wake Cthulhu and perform a Rite of Sacrifice.'
+      Speaker: 0
+      Delay: 5
+    - Subtitles: Today is a special day. We have reached the ancient city where my
+        only daughter will become the Cult Initiate...
+      Speaker: 0
+      Delay: 5
