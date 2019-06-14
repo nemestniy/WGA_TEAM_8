@@ -290,6 +290,7 @@ public class FieldOfView : MonoBehaviour
 
 			if (hit) //if ray hit an obstacle
 			{
+//				Debug.DrawLine(transform.position, hit.point);
 				return new ViewCastInfo (true, hit.point + dir * _edgeOffset, hit.distance, globalAngle);
 			} 
 			else //if ray did not hit an obstacle
@@ -301,10 +302,10 @@ public class FieldOfView : MonoBehaviour
 		{
 			RaycastHit2D[] hits = Physics2D.LinecastAll(transform.position, transform.position + (Vector3)dir * viewRadius, _obstacleMask); //cast ray
 	
-			foreach (var hit in hits)
-			{
-				Debug.DrawLine(hit.point, hit.point + Vector2.up * 0.017f);
-			}
+//			foreach (var hit in hits)
+//			{
+//				Debug.DrawLine(hit.point, hit.point + Vector2.up * 0.017f);
+//			}
 
 			if (hits.Length != 0) //if ray hit an obstacle
 			{

@@ -6,14 +6,14 @@ public class PausingBehaviour : StateMachineBehaviour
 {
 
     private Animator _animator;
-    private KeyManager _keyManager;
+    private MoveController _keyManager;
     private static readonly int Unpause = Animator.StringToHash("Unpause");
     private static readonly int GoToExit = Animator.StringToHash("GoToExit");
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _animator = animator;
-        _keyManager = KeyManager.Instance;
+        _keyManager = MoveController.Instance;
         PauseMenu.OnExit += Exit;
         UIManager.Instance.ShowPauseMenu();
     }

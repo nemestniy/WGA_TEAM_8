@@ -3,6 +3,14 @@
 
 public abstract class MoveController : MonoBehaviour {
 
+    #region Singletone
+    public static MoveController Instance { get; private set; }
+    public MoveController() : base()
+    {
+        Instance = this;
+    }
+    #endregion
+    
     public abstract Vector2 GetVelocity();
 
     public abstract float GetAngle();
@@ -10,7 +18,7 @@ public abstract class MoveController : MonoBehaviour {
     public abstract bool GetPauseButton();
 
     public abstract MoseButtonStates GetButtonState();
-   
+
     public enum MoseButtonStates
     {
         Released,

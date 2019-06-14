@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class KeyManager : MoveController
+public class GamepadInputManager : MoveController
 {
     private Camera _mainCam;
     private Player _player => Player.Instance;
@@ -25,26 +25,8 @@ public class KeyManager : MoveController
         return direction;
     }
 
-    private bool _isGamepadUsing;
-    
     public override float GetAngle()
     {
-        //check what input is in use
-        if (Input.GetAxis("Joy X") != 0) 
-        {
-            _isGamepadUsing = true;
-        }
-        else if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
-        {
-            _isGamepadUsing = false;
-        }
-
-        if (_isGamepadUsing) //if using gamepad
-        {
-            return Mathf.Atan2(Input.GetAxis("Joy X"), 0) * Mathf.Rad2Deg;
-        }
-        
-        //if using mouse
         Transform playerTransform = _player.transform;
         Vector2 mousePosition = (_mainCam.ScreenToWorldPoint(Input.mousePosition) - playerTransform.position).normalized;
         float angle = Vector2.Angle(playerTransform.up, mousePosition);
@@ -53,21 +35,6 @@ public class KeyManager : MoveController
             angle *= -1;
         return angle;
     }
-
-    
-//    public WheelMovment GetWheelMovment()
-//    {
-//        if (Input.GetAxis("Mouse ScrollWheel") > 0)
-//        {
-//            return WheelMovment.Up;
-//        }
-//        if (Input.GetAxis("Mouse ScrollWheel") < 0)
-//        {
-//            return WheelMovment.Down;
-//        }
-//
-//        return WheelMovment.None;
-//    }
 
     public override MoseButtonStates GetButtonState()
     {
@@ -82,27 +49,8 @@ public class KeyManager : MoveController
         return MoseButtonStates.Released;
     }
 
-    private bool _pauseHolded;
-
     public override bool GetPauseButton()
     {
-        if (Input.GetAxis("Cancel") > 0)
-        {
-            if (!_pauseHolded) //check if button has already pushed
-            {
-                _pauseHolded = true;
-                return true;
-            }
-            return false;
-        }
-        _pauseHolded = false;
-        return false;
+        return Input.GetKeyDown(KeyCode.Escape);
     }
-    
-//    public enum WheelMovment
-//    {
-//        None,
-//        Up,
-//        Down
-//    }
 }

@@ -44,7 +44,7 @@ public class Tutorial : MonoBehaviour
 
 
     private AIDestinationSetter daughterAIDestinationSetter;
-    private KeyManager _keyManager;
+    private MoveController _keyManager;
 
     [SerializeField] private bool isDaughterMoving;
 
@@ -60,7 +60,7 @@ public class Tutorial : MonoBehaviour
         daughter.GetComponent<AIPath>().maxSpeed = daughterSpeed;
         astarPath.GetComponent<AstarPath>().Scan();
         StartCoroutine(TellStory());
-        _keyManager = KeyManager.Instance;
+        _keyManager = MoveController.Instance;
 
     }
 

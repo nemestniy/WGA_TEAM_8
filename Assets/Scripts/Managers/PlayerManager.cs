@@ -31,7 +31,8 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void Awake()
     {
-        _keyManager = GetComponent<MoveController>();
+        _keyManager = MoveController.Instance;
+        
         _isPaused = true;
     }
 
@@ -75,30 +76,20 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void UpdateLightMode()
     {
-//        switch (_keyManager.GetWheelMovment()) //switching by mouse movement
-//        {
-//            case KeyManager.WheelMovment.Up:
-//                _playerLampStates.SetTrigger(ChangeUp);
-//                break;
-//            case KeyManager.WheelMovment.Down:
-//                _playerLampStates.SetTrigger(ChangeDown);
-//                break;
-//        }
-
         if (!_player.gameObject.activeInHierarchy)
             _player = FindObjectOfType<Player>();
         
         switch (_keyManager.GetButtonState()) //switching by mouse buttons hold
         {
-            case KeyManager.MoseButtonStates.Released:
+            case MoveController.MoseButtonStates.Released:
                 _playerLampStates.SetInteger(ButtonState, 0); //0 means mouse buttons are released
                 break;
             
-            case KeyManager.MoseButtonStates.LeftDown:
+            case MoveController.MoseButtonStates.LeftDown:
                 _playerLampStates.SetInteger(ButtonState, 1); //1 means mouse left button is down
                 break;
             
-            case KeyManager.MoseButtonStates.RightDown:
+            case MoveController.MoseButtonStates.RightDown:
                 _playerLampStates.SetInteger(ButtonState, 2); //2 means mouse rigth button is down
                 break;
         }
@@ -106,10 +97,8 @@ public class PlayerManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        _keyManager = KeyManager.Instance;
-        //_player = Player.Instance;
-        IsLoaded = true;
         _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
+        IsLoaded = true;
         _isPaused = false;
     }
     
