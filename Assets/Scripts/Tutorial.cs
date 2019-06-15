@@ -85,7 +85,7 @@ public class Tutorial : MonoBehaviour
         yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
-//       yield return new WaitForSeconds(48f);
+       yield return new WaitForSeconds(48f);
 
         soundtrack.Play();
 
