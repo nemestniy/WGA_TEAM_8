@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour, Manager
     }
 
     private Animator _playerLampStates;
-    private MoveController _keyManager;
+    private InputController _keyManager;
     private bool _isPaused = true;
     
     private Transform _startTransform;
@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void Awake()
     {
-        _keyManager = MoveController.Instance;
+        _keyManager = InputController.Instance;
         
         _isPaused = true;
     }
@@ -58,15 +58,15 @@ public class PlayerManager : MonoBehaviour, Manager
             _player = FindObjectOfType<Player>();
         
         
-        Vector2 velocity = _keyManager.GetVelocity();
+        Vector2 movingDirection = _keyManager.GetMovingDirection();
     
-        if (velocity == Vector2.zero)
+        if (movingDirection == Vector2.zero)
             _player.StopAnimation();
         else
             _player.StartAnimation();
 
-        _player.SetVelocity(velocity);
-        _player.SetAngle(_keyManager.GetAngle());
+        _player.SetVelocity(movingDirection);
+        _player.SetAngularVelocity(_keyManager.GetAimingDirection());
     }
     
     
@@ -81,15 +81,15 @@ public class PlayerManager : MonoBehaviour, Manager
         
         switch (_keyManager.GetButtonState()) //switching by mouse buttons hold
         {
-            case MoveController.MoseButtonStates.Released:
+            case InputController.MoseButtonStates.Released:
                 _playerLampStates.SetInteger(ButtonState, 0); //0 means mouse buttons are released
                 break;
             
-            case MoveController.MoseButtonStates.LeftDown:
+            case InputController.MoseButtonStates.LeftDown:
                 _playerLampStates.SetInteger(ButtonState, 1); //1 means mouse left button is down
                 break;
             
-            case MoveController.MoseButtonStates.RightDown:
+            case InputController.MoseButtonStates.RightDown:
                 _playerLampStates.SetInteger(ButtonState, 2); //2 means mouse rigth button is down
                 break;
         }

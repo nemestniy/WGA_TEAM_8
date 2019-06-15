@@ -47,18 +47,22 @@ public class Player: MonoBehaviour {
         _rigidbody.velocity = direction * _speed;
     }
 
-    public void SetAngle(float angle)
+    public void SetAngularVelocity(Vector2 direction)
     {
-        int angelDirection = 0;
+        var angle = Vector2.Angle(transform.up, direction); //angel between player's gaze direction and mouse position
+        if(Vector2.Angle(transform.right, direction) > 90) //find out where is cursor, on the right or on the left of player's gaze direction
+            angle *= -1;
+        
+        int rotationDirection = 0;
         if (angle < -_angelOffset)
         {
-            angelDirection = 1;
+            rotationDirection = 1;
         }
         else if (angle > _angelOffset)
         {
-            angelDirection = -1;
+            rotationDirection = -1;
         }
-        _rigidbody.angularVelocity = angelDirection * _rotationSpeed;
+        _rigidbody.angularVelocity = rotationDirection * _rotationSpeed;
     }
 
     public void SetLastHexagon(Hexagon hexagon)

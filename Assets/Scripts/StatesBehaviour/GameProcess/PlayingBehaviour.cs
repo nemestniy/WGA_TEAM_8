@@ -6,7 +6,7 @@ public class PlayingBehaviour : StateMachineBehaviour
 {
     private Animator _animator;
     private GameManager _gameManager;
-    private MoveController _keyManager;
+    private InputController _keyManager;
     private static readonly int DieByEnemy = Animator.StringToHash("DieByEnemy");
     private static readonly int DieByRunOutOfEnergy = Animator.StringToHash("DieByRunOutOfEnergy");
     private static readonly int GoToExit = Animator.StringToHash("GoToExit");
@@ -17,7 +17,7 @@ public class PlayingBehaviour : StateMachineBehaviour
     {
         _animator = animator;
         _gameManager = animator.GetComponent<GameManager>();
-        _keyManager = MoveController.Instance;
+        _keyManager = InputController.Instance;
         Enemy.OnTrigger += OnDeathByEnemy;
         EnemyDeepWaterer.OnTrigger += OnDeathByEnemy;
         EnemyStatue.OnTrigger += OnDeathByEnemy;

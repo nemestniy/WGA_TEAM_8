@@ -45,7 +45,7 @@ public class Tutorial : MonoBehaviour
 
 
     private AIDestinationSetter daughterAIDestinationSetter;
-    private MoveController _keyManager;
+    private InputController _keyManager;
 
     [SerializeField] private bool isDaughterMoving;
 
@@ -61,7 +61,7 @@ public class Tutorial : MonoBehaviour
         daughter.GetComponent<AIPath>().maxSpeed = daughterSpeed;
         astarPath.GetComponent<AstarPath>().Scan();
         StartCoroutine(TellStory());
-        _keyManager = MoveController.Instance;
+        _keyManager = InputController.Instance;
 
     }
 
@@ -85,7 +85,7 @@ public class Tutorial : MonoBehaviour
         yield return StartCoroutine(ShowStartCutscene());
         FreezePlayer();
 
-       yield return new WaitForSeconds(48f);
+//       yield return new WaitForSeconds(48f);
 
         soundtrack.Play();
 

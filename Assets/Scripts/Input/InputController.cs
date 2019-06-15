@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 
 
-public abstract class MoveController : MonoBehaviour {
+public abstract class InputController : MonoBehaviour {
 
     #region Singletone
-    public static MoveController Instance { get; private set; }
-    public MoveController() : base()
+    public static InputController Instance { get; private set; }
+    public InputController() : base()
     {
         Instance = this;
     }
     #endregion
     
-    public abstract Vector2 GetVelocity();
+    public abstract Vector2 GetMovingDirection();
 
-    public abstract float GetAngle();
+    public abstract Vector2 GetAimingDirection();
 
     public abstract bool GetPauseButton();
+
+    public abstract bool GetSkipButton();
 
     public abstract MoseButtonStates GetButtonState();
 

@@ -110,7 +110,7 @@ public class CutscenesManager : MonoBehaviour
             _image.sprite = frame.image;
 
             StartCoroutine(CutsceneDialogue(frame.Subtitles, frame.secondsToChange));            
-            while (!((frame.canChangeWithClick && Input.GetKey(KeyCode.Mouse0))|| timeLeft < 0))
+            while (!((frame.canChangeWithClick && InputController.Instance.GetSkipButton())|| timeLeft < 0))
             {
                 timeLeft -= Time.deltaTime;
                 yield return null;

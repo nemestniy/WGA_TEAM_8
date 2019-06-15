@@ -1,8 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-
-public class KeyManager : MoveController
+public class KeyManager : InputController
 {
     private Camera _mainCam;
     private Player _player => Player.Instance;
@@ -13,7 +12,7 @@ public class KeyManager : MoveController
         _mainCam = Camera.main;        
     }
     
-    public override Vector2 GetVelocity()
+    public override Vector2 GetMovingDirection()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -25,36 +24,36 @@ public class KeyManager : MoveController
         return direction;
     }
 
-    private bool _isGamepadUsing;
+    private bool _gamepadUsedLast; //last frame gamepad was used
     
-    public override float GetAngle()
+    public override Vector2 GetAimingDirection()
     {
-        //check what input is in use
-        if (Input.GetAxis("Joy X") != 0) 
-        {
-            _isGamepadUsing = true; //using gamepad
-        }
-        else if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
-        {
-            _isGamepadUsing = false; //using mouse
-        }
-
-        Transform playerTransform = _player.transform;
         Vector2 aimDirection;
-        if (_isGamepadUsing) //if using gamepad
+
+        bool mouseInputs = Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0;
+        bool gamepadInputs = Input.GetAxis("Joy X") != 0 || Input.GetAxis("Joy Y") != 0;
+        if (mouseInputs && !gamepadInputs) //mouse is inputting and gamepad is not
         {
-            aimDirection = new Vector2(Input.GetAxis("Joy X"), Input.GetAxis("Joy Y"));
+            _gamepadUsedLast = false;
+            aimDirection = (_mainCam.ScreenToWorldPoint(Input.mousePosition) - _player.transform.position).normalized; //use mouse
         }
-        else //if using mouse
+        else if (!mouseInputs && gamepadInputs) //gamepad is inputting and mouse is not
         {
-            aimDirection = (_mainCam.ScreenToWorldPoint(Input.mousePosition) - playerTransform.position).normalized;
+            _gamepadUsedLast = true;
+            aimDirection = new Vector2(Input.GetAxis("Joy X"), Input.GetAxis("Joy Y")); //use gamepad
+        }
+        else if (_gamepadUsedLast) //gamepad was used last frame
+        {
+            _gamepadUsedLast = true;
+            aimDirection = new Vector2(Input.GetAxis("Joy X"), Input.GetAxis("Joy Y")); //use gamepad
+        }
+        else //mouse was used last frame
+        {
+            _gamepadUsedLast = false;
+            aimDirection = (_mainCam.ScreenToWorldPoint(Input.mousePosition) - _player.transform.position).normalized; //use mouse
         }
         
-        var angle = Vector2.Angle(playerTransform.up, aimDirection); //angel between player's gaze direction and mouse position
-        if(Vector2.Angle(playerTransform.right, aimDirection) > 90) //find out where is cursor, on the right or on the left of player's gaze direction
-            angle *= -1;
-        
-        return angle;
+        return aimDirection;
     }
 
     
@@ -101,7 +100,12 @@ public class KeyManager : MoveController
         _pauseHolded = false;
         return false;
     }
-    
+
+    public override bool GetSkipButton()
+    {
+        return Input.GetAxis("Fire1") > 0 || Input.GetAxis("Fire2") > 0;
+    }
+
 //    public enum WheelMovment
 //    {
 //        None,
