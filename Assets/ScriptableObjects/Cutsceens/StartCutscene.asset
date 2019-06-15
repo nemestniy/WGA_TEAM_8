@@ -19,7 +19,7 @@ MonoBehaviour:
   frames:
   - image: {fileID: 21300000, guid: 4dec4e902d2265a4da03e745b4e30595, type: 3}
     secondsToChange: 26
-    canChangeWithClick: 0
+    canChangeWithClick: 1
     Subtitles:
     - Subtitles: Are you seeking for me, Elder?
       Speaker: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
       Delay: 3
   - image: {fileID: 21300000, guid: f34206c07fb969a4592806d965af2911, type: 3}
     secondsToChange: 20
-    canChangeWithClick: 0
+    canChangeWithClick: 1
     Subtitles:
     - Subtitles: This should not have happened. I must find you, I must save you.
       Speaker: 0

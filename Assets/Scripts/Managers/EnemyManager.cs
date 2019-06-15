@@ -285,8 +285,6 @@ public class EnemyManager : MonoBehaviour, Manager
 
     private void UpdateEnemiesState()
     {
-        Debug.Log("UpdateEnemiesState");
-        
         foreach (Transform enemy in visibleEnemiesList)
         {
             enemy.gameObject.GetComponent<IEnemy>().SetOnLight();

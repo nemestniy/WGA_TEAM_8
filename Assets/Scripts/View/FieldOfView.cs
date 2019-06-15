@@ -102,9 +102,7 @@ public class FieldOfView : MonoBehaviour
 
     private void UpdateEnemiesVisibleEnemies()
     {
-        Debug.Log("UpdateVisibleEnemies");
         _enemyManager.visibleEnemiesList = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
-        Debug.Log("Visible enemies - " + _enemyManager.visibleEnemiesList.Count);
     }
 
     private void ComputeCurrentLightValues(float energyLvl, LampModeParametrs prevMode, LampModeParametrs currentMode, float changingState)
