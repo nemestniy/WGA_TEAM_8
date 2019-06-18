@@ -103,7 +103,7 @@ public class KeyManager : InputController
 
     public override bool GetSkipButton()
     {
-        return Input.GetAxis("Fire1") > 0 || Input.GetAxis("Fire2") > 0;
+        return Input.GetAxis("Fire1") > 0 || Input.GetAxis("Fire2") > 0 || Input.GetAxis("Submit") > 0;
     }
 
 //    public enum WheelMovment
