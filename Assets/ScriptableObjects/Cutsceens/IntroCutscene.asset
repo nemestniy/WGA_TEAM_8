@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isVideo: 0
   video: {fileID: 0}
-  sound: {fileID: 8300000, guid: 7f4af309e2c7e724e8deca815a51db7d, type: 3}
+  sound: {fileID: 8300000, guid: c57bc8824ce7a55498b9cc349fe10095, type: 3}
   additionalUI: {fileID: 0}
   frames:
   - image: {fileID: 21300000, guid: f1b113cc80cfb184b92b46133741860b, type: 3}
-    secondsToChange: 15.5
+    secondsToChange: 6.5
     canChangeWithClick: 0
     Subtitles:
     - Subtitles: 'For the long time our cult has been worshiping the Old Gods: powerful
@@ -26,7 +26,7 @@ MonoBehaviour:
       Speaker: 0
       Delay: 15.5
   - image: {fileID: 21300000, guid: ac3e0fe54ac9f5f4ea009b1369db7deb, type: 3}
-    secondsToChange: 23.5
+    secondsToChange: 8
     canChangeWithClick: 0
     Subtitles:
     - Subtitles: The Elder of the cult told us about the underwater city in which
@@ -35,7 +35,7 @@ MonoBehaviour:
       Speaker: 0
       Delay: 23.5
   - image: {fileID: 21300000, guid: 1501f1f734d24604eb66c9e17b0882db, type: 3}
-    secondsToChange: 10
+    secondsToChange: 9.5
     canChangeWithClick: 0
     Subtitles:
     - Subtitles: 'One day the Elder of the cult reported about visions from the Great
