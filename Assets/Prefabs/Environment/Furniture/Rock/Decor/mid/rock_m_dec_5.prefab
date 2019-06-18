@@ -49,7 +49,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 10423a8acf436d448b950aba1260ed6d, type: 2}
+  - {fileID: 2100000, guid: f7a62ac50104aa1428863c93ceb6565c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,3 +95,4 @@ MonoBehaviour:
   MaxCountInDungeon: 1000
   MinCountInDungeon: 0
   SpawnProbMultiplier: 1
+  ZoneMask: 255

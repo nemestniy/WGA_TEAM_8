@@ -8,7 +8,6 @@ public class StartingBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         MapManager.Instance.StartManager(); //instantiate map
-        
         if (_cutscene.isVideo)
         {
             CutscenesManager.Instance.ShowVideo(_cutscene.video);
