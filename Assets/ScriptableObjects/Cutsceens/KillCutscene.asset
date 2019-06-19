@@ -20,12 +20,31 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: 2a5b0bfd9175e21428148387bf017104, type: 3}
     secondsToChange: 5.3
     canChangeWithClick: 1
+    Subtitles:
+    - Subtitles: 
+      Speaker: 0
+      Delay: 1.5
+    - Subtitles: 'It seems there is no other way '
+      Speaker: 4
+      Delay: 2.8
+    - Subtitles: '[dagger strikes]'
+      Speaker: 4
+      Delay: 1
   - image: {fileID: 21300000, guid: 2e79a53b9d642e3469c3502c89f69e46, type: 3}
     secondsToChange: 3.2
     canChangeWithClick: 1
+    Subtitles: []
   - image: {fileID: 21300000, guid: 0355a6c5404b85c42a2d63ba251e15ce, type: 3}
     secondsToChange: 5
     canChangeWithClick: 1
+    Subtitles:
+    - Subtitles: '[dagger strikes]'
+      Speaker: 4
+      Delay: 3
   - image: {fileID: 21300000, guid: 54f372a2416bc3e44a15ea73d372a0f4, type: 3}
     secondsToChange: 12
     canChangeWithClick: 1
+    Subtitles:
+    - Subtitles: 'Victim accepted. Revive the Cult. '
+      Speaker: 3
+      Delay: 8

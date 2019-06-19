@@ -22,6 +22,18 @@ MonoBehaviour:
     secondsToChange: Infinity
     canChangeWithClick: 0
     Subtitles:
-    - Subtitles: Test
-      Speaker: 0
+    - Subtitles: The cult was everything for me...
+      Speaker: 2
+      Delay: 3
+    - Subtitles: Father. Kill him!
+      Speaker: 1
+      Delay: 2.2
+    - Subtitles: It doesn't need me anymore...
+      Speaker: 2
+      Delay: 2
+    - Subtitles: Father! Kill!
+      Speaker: 1
+      Delay: 2
+    - Subtitles: It's all lies! Leave now!
+      Speaker: 2
       Delay: 1243252

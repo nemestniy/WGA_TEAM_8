@@ -21,29 +21,27 @@ MonoBehaviour:
     secondsToChange: 6.5
     canChangeWithClick: 0
     Subtitles:
-    - Subtitles: 'For the long time our cult has been worshiping the Old Gods: powerful
-        creatures who came to Earth in prehistoric times.'
+    - Subtitles: 
       Speaker: 0
-      Delay: 15.5
+      Delay: 2.5
+    - Subtitles: For the long time our cult has been worshiping the Old Gods
+      Speaker: 0
+      Delay: 4
   - image: {fileID: 21300000, guid: ac3e0fe54ac9f5f4ea009b1369db7deb, type: 3}
     secondsToChange: 8
     canChangeWithClick: 0
     Subtitles:
-    - Subtitles: The Elder of the cult told us about the underwater city in which
-        the Great Old One sleeps. When the stars will take right placesin the sky,
-        the city rises, and Cthulhu awakens from his long sleep.
+    - Subtitles: Soon, the city of R'lyeh will rais over the ocean waters.
       Speaker: 0
-      Delay: 23.5
+      Delay: 4
+    - Subtitles: We need to awaken Cthulhu and perform the rite of sacrifice.
+      Speaker: 0
+      Delay: 4
   - image: {fileID: 21300000, guid: 1501f1f734d24604eb66c9e17b0882db, type: 3}
     secondsToChange: 9.5
     canChangeWithClick: 0
     Subtitles:
-    - Subtitles: 'One day the Elder of the cult reported about visions from the Great
-        Cthulhu: the city of R''lyeh will soon rise above the ocean surface. We have
-        to wake Cthulhu and perform a Rite of Sacrifice.'
-      Speaker: 0
-      Delay: 5
     - Subtitles: Today is a special day. We have reached the ancient city where my
         only daughter will become the Cult Initiate...
       Speaker: 0
-      Delay: 5
+      Delay: 9

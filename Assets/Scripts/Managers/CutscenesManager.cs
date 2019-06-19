@@ -20,6 +20,7 @@ public class CutscenesManager : MonoBehaviour
 
     public GameObject canvas;
     public GameObject textBox;
+    private IEnumerator _currentRoutine;
 
     #region Singletone
     public static CutscenesManager Instance { get; private set; }
@@ -41,32 +42,40 @@ public class CutscenesManager : MonoBehaviour
         }       
     }
 
-    IEnumerator CutsceneDialogue(SubtitleInfo phrase)
+    void CutsceneDialogue(SubtitleInfo phrase)
     {
         Debug.Log($"Dialogue: {phrase}");
         canvas.active = true;
-        textBox.GetComponent<Text>().text = "";        
-        textBox.GetComponent<Text>().text += CharToRus(phrase.Speaker) + ": " + phrase.Subtitles;        
-        yield return null;
-        //Добавить произношение реплики героем
-        Debug.Log("Dialogue +");
+        textBox.GetComponent<Text>().text = "";
+        if (!phrase.Subtitles.Equals(""))
+        {
+            if (phrase.Speaker != Character.Narrator)
+            {
+                textBox.GetComponent<Text>().text += CharToRus(phrase.Speaker) + ": " + phrase.Subtitles;
+            }
+            else
+            {
+                textBox.GetComponent<Text>().text += phrase.Subtitles;
+            }
+        }
     }
 
     public IEnumerator CutsceneDialogue(SubtitleInfo[] dialogue, float delay)
-    {
+    {        
         canvas.active = true;
-        float d = dialogue.Sum(a => a.Delay);        
+        float d = dialogue.Sum(a => a.Delay);
         foreach (var phrase in dialogue)
-        {            
-            StartCoroutine(CutsceneDialogue(phrase));
-            yield return new WaitForSeconds(d > delay - 0.05f ? phrase.Delay * ((delay - 0.05f) / d) : phrase.Delay);
-
+        {           
+            CutsceneDialogue(phrase);
+            yield return new WaitForSeconds(d > delay - 0.05f
+                ? phrase.Delay * ((delay - 0.05f) / d)
+                : phrase.Delay);
         }
+
         canvas.active = false;
         textBox.GetComponent<Text>().text = "";
-        
-        yield return new WaitForSeconds(delay - dialogue.Sum(a => a.Delay));
 
+        yield return new WaitForSeconds(delay - dialogue.Sum(a => a.Delay));
     }
 
     private void Awake()
@@ -92,7 +101,8 @@ public class CutscenesManager : MonoBehaviour
 
     public IEnumerator ShowFrames(Cutscene cutscene)
     {
-        if(addUI != null) Destroy(addUI);
+        bool skipPerformed = false;
+        if (addUI != null) Destroy(addUI);
         
         _audioSource.clip = cutscene.sound;
         _imageGO.SetActive(true);
@@ -108,13 +118,15 @@ public class CutscenesManager : MonoBehaviour
         {
             float timeLeft = frame.secondsToChange;
             _image.sprite = frame.image;
-
-            StartCoroutine(CutsceneDialogue(frame.Subtitles, frame.secondsToChange));            
+            _currentRoutine = CutsceneDialogue(frame.Subtitles, frame.secondsToChange);
+            StartCoroutine(_currentRoutine);            
             while (!((frame.canChangeWithClick && InputController.Instance.GetSkipButton())|| timeLeft < 0))
             {
                 timeLeft -= Time.deltaTime;
                 yield return null;
-            }
+            }           
+            textBox.GetComponent<Text>().text = "";            
+            StopCoroutine(_currentRoutine);
         }
         _imageGO.SetActive(false);
         _audioSource.Stop();

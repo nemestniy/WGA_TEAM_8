@@ -5,6 +5,7 @@ public enum Character{
     Father,
     Daughter,
     Elder,
-    Chtulhu
+    Chtulhu,
+    Narrator
     
 }

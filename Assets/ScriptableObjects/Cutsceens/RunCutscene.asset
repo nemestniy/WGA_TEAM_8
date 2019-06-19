@@ -20,3 +20,34 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: 110b054a169cd5240a80ad7b266384e0, type: 3}
     secondsToChange: 39
     canChangeWithClick: 1
+    Subtitles:
+    - Subtitles: 
+      Speaker: 0
+      Delay: 5.5
+    - Subtitles: He chose me!  I have to go back and serve my God!
+      Speaker: 1
+      Delay: 4.5
+    - Subtitles: 'Serve ?! We are just a dust under the feet of the Gods. '
+      Speaker: 0
+      Delay: 4.5
+    - Subtitles: 'Blind faith has brought our family nothing but pain and suffering. '
+      Speaker: 0
+      Delay: 4.5
+    - Subtitles: 'You would suffer the same fate as him. '
+      Speaker: 0
+      Delay: 2.5
+    - Subtitles: 
+      Speaker: 1
+      Delay: 1
+    - Subtitles: 'You betrayed us. '
+      Speaker: 1
+      Delay: 2
+    - Subtitles: I will not forgive you.
+      Speaker: 1
+      Delay: 3
+    - Subtitles: 
+      Speaker: 0
+      Delay: 0
+    - Subtitles: 
+      Speaker: 0
+      Delay: 0
