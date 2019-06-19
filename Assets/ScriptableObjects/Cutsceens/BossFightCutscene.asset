@@ -21,7 +21,7 @@ MonoBehaviour:
     secondsToChange: 13.5
     canChangeWithClick: 0
     Subtitles:
-    - Subtitles: '... it is a great honor to be a sacred victim! '
+    - Subtitles: '... it is a great honor to be a sacred sacrifice! '
       Speaker: 2
       Delay: 5.6
     - Subtitles: Cthulhu chosed you!
@@ -47,7 +47,7 @@ MonoBehaviour:
     - Subtitles: 'I have been loyal to you all these years! '
       Speaker: 2
       Delay: 3.5
-    - Subtitles: SHE! MUST! become a victim!!!
+    - Subtitles: SHE! MUST! become a sacrifice!!!
       Speaker: 2
       Delay: 1
   - image: {fileID: 21300000, guid: af7d029e6010ac3439e7ea6b9b73dad6, type: 3}
