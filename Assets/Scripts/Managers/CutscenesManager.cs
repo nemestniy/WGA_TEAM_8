@@ -72,7 +72,7 @@ public class CutscenesManager : MonoBehaviour
                 : phrase.Delay);
         }
 
-        canvas.active = false;
+        
         textBox.GetComponent<Text>().text = "";
 
         yield return new WaitForSeconds(delay - dialogue.Sum(a => a.Delay));
@@ -125,7 +125,8 @@ public class CutscenesManager : MonoBehaviour
                 timeLeft -= Time.deltaTime;
                 yield return null;
             }           
-            textBox.GetComponent<Text>().text = "";            
+            textBox.GetComponent<Text>().text = "";
+            canvas.active = false;
             StopCoroutine(_currentRoutine);
         }
         _imageGO.SetActive(false);
