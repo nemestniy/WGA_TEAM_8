@@ -257,7 +257,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759250699673190}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -301,10 +301,10 @@ MonoBehaviour:
   CurrentZone:
     HexCount: 0
     Type: 0
-  _speed: 5.5
+  _speed: 6.4
   _rotationSpeed: 180
   _angelOffset: 2
-  _normalAnimationSpeed: 5.5
+  _normalAnimationSpeed: 6.4
   _currentHexagon: {fileID: 0}
 --- !u!114 &5894203408845879875
 MonoBehaviour:
