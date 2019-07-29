@@ -99,8 +99,9 @@ public class EnemyManager : MonoBehaviour, Manager
         //_player = Player.Instance;
         if (MapManager.Instance != null)
             hexagonsGenerator = MapManager.Instance.GetComponent<HexagonsGenerator>();
-
-        path.Scan();
+        
+        if (path != null)
+            path.Scan();
         foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
         {
             enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.Instance.transform;
@@ -219,7 +220,8 @@ public class EnemyManager : MonoBehaviour, Manager
         framecount++;
         if (framecount > 60)
         {
-            path.Scan();
+            if (path != null)
+                path.Scan();
             Debug.Log("Scanning...");
             framecount = 0;
         }
@@ -229,14 +231,16 @@ public class EnemyManager : MonoBehaviour, Manager
     {
         if (path == null)
             path = FindObjectOfType<AstarPath>();
-
-        path.Scan();
+        
+        if (path != null)
+            path.Scan();
 
         if (enemies != null)
         {
             foreach (IEnemy enemy in enemies)
             {
-                path.Scan();
+                if (path != null)
+                    path.Scan();
                 switch (enemy.GetEnemyType())
                 {
                     case EnemyType.DeepWaterer:

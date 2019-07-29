@@ -88,7 +88,7 @@ public class CutscenesManager : MonoBehaviour
 
     private void Start()
     {
-        if(SceneManager.GetActiveScene().name == "ReleaseScene")//TODO:КАСТЫЫЫЫЫЫЫль
+        if(SceneManager.GetActiveScene().name == "ReleaseScene" || SceneManager.GetActiveScene().name == "DanilTestScene")//TODO:КАСТЫЫЫЫЫЫЫль
             _gameProcessAnimator = GameManager.Instance.GetComponent<Animator>();
     }
 
@@ -133,7 +133,7 @@ public class CutscenesManager : MonoBehaviour
         _audioSource.Stop();
 
 
-        if (SceneManager.GetActiveScene().name == "ReleaseScene") //TODO:КАСТЫЫЫЫЫЫЫль
+        if (SceneManager.GetActiveScene().name == "ReleaseScene" || SceneManager.GetActiveScene().name == "DanilTestScene") //TODO:КАСТЫЫЫЫЫЫЫль
         {
             if (addUI != null)
             {

@@ -13,7 +13,7 @@ public class Lamp : MonoBehaviour
     [SerializeField] private Energy _lampEnergy;
     [SerializeField] public List<LampMode> _lampModes;
     
-    private List<FieldOfView> _fieldOfViews;
+    private List<IFieldOfView> _fieldOfViews;
     private List<Collider2D> _visionColliders = new List<Collider2D>(2);
     
     private List<MeshRenderer> _lampsMeshRenderers;
@@ -25,9 +25,9 @@ public class Lamp : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _lampsMeshRenderers = gameObject.GetComponentsInChildren<FieldOfView>().Select(a => a.gameObject.GetComponent<MeshRenderer>()).ToList();
-        _fieldOfViews = new List<FieldOfView>(GetComponentsInChildren<FieldOfView>());
-        _visionColliders.Add(_fieldOfViews[0].GetComponent<Collider2D>());
-        _visionColliders.Add(_fieldOfViews[1].GetComponent<Collider2D>());
+        _fieldOfViews = new List<IFieldOfView>(GetComponentsInChildren<IFieldOfView>());
+        _visionColliders.Add(_fieldOfViews[0].VisionCollider);
+        _visionColliders.Add(_fieldOfViews[1].VisionCollider);
     }
 
     private void Update()
@@ -83,13 +83,13 @@ public class Lamp : MonoBehaviour
         {
             var curMultiplier = BlinkingMath(curve, timePast / duration, periods);
             
-            _fieldOfViews[0]._currentIntensityMult = curMultiplier;
-            _fieldOfViews[1]._currentIntensityMult = curMultiplier;
+            _fieldOfViews[0].CurrentIntensityMult = curMultiplier;
+            _fieldOfViews[1].CurrentIntensityMult = curMultiplier;
             timePast += Time.deltaTime;
             yield return null;
         }
-        _fieldOfViews[0]._currentIntensityMult = 1;
-        _fieldOfViews[1]._currentIntensityMult = 1;
+        _fieldOfViews[0].CurrentIntensityMult = 1;
+        _fieldOfViews[1].CurrentIntensityMult = 1;
     }
 
     private float BlinkingMath(AnimationCurve fadingCurve, float t, List<Period> periods)

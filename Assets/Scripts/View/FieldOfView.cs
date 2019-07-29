@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 
 
-public class FieldOfView : MonoBehaviour
+public class FieldOfView : MonoBehaviour, IFieldOfView
 {
 	[SerializeField]
 	private bool _isMain; //true for main light and false for back light
@@ -53,12 +53,12 @@ public class FieldOfView : MonoBehaviour
 	[HideInInspector] public float _currentViewAngle;
 	[HideInInspector] public float _currentSpotLightAngle;
 	[HideInInspector] public float _currentIntensity;
-	[HideInInspector] public float _currentIntensityMult = 1;
 	[HideInInspector] public float _currentLightHeight;
 	[HideInInspector] public float _currentCoordinateY;
 	[HideInInspector] public Color _currentLightColor;
 
-	private PolygonCollider2D _visionCollider;
+	public float CurrentIntensityMult { get; set; }
+	public PolygonCollider2D VisionCollider { private set; get; }
 	
 	private void Start()
 	{
@@ -71,7 +71,7 @@ public class FieldOfView : MonoBehaviour
 		_enemyManager = EnemyManager.Instance;
 		_lampModes = Player.Instance.transform.GetChild(0).GetComponent<Lamp>()._lampModes;
 
-		_visionCollider = GetComponent<PolygonCollider2D>();
+		VisionCollider = GetComponent<PolygonCollider2D>();
 	}
 	
 	private void LateUpdate()
@@ -112,7 +112,7 @@ public class FieldOfView : MonoBehaviour
 		_currentSpotLightRadius = energyLvl * Mathf.Lerp(prevMode.spotLightRadius, currentMode.spotLightRadius, changingState);
 		_currentViewAngle = Mathf.Lerp( prevMode.viewAngle, currentMode.viewAngle, changingState);
 		_currentSpotLightAngle = Mathf.Lerp( prevMode.spotLightAngle, currentMode.spotLightAngle, changingState);
-		_currentIntensity = Mathf.Lerp(prevMode.intensity, currentMode.intensity, changingState) * _currentIntensityMult;
+		_currentIntensity = Mathf.Lerp(prevMode.intensity, currentMode.intensity, changingState) * CurrentIntensityMult;
 		_currentLightHeight = Mathf.Lerp(prevMode.lightHeight, currentMode.lightHeight, changingState);
 		_currentLightColor = Color.Lerp(prevMode.lightColor, currentMode.lightColor, changingState);
 		_currentCoordinateY = Mathf.Lerp(prevMode.coordinateY, currentMode.coordinateY, changingState);
@@ -137,7 +137,7 @@ public class FieldOfView : MonoBehaviour
 	    points[0] = Vector2.zero;
 	    points[1] = new Vector2(range * Mathf.Tan(angle / 2), range);
 	    points[2] = new Vector2(-1 * range * Mathf.Tan(angle / 2), range);
-	    _visionCollider.points = points;
+	    VisionCollider.points = points;
     }
 	
 	private void DrawSpotLight(float radius, float angel, float intensity, float height, Color color)
