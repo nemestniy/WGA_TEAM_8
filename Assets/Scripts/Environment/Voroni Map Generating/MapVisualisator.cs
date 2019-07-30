@@ -4,6 +4,7 @@ using TriangleNet;
 using TriangleNet.Voronoi;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class MapVisualisator : MonoBehaviour
 {
     [SerializeField] private int _tilesCount;

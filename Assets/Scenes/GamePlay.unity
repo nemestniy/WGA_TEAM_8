@@ -204,6 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 512455500}
   - component: {fileID: 512455499}
+  - component: {fileID: 512455501}
   m_Layer: 0
   m_Name: MapVisualisator
   m_TagString: Untagged
@@ -218,7 +219,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512455498}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a72e5a86a5e0a5a44948fd96d1a02bb1, type: 3}
   m_Name: 
@@ -244,3 +245,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &512455501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512455498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9c2ecafa3011440a529bc0bffaed0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tilesCount: 100
+  _mapWidth: 50
+  _mapHeight: 50
+  _pathLength: 25
