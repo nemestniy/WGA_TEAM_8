@@ -16,10 +16,6 @@ public class MapVisualisator : MonoBehaviour
     [SerializeField] private bool _showDelaune;
     [SerializeField] private bool _showVoronoi;
     [SerializeField] private bool _showVoronoiVertices;
-    
-//    private List<Vector2> _tilesPoints = new List<Vector2>();
-//    private TriangleNetMesh _triangleMesh;
-//    private VoronoiBase _voronoiDiagram;
 
     private MapNetGenerator _mapNetGenerator;
     
@@ -31,11 +27,11 @@ public class MapVisualisator : MonoBehaviour
     private void OnDrawGizmos() //visualisation
     {
         //show map bounds
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, _mapHeight / 2), new Vector2(_mapWidth / 2, _mapHeight / 2));
-        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, -_mapHeight / 2), new Vector2(_mapWidth / 2, -_mapHeight / 2));
-        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, _mapHeight / 2), new Vector2(-_mapWidth / 2, -_mapHeight / 2));
-        Gizmos.DrawLine(new Vector2(_mapWidth / 2, _mapHeight / 2), new Vector2(_mapWidth / 2, -_mapHeight / 2));
+//        Gizmos.color = Color.green;
+//        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, _mapHeight / 2), new Vector2(_mapWidth / 2, _mapHeight / 2));
+//        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, -_mapHeight / 2), new Vector2(_mapWidth / 2, -_mapHeight / 2));
+//        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, _mapHeight / 2), new Vector2(-_mapWidth / 2, -_mapHeight / 2));
+//        Gizmos.DrawLine(new Vector2(_mapWidth / 2, _mapHeight / 2), new Vector2(_mapWidth / 2, -_mapHeight / 2));
 
         if (_mapNetGenerator == null)
             return;

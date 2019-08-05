@@ -102,6 +102,8 @@ public class FieldOfView : MonoBehaviour, IFieldOfView
 
     private void UpdateEnemiesVisibleEnemies()
     {
+	    if (!_enemyManager)//TODO:КАСТЫЫЫЛЬ
+		    return;
         _enemyManager.visibleEnemiesList = FindVisibleEnemies(_currentViewRadius, _currentViewAngle);
     }
 

@@ -36,6 +36,11 @@ public class PlayerManager : MonoBehaviour, Manager
         _isPaused = true;
     }
 
+    private void Start()//TODO:КАСТЫЫЫЫЛЬ
+    {
+        StartManager();
+    }
+
     void Update()
     {
         if (_isPaused || _player == null)

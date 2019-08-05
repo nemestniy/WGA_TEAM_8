@@ -8,7 +8,8 @@ using Random = System.Random;
 
 public class DungeonFiller : MonoBehaviour
 {
-
+    [SerializeField] private GameObject _wallSample;
+    [SerializeField] private float _wallLengthCoef;
     [SerializeField] private int _tilesCount;
     [SerializeField] private int _mapWidth;
     [SerializeField] private int _mapHeight;
@@ -16,6 +17,7 @@ public class DungeonFiller : MonoBehaviour
     private Dictionary<int, List<UnorderedPair<int>>> _edgeLinkage;
     private HashSet<UnorderedPair<int>> _usedLinks;
     private HashSet<int> _alreadyUsed;
+    private List<WallParameters> _walls = new List<WallParameters>();
     public MapNetGenerator MapNetGenerator { get; protected set; }
 
     private struct UnorderedPair<T>
@@ -47,7 +49,6 @@ public class DungeonFiller : MonoBehaviour
     public Dictionary<int, int> NodeLevels = new Dictionary<int, int>();
     public int[] MainPath;
 
-    // Start is called before the first frame update
     void Start()
     {
         Random random = new Random(1234);
@@ -131,76 +132,124 @@ public class DungeonFiller : MonoBehaviour
         }
 
 
+        SetWalls();
     }
 
+    private void SetWalls()
+    {
+        foreach (var face in MapNetGenerator.VoronoiDiagram.Faces)//iterate through all faces of Voronoi diagramm
+        {
+            var firstEdge = face.Edge;
+            if (firstEdge == null)
+                continue;
+
+            var edge = firstEdge;
+            do //iterate through all edges of the face
+            {
+                if (Mathf.Abs(NodeLevels[edge.Face.ID] - NodeLevels[edge.Twin.Face.ID]) > 1)
+                {
+                    DrawWall(new Vector2(edge.Origin.X, edge.Origin.Y),
+                        new Vector2(edge.Twin.Origin.X, edge.Twin.Origin.Y));
+                }
+
+                edge = edge.Next;
+            } while (edge != null && edge != firstEdge);
+        }
+    }
+    
+    private struct WallParameters
+    {
+        public Vector2 startPoint;
+        public Vector2 finishPoint;
+    }
+
+
+    private void DrawWall(Vector2 start, Vector2 finish)
+    {
+        WallParameters wall = new WallParameters();
+        wall.startPoint = start;
+        wall.finishPoint = finish;
+        _walls.Add(wall);
+        
+        Vector2 wallPosition = new Vector2((start.x + finish.x) / 2, (start.y + finish.y) / 2);
+        float rotationInDegrees = Mathf.Rad2Deg * Mathf.Atan2(start.x - finish.x, start.y - finish.y);
+        Quaternion wallRotation = Quaternion.Euler(0, 0, -rotationInDegrees);
+        float wallLength = new Vector2(start.x - finish.x,start.y - finish.y).magnitude * _wallLengthCoef;
+
+        GameObject newWall = Instantiate(_wallSample, wallPosition, wallRotation, transform);
+        var localScale = newWall.transform.localScale;
+        localScale = new Vector3(localScale.x,wallLength, localScale.z);
+        newWall.transform.localScale = localScale;
+    }
+    
     private void OnDrawGizmos() //visualisation
     {
         //show map bounds
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, _mapHeight / 2), new Vector2(_mapWidth / 2, _mapHeight / 2));
-        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, -_mapHeight / 2), new Vector2(_mapWidth / 2, -_mapHeight / 2));
-        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, _mapHeight / 2), new Vector2(-_mapWidth / 2, -_mapHeight / 2));
-        Gizmos.DrawLine(new Vector2(_mapWidth / 2, _mapHeight / 2), new Vector2(_mapWidth / 2, -_mapHeight / 2));
+//        Gizmos.color = Color.green;
+//        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, _mapHeight / 2), new Vector2(_mapWidth / 2, _mapHeight / 2));
+//        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, -_mapHeight / 2), new Vector2(_mapWidth / 2, -_mapHeight / 2));
+//        Gizmos.DrawLine(new Vector2(-_mapWidth / 2, _mapHeight / 2), new Vector2(-_mapWidth / 2, -_mapHeight / 2));
+//        Gizmos.DrawLine(new Vector2(_mapWidth / 2, _mapHeight / 2), new Vector2(_mapWidth / 2, -_mapHeight / 2));
 
         if (MapNetGenerator == null)
             return;
         int max = NodeLevels.Values.Max();
+        
         //show tiles positions
+//        var vertices = MapNetGenerator.TriangleMesh.Vertices.Select(a => new Vector2(a.X, a.Y)).ToList();
+//        for (int i = 0; i < vertices.Count(); i++)
+//        {
+//            Gizmos.color = NodeLevels.ContainsKey(i) ? new Color((float)NodeLevels[i] / max, 0, 0) : Color.magenta;
+//            Gizmos.DrawSphere(vertices[i], 0.7f);
+//        }
+
         
-        var vertices = MapNetGenerator.TriangleMesh.Vertices.Select(a => new Vector2(a.X, a.Y)).ToList();
-        for (int i = 0; i < vertices.Count(); i++)
+//        Gizmos.color = Color.red;
+//        foreach (var edge in _links)
+//        {
+//            var edgeStart = vertices[edge.Elem1];
+//            var edgeFinish = vertices[edge.Elem2];
+//
+//            Gizmos.DrawLine(edgeStart, edgeFinish);
+//        }
+
+        //show Voronoi
+        Color с = Color.cyan;
+        с.a = 0.1f;
+        Gizmos.color = с;
+        foreach (var edge in MapNetGenerator.VoronoiDiagram.Edges)
         {
-            Gizmos.color = NodeLevels.ContainsKey(i) ? new Color((float)NodeLevels[i] / max, 0, 0) : Color.magenta;
-            Gizmos.DrawSphere(vertices[i], 1);
+            var edgeStart = new Vector2(MapNetGenerator.VoronoiDiagram.Vertices[edge.P0].X, MapNetGenerator.VoronoiDiagram.Vertices[edge.P0].Y);
+            var edgeFinish = new Vector2(MapNetGenerator.VoronoiDiagram.Vertices[edge.P1].X, MapNetGenerator.VoronoiDiagram.Vertices[edge.P1].Y);
+            Gizmos.DrawLine(edgeStart, edgeFinish);
+        }
+        
+
+        //show Voronoi vertices
+        Color сol = Color.cyan;
+        сol.a = 0.1f;
+        Gizmos.color = сol;
+        foreach (var vertex in MapNetGenerator.VoronoiDiagram.Vertices)
+        {
+            Gizmos.DrawSphere(new Vector2(vertex.X, vertex.Y), 0.25f);
         }
 
+        //show main path
+//        Gizmos.color = Color.magenta;
+//        for (int i = 1; i < MainPath.Length; i++)
+//        {
+//            var edge = new UnorderedPair<int>(MainPath[i - 1], MainPath[i]);
+//            var edgeStart = vertices[edge.Elem1];
+//            var edgeFinish = vertices[edge.Elem2];
+//            Gizmos.DrawLine(edgeStart, edgeFinish);
+//            Gizmos.DrawLine(edgeStart, edgeFinish);
+//        }
+
+        //show walls
         Gizmos.color = Color.cyan;
-        foreach (var edge in _links)
+        foreach (var wall in _walls)
         {
-            var edgeStart = vertices[edge.Elem1];
-            var edgeFinish = vertices[edge.Elem2];
-
-            Gizmos.DrawLine(edgeStart, edgeFinish);
+            Gizmos.DrawLine(wall.startPoint, wall.finishPoint);
         }
-
-        //if (_showVoronoi)
-        {
-            Color с = Color.cyan;
-            с.a = 0.1f;
-            Gizmos.color = с;
-            foreach (var edge in MapNetGenerator.VoronoiDiagram.Edges)
-            {
-                var edgeStart = new Vector2(MapNetGenerator.VoronoiDiagram.Vertices[edge.P0].X, MapNetGenerator.VoronoiDiagram.Vertices[edge.P0].Y);
-                var edgeFinish = new Vector2(MapNetGenerator.VoronoiDiagram.Vertices[edge.P1].X, MapNetGenerator.VoronoiDiagram.Vertices[edge.P1].Y);
-                Gizmos.DrawLine(edgeStart, edgeFinish);
-            }
-        }
-
-        //if (_showVoronoiVertices)
-        {
-            Color с = Color.cyan;
-            с.a = 0.1f;
-            Gizmos.color = с;
-            foreach (var vertex in MapNetGenerator.VoronoiDiagram.Vertices)
-            {
-                Gizmos.DrawSphere(new Vector2(vertex.X, vertex.Y), 0.25f);
-            }
-        }
-
-        Gizmos.color = Color.magenta;
-        for (int i = 1; i < MainPath.Length; i++)
-        {
-            var edge = new UnorderedPair<int>(MainPath[i - 1], MainPath[i]);
-            var edgeStart = vertices[edge.Elem1];
-            var edgeFinish = vertices[edge.Elem2];
-            Gizmos.DrawLine(edgeStart, edgeFinish);
-            Gizmos.DrawLine(edgeStart, edgeFinish);
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -119,7 +119,7 @@ public class Player: MonoBehaviour {
     public void Update()
     {
         _animator.speed = _speed / _normalAnimationSpeed;
-        Debug.LogWarning(BackgroundController.Instance.GetBiomeByPosition(gameObject.transform.position));
+//        Debug.LogWarning(BackgroundController.Instance.GetBiomeByPosition(gameObject.transform.position));
     }
 }
 

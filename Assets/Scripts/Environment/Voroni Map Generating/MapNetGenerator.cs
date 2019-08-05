@@ -35,10 +35,10 @@ public class MapNetGenerator
         }
         
         //add map corners
-        tilesPoints.Add(new Vector2(mapWidth / 2, mapHeight / 2));
-        tilesPoints.Add(new Vector2(mapWidth / 2, -mapHeight / 2));
-        tilesPoints.Add(new Vector2(-mapWidth / 2, mapHeight / 2));
-        tilesPoints.Add(new Vector2(-mapWidth / 2, -mapHeight / 2));
+//        tilesPoints.Add(new Vector2(mapWidth / 2, mapHeight / 2));
+//        tilesPoints.Add(new Vector2(mapWidth / 2, -mapHeight / 2));
+//        tilesPoints.Add(new Vector2(-mapWidth / 2, mapHeight / 2));
+//        tilesPoints.Add(new Vector2(-mapWidth / 2, -mapHeight / 2));
 
         return tilesPoints;
     }

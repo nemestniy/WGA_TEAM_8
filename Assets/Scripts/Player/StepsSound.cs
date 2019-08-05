@@ -46,6 +46,9 @@ public class StepsSound : MonoBehaviour
 
     private AudioClip GetStepFromBiom(List<AudioClip> stepsRock, List<AudioClip> stepsWater, List<AudioClip> stepsSand)
     {
+        if (BackgroundController.Instance == null)//TODO:КАСТЫЫЫЫЛЬ
+            return null;
+        
         switch (BackgroundController.Instance.GetBiomeByPosition(transform.position))
         {
             case BackgroundController.Biome.Water:

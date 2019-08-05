@@ -17,6 +17,9 @@ public class StateAudio : StateMachineBehaviour
         AudioManager.OnAudioStart += StartSound;
         AudioManager.OnAudioPause += PauseSound;
         AudioManager.OnAudioResume += ResumeSound;
+
+        if (AudioManager.Instance == null)//TODO:КАСТЫЫЫЛЬ
+            return;
         
         if(!AudioManager.Instance.Paused)
             _lampsAudioSource.Play();
