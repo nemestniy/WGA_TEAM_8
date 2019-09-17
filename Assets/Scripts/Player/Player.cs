@@ -25,12 +25,12 @@ public class Player: MonoBehaviour {
     private Animator _animator;
     private static readonly int PlayerGo = Animator.StringToHash("PlayerGo");
 
-    public static Player Instance { get; private set; }
-    
-    public Player() : base()
-    {
-        Instance = this;
-    }
+//    public static Player Instance { get; private set; }
+//    
+//    public Player() : base()
+//    {
+//        Instance = this;
+//    }
 
     private void Awake()
     {

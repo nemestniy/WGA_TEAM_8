@@ -4,7 +4,7 @@ using UnityEngine;
 public class KeyManager : InputController
 {
     private Camera _mainCam;
-    private Player _player => Player.Instance;
+    private Player _player => PlayerManager.Instance.player;
     
     
     private void Start()

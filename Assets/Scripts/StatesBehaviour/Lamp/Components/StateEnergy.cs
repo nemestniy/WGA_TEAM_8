@@ -16,8 +16,8 @@ public class StateEnergy : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _playersEnergy = Player.Instance.GetComponent<Energy>();
-        _playersLamp = Player.Instance.transform.GetChild(0).GetComponent<Lamp>();
+        _playersEnergy = PlayerManager.Instance.player.GetComponent<Energy>();
+        _playersLamp = PlayerManager.Instance.player.transform.GetChild(0).GetComponent<Lamp>();
         _timePast = 0;
     }
 

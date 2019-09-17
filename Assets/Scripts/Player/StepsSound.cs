@@ -40,7 +40,6 @@ public class StepsSound : MonoBehaviour
         if (foot != null)
         {
             foot.Emit();
-            Debug.LogWarning($"Leg:{leg}");
         }
     }
 

@@ -98,7 +98,7 @@ public class Zone
     {
         Debug.Log("ChangeWalls");
         int madness = 0;
-        Player player = Player.Instance;
+        Player player = PlayerManager.Instance.player;
         var hexas = GetInternalHexas();
         for(int i = 0; i < hexas.Count(); i++)
         {

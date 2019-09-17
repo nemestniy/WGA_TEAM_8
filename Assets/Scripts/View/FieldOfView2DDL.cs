@@ -49,7 +49,7 @@ public class FieldOfView2DDL : MonoBehaviour, IFieldOfView
 		_energy =  GetComponentInParent<Energy>();        
 
 		_enemyManager = EnemyManager.Instance;
-		_lampModes = Player.Instance.transform.GetChild(0).GetComponent<Lamp>()._lampModes;
+		_lampModes = PlayerManager.Instance.player.transform.GetChild(0).GetComponent<Lamp>()._lampModes;
 
 		VisionCollider = GetComponent<PolygonCollider2D>();
 		_visionArea = GetComponent<DynamicLight>();

@@ -39,7 +39,7 @@ public class TentacleTrap : MonoBehaviour
     {        
         
         isAlive = false;
-        Player.Instance.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
+        PlayerManager.Instance.player.transform.GetChild(0).GetComponent<Animator>().SetTrigger(GotDamage);
         _mandala.color = new Color(0, 0, 0, 0);
         _mandala.GetComponent<ParticleSystem>().Stop();
         AudioManager.Instance.TriggerSoundEvent("Tentacle attack");

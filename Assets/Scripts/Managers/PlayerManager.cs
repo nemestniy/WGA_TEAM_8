@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour, Manager
 {
-    private Player _player
+    public Player player
     {
-        get { return Player.Instance; }
-        set { _player = value; }
+        get
+        {
+            if (_player == null)
+                _player = FindObjectOfType<Player>();
+            return _player;
+        }
+        private set{ _player = value; }
     }
 
     private Animator _playerLampStates;
@@ -18,7 +23,7 @@ public class PlayerManager : MonoBehaviour, Manager
     private Transform _startTransform;
     public int CurrentLampMode { get; private set; }
 
-    public Player Player => _player;
+    private Player _player;
     
     public bool IsLoaded { get; private set; }
     #region Singletone
@@ -32,7 +37,6 @@ public class PlayerManager : MonoBehaviour, Manager
     private void Awake()
     {
         _keyManager = InputController.Instance;
-        
         _isPaused = true;
     }
 
@@ -43,7 +47,7 @@ public class PlayerManager : MonoBehaviour, Manager
 
     void Update()
     {
-        if (_isPaused || _player == null)
+        if (_isPaused || player == null)
             return;
         
         UpdateLightMode();
@@ -51,7 +55,7 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void FixedUpdate()
     {
-        if (_isPaused || _player == null)
+        if (_isPaused || player == null)
             return;
          
         UpdatePlayerMovement();
@@ -59,19 +63,19 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void UpdatePlayerMovement()
     {
-        if (!_player.gameObject.activeInHierarchy)
-            _player = FindObjectOfType<Player>();
+//        if (!player.gameObject.activeInHierarchy)
+//            player = FindObjectOfType<Player>();
         
         
         Vector2 movingDirection = _keyManager.GetMovingDirection();
     
         if (movingDirection == Vector2.zero)
-            _player.StopAnimation();
+            player.StopAnimation();
         else
-            _player.StartAnimation();
+            player.StartAnimation();
 
-        _player.SetVelocity(movingDirection);
-        _player.SetAngularVelocity(_keyManager.GetAimingDirection());
+        player.SetVelocity(movingDirection);
+        player.SetAngularVelocity(_keyManager.GetAimingDirection());
     }
     
     
@@ -81,8 +85,8 @@ public class PlayerManager : MonoBehaviour, Manager
 
     private void UpdateLightMode()
     {
-        if (!_player.gameObject.activeInHierarchy)
-            _player = FindObjectOfType<Player>();
+//        if (!player.gameObject.activeInHierarchy)
+//            player = FindObjectOfType<Player>();
         
         switch (_keyManager.GetButtonState()) //switching by mouse buttons hold
         {
@@ -102,22 +106,22 @@ public class PlayerManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
+        _playerLampStates = player.transform.GetChild(0).GetComponent<Animator>();
         IsLoaded = true;
         _isPaused = false;
     }
     
     public void PauseManager()
     {
-        _player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         _isPaused = true;
-        _player.StopAnimation();
+        player.StopAnimation();
     }
 
     public void ResumeManager()
     {
-        _player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         _isPaused = false;
-        _player.StartAnimation();
+        player.StartAnimation();
     }
 }

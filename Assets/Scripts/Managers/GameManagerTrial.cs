@@ -27,12 +27,12 @@ public class GameManagerTrial : MonoBehaviour, Manager
 
 
     public float DistanceToClosestEnemy => _enemyManager.DistanceToClosestEnemy; //returns -1 if there are no enemy in enemy list
-    //public BackgroundController.Biome CurrentBiome => _mapManager.Background.GetBiomeByPosition(Player.Instance.transform.position);
-    public float LampEnergyLvl => Player.Instance.GetComponent<Energy>().CurrentEnergyLvl;
+    //public BackgroundController.Biome CurrentBiome => _mapManager.Background.GetBiomeByPosition(PlayerManager.Instance.player.transform.position);
+    public float LampEnergyLvl => PlayerManager.Instance.player.GetComponent<Energy>().CurrentEnergyLvl;
     public int CurrentLampMode => _playerManager.CurrentLampMode;
     //public float DistanceToWell => _mapManager.GetComponent<ObjectsGenerator>().DistanceToWell; //returns -1 if there are no well
     public bool IsPlayerMoving =>
-        Player.Instance.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkAnimation");
+        PlayerManager.Instance.player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkAnimation");
     //    public bool IsEnemyInCurrZone =>;
     //    public Zone CurrentZone =>;
     //    public HexType CurrentHexType =>;

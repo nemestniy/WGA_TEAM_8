@@ -40,7 +40,7 @@ public class BackgroundController : MonoBehaviour
         var rockColor = new Color(151.0f / 255.0f, 1, 177.0f / 255.0f);
         var sandColor = new Color(254.0f / 255.0f, 1, 141.0f / 255.0f);
         var watrColor = new Color(9.0f / 255.0f, 176.0f / 255.0f, 1);
-        //if ((pos - Player.Instance.transform.position).sqrMagnitude < 0.000001f)
+        //if ((pos - PlayerManager.Instance.player.transform.position).sqrMagnitude < 0.000001f)
         //{
         //    Debug.LogError($"{delta.x}, {delta.y}");
         //    Debug.LogError($"{rotPos.x}, {rotPos.y}");

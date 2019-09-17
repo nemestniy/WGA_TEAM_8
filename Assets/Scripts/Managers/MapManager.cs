@@ -60,7 +60,7 @@ public class MapManager : MonoBehaviour, Manager
 
     private void _hexagonsGenerator_MapIsCreate()
     {
-        _player = Player.Instance;
+        _player = PlayerManager.Instance.player;
         _player.CurrentHexagonChanged += _player_CurrentHexagonChanged;
     }
 

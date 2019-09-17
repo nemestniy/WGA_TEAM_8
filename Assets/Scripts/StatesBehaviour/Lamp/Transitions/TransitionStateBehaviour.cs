@@ -18,7 +18,7 @@ public class TransitionStateBehaviour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _playersLamp = Player.Instance.transform.GetChild(0).GetComponent<Lamp>();
+        _playersLamp = PlayerManager.Instance.player.transform.GetChild(0).GetComponent<Lamp>();
         _currentTime = 0;
     }
 

@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour, Manager
     private static readonly int Next = Animator.StringToHash("Next");
 
     public float DistanceToClosestEnemy => _enemyManager.DistanceToClosestEnemy; //returns -1 if there are no enemy in enemy list
-    public BackgroundController.Biome CurrentBiome => BackgroundController.Instance.GetBiomeByPosition(Player.Instance.transform.position);
+    public BackgroundController.Biome CurrentBiome => BackgroundController.Instance.GetBiomeByPosition(PlayerManager.Instance.player.transform.position);
     public float LampEnergyLvl
     {
         get
         {
-            if(Player.Instance.GetComponent<Energy>().CurrentEnergyLvl != null)
-                return Player.Instance.GetComponent<Energy>().CurrentEnergyLvl;
+            if(PlayerManager.Instance.player.GetComponent<Energy>().CurrentEnergyLvl != null)
+                return PlayerManager.Instance.player.GetComponent<Energy>().CurrentEnergyLvl;
 
             return 1;//TODO:КАСТЫЫЫЛЬ
         }
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour, Manager
     public int CurrentLampMode => _playerManager.CurrentLampMode;
     public float DistanceToWell => _mapManager.GetComponent<ObjectsGenerator>().DistanceToWell; //returns -1 if there are no well
     public bool IsPlayerMoving =>
-        Player.Instance.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkAnimation");
+        PlayerManager.Instance.player.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PlayerWalkAnimation");
 
     #region Singletone
     public static GameManager Instance { get; private set; }

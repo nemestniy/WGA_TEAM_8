@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemyManager : MonoBehaviour, Manager
 {
-    public Player _player => Player.Instance;
+    public Player _player => PlayerManager.Instance.player;
     public AstarPath path;
 
     [SerializeField] [ShowOnly] private List<IEnemy> enemies;
@@ -43,10 +43,10 @@ public class EnemyManager : MonoBehaviour, Manager
             if (!IsLoaded || enemies.Count == 0)
                 return -1; //in case of error
             
-            float minDist = Vector2.Distance(enemies[0].GetTransform().position, Player.Instance.transform.position);
+            float minDist = Vector2.Distance(enemies[0].GetTransform().position, PlayerManager.Instance.player.transform.position);
             for(int i = 1; i < enemies.Count; i++)
             {
-                var curEnemyDist = Vector2.Distance(enemies[i].GetTransform().position, Player.Instance.transform.position);
+                var curEnemyDist = Vector2.Distance(enemies[i].GetTransform().position, PlayerManager.Instance.player.transform.position);
                 if (curEnemyDist < minDist)
                 {
                     minDist = curEnemyDist;
@@ -79,7 +79,7 @@ public class EnemyManager : MonoBehaviour, Manager
     
     private void OnMapCreated()
     {
-        Debug.Log("onMapCreate");
+//        Debug.Log("onMapCreate");
         if (SceneManager.GetActiveScene().name == "TutorialTestScene")//TODO:КасТЫЫЫЫЫЛЬ
         {
             enemyDeepWaterers = new List<EnemyDeepWaterer>();
@@ -96,7 +96,7 @@ public class EnemyManager : MonoBehaviour, Manager
         enemies.AddRange(FindObjectsOfType<EnemyDeepWaterer>());
         enemies.AddRange(FindObjectsOfType<EnemyStatue>());
 
-        //_player = Player.Instance;
+        //_player = PlayerManager.Instance.player;
         if (MapManager.Instance != null)
             hexagonsGenerator = MapManager.Instance.GetComponent<HexagonsGenerator>();
         
@@ -104,7 +104,7 @@ public class EnemyManager : MonoBehaviour, Manager
             path.Scan();
         foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
         {
-            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.Instance.transform;
+            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = PlayerManager.Instance.player.transform;
             enemy.SetState(State.Moving);
             
         }
@@ -130,7 +130,7 @@ public class EnemyManager : MonoBehaviour, Manager
         enemies.AddRange(FindObjectsOfType<EnemyStatue>());
         foreach (EnemyDeepWaterer enemy in enemyDeepWaterers)
         {
-            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = Player.Instance.transform;
+            enemy.GetComponent<Pathfinding.AIDestinationSetter>().target = PlayerManager.Instance.player.transform;
         }
     }
 
@@ -157,7 +157,7 @@ public class EnemyManager : MonoBehaviour, Manager
             {
                 if (_player.transform.GetChild(0).GetComponent<Lamp>()._isFrying)
                 {
-                    Debug.Log("Frying time - "+ (Time.time - deepWaterer.time));
+//                    Debug.Log("Frying time - "+ (Time.time - deepWaterer.time));
                     if (Time.time - deepWaterer.time > timeToEnemyEscape)
                     {
                         if (!_wasFried)
@@ -222,7 +222,7 @@ public class EnemyManager : MonoBehaviour, Manager
         {
             if (path != null)
                 path.Scan();
-            Debug.Log("Scanning...");
+//            Debug.Log("Scanning...");
             framecount = 0;
         }
     }
@@ -244,7 +244,7 @@ public class EnemyManager : MonoBehaviour, Manager
                 switch (enemy.GetEnemyType())
                 {
                     case EnemyType.DeepWaterer:
-                        enemy.GetDestinationSetter().target = Player.Instance.transform;
+                        enemy.GetDestinationSetter().target = PlayerManager.Instance.player.transform;
                         enemy.SetState(State.Moving);
                         break;
 
@@ -292,7 +292,7 @@ public class EnemyManager : MonoBehaviour, Manager
         foreach (Transform enemy in visibleEnemiesList)
         {
             enemy.gameObject.GetComponent<IEnemy>().SetOnLight();
-            Debug.Log(enemy.gameObject.name + " is on light");
+//            Debug.Log(enemy.gameObject.name + " is on light");
         }
 
         foreach (IEnemy enemy in enemies)

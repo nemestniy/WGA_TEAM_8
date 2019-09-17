@@ -76,7 +76,7 @@ public class ObjectsGenerator : MonoBehaviour
             if (_well == null)
                 return -1; //in case of error
             
-            return Vector2.Distance(_well.gameObject.transform.position, Player.Instance.transform.position);
+            return Vector2.Distance(_well.gameObject.transform.position, PlayerManager.Instance.player.transform.position);
         }
     }
     

@@ -6,14 +6,14 @@ public class DynamicShadow : MonoBehaviour
 {
     private float _dynamicShadowOffset;
     private GameObject _shadow;
-    private Player _player => Player.Instance;
+    private Player _player => PlayerManager.Instance.player;
     Transform _transform;
 
     private void Start()
     {
         _dynamicShadowOffset = MapManager.Instance.GetComponent<ObjectsGenerator>()._dynamicShadowOffset;
         _transform = transform;
-       //_player = Player.Instance;
+       //_player = PlayerManager.Instance.player;
     }
 
     private void LateUpdate()

@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     {
         if (_player == null)
         {
-            _player = Player.Instance.transform;
+            _player = PlayerManager.Instance.player.transform;
         }
         
         if (_player != null)

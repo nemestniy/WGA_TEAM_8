@@ -6,11 +6,11 @@ public class DetectiveBehaviour : StateMachineBehaviour
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetDetectiveMaterial();
+        PlayerManager.Instance.player.transform.GetChild(0).GetComponent<Lamp>().SetDetectiveMaterial();
     }
     
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Player.Instance.transform.GetChild(0).GetComponent<Lamp>().SetNormalMaterial();
+        PlayerManager.Instance.player.transform.GetChild(0).GetComponent<Lamp>().SetNormalMaterial();
     }
 }
