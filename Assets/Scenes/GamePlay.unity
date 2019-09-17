@@ -322,9 +322,9 @@ MonoBehaviour:
   _wallSample: {fileID: 3914701082597636544, guid: 35ac01652ba442646adef3a6ea2deb71,
     type: 3}
   _wallLengthCoef: 0.078
-  _tilesCount: 300
-  _mapWidth: 120
-  _mapHeight: 120
+  _tilesCount: 1000
+  _mapWidth: 360
+  _mapHeight: 360
   _pathLength: 80
   MainPath: 
 --- !u!1001 &730582078

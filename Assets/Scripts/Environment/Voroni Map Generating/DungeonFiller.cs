@@ -196,22 +196,22 @@ public class DungeonFiller : MonoBehaviour
         int max = NodeLevels.Values.Max();
         
         //show tiles positions
-//        var vertices = MapNetGenerator.TriangleMesh.Vertices.Select(a => new Vector2(a.X, a.Y)).ToList();
-//        for (int i = 0; i < vertices.Count(); i++)
-//        {
-//            Gizmos.color = NodeLevels.ContainsKey(i) ? new Color((float)NodeLevels[i] / max, 0, 0) : Color.magenta;
-//            Gizmos.DrawSphere(vertices[i], 0.7f);
-//        }
+        var vertices = MapNetGenerator.TriangleMesh.Vertices.Select(a => new Vector2(a.X, a.Y)).ToList();
+        for (int i = 0; i < vertices.Count(); i++)
+        {
+            Gizmos.color = NodeLevels.ContainsKey(i) ? new Color((float)NodeLevels[i] / max, 0, 0) : Color.magenta;
+            Gizmos.DrawSphere(vertices[i], 0.7f);
+        }
 
         
-//        Gizmos.color = Color.red;
-//        foreach (var edge in _links)
-//        {
-//            var edgeStart = vertices[edge.Elem1];
-//            var edgeFinish = vertices[edge.Elem2];
-//
-//            Gizmos.DrawLine(edgeStart, edgeFinish);
-//        }
+        Gizmos.color = Color.red;
+        foreach (var edge in _links)
+        {
+            var edgeStart = vertices[edge.Elem1];
+            var edgeFinish = vertices[edge.Elem2];
+
+            Gizmos.DrawLine(edgeStart, edgeFinish);
+        }
 
         //show Voronoi
         Color с = Color.cyan;
@@ -235,15 +235,15 @@ public class DungeonFiller : MonoBehaviour
         }
 
         //show main path
-//        Gizmos.color = Color.magenta;
-//        for (int i = 1; i < MainPath.Length; i++)
-//        {
-//            var edge = new UnorderedPair<int>(MainPath[i - 1], MainPath[i]);
-//            var edgeStart = vertices[edge.Elem1];
-//            var edgeFinish = vertices[edge.Elem2];
-//            Gizmos.DrawLine(edgeStart, edgeFinish);
-//            Gizmos.DrawLine(edgeStart, edgeFinish);
-//        }
+        Gizmos.color = Color.magenta;
+        for (int i = 1; i < MainPath.Length; i++)
+        {
+            var edge = new UnorderedPair<int>(MainPath[i - 1], MainPath[i]);
+            var edgeStart = vertices[edge.Elem1];
+            var edgeFinish = vertices[edge.Elem2];
+            Gizmos.DrawLine(edgeStart, edgeFinish);
+            Gizmos.DrawLine(edgeStart, edgeFinish);
+        }
 
         //show walls
         Gizmos.color = Color.cyan;
