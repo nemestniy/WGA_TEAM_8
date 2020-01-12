@@ -104,13 +104,13 @@ public class Tutorial : MonoBehaviour
         //yield return new WaitForSeconds(2f);
 
         //StartCoroutine(Dialogue("Старейшина был со мной очень добр ... и вручил...", Character.Daughter, 1, assDoughter, clipDoughter[1]));
-        StartCoroutine(Dialogue("The Elder was very kind to me [click] and gave me ...", Character.Daughter, 1, assDoughter, clipDoughter[1]));
+        StartCoroutine(Dialogue("The Elder was very kind to me [click] and gave me ...", Character.Daughter, 2.5f, assDoughter, clipDoughter[1]));
 
         StartCoroutine(SoftCameraFlow());// Плавное движение камеры к герою и передача управления игроку
 
         yield return StartCoroutine(MoveDaughterTo(wayPoints[1].transform));// Слайд 2: дочь идет от точки 1 к точке 2
 
-        StartCoroutine(Dialogue("[click] a discharged lantern! Father!", Character.Daughter, 2f, assDoughter, clipDoughter[2]));
+        StartCoroutine(Dialogue("[click] a discharged lantern! Father!", Character.Daughter, 3.5f, assDoughter, clipDoughter[2]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[1]));//Слайд 3: Ожидание игрока у точки 1
 
@@ -138,13 +138,16 @@ public class Tutorial : MonoBehaviour
 
         UnfreezePlayer();
         //!!! 2,8
-        yield return StartCoroutine(Dialogue("I think I saw a passage here just now... Where did this wall came from? ", Character.Daughter, 1.8f, assDoughter, clipDoughter[6]));
+        yield return StartCoroutine(Dialogue("I think I saw a passage here just now... Where did this wall came from? ", Character.Daughter, 2.3f, assDoughter, clipDoughter[6]));
 
         yield return StartCoroutine(WaitForPlayer(wayPoints[3]));
 
         FreezePlayer();
 
-        yield return StartCoroutine(Dialogue("People are not able to fully perceive the city of the Great Old Ones. It seems that R'lyeh changes itself, and more so in the dark, where the mind loses all the landmarks. Be careful.", Character.Father, 11f, assFather, clipFather[4]));
+        yield return StartCoroutine(Dialogue("People are not able to fully perceive the city of the Great Old Ones.", Character.Father, 3f, assFather, clipFather[4]));
+        yield return StartCoroutine(Dialogue("It seems that R'lyeh changes itself, ", Character.Father, 2f, assFather, null));
+        yield return StartCoroutine(Dialogue("and more so in the dark, where the mind loses all the landmarks.", Character.Father, 4f, assFather, null));
+        yield return StartCoroutine(Dialogue("Be careful.", Character.Father, 2f, assFather, null));
 
         StartCoroutine(MoveDaughterTo(wayPoints[4].transform));
         // 3.5
@@ -316,7 +319,7 @@ public class Tutorial : MonoBehaviour
     {
         canvas.active = true;
         StartCoroutine(Dialogue(text, character));
-        ass?.PlayOneShot(clip);
+        if (clip) ass?.PlayOneShot(clip);
         yield return new WaitForSeconds(delay);
         canvas.active = false;
     }

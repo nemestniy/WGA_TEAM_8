@@ -32,6 +32,12 @@ public class Player: MonoBehaviour {
         Instance = this;
     }
 
+    public void OnDestroy()
+    {
+        Instance = null;
+    }
+
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();

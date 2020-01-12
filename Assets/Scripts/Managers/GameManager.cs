@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour, Manager
     {
         get
         {
-            if(Player.Instance.GetComponent<Energy>().CurrentEnergyLvl != null)
+            if(Player.Instance && Player.Instance.GetComponent<Energy>().CurrentEnergyLvl != null)
                 return Player.Instance.GetComponent<Energy>().CurrentEnergyLvl;
 
             return 1;//TODO:КАСТЫЫЫЛЬ

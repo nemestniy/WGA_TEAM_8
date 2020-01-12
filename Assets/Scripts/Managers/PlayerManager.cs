@@ -11,7 +11,8 @@ public class PlayerManager : MonoBehaviour, Manager
         set { _player = value; }
     }
 
-    private Animator _playerLampStates;
+    private Animator __playerLampStates;
+    private Animator _playerLampStates => __playerLampStates ?? (__playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>());
     private InputController _keyManager;
     private bool _isPaused = true;
     
@@ -97,7 +98,7 @@ public class PlayerManager : MonoBehaviour, Manager
 
     public void StartManager()
     {
-        _playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
+        __playerLampStates = _player.transform.GetChild(0).GetComponent<Animator>();
         IsLoaded = true;
         _isPaused = false;
     }

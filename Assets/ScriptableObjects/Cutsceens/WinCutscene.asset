@@ -20,3 +20,16 @@ MonoBehaviour:
   - image: {fileID: 21300000, guid: fbe082a15ecd40d429b64b9ef107740b, type: 3}
     secondsToChange: 18
     canChangeWithClick: 1
+    Subtitles:
+    - Subtitles: 
+      Speaker: 0
+      Delay: 4
+    - Subtitles: From now on, I can come back here when I finish the search.
+      Speaker: 0
+      Delay: 3.5
+    - Subtitles: 
+      Speaker: 0
+      Delay: 4
+    - Subtitles: It's time to go on.
+      Speaker: 0
+      Delay: 2.5

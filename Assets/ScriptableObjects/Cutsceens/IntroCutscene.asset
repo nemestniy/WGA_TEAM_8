@@ -31,9 +31,9 @@ MonoBehaviour:
     secondsToChange: 8
     canChangeWithClick: 0
     Subtitles:
-    - Subtitles: Soon, the city of R'lyeh will rais over the ocean waters.
+    - Subtitles: Soon, the city of R'lyeh will raise over the ocean waters.
       Speaker: 0
-      Delay: 4
+      Delay: 3.8
     - Subtitles: We need to awaken Cthulhu and perform the rite of sacrifice.
       Speaker: 0
       Delay: 4
@@ -41,7 +41,12 @@ MonoBehaviour:
     secondsToChange: 9.5
     canChangeWithClick: 0
     Subtitles:
-    - Subtitles: Today is a special day. We have reached the ancient city where my
-        only daughter will become the Cult Initiate...
+    - Subtitles: Today is a special day.
       Speaker: 0
-      Delay: 9
+      Delay: 2
+    - Subtitles: We have reached the ancient city...
+      Speaker: 0
+      Delay: 2
+    - Subtitles: '...where my only daughter will become the Cult Initiate.'
+      Speaker: 0
+      Delay: 5

@@ -328,8 +328,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -407,8 +405,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -758,18 +754,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 563268583}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0685757, w: 0.9976459}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0072733653, w: -0.99997354}
   m_LocalPosition: {x: 0, y: 0, z: 7}
   m_LocalScale: {x: 2.603869, y: 4.3909097, z: 2.60387}
   m_Children:
   - {fileID: 1487700529}
   m_Father: {fileID: 32831418}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.8640003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.83300006}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -106, y: -216}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -86.5, y: -476.9}
+  m_SizeDelta: {x: 111.8, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &563268585
 MonoBehaviour:
@@ -792,7 +788,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 24a56069e74632d4089c7c74e327e506,
+            m_ObjectArgument: {fileID: 2800000, guid: 71576e97529ad7948a3eb849c296f34f,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -800,8 +796,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -810,7 +804,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 96538207cb7c5b14f9f153965751b590,
+            m_ObjectArgument: {fileID: 2800000, guid: 15469a9ab99d7e943afe2af1a5803e2c,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -818,8 +812,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -828,7 +820,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 24a56069e74632d4089c7c74e327e506,
+            m_ObjectArgument: {fileID: 2800000, guid: 71576e97529ad7948a3eb849c296f34f,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -836,8 +828,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 10
     callback:
       m_PersistentCalls:
@@ -846,7 +836,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 96538207cb7c5b14f9f153965751b590,
+            m_ObjectArgument: {fileID: 2800000, guid: 15469a9ab99d7e943afe2af1a5803e2c,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -854,8 +844,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
 --- !u!114 &563268586
 MonoBehaviour:
@@ -908,8 +896,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &563268587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,9 +914,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 96538207cb7c5b14f9f153965751b590, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 15469a9ab99d7e943afe2af1a5803e2c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -974,18 +958,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 737067551}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0685757, w: 0.9976459}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0057944898, w: 0.99998325}
   m_LocalPosition: {x: 0, y: 0, z: 7}
   m_LocalScale: {x: 2.60387, y: 4.390907, z: 2.6038704}
   m_Children:
   - {fileID: 101886147}
   m_Father: {fileID: 32831418}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.8640003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.66400003}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -172, y: -353}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -68, y: -257}
+  m_SizeDelta: {x: 194.5, y: 36.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &737067553
 MonoBehaviour:
@@ -1038,8 +1022,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &737067554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1058,9 +1040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: efd60128595646e4d9f4ea65464b0978, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9cd5839dabcde134ab858628c8494d5e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1098,7 +1078,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 994df339bbc06064eba099c77abebb0a,
+            m_ObjectArgument: {fileID: 2800000, guid: 7966fecaa3b40234981fcf207bc1546e,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1106,8 +1086,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -1116,7 +1094,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: efd60128595646e4d9f4ea65464b0978,
+            m_ObjectArgument: {fileID: 2800000, guid: 9cd5839dabcde134ab858628c8494d5e,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1124,8 +1102,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -1134,7 +1110,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 994df339bbc06064eba099c77abebb0a,
+            m_ObjectArgument: {fileID: 2800000, guid: 7966fecaa3b40234981fcf207bc1546e,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1142,8 +1118,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 10
     callback:
       m_PersistentCalls:
@@ -1152,7 +1126,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: efd60128595646e4d9f4ea65464b0978,
+            m_ObjectArgument: {fileID: 2800000, guid: 9cd5839dabcde134ab858628c8494d5e,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1160,8 +1134,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
 --- !u!1 &1054403470
 GameObject:
@@ -1190,18 +1162,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054403470}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0685757, w: 0.9976459}
+  m_LocalRotation: {x: -0, y: -0, z: 0.008939971, w: 0.99996006}
   m_LocalPosition: {x: 0, y: 0, z: 7}
   m_LocalScale: {x: 2.603869, y: 4.3909097, z: 2.60387}
   m_Children:
   - {fileID: 1491747968}
   m_Father: {fileID: 32831418}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.8640003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.024}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.905151, y: 91.595825}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -28, y: 180}
+  m_SizeDelta: {x: 199.4, y: 39.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1054403472
 MonoBehaviour:
@@ -1224,7 +1196,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 785e3e79e0fdfa245aa4d3b1ef41ed39,
+            m_ObjectArgument: {fileID: 2800000, guid: 1c138e28e9e4e3f4e99f2c1e268303ed,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1232,8 +1204,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -1242,7 +1212,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: d7870f42a45f8d1429e5a61e6d7a3205,
+            m_ObjectArgument: {fileID: 2800000, guid: 8ebad85f435a27d4db18c1a89244ea91,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1250,8 +1220,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -1260,7 +1228,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 785e3e79e0fdfa245aa4d3b1ef41ed39,
+            m_ObjectArgument: {fileID: 2800000, guid: 1c138e28e9e4e3f4e99f2c1e268303ed,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1268,8 +1236,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 10
     callback:
       m_PersistentCalls:
@@ -1278,7 +1244,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: d7870f42a45f8d1429e5a61e6d7a3205,
+            m_ObjectArgument: {fileID: 2800000, guid: 8ebad85f435a27d4db18c1a89244ea91,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1286,8 +1252,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
 --- !u!114 &1054403473
 MonoBehaviour:
@@ -1340,8 +1304,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1054403474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,9 +1322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d7870f42a45f8d1429e5a61e6d7a3205, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ebad85f435a27d4db18c1a89244ea91, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1434,8 +1394,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -1513,8 +1471,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
@@ -1592,8 +1548,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 97d34adb1f8ee1f41aa21f3d42e00b61, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -1638,18 +1592,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1762605878}
-  m_LocalRotation: {x: -0, y: -0, z: -0.0685757, w: 0.9976459}
+  m_LocalRotation: {x: -0, y: -0, z: 0.008625135, w: 0.9999628}
   m_LocalPosition: {x: 0, y: 0, z: 7}
   m_LocalScale: {x: 2.603869, y: 4.3909097, z: 2.60387}
   m_Children:
   - {fileID: 268794422}
   m_Father: {fileID: 32831418}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7.8640003}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.98800004}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25.094849, y: -59.404175}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -42, y: -76}
+  m_SizeDelta: {x: 121.2, y: 47.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1762605880
 MonoBehaviour:
@@ -1672,7 +1626,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 1eadf561815e75f439fd43b91941541e,
+            m_ObjectArgument: {fileID: 2800000, guid: 3e548f40746ab5649a51342753f061d6,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1680,8 +1634,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -1690,7 +1642,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 95884d973cd9b4444aaacb4545e598b5,
+            m_ObjectArgument: {fileID: 2800000, guid: 8c7758a118b587c49a0bf2f2f2ddddad,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1698,8 +1650,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 9
     callback:
       m_PersistentCalls:
@@ -1708,7 +1658,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 1eadf561815e75f439fd43b91941541e,
+            m_ObjectArgument: {fileID: 2800000, guid: 3e548f40746ab5649a51342753f061d6,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1716,8 +1666,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   - eventID: 10
     callback:
       m_PersistentCalls:
@@ -1726,7 +1674,7 @@ MonoBehaviour:
           m_MethodName: SetTexture
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 2800000, guid: 95884d973cd9b4444aaacb4545e598b5,
+            m_ObjectArgument: {fileID: 2800000, guid: 8c7758a118b587c49a0bf2f2f2ddddad,
               type: 3}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Texture, UnityEngine
             m_IntArgument: 0
@@ -1734,8 +1682,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
 --- !u!114 &1762605881
 MonoBehaviour:
@@ -1788,8 +1734,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1762605882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1808,9 +1752,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 95884d973cd9b4444aaacb4545e598b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8c7758a118b587c49a0bf2f2f2ddddad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1984,8 +1926,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 74747f0b8fcc5cd44b13a02cff6b898f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
